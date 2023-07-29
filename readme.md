@@ -38,3 +38,22 @@ Still to come:
 * Documentation
 * Generated open graph images
 
+## Frontmatter
+
+```
+layout: markdown
+title: Main page title heading level one
+thumbnail: /assets/img/test.jpg
+thumbnailDescription: An alt text description for the thumbnail image
+seo:
+  title: 'Custom title (defaults to title)'
+  description: 'SEO description (defaults to secondaryTitle)'
+  slug: 'freedemo'
+  changeFrequency: 'daily'
+  sitemapPriority: '1.0'
+  excludeFromSitemap: true
+  noIndex: true
+tags: 'page-demo'
+draft: true
+eleventyExcludeFromCollections: true
+```
