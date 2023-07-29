@@ -1,0 +1,18 @@
+---
+permalink: /humans.txt
+eleventyExcludeFromCollections: true
+seo:
+  excludeFromSitemap: true
+---
+/* TEAM */
+Designer / Developer: {{ settings.author.name }}
+Contact: {{ settings.author.email }}
+Site: {{ settings.author.url }}
+From: {{ settings.author.location }}
+{% if settings.author.fediverse_profile %}Fediverse: {{ settings.author.fediverse_profile }}{% endif %}
+
+/* SITE */
+Last update: {% build %}
+Standards: HTML5, CSS3
+Components: Elva, Alpine.js
+Software: 11ty

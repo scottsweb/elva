@@ -1,0 +1,63 @@
+.switch-wrapper .switch + .switch-btn {
+	background: var(--foreground);
+	border-radius: 2em;
+	padding: 6px;
+	transition: all 0.4s ease;
+	display: block;
+	width: 4.1em;
+	height: 2em;
+	position: relative;
+	cursor: pointer;
+	user-select: none;
+}
+
+.switch-wrapper .switch + .switch-btn::before, 
+.switch-wrapper .switch + .switch-btn::after {
+	position: relative;
+	display: block;
+	content: "";
+	height: 100%;
+}
+
+.switch-wrapper .switch + .switch-btn::before {
+	display: none;
+	width: 50%;
+}
+
+.switch-wrapper .switch + .switch-btn::after {
+	left: 0;
+	border-radius: 50%;
+	background: var(--background);
+	width: unset;
+	aspect-ratio: 1/1;
+	transition: all 0.2s ease;
+}
+
+.switch-wrapper .switch:checked + .switch-btn {
+	background: var(--foreground);
+}
+
+.switch-wrapper .switch-btn.switch-button-on::after {
+	transform: translateX(150%) !important;
+	background: var(--background);
+}
+
+.switch-wrapper .icon {
+	width: 20px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	color: var(--background);
+}
+
+.switch-wrapper .icon-sun {
+	left: 10%;
+}
+
+.switch-wrapper .icon-moon {
+	right: 10%;
+}
+
+.switch-wrapper .switch {
+	display: none;
+}

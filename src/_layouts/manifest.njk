@@ -1,0 +1,32 @@
+{
+	"lang": "{{ locales[page.lang].locale or page.lang }}",
+	"dir": "{{ locales[page.lang].dir or 'ltr' }}",
+	"short_name": "{{ 'meta.title' | translate }}",
+	"name": "{{ 'meta.title' | translate }}",
+	"description": "{{ 'meta.description' | translate }}",
+	"categories": {{ settings.manifest.categories | dump | safe }},
+	"orientation": "{{ settings.manifest.orientation }}",
+	"scope": "/{{ page.lang }}/",
+	"id": "/?v={% version %}",
+	"start_url": "{{ "/" | htmlBaseUrl }}",
+	"theme_color": "{{ settings.theme_color_light }}",
+	"background_color": "{{ settings.manifest.background_color }}",
+	"display": "{{ settings.manifest.display }}",
+	"icons": [
+		{
+			"src": "{{ '/assets/img/icon.svg' | htmlBaseUrl(settings.url) }}",
+			"type": "image/svg+xml",
+			"sizes": "512x512"
+		},
+		{
+			"src": "{{ '/assets/img/icon-192.png' | htmlBaseUrl(settings.url) }}",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "{{ '/assets/img/icon-512.png' | htmlBaseUrl(settings.url) }}",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+  	]
+}

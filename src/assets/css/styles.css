@@ -1,0 +1,162 @@
+@media (prefers-reduced-motion) {
+	* {
+		transition: none !important;
+	}
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-size: var(--step-0);
+    line-height: 1.4;
+    letter-spacing: var(--tracking);
+    transition: background var(--transition-base), color var(--transition-base);
+}
+
+[x-cloak] { 
+    display: none !important; 
+}
+
+::selection {
+    background: var(--foreground);
+    color: var(--background);
+}
+
+:focus {
+    transition: var(--transition-base);
+    outline: var(--focus-outline);
+    outline-offset: 0.3ch;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+  
+:target {
+    scroll-margin-top: 2ex;
+}
+
+a {
+    color: var(--link);
+}
+  
+a:hover {
+    color: var(--link-hover);
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-headings);
+}
+
+/* move all this inside article */
+
+h1,
+h2,
+h3 {
+    line-height: 1;
+    letter-spacing: var(--tracking-s);
+}
+
+h1 {
+    font-size: var(--step-4);
+}
+
+h2 {
+    font-size: var(--step-3);
+}
+
+h3 {
+    font-size: var(--step-2);
+}
+
+blockquote:not([class]) {
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+}
+  
+blockquote:not([class]) p:last-of-type {
+    font-family: var(--font-base);
+    font-size: var(--size-step-1);
+    font-weight: normal;
+}
+
+p,
+li,
+blockquote:not([class]) {
+  max-width: 65ch;
+}
+
+h1,
+h2,
+h3 {
+  max-width: 20ch;
+}
+
+.entry-header {
+    margin-bottom: var(--space-m, 1em);
+}
+
+.entry-content > * + * {
+    margin-top: var(--space-m, 1em);
+}
+
+/* utilities */
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px,1px,1px,1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+/* body and containers */
+
+#content {
+    padding: var(--space-m-3xl);
+}
+
+/* skip to content */
+.skip-link {
+	transform: translateY( -140px );
+	transition: var(--transition-base);
+    margin: 1em;
+    padding: 0.5em 0.8em;
+    background-color: var(--foreground);
+    color: var(--background);
+}
+
+.skip-link:focus {
+	transform: translateY( 0 );
+	position: fixed;
+	display: block;
+	clip: auto !important;
+	clip-path: none;
+	height: auto;
+    width: auto;
+    z-index: 10;
+}
+
+/* navigation */
+
+a[aria-current="page"] {
+    color: var(--link-hover);
+    text-decoration: none;
+}

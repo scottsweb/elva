@@ -1,0 +1,52 @@
+{
+  "name": "elva",
+  "version": "0.0.1",
+  "description": "A multilingual, clean, green 11ty starter theme",
+  "main": "index.js",
+  "scripts": {
+    "build": "export NODE_ENV=production && rimraf dist && eleventy",
+    "dev": "eleventy --serve --watch",
+    "clean": "rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release-patch": "npm version patch --force && npm publish",
+    "release-minor": "npm version minor --force && npm publish",
+    "release-major": "npm version major --force && npm publish"
+  },
+  "bugs": {
+    "url": "https://github.com/scottsweb/elva/issues"
+  },
+  "keywords": [
+    "eleventy",
+    "11ty",
+    "starter",
+    "theme",
+    "i18n",
+    "rss",
+    "markdown",
+    "sitemaps",
+    "CSS",
+    "alpine"
+  ],
+  "author": {
+    "name": "Scott Evans",
+    "url": "https://scott.ee",
+    "email": "git@scott.ee"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-fetch": "^4.0.0",
+    "@11ty/eleventy-img": "^3.1.0",
+    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.1.0",
+    "@alpinejs/intersect": "^3.12.0",
+    "alpinejs": "^3.12.0",
+    "clean-css": "^5.3.2",
+    "eleventy-plugin-embed-everything": "^1.16.0",
+    "html-minifier-terser": "^7.2.0",
+    "lodash.get": "^4.4.2",
+    "mime-types": "^2.1.35",
+    "rimraf": "^3.0.2",
+    "terser": "^5.16.9"
+  }
+}

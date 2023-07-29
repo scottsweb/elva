@@ -1,0 +1,11 @@
+<div class="switch-language">
+	<a href="{{ page.url }}" lang="{{ page.lang }}" hreflang="{{ page.lang }}" aria-label="{{ locales[page.lang].label }}"">
+		{{ locales[page.lang].shorthand }}
+	</a>
+
+	{% for link in page.url | locale_links %}
+		<a href="{{ link.url }}" lang="{{ link.lang }}" hreflang="{{ link.lang }}" aria-label="{{ locales[link.lang].label }}">
+			{{ locales[link.lang].shorthand }}
+		</a>
+	{% endfor %}
+</div>

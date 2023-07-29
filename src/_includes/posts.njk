@@ -1,0 +1,9 @@
+{% set postslist = collections.posts | languageFilter | reverse %}
+<ol reversed class="postlist" style="counter-reset: start-from {{ postslist.length + 1 }}">
+{% for post in postslist %}
+	<li class="postlist-item{% if post.url === url %} postlist-item-active{% endif %}">
+		<a href="{{ post.url }}" class="postlist-link">{% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</a>
+		<time class="postlist-date" datetime="{{ post.date | dateToRfc3339 }}">{{ post.date | formatDate }}</time>
+	</li>
+{% endfor %}
+</ol>

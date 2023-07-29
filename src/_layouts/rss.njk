@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="/{{ page.lang }}/feed/feed.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:base="{{ "/" | htmlBaseUrl(settings.url) }}">
+    <title>{{ 'meta.rssTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}</title>
+    <subtitle>{{ 'meta.description' | translate }}</subtitle>
+	<icon>{{ "/assets/img/icon-512.png" | htmlBaseUrl(settings.url) | cdnify }}</icon>
+    <link href="{{ permalink | htmlBaseUrl(settings.url) }}" rel="self"/>
+    <link href="{{ "/" | htmlBaseUrl(settings.url) }}" />	
+	<updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+	<id>{{ "/" | htmlBaseUrl(settings.url) }}</id>
+	<author>
+		<name>{{ settings.author.name }}</name>
+		<email>{{ settings.author.email }}</email>
+	</author>
+  	{%- for post in collections.posts | languageFilter(page.lang)| reverse %}
+  	{%- set absolutePostUrl = post.url | absoluteUrl(settings.url) %}
+	{%- set image = (post.data.thumbnail or settings.meta.opengraph_default_image) | htmlBaseUrl(settings.url) | cdnify %}
+	<entry>
+		<title>{{ post.data.title }}</title>
+		<link href="{{ absolutePostUrl }}" />
+		<updated>{{ post.date | dateToRfc3339 }}</updated>
+		<id>{{ absolutePostUrl }}</id>
+		<content xml:lang="{{ post.page.lang }}" type="html">{{ post.templateContent | transformWithHtmlBase(settings.url) }}</content>
+		<enclosure url="{{ image | cdnify }}" length="0" type="{{ image | mimetype }}"/>
+	</entry>
+	{%- endfor %}
+</feed>

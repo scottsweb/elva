@@ -1,0 +1,104 @@
+:root {
+    /* branding */
+    --black: #000;
+	--white: #fff;
+    --nord0: #2e3440;
+    --nord1: #3b4252;
+    --nord2: #434c5e;
+    --nord3: #4c566a;
+    --nord4: #d8dee9;
+    --nord5: #e5e9f0;
+    --nord6: #eceff4;
+    --nord7: #8fbcbb;
+    --nord8: #88c0d0;
+    --nord9: #81a1c1;
+    --nord10: #5e81ac;
+    --nord11: #bf616a;
+    --nord12: #d08770;
+    --nord13: #ebcb8b;
+    --nord14: #a3be8c;
+    --nord15: #b48ead;
+
+    /* colours */
+    --background: var(--nord6);
+    --foreground: var(--nord0);
+    --link: var(--nord10);
+    --link-hover: var(--nord0);
+
+    /* syntax highlighting */
+    --code-background: var(--nord0);
+    --code-default: var(--nord6);
+    --code-regex: var(--nord13);
+    --code-tag: var(--nord9);
+    --code-comment: var(--nord3);
+    --code-selector: var(--nord14);
+    --code-number: var(--nord15);
+    --code-function: var(--nord8);
+
+    /* typography */
+    --font-base: var();
+    --font-headings: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-quote: var();
+    --font-mono: "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1500,22,1.333,6,1,800&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    --step--1: clamp(0.94rem, calc(0.91rem + 0.13vw), 1.03rem);
+    --step-0: clamp(1.13rem, calc(1.06rem + 0.34vw), 1.38rem);
+    --step-1: clamp(1.35rem, calc(1.22rem + 0.66vw), 1.83rem);
+    --step-2: clamp(1.62rem, calc(1.40rem + 1.12vw), 2.44rem);
+    --step-3: clamp(1.94rem, calc(1.59rem + 1.78vw), 3.26rem);
+    --step-4: clamp(2.33rem, calc(1.79rem + 2.72vw), 4.34rem);
+    --step-5: clamp(2.80rem, calc(1.99rem + 4.05vw), 5.79rem);
+    --step-6: clamp(3.36rem, calc(2.18rem + 5.91vw), 7.71rem);
+
+    /* spacing / layout */
+    --tracking: -0.02ch;
+    --tracking-s: -0.055ch;
+    --gutter: var(--space-s-m);
+    --border-radius: var(--step-0);
+    /* @link https://utopia.fyi/space/calculator?c=320,18,1.2,1500,22,1.333,6,1,800&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l|m-3xl|s-2xl&g=s,l,xl,12 */
+    --space-3xs: clamp(0.31rem, calc(0.30rem + 0.08vw), 0.38rem);
+    --space-2xs: clamp(0.56rem, calc(0.53rem + 0.17vw), 0.69rem);
+    --space-xs: clamp(0.88rem, calc(0.82rem + 0.25vw), 1.06rem);
+    --space-s: clamp(1.13rem, calc(1.06rem + 0.34vw), 1.38rem);
+    --space-m: clamp(1.69rem, calc(1.59rem + 0.51vw), 2.06rem);
+    --space-l: clamp(2.25rem, calc(2.11rem + 0.68vw), 2.75rem);
+    --space-xl: clamp(3.38rem, calc(3.17rem + 1.02vw), 4.13rem);
+    --space-2xl: clamp(4.50rem, calc(4.23rem + 1.36vw), 5.50rem);
+    --space-3xl: clamp(6.75rem, calc(6.34rem + 2.03vw), 8.25rem);
+    /* one-up pairs */
+    --space-3xs-2xs: clamp(0.31rem, calc(0.21rem + 0.51vw), 0.69rem);
+    --space-2xs-xs: clamp(0.56rem, calc(0.43rem + 0.68vw), 1.06rem);
+    --space-xs-s: clamp(0.88rem, calc(0.74rem + 0.68vw), 1.38rem);
+    --space-s-m: clamp(1.13rem, calc(0.87rem + 1.27vw), 2.06rem);
+    --space-m-l: clamp(1.69rem, calc(1.40rem + 1.44vw), 2.75rem);
+    --space-l-xl: clamp(2.25rem, calc(1.74rem + 2.54vw), 4.13rem);
+    --space-xl-2xl: clamp(3.38rem, calc(2.80rem + 2.88vw), 5.50rem);
+    --space-2xl-3xl: clamp(4.50rem, calc(3.48rem + 5.08vw), 8.25rem);
+    /* custom pairs */
+    --space-s-l: clamp(1.13rem, calc(0.68rem + 2.20vw), 2.75rem);
+    --space-m-3xl: clamp(1.69rem, calc(-0.09rem + 8.90vw), 8.25rem);
+    --space-s-2xl: clamp(1.13rem, calc(-0.06rem + 5.93vw), 5.50rem);
+
+    /* animation */
+    --transition-base: 250ms ease;
+    --transition-movement: 200ms linear;
+    --transition-fade: 200ms ease;
+    --transition-bounce: 500ms cubic-bezier(0.5, 0.05, 0.2, 1.5);
+
+    /* focus */
+    --focus-outline: 0.3ch solid var( --nord13 );
+
+}
+
+/* dark mode */
+:root[data-theme="dark"] {
+
+    /* colours */
+    --background: var(--nord0);
+    --foreground: var(--nord6);
+    --link: var(--nord8);
+    --link-hover: var(--nord6);
+
+    /* syntax highlighting */
+    --code-background: var(--nord1);
+}
