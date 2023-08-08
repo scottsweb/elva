@@ -42,6 +42,7 @@ module.exports = eleventyConfig => {
 
     // Plugins ----------------------------------------
 
+    eleventyConfig.addPlugin(require("./src/_config/plugins/drafts"));
     eleventyConfig.addPlugin(pluginRSS);
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);

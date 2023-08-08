@@ -22,6 +22,7 @@ An 11ty starter theme that provides a solid base for your next web project. Feat
 * humans.txt 
 * robots.txt
 * Front Matter CMS (in progress)
+* Draft support
 * Optimised CSS, JS and HTML
 * Syntax highlighting
 * Simplified markdown embeds for YouTube, Vimeo etc
@@ -37,6 +38,7 @@ Still to come:
 * CDN for image assets
 * Documentation
 * Generated open graph images
+* Critical CSS - https://github.com/11ty/eleventy-plugin-bundle
 
 ## Frontmatter
 
