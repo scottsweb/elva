@@ -3,7 +3,7 @@
 // Imports --------------------------------------------
 
 const {EleventyI18nPlugin, EleventyHtmlBasePlugin} = require('@11ty/eleventy');
-const markdownIt = require("markdown-it");
+const markdownIt = require('markdown-it');
 const pluginRSS = require('@11ty/eleventy-plugin-rss');
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginEmbedEverything = require('eleventy-plugin-embed-everything');
@@ -98,6 +98,7 @@ module.exports = eleventyConfig => {
 
     // Passthrough -------------------------------------
 
+    eleventyConfig.addPassthroughCopy({'./src/assets/files': './assets/files'})
     eleventyConfig.addPassthroughCopy({'./src/assets/img': './assets/img'})
     eleventyConfig.addPassthroughCopy({'./src/assets/fonts': './assets/fonts'})
 
