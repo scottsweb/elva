@@ -8,6 +8,7 @@
   "frontMatter.content.fmHighlight": false,
   "frontMatter.taxonomy.seoDescriptionField": "seo.description",
   "frontMatter.templates.prefix": "",
+  "frontMatter.taxonomy.dateFormat": "YYYY-MM-DD",
   "frontMatter.taxonomy.contentTypes": [
     {
       "name": "default",
@@ -441,6 +442,45 @@
           "type": "string",
           "single": false,
           "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "Quote": {
+      "description": "Quote with author",
+      "body": [
+        "<blockquote>",
+        "  <p>[[quote]]</p>",
+        "  <figcaption>— [[author]], <cite><a href=\"[[&url]]\">[[cite]]</a></cite></figcaption>",
+        "<blockquote>"
+      ],
+      "fields": [
+        {
+          "name": "quote",
+          "title": "Quote",
+          "type": "string",
+          "single": false,
+          "default": "FM_SELECTED_TEXT"
+        },
+        {
+          "name": "author",
+          "title": "Author",
+          "type": "string",
+          "single": true,
+          "default": ""
+        },
+        {
+          "name": "cite",
+          "title": "Cite",
+          "type": "string",
+          "single": true,
+          "default": ""
+        },
+        {
+          "name": "url",
+          "title": "Cite URL",
+          "type": "string",
+          "single": true,
+          "default": ""
         }
       ]
     }
