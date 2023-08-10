@@ -104,7 +104,11 @@ module.exports = eleventyConfig => {
 
     // Markdown ----------------------------------------
 
-    eleventyConfig.setLibrary("md", markdownIt({linkify: true}));
+    eleventyConfig.setLibrary("md", markdownIt({
+        html: true,
+        linkify: true,
+        typographer:  false
+    }));
 
     // 11ty Settings -----------------------------------
 
