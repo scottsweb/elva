@@ -4,8 +4,8 @@
         {%- set t = ((seo.title or title) + ' ' + settings.meta.separator + ' ' + ('meta.title' | translate) if title else ('meta.title' | translate)) %}
         {%- set d = seo.description or ('meta.description' | translate) %}
         {%- set u = page.url | htmlBaseUrl(settings.url) %}
-        {%- set i = (thumbnail or settings.meta.opengraph_default_image) | htmlBaseUrl(settings.url) %}
-        {%- set ia = thumbnailDescription or ('meta.opengraph_default_alt' | translate) %}
+        {%- set i = (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) %}
+        {%- set ia = thumbnailDescription or ('meta.opengraphDefaultAlt' | translate) %}
 
         <!-- charset / viewport -->
         <meta charset="utf-8">
@@ -46,8 +46,8 @@
 
         <!-- everything else -->
         <link rel="manifest" href="{{ "/site.webmanifest" | locale_url | htmlBaseUrl(settings.url) }}"">
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ settings.theme_color_light }}">
-        <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="{{ settings.theme_color_dark }}">
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ settings.themeColorLight }}">
+        <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="{{ settings.themeColorDark }}">
         {% if settings.isStaging or noIndex %}<meta name="robots" content="noindex, nofollow" />{% endif %}
 
         <!-- set theme before page renders to stop fouc -->

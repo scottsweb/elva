@@ -14,7 +14,7 @@
 	</author>
   	{%- for post in collections.posts | languageFilter(page.lang)| reverse %}
   	{%- set absolutePostUrl = post.url | absoluteUrl(settings.url) %}
-	{%- set image = (post.data.thumbnail or settings.meta.opengraph_default_image) | htmlBaseUrl(settings.url) | cdnify %}
+	{%- set image = (post.data.thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) | cdnify %}
 	<entry>
 		<title>{{ post.data.title }}</title>
 		<link href="{{ absolutePostUrl }}" />

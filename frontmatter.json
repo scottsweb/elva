@@ -489,7 +489,7 @@
     {
       "id": "settings",
       "title": "Settings",
-      "file": "[[workspace]]/src/_data/settings.js",
+      "file": "[[workspace]]/src/_data/settings.json",
       "fileType": "json",
       "singleEntry": true,
       "schema": {
@@ -497,11 +497,11 @@
         "type": "object",
         "required": [],
         "properties": {
-          "theme_color_light": {
+          "themeColorLight": {
             "type": "string",
             "title": "Theme Color (Light)"
           },
-          "theme_color_dark": {
+          "themeColorDark": {
             "type": "string",
             "title": "Theme Color (Dark)"
           },
@@ -521,6 +521,84 @@
                 "type": "string",
                 "title": "URL",
                 "default": "https://"
+              },
+              "location": {
+                "type": "string",
+                "title": "Location",
+                "default": ""
+              },
+              "fediverseProfile": {
+                "type": "string",
+                "title": "Fediverse URL",
+                "default": "https://mastodon.social/@person"
+              }
+            }
+          },
+          "meta": {
+            "type": "object",
+            "title": "Meta",
+            "properties": {
+              "separator": {
+                "type": "string",
+                "title": "Separator"
+              },
+              "opengraphDefaultImage": {
+                "type": "string",
+                "title": "Default Opengraph Image",
+                "default": "/assets/img/opengraph-default.png"
+              }
+            }
+          },
+          "seo": {
+            "type": "object",
+            "title": "SEO",
+            "properties": {
+              "defaultChangeFrequency": {
+                "type": "string",
+                "title": "Default Change Frequency",
+                "default": "monthly"
+              },
+              "defaultPriority": {
+                "title": "Default Sitemap Priority",
+                "type": "number",
+                "default": 0.7,
+                "numberOptions": {
+                  "isDecimal": true,
+                  "min": 0.1,
+                  "max": 1,
+                  "step": 0.1
+                }
+              }
+            }
+          },
+          "manifest": {
+            "type": "object",
+            "title": "Web Manifest (https://web.dev/add-manifest/#create)",
+            "properties": {
+              "themeColor": {
+                "type": "string",
+                "title": "Theme Color"
+              },
+              "backgroundColor": {
+                "type": "string",
+                "title": "Background Color"
+              },
+              "display": {
+                "type": "string",
+                "title": "Display (fullscreen, standalone, minimal-ui, browser)",
+                "default": "minimal-ui"
+              },
+              "orientation": {
+                "type": "string",
+                "title": "Orientation",
+                "default": "portrait-primary"
+              },
+              "categories": {
+                "type": "array",
+                "title": "Categories (https://github.com/w3c/manifest/wiki/Categories)",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           }

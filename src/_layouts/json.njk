@@ -16,7 +16,7 @@
     "items": [
         {%- for post in collections.posts | languageFilter(page.lang)| reverse %}
         {%- set absolutePostUrl = post.url | htmlBaseUrl(settings.url) %}
-        {%- set image = (post.data.thumbnail or settings.meta.opengraph_default_image) | htmlBaseUrl(settings.url) | cdnify %}
+        {%- set image = (post.data.thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) | cdnify %}
         {
             "id": "{{ absolutePostUrl }}",
             "url": "{{ absolutePostUrl }}",

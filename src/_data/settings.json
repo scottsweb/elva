@@ -1,0 +1,26 @@
+{
+	"themeColorLight": "#eceff4",
+	"themeColorDark": "#2e3440",
+	"author": {
+		"name": "Scott Evans",
+		"email": "git@scott.ee",
+		"url": "https://scott.ee",
+		"location": "Stockholm, Sweden",
+		"fediverseProfile": "https://toot.scott.ee/@scott"
+	},
+	"meta": {
+		"separator": "•",
+		"opengraphDefaultImage": "/assets/img/opengraph-default.png"
+	},
+	"seo": {
+		"defaultChangeFrequency": "monthly",
+		"defaultPriority": "0.7"
+	},
+	"manifest": {
+		"themeColor": "#eceff4",
+		"backgroundColor": "#eceff4",
+		"display": "minimal-ui",
+		"orientation": "portrait-primary",
+		"categories": ["business", "photo"]
+	}
+}
