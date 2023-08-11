@@ -9,6 +9,10 @@
   "frontMatter.taxonomy.seoDescriptionField": "seo.description",
   "frontMatter.templates.prefix": "",
   "frontMatter.taxonomy.dateFormat": "YYYY-MM-DD",
+  "frontMatter.experimental": false,
+  "frontMatter.extensibility.scripts": [
+    "[[workspace]]/.frontmatter/ui/image.js"
+  ],
   "frontMatter.taxonomy.contentTypes": [
     {
       "name": "default",
@@ -610,7 +614,7 @@
       "title": "Languages",
       "file": "[[workspace]]/src/_data/locales.js",
       "fileType": "json",
-      "labelField": "shorthand",
+      "labelField": "label",
       "singleEntry": false,
       "schema": {
         "title": "Languages",
@@ -625,17 +629,7 @@
           "dir": {
             "title": "Direction",
             "type": "string",
-            "default": "ltr",
-            "choices": [
-              {
-                "id": "ltr",
-                "title": "LTR"
-              },
-              {
-                "id": "rtl",
-                "title": "RTL"
-              }
-            ]
+            "default": "ltr"
           },
           "label": {
             "type": "string",
