@@ -1,6 +1,5 @@
 .DS_Store
 .cache
 .env
-.vscode
 dist
 node_modules
