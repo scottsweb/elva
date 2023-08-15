@@ -1,10 +1,10 @@
 const Image = require('@11ty/eleventy-img');
 
 module.exports = async function(src, alt, sizes, loading = 'lazy', fetch = 'auto', decoding = 'async') {
-
-    let metadata = await Image('./src' + src, {
+    const settings = this.ctx.settings;
+    let meta = {};
+    let metadata = {
         widths: [300, 600, 1200, 2400, 'auto'],
-        formats: ['avif', 'webp', 'auto'],
         urlPath: '/assets/img/',
         outputDir: './dist/assets/img/',
         sharpWebpOptions: {
@@ -12,7 +12,23 @@ module.exports = async function(src, alt, sizes, loading = 'lazy', fetch = 'auto
                 quality: 70,
             },
         }
-    });
+    };
+
+    if (settings.isProduction || settings.isStaging ) {
+        meta = await Image('./src' + src, {
+                ...metadata,
+                formats: ['webp', 'auto'],
+                urlFormat: function({hash, format, width}) {
+                    return `//i0.wp.com/${settings.url}/assets/img/${hash}.${format}?w=${width}&quality=70&strip=info`;
+                }
+            }
+        )
+    } else {
+        meta = await Image('./src' + src, { 
+            ...metadata,
+            formats: ['avif', 'webp', 'auto']
+        });
+    }
 
     let imageAttributes = {
         alt,
@@ -22,5 +38,5 @@ module.exports = async function(src, alt, sizes, loading = 'lazy', fetch = 'auto
         decoding
     };
     
-    return Image.generateHTML(metadata, imageAttributes);
+    return Image.generateHTML(meta, imageAttributes);
 };

@@ -22,7 +22,7 @@ module.exports = eleventyConfig => {
         // these get merged with _data/settings.js
         url: process.env.URL || 'http://localhost:8080',
         isProduction: process.env.NODE_ENV === 'production',
-        isStaging: process.env.URL && process.env.URL.includes('github.io')
+        isStaging: (process.env.URL && process.env.URL.includes('github.io')) || false
     });
 
     // Watch Targets ----------------------------------
