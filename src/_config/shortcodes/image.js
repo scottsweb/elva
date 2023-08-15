@@ -1,10 +1,10 @@
 const Image = require('@11ty/eleventy-img');
 
-module.exports = async function(src, alt, sizes) {
+module.exports = async function(src, alt, sizes, loading = 'lazy', fetch = 'auto', decoding = 'async') {
 
     let metadata = await Image('./src' + src, {
-        widths: [385, 580, 1158, 2300],
-        formats: ['avif', 'png'],
+        widths: [300, 600, 1200, 2400, 'auto'],
+        formats: ['avif', 'webp', 'auto'],
         urlPath: '/assets/img/',
         outputDir: './dist/assets/img/',
         sharpWebpOptions: {
@@ -17,8 +17,9 @@ module.exports = async function(src, alt, sizes) {
     let imageAttributes = {
         alt,
         sizes,
-        loading: 'lazy',
-        decoding: 'async',
+        loading,
+        fetch,
+        decoding
     };
     
     return Image.generateHTML(metadata, imageAttributes);

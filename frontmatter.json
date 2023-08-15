@@ -257,7 +257,7 @@
   "frontMatter.content.snippets": {
     "Image": {
       "description": "Insert a responsive image",
-      "body": "{% image \"[[&mediaUrl]]\", \"[[alt]]\", \"[[mq]]\", \"[[loading]]\", \"[[fetch]]\" \"[[decoding]]\", \"[[mediaWidth]]\", \"[[mediaHeight]]\" %}",
+      "body": "{% image \"[[&mediaUrl]]\", \"[[alt]]\", \"[[mq]]\", \"[[loading]]\", \"[[fetch]]\", \"[[decoding]]\", \"[[mediaWidth]]\", \"[[mediaHeight]]\" %}",
       "isMediaSnippet": true,
       "fields": [
         {
