@@ -3,3 +3,4 @@
 .env
 dist
 node_modules
+notes.md
