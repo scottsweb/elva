@@ -15,13 +15,14 @@
     --nord10: #5e81ac;
     --nord11: #bf616a;
     --nord12: #d08770;
-    --nord13: #ebcb8b;
+    --nord13: #efc571;
     --nord14: #a3be8c;
     --nord15: #b48ead;
 
     /* colours */
     --background: var(--nord6);
     --foreground: var(--nord0);
+    --foreground-soft: var(--nord3);
     --link: var(--nord10);
     --link-hover: var(--nord0);
 
