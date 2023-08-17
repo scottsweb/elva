@@ -43,7 +43,7 @@ module.exports = eleventyConfig => {
 
     // Plugins ----------------------------------------
 
-    eleventyConfig.addPlugin(require("./src/_config/plugins/drafts"));
+    eleventyConfig.addPlugin(require('./src/_config/plugins/drafts'));
     eleventyConfig.addPlugin(pluginRSS);
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
@@ -105,7 +105,7 @@ module.exports = eleventyConfig => {
 
     // Markdown ----------------------------------------
 
-    eleventyConfig.setLibrary("md", markdownIt({
+    eleventyConfig.setLibrary('md', markdownIt({
         html: true,
         linkify: true,
         typographer:  false
