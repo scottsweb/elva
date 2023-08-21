@@ -53,10 +53,43 @@ An 11ty starter theme that provides a solid base for your next web project. Feat
 - [ ] .well-known support for the Fediverse and Nostr
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js)?
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
-- [ ] Fromt Matter CMS - More data managed from the CMS
+- [ ] Front Matter CMS — More data managed from the CMS
 - [ ] Front Matter CMS — Better support for templates, default templates etc
 - [ ] Front Matter CMS — [Generated open graph images](https://www.eliostruyf.com/generate-open-graph-preview-image-code-front-matter/) ([1](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/), [2](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/))
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
+
+## Getting Started
+
+Make a directory and navigate to it:
+
+```
+mkdir my-site-name
+cd my-site-name
+```
+
+Clone this repository:
+
+```
+git clone https://github.com/scottsweb/elva.git .
+```
+
+Install dependencies:
+
+```
+npm install
+```
+
+Run Eleventy for site development:
+
+```
+npm run dev
+```
+
+Generate a production-ready build to the `dist` folder:
+
+```
+npm run build
+```
 
 ## Personalisation Checklist
 
