@@ -9,7 +9,7 @@
   "frontMatter.taxonomy.seoDescriptionField": "seo.description",
   "frontMatter.templates.prefix": "",
   "frontMatter.taxonomy.dateFormat": "YYYY-MM-DD",
-  "frontMatter.experimental": false,
+  "frontMatter.experimental": true,
   "frontMatter.extensibility.scripts": [
     "[[workspace]]/.frontmatter/ui/image.js"
   ],
