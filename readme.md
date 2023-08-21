@@ -98,9 +98,9 @@ npm run build
 - [ ] Add your chosen languages (the demo site has docs for each step) (link)
 - [ ] Set your own default iamges, icons and favicon by replacing the images in `/src/assets/img/`
 - [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes all Frontmatter (link) in the UI
-- [ ] Design your site by customising the CSS (`/src/assets/css/`), includes (`/src/_includes/`) and layouts (`/src/_layouts/`)
+- [ ] Design your site by customising the CSS (`/src/assets/css/`), layouts (`/src/_layouts/`) and includes (`/src/_includes/`). 
 
-Optional
+### Optional
 
 - [ ] If you add more Frontmatter to your markdown, you may wish to edit `frontmatter.json` to add [Front Matter CMS](https://frontmatter.codes/) support
 - [ ] You many not need [Alpine.js](https://alpinejs.dev/) which can be removed from `/src/assets/js/bundle.njk`
