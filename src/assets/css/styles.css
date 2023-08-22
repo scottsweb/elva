@@ -11,6 +11,7 @@ html {
 body {
     background-color: var(--background);
     color: var(--foreground);
+    font-family: var(--font-base);
     font-size: var(--step-0);
     line-height: 1.4;
     letter-spacing: var(--tracking);
@@ -140,6 +141,10 @@ h3 {
     word-wrap: normal !important;
 }
 
+.text-small {
+    font-size: var(--step--1);
+}
+
 /* notice */
 
 .notice {
@@ -172,11 +177,18 @@ h3 {
 
 /* body and containers */
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 #content {
     padding: var(--space-m-3xl);
+    flex-grow: 1;
 }
 
 /* skip to content */
+
 .skip-link {
 	transform: translateY( -140px );
 	transition: var(--transition-base);
@@ -197,13 +209,82 @@ h3 {
     z-index: 10;
 }
 
-/* navigation */
+/* header and navigation */
+
+.navigation {
+    padding: var(--space-s-l);
+    display: flex;
+    gap: var(--space-s-l);
+    align-items: center;
+    font-family: var(--font-headings);
+    font-weight: 500;
+}
+
+.site-logo {
+    width: 33%;
+    max-width: 100px;
+    height: auto;
+    position: relative;
+    top: -8px;
+}
+
+.site-logo svg {
+    color: var(--foreground);
+}
+
+.navigation-menu {
+    list-style: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--space-s-m);
+}
+
+.navigation-menu li {
+    margin: 0;
+    padding: 0;
+}
+
+.navigation-menu li a {
+    text-decoration: none;
+    letter-spacing: var(--tracking-s);
+}
 
 a[aria-current="page"] {
     color: var(--link-hover);
     text-decoration: none;
 }
 
+/* home */
+
+.home #content {
+    display: flex;
+    flex-direction: column;
+}
+
+.home .site-intro {
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.home .site-intro svg {
+    max-width: 50%;
+}
+
+.home .site-intro p {
+    margin: var(--space-s-2xl) auto 0 auto;
+}
+
+/* footer */
+
+.footer {
+    padding: var(--space-s-l);
+}
 
 /* feed xslt */
 

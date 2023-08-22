@@ -1,22 +1,30 @@
 module.exports = {
     en: [
 		{
-			text: 'Home',
+			text: 'About',
+			url: '/about/'
+		},
+		{
+			text: 'Documentation',
 			url: '/'
 		},
 		{
-			text: 'About',
-			url: '/about/'
+			text: 'GitHub',
+			url: 'https://github.com/scottsweb/elva'
 		}
     ],
     sv: [
 		{
-			text: 'Hem',
+			text: 'Om',
+			url: '/om/'
+		},
+		{
+			text: 'Dokumentation',
 			url: '/'
 		},
 		{
-			text: 'Om',
-			url: '/om-oss/'
+			text: 'GitHub',
+			url: 'https://github.com/scottsweb/elva'
 		}
     ]
 };

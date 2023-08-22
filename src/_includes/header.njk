@@ -2,15 +2,6 @@
 
     <a href="#content" class="skip-link screen-reader-text">{{ 'header.skipLink' | translate }}</a>
 
-    {% include "switch-darkmode.njk" %}
-
-    {% include "switch-il8n.njk" %}
-
     {% include "navigation.njk" %}
-
-    <h1>{{ settings.site_name }}</h1>
-
-    <span x-data x-text="$store.elva.scrollPosition">0</span>
-    <span x-data x-text="$store.elva.scrollPercent" style="position: fixed; top: 0; left: 0">0</span>
 
 </header>
