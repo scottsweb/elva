@@ -141,8 +141,9 @@ h3 {
     word-wrap: normal !important;
 }
 
-.text-small {
+.subtle {
     font-size: var(--step--1);
+    color: var(--foreground-soft);
 }
 
 /* notice */
@@ -239,6 +240,7 @@ body {
     padding: 0;
     display: flex;
     gap: var(--space-s-m);
+    flex-grow: 1;
 }
 
 .navigation-menu li {

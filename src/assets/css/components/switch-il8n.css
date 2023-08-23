@@ -1,0 +1,21 @@
+.switch-language a,
+.switch-language span {
+    padding: var(--space-3xs) var(--space-2xs);
+    text-decoration: none;
+    margin-left: var(--space-2xs);
+    background-color: var(--link);
+    color: var(--background);
+    border-radius: var(--step--1);
+    display: inline-block;
+}
+
+.switch-language a:hover,
+.switch-language a.current {
+    background-color: var(--foreground);
+    color: var(--background);
+}
+
+.switch-language span.disabled {
+    background-color: var(--background-soft);
+    color: var(--foreground-soft);
+}

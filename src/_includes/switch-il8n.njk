@@ -1,11 +1,23 @@
 <div class="switch-language">
-	<a href="{{ page.url }}" lang="{{ page.lang }}" hreflang="{{ page.lang }}" aria-label="{{ locales[page.lang].label }}"">
-		{{ locales[page.lang].shorthand }}
-	</a>
-
-	{% for link in page.url | locale_links %}
-		<a href="{{ link.url }}" lang="{{ link.lang }}" hreflang="{{ link.lang }}" aria-label="{{ locales[link.lang].label }}">
-			{{ locales[link.lang].shorthand }}
-		</a>
+	{% for lang, properties in locales %}
+		{% if page.lang === lang %}
+			<a href="{{ page.url }}" lang="{{ page.lang }}" hreflang="{{ page.lang }}"  aria-label="{{ properties.label }}" aria-current="page" class="current">
+				{{ properties.shorthand }}
+			</a>
+		{% else %}
+			{% set found = false %}
+			{% for link in page.url | locale_links %}
+				{% if lang === link.lang %}{% set found = link %}{% endif %}
+			{% endfor %}
+			{% if found  %}
+				<a href="{{ found.url }}" lang="{{ found.lang }}" hreflang="{{ found.lang }}"  aria-label="{{ properties.label }}">
+					{{ properties.shorthand }}
+				</a>
+			{% else %}
+				<span aria-label="{{ properties.label }}" class="disabled">
+					{{ properties.shorthand }}
+				</span>
+			{% endif %}
+		{% endif %}
 	{% endfor %}
 </div>

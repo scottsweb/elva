@@ -21,8 +21,9 @@
 
     /* colours */
     --background: var(--nord6);
+    --background-soft: var(--nord4);
     --foreground: var(--nord0);
-    --foreground-soft: var(--nord3);
+    --foreground-soft: color-mix(in srgb, var(--nord6) 70%, var(--nord0));;
     --link: var(--nord10);
     --link-hover: var(--nord0);
 
@@ -96,6 +97,7 @@
 
     /* colours */
     --background: var(--nord0);
+    --background-soft: var(--nord2);
     --foreground: var(--nord6);
     --link: var(--nord8);
     --link-hover: var(--nord6);
