@@ -14,7 +14,7 @@ module.exports = async function(src, alt, sizes, loading = 'lazy', fetch = 'auto
         }
     };
 
-    if (settings.isProduction || settings.isStaging ) {
+    if (( settings.isProduction || settings.isStaging ) && settings.cdn ) {
         meta = await Image('./src' + src, {
                 ...metadata,
                 formats: ['webp', 'auto'],

@@ -52,6 +52,37 @@ a:hover {
     text-decoration: none;
 }
 
+hr {
+    border-top: 1px solid var(--foreground-soft);
+    border-bottom: none;
+}
+
+code {
+    background-color: var(--background-soft);
+    padding: 0.2ch 0.6ch;
+    border-radius: var(--border-radius);
+}
+
+table {
+    width: 100%;
+    border: 1px solid var(--foreground-soft);
+    border-collapse: collapse;
+}
+
+table th {
+    font-family: var(--font-headings);
+}
+
+table th,
+table td {
+    border: 1px solid var(--foreground-soft);
+    padding: var(--space-2xs);
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: var(--background-soft);
+}
+
 h1,
 h2,
 h3,
@@ -61,7 +92,7 @@ h6 {
     font-family: var(--font-headings);
 }
 
-/* move all this inside article */
+/* to-do: move all this inside article? */
 
 h1,
 h2,
@@ -80,6 +111,15 @@ h2 {
 
 h3 {
     font-size: var(--step-2);
+}
+
+h4 {
+    font-size: var(--step-1);
+}
+
+h5,
+h6 {
+    font-size: var(--step-0);
 }
 
 blockquote:not([class]) {
@@ -101,6 +141,9 @@ blockquote p::after {
     content: close-quote;
 }
 
+h4,
+h5,
+h6,
 p,
 li,
 blockquote:not([class]) {
@@ -144,6 +187,20 @@ h3 {
 .subtle {
     font-size: var(--step--1);
     color: var(--foreground-soft);
+}
+
+.oembed-youtube,
+.oembed-vimeo {
+    border: 1px solid var(--foreground);
+}
+
+.oembed-youtube lite-youtube {
+    max-width: 100%;
+}
+
+.oembed-youtube lite-youtube::before {
+    background: none;
+    position: relative;
 }
 
 /* notice */
@@ -297,6 +354,18 @@ a[aria-current="page"] {
     margin: var(--space-s-2xl) auto 0 auto;
 }
 
+/* posts */
+
+.posts .meta {
+    list-style: none;
+    margin: 0 0 var(--space-s-2xl) 0;
+    padding: 0;
+}
+
+.posts .meta-date {
+    color: var(--foreground-soft);
+}
+
 /* footer */
 
 .footer {
@@ -304,6 +373,10 @@ a[aria-current="page"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.rss-icon {
+    width: 44px;
 }
 
 /* feed xslt */

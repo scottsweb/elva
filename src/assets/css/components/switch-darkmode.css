@@ -4,7 +4,7 @@
 	padding: 6px;
 	transition: all 0.4s ease;
 	display: block;
-	width: 4.1em;
+	width: 3.5em;
 	height: 2em;
 	position: relative;
 	cursor: pointer;
@@ -38,7 +38,7 @@
 }
 
 .switch-wrapper .switch-btn.switch-button-on::after {
-	transform: translateX(150%) !important;
+	transform: translateX(106%) !important;
 	background: var(--background);
 }
 
@@ -51,11 +51,11 @@
 }
 
 .switch-wrapper .icon-sun {
-	left: 10%;
+	left: 12%;
 }
 
 .switch-wrapper .icon-moon {
-	right: 10%;
+	right: 12%;
 }
 
 .switch-wrapper .switch {
