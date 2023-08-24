@@ -1,4 +1,6 @@
-# Elva
+![elva logo](https://scott.ee/images/elva.png)
+
+# elva
 
 * Status: ✅ Active
 * Contributors: [@scott](https://toot.scott.ee/@scott)
@@ -11,17 +13,19 @@
 > [!NOTE]  
 > This is not quite ready for use just yet but feel free to test and provide feedback.
 
-An 11ty starter theme that provides a solid base for your next web project. Features include:
+Features include:
 
 ### Performance Things
 
 * Optimised CSS, JS and HTML
-* Image shortcode that supports lazy loading and modern formats (avif, webp)
+* Responsive image shortcode that supports lazy loading and modern formats (avif, webp)
+* Support for the [Photon CDN](https://developer.wordpress.com/docs/photon/) (can be turned on via settings)
 
 ### Accessibility Things
 
 * [Multilingual](https://www.11ty.dev/docs/plugins/i18n/)
-* Dark mode / Light mode
+* Dark / light mode
+* Skip link and ARIA hints
 
 ### Standards Things
 
@@ -47,11 +51,14 @@ An 11ty starter theme that provides a solid base for your next web project. Feat
 - [ ] [Critical CSS](https://github.com/11ty/eleventy-plugin-bundle) or per page CSS
 - [ ] [Explore activity feed](https://github.com/11ty/eleventy-activity-feed)
 - [ ] Fix: Make the random filter choose the same article for both languages
+- [ ] Accessible tooltip component
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Size presets for images (full width, half etc that set the sizes attribute automatically)
 - [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/)
 - [ ] .well-known support for the Fediverse and Nostr
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js)?
+- [ ] Cleaner language filter and how to handle missing translated index page (possibly with redirect as above?)
+- [ ] Allow for variable subsitution in translations e.g. `Hello, {{name}}` (needs to handle plurals)
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
 - [ ] Front Matter CMS — More data managed from the CMS
 - [ ] Front Matter CMS — Better support for templates, default templates etc
@@ -91,35 +98,23 @@ Generate a production-ready build to the `dist` folder:
 npm run build
 ```
 
+To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https://vscodium.com/) or [Visual Studio Code](https://code.visualstudio.com/) and enable the extension (if it doesn't enable automatically). It will open each time you launch your project.
+
 ## Personalisation Checklist
 
 - [ ] At the top of `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging`. Make sure these environment variables are set in staging and production and tweak as necessary
 - [ ] Configure your sites settings in `/src/_data/settings.json` or in Front Matter CMS (under Data)
 - [ ] Add your chosen languages (the demo site has docs for each step) (link)
-- [ ] Set your own default iamges, icons and favicon by replacing the images in `/src/assets/img/`
+- [ ] Set your own default images, icons and favicon by replacing the images in `/src/assets/img/`
 - [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes all Frontmatter (link) in the UI
 - [ ] Design your site by customising the CSS (`/src/assets/css/`), layouts (`/src/_layouts/`) and includes (`/src/_includes/`). 
 
 ### Optional
 
+- [ ] Set your preferred default image sizes and formats in the image shortcode `/src/_config/shortcodes/image.js`
 - [ ] If you add more Frontmatter to your markdown, you may wish to edit `frontmatter.json` to add [Front Matter CMS](https://frontmatter.codes/) support
 - [ ] You many not need [Alpine.js](https://alpinejs.dev/) which can be removed from `/src/assets/js/bundle.njk`
 - [ ] Use [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/) to grab some API data
+- [ ] If you enable Photon CDN support [familiarise yourself with these limitations](https://jetpack.com/support/site-accelerator/#limitations)
+ 
 
-```
-layout: markdown
-title: Main page title heading level one
-thumbnail: /assets/img/test.jpg
-thumbnailDescription: An alt text description for the thumbnail image
-seo:
-  title: 'Custom title (defaults to title)'
-  description: 'SEO description (defaults to secondaryTitle)'
-  slug: 'freedemo'
-  changeFrequency: 'daily'
-  sitemapPriority: '1.0'
-  excludeFromSitemap: true
-  noIndex: true
-tags: 'page-demo'
-draft: true
-eleventyExcludeFromCollections: true
-```
