@@ -509,6 +509,10 @@
             "type": "string",
             "title": "Theme Color (Dark)"
           },
+          "cdn": {
+            "type": "boolean",
+            "title": "Enable Photon CDN?"
+          },
           "author": {
             "type": "object",
             "title": "Author",
@@ -605,43 +609,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    {
-      "id": "locales",
-      "title": "Languages",
-      "file": "[[workspace]]/src/_data/locales.js",
-      "fileType": "json",
-      "labelField": "label",
-      "singleEntry": false,
-      "schema": {
-        "title": "Languages",
-        "type": "object",
-        "required": [
-          "dir",
-          "label",
-          "shorthand",
-          "locale"
-        ],
-        "properties": {
-          "dir": {
-            "title": "Direction",
-            "type": "string",
-            "default": "ltr"
-          },
-          "label": {
-            "type": "string",
-            "title": "Label"
-          },
-          "shorthand": {
-            "type": "string",
-            "title": "Shorthand"
-          },
-          "locale": {
-            "type": "string",
-            "title": "Locale"
           }
         }
       }
