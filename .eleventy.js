@@ -52,22 +52,24 @@ module.exports = eleventyConfig => {
         use: ['twitter', 'youtube', 'vimeo'],
         twitter: {
             options: {
-                embedClass: 'oembed-twitter',
+                embedClass: 'oembed oembed-twitter',
                 doNotTrack: true
             }
         },
         vimeo: {
             options: {
-                embedClass: 'oembed-vimeo',
+                embedClass: 'oembed oembed-vimeo',
                 //wrapperStyle
             }
         },
         youtube: {
             options: {
-                embedClass: 'oembed-yotube',
+                embedClass: 'oembed oembed-youtube',
                 modestBranding: true,
                 lazy: true,
-                lite: true
+                lite: {
+                    thumbnailQuality: 'maxresdefault'
+                }
             }
         }
     });
@@ -108,7 +110,7 @@ module.exports = eleventyConfig => {
     eleventyConfig.setLibrary('md', markdownIt({
         html: true,
         linkify: true,
-        typographer:  false
+        typographer: true
     }));
 
     // 11ty Settings -----------------------------------
