@@ -15,13 +15,13 @@
 					<ul class="posts">
 						<xsl:for-each select="/atom:feed/atom:entry">
 							<li>
-								<span><xsl:value-of select="substring(atom:updated, 0, 11)" /></span>
 								<a>
 									<xsl:attribute name="href">
 									<xsl:value-of select="atom:link/@href"/>
 									</xsl:attribute>
 									<xsl:value-of select="atom:title"/>
 								</a>
+								<span><xsl:value-of select="substring(atom:updated, 0, 11)" /></span>
 							</li>
 						</xsl:for-each>
 					</ul>

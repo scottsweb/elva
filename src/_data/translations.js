@@ -1,10 +1,10 @@
 module.exports = {
     en: {
         meta: {
-            title: 'Elva',
+            title: 'elva',
             rssTitle: 'RSS Feed',
             jsonTitle: 'JSON Feed',
-            description: 'EN A multilingual clean green 11ty starter theme',
+            description: 'A multilingual, clean, green, 11ty starter theme',
             opengraphDefaultAlt: 'An English description of the default opengraph image'
         },
         header: {
@@ -13,24 +13,14 @@ module.exports = {
     },
     sv: {
         meta: {
-            title: 'Elva',
+            title: 'elva',
             rssTitle: 'RSS Feed',
             jsonTitle: 'JSON Feed',
-            description: 'SV A multilingual clean green 11ty starter theme',
+            description: 'A multilingual clean green 11ty starter theme',
             opengraphDefaultAlt: 'A Swedish description of the default opengraph image'
         },
         header: {
             skipLink: 'Hoppa till innehållet'
-        }
-    },
-    other: {
-        hello: {
-            'en': 'Hello',
-            'sv': 'Hej'
-        },
-        hello_name: {
-            'en': 'Hello, {{ name }}!',
-            'sv': 'Hej, {{ name }}!'
         }
     }
 }

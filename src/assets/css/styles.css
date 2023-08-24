@@ -57,7 +57,7 @@ hr {
     border-bottom: none;
 }
 
-code {
+p > code {
     background-color: var(--background-soft);
     padding: 0.2ch 0.6ch;
     border-radius: var(--border-radius);
@@ -286,7 +286,7 @@ body {
     max-width: 100px;
     height: auto;
     position: relative;
-    top: -6px;
+    top: -8px;
 }
 
 .site-logo svg {
@@ -356,6 +356,26 @@ a[aria-current="page"] {
 
 /* posts */
 
+.postlist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.postlist li {
+    margin-bottom: var(--space-s-m);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.postlist .postlist-date {
+    color: var(--foreground-soft);
+    font-size: var(--step--1);
+    display: block;
+}
+
 .posts .meta {
     list-style: none;
     margin: 0 0 var(--space-s-2xl) 0;
@@ -388,7 +408,7 @@ a[aria-current="page"] {
 }
 
 .rss-xslt .posts li {
-    margin-bottom: var(--space-s, 1em);
+    margin-bottom: var(--space-s-m);
 
     &:last-child {
         margin-bottom: 0;
@@ -398,8 +418,5 @@ a[aria-current="page"] {
 .rss-xslt .posts span {
     color: var(--foreground-soft);
     font-size: var(--step--1);
-}
-
-.rss-xslt .posts a {
     display: block;
 }
