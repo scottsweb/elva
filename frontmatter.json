@@ -455,7 +455,7 @@
         "<blockquote>",
         "  <p>[[quote]]</p>",
         "  <figcaption>— [[author]], <cite><a href=\"[[&url]]\">[[cite]]</a></cite></figcaption>",
-        "<blockquote>"
+        "</blockquote>"
       ],
       "fields": [
         {
