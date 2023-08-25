@@ -19,7 +19,7 @@ module.exports = async function(src, alt, sizes, loading = 'lazy', fetch = 'auto
                 ...metadata,
                 formats: ['webp', 'auto'],
                 urlFormat: function({width}) {
-                    return `//i0.wp.com/${settings.url}${src}?w=${width}&quality=70&strip=info`;
+                    return `//i0.wp.com/${settings.url.replace(/^https?:\/\//, '')}${src}?w=${width}&quality=70&strip=info`;
                 }
             }
         );
