@@ -328,7 +328,7 @@
     "Code": {
       "description": "Insert a code block",
       "body": [
-        "```[[type]]",
+        "``` [[type]]",
         "[[code]]",
         "```"
       ],
