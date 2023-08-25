@@ -1,7 +1,7 @@
 {
 	"themeColorLight": "#eceff4",
 	"themeColorDark": "#2e3440",
-	"cdn": false,
+	"cdn": true,
 	"author": {
 		"name": "Scott Evans",
 		"email": "git@scott.ee",

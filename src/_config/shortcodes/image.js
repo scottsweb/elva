@@ -19,7 +19,7 @@ module.exports = async function(src, alt, sizes, loading = 'lazy', fetch = 'auto
                 ...metadata,
                 formats: ['webp', 'auto'],
                 urlFormat: function({hash, format, width}) {
-                    return `//i0.wp.com/${settings.url}/assets/img/${hash}.${format}?w=${width}&quality=70&strip=info`;
+                    return `//i0.wp.com/${settings.url}/assets/img/${hash}-${width}.${format}?w=${width}&quality=70&strip=info`;
                 }
             }
         )
