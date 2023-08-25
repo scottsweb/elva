@@ -23,9 +23,10 @@
     --background: var(--nord6);
     --background-soft: var(--nord4);
     --foreground: var(--nord0);
-    --foreground-soft: color-mix(in srgb, var(--nord6) 70%, var(--nord0));;
-    --link: var(--nord10);
+    --foreground-soft: color-mix(in srgb, var(--nord6) 30%, var(--nord0));
+    --link: color-mix(in srgb, var(--nord10) 70%, var(--nord0));
     --link-hover: var(--nord0);
+    --divider: color-mix(in srgb, var(--nord6) 80%, var(--nord0));
 
     /* syntax highlighting */
     --code-background: var(--nord0);
@@ -99,8 +100,10 @@
     --background: var(--nord0);
     --background-soft: var(--nord2);
     --foreground: var(--nord6);
+    --foreground-soft: color-mix(in srgb, var(--nord6) 70%, var(--nord0));
     --link: var(--nord8);
     --link-hover: var(--nord6);
+    --divider: var(--nord3);
 
     /* syntax highlighting */
     --code-background: var(--nord1);

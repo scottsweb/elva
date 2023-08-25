@@ -8,8 +8,11 @@ module.exports = {
             opengraphDefaultAlt: 'An English description of the default opengraph image'
         },
         header: {
-            skipLink: 'Skip to content'
-        }
+            skipLink: 'Skip to content',
+            home: 'Home'
+        },
+        dark: 'Dark',
+        light: 'Light'
     },
     sv: {
         meta: {
@@ -20,7 +23,10 @@ module.exports = {
             opengraphDefaultAlt: 'A Swedish description of the default opengraph image'
         },
         header: {
-            skipLink: 'Hoppa till innehållet'
-        }
+            skipLink: 'Hoppa till innehållet',
+            home: 'Hem'
+        },
+        dark: 'Mörk',
+        light: 'Ljus'
     }
 }
