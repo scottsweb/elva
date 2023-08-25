@@ -18,11 +18,11 @@ module.exports = async function(src, alt, sizes, loading = 'lazy', fetch = 'auto
         meta = await Image('./src' + src, {
                 ...metadata,
                 formats: ['webp', 'auto'],
-                urlFormat: function({hash, format, width}) {
-                    return `//i0.wp.com/${settings.url}/assets/img/${hash}-${width}.${format}?w=${width}&quality=70&strip=info`;
+                urlFormat: function({width}) {
+                    return `//i0.wp.com/${settings.url}${src}?w=${width}&quality=70&strip=info`;
                 }
             }
-        )
+        );
     } else {
         meta = await Image('./src' + src, { 
             ...metadata,
