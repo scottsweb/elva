@@ -406,9 +406,13 @@ a[aria-current="page"] {
 
 /* feed xslt */
 
+.rss-xslt h1 {
+    margin-top: var(--space-s-l);
+}
+
 .rss-xslt .posts {
     list-style: none;
-    margin: var(--space-m, 1em) 0 0 0;
+    margin: var(--space-s-l) 0 0 0;
     padding: 0;
 }
 

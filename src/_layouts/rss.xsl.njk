@@ -4,14 +4,14 @@
 	<xsl:template match="/">
 	<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 		<head>
-			<title>RSS Feed | <xsl:value-of select="/atom:feed/atom:title"/></title>
+			<title><xsl:value-of select="/atom:feed/atom:title"/></title>
 			<link rel="stylesheet" href="/assets/css/bundle.css"/>
 		</head>
 		<body class="rss-xslt">
 			<main id="content">
 				<div class="entry-content">
-					<p class="notice">This is an RSS feed. Visit <a href="https://aboutfeeds.com">About Feeds</a> to learn more and get started. It’s free.</p>
-					<h1>Recent Posts</h1>
+					<p class="notice">{{ 'feeds.info' | translate | safe }}</p>
+					<h1>{{ 'feeds.title' | translate }}</h1>
 					<ul class="posts">
 						<xsl:for-each select="/atom:feed/atom:entry">
 							<li>

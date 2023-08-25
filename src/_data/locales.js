@@ -2,7 +2,7 @@ module.exports = {
     en: {
         dir: 'ltr',
         label: 'English',
-        shorthand: 'GB',
+        shorthand: 'EN',
         locale: 'en-gb'
     },
     sv: {

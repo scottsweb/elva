@@ -11,6 +11,10 @@ module.exports = {
             skipLink: 'Skip to content',
             home: 'Home'
         },
+        feeds: {
+            info: 'This is an RSS feed. Copy and paste the URL into your feed reader. Visit <a href="https://aboutfeeds.com">About Feeds</a> to learn more about RSS.',
+            title: 'Recently published'
+        },
         dark: 'Dark',
         light: 'Light'
     },
@@ -25,6 +29,10 @@ module.exports = {
         header: {
             skipLink: 'Hoppa till innehållet',
             home: 'Hem'
+        },
+        feeds: {
+            info: 'Detta är ett RSS feed. Kopiera och klistra in webbadressen i din flödesläsare. Besök <a href="https://aboutfeeds.com">About Feeds</a> för att lära dig mer om RSS.',
+            title: 'Nyligen publicerad'
         },
         dark: 'Mörk',
         light: 'Ljus'
