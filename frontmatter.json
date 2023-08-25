@@ -511,7 +511,7 @@
           },
           "cdn": {
             "type": "boolean",
-            "title": "Enable Photon CDN?"
+            "title": "Enable image CDN?"
           },
           "author": {
             "type": "object",
