@@ -287,15 +287,28 @@ body {
     gap: var(--space-s-l);
     align-items: center;
     font-family: var(--font-headings);
+    flex-direction: column;
     font-weight: 500;
 }
 
+@media (min-width: 600px) {
+    .navigation {
+        flex-direction: row;
+    }
+}
+
 .site-logo {
-    width: 33%;
-    max-width: 100px;
+    max-width: 130px;
     height: auto;
-    position: relative;
-    top: -8px;
+}
+
+@media (min-width: 600px) {
+    .site-logo {
+        max-width: 100px;
+        width: 33%;
+        position: relative;
+        top: -8px;
+    }
 }
 
 .site-logo svg {
