@@ -1,26 +1,40 @@
 ---
 title: About
-thumbnail: /assets/img/test.jpg
-seo:
-  description: About
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum enim in facilisis tristique. Morbi sollicitudin nulla et enim blandit, quis dignissim est tempus. Sed tristique hendrerit suscipit. Integer felis nisi, tempus et semper eu, tempus et leo. In rhoncus risus id sem ultrices efficitur. Donec gravida non lacus eu placerat. 
+A multilingual, clean, green, [11ty starter theme](https://www.11ty.dev/docs/starter/). [elva](https://github.com/scottsweb/elva) provides solid foundations for your next web project. You are currently viewing the demo site which also contains a [little documentation]({{ "/" | locale_url }}) to help get you started. Head over to [GitHub to make feature requests, pull requests and report issues](https://github.com/scottsweb/elva/issues).
 
-## H2 Example
- 
-```css
-body {
-  background: red;
-}
+{% image "/assets/img/screenshots.png", "Screenshot of elva in VSCodium and the browser", "100vw", "lazy", "auto", "async", "2400", "1688" %}
 
-p { 
-  color: green;
-}
-```
+Features include:
 
-Maecenas in ante a nisl bibendum malesuada ut pellentesque ligula. Sed eget massa at ante consectetur volutpat non non turpis. Pellentesque pharetra orci a lorem fermentum, eget faucibus est porta. Quisque tempus, elit a aliquam vulputate, metus diam consectetur dui, a lacinia nunc arcu a risus. Phasellus eu venenatis tortor, a porta diam. Nullam tincidunt congue augue vitae pulvinar.
+### Performance things
 
-> Maecenas in ante a nisl bibendum malesuada ut pellentesque ligula. Sed eget massa at ante consectetur volutpat non non turpis. Pellentesque pharetra orci a lorem fermentum, eget faucibus est porta. Quisque tempus, elit a aliquam vulputate, metus diam consectetur dui, a lacinia nunc arcu a risus.
+* Optimised CSS, JS and HTML
+* Responsive image shortcode that supports lazy loading and modern formats (avif, webp)
+* Support for the [Photon CDN](https://developer.wordpress.com/docs/photon/) (can be turned on via settings)
 
-Cras non nisi sem. In feugiat in purus nec sagittis. Cras feugiat sem quis quam semper viverra. Phasellus volutpat aliquet magna in rutrum. Nulla vehicula arcu odio. Proin pellentesque, orci quis iaculis tincidunt, velit diam porttitor est, quis hendrerit est velit eu mauris. Donec quis lacus a risus hendrerit pretium vel ut tellus. Maecenas efficitur quis elit sed dapibus. Quisque sit amet suscipit arcu, id varius arcu. Ut aliquet ullamcorper risus, non tincidunt nunc pretium ut. 
+### Accessibility things
+
+* [Multilingual](https://www.11ty.dev/docs/plugins/i18n/)
+* Dark / light mode (see the toggle in the footer)
+* Skip link and ARIA hints
+
+### Standards things
+
+* [RSS feed]({{ "/feed/feed.xml" | locale_url }}) with XSLT styles
+* [JSON feed]({{ "/feed/feed.json" | locale_url }})
+* [Sitemap](/sitemap.xml)
+* [Web manifest for PWAs]({{ "/site.webmanifest" | locale_url }})
+* [humans.txt](/humans.txt) 
+* [robots.txt](/robots.txt)
+
+### Other things
+
+* [Front Matter CMS](https://frontmatter.codes/)
+* Draft support
+* [Syntax highlighting](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
+* [Simplified embeds for YouTube, Vimeo etc](https://github.com/gfscott/eleventy-plugin-embed-everything)
+* Plenty of helpful filters and functions
+* [Alpine.js](https://alpinejs.dev/)
+* [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/)
