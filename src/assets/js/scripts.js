@@ -2,7 +2,7 @@ document.addEventListener('alpine:init', () => {
     Alpine.store('elva', {
         init() {
             this.theme = localStorage.getItem('theme') === null ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : localStorage.getItem('theme')
-            this.scrollPosition = window.pageYOffset
+            this.scrollPosition = window.scrollY
         },
         theme: null,
         scrollPosition: 0,
