@@ -1,6 +1,6 @@
 <div class="switch-wrapper" x-data x-cloak>
 	<input class="switch" id="darkmode" type="checkbox" value="dark" :checked="$store.elva.theme === 'dark'" />
-	<label class="switch-btn" for="darkmode" tabindex="0" role="checkbox" :aria-checked="$store.elva.theme === 'dark'" aria-label="Toggle dark/light theme" @keydown.prevent.space @click="$store.elva.themeToggle()" @keyup.prevent.space="$store.elva.themeToggle()" :class="$store.elva.theme === 'dark' ? 'switch-button-on' : 'switch-button-off'">
+	<label class="switch-btn" for="darkmode" tabindex="0" aria-label="Toggle dark/light theme" @keydown.prevent.space @click="$store.elva.themeToggle()" @keyup.prevent.space="$store.elva.themeToggle()" :class="$store.elva.theme === 'dark' ? 'switch-button-on' : 'switch-button-off'">
         <svg class="icon icon-sun" width="1em" height="1em" viewBox="0 0 24 24" fill="none" aria-labelledby="icon-sun" xmlns="http://www.w3.org/2000/svg">
             <title id="icon-sun">{{ 'light' | translate }}</title>
             <circle cx="11.9998" cy="11.9998" r="5.75375" fill="currentColor" />
