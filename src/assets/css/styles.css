@@ -185,6 +185,10 @@ h3 {
     word-wrap: normal !important;
 }
 
+.rounded {
+    border-radius: var(--border-radius);
+}
+
 .subtle {
     font-size: var(--step--1);
     color: var(--foreground-soft);
