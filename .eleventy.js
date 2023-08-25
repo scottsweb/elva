@@ -98,6 +98,8 @@ module.exports = eleventyConfig => {
     eleventyConfig.addFilter('random', require('./src/_config/filters/random'));
     eleventyConfig.addFilter('where', require('./src/_config/filters/where'));
     eleventyConfig.addFilter('sort', require('./src/_config/filters/sort'));
+    eleventyConfig.addFilter('base64', require('./src/_config/filters/base64'));
+
 
     // Passthrough -------------------------------------
 
