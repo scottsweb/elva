@@ -57,7 +57,8 @@ hr {
     border-bottom: none;
 }
 
-p > code {
+p > code,
+li > code {
     background-color: var(--background-soft);
     padding: 0.2ch 0.6ch;
     border-radius: var(--border-radius);
@@ -257,6 +258,10 @@ body {
     font-weight: 500;
     border-radius: 0;
     width: 100%;
+}
+
+.skip-link:hover {
+    color: var(--background);
 }
 
 .skip-link:focus {
