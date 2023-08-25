@@ -17,6 +17,10 @@ pre[class*="language-"] {
     hyphens: none;
 }
 
+code[class*="language-"] {
+    padding-right: var(--space-s-l);
+}
+
 /* code blocks */
 pre[class*="language-"] {
     padding: var(--space-s-l);
