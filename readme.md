@@ -10,24 +10,23 @@
 
 ## About
 
-> [!NOTE]  
-> This is not quite ready for use just yet but feel free to test and provide feedback.
+A multilingual, clean, green, [11ty starter theme](https://www.11ty.dev/docs/starter/). elva provides solid foundations for your next web project. [Try the demo!](https://elva.scott.ee/)
 
 Features include:
 
-### Performance Things
+### Performance things
 
 * Optimised CSS, JS and HTML
 * Responsive image shortcode that supports lazy loading and modern formats (avif, webp)
 * Support for the [Photon CDN](https://developer.wordpress.com/docs/photon/) (can be turned on via settings)
 
-### Accessibility Things
+### Accessibility things
 
 * [Multilingual](https://www.11ty.dev/docs/plugins/i18n/)
 * Dark / light mode
 * Skip link and ARIA hints
 
-### Standards Things
+### Standards things
 
 * [RSS feed](https://www.11ty.dev/docs/plugins/rss/) with XSLT styles
 * JSON feeds
@@ -36,7 +35,7 @@ Features include:
 * humans.txt 
 * robots.txt
 
-### Other Things
+### Other things
 
 * [Front Matter CMS](https://frontmatter.codes/)
 * Draft support
@@ -53,13 +52,15 @@ Features include:
 - [ ] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
+- [ ] Markdown-It — Support ins and mark, sup and sub via plugin
 - [ ] Size presets for images (full width, half etc that set the sizes attribute automatically)
 - [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/)
 - [ ] .well-known support for the Fediverse and Nostr
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js)?
-- [ ] Cleaner language filter and how to handle missing translated index page (possibly with redirect as above?)
+- [ ] Cleaner language selector
 - [ ] Allow for variable subsitution in translations e.g. `Hello, {{name}}` (needs to handle plurals)
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
+- [ ] Image shortcode with caption support (move image settings to somewhere central)
 - [ ] Front Matter CMS — More data managed from the CMS
 - [ ] Front Matter CMS — Better support for templates, default templates etc
 - [ ] Front Matter CMS — [Generated open graph images](https://www.eliostruyf.com/generate-open-graph-preview-image-code-front-matter/) ([1](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/), [2](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/))
