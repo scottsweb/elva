@@ -60,7 +60,7 @@ hr {
 p > code,
 li > code {
     background-color: var(--background-soft);
-    padding: 0.2ch 0.6ch;
+    padding: 0.2ch 0.5ch;
     border-radius: var(--border-radius);
 }
 

@@ -21,6 +21,12 @@ code[class*="language-"] {
     padding-right: var(--space-s-l);
 }
 
+[class*="language-"]::selection,
+[class*="language-"] *::selection {
+    background: var(--nord13);
+    color: var(--nord0);
+}
+
 /* code blocks */
 pre[class*="language-"] {
     padding: var(--space-s-l);
