@@ -1,6 +1,6 @@
 const Image = require('@11ty/eleventy-img');
 
-module.exports = async function(src, alt, sizes, loading = 'lazy', fetch = 'auto', decoding = 'async') {
+module.exports = async function(src, alt, sizes, classes = '', loading = 'lazy', fetch = 'auto', decoding = 'async') {
     const settings = this.ctx.settings;
     let meta = {};
     let metadata = {
@@ -31,6 +31,7 @@ module.exports = async function(src, alt, sizes, loading = 'lazy', fetch = 'auto
     }
 
     let imageAttributes = {
+        class: classes,
         alt,
         sizes,
         loading,

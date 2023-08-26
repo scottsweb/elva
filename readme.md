@@ -55,7 +55,6 @@ Features include:
 - [ ] Markdown-It — Support ins and mark, sup and sub via plugin
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
 - [ ] Images — Shortcode with caption (centralise image settings or using existing shortcode)
-- [ ] Images — Support for custom clases
 - [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/)
 - [ ] .well-known support for the Fediverse and Nostr
 - [ ] Serve assets and styles for YouTube lite locally
@@ -65,7 +64,7 @@ Features include:
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
 - [ ] Front Matter CMS — More data managed from the CMS
 - [ ] Front Matter CMS — Better support for templates, default templates etc
-- [ ] Front Matter CMS — [Generated open graph images](https://www.eliostruyf.com/generate-open-graph-preview-image-code-front-matter/) ([1](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/), [2](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/))
+- [ ] Front Matter CMS — [Generated open graph images](https://www.eliostruyf.com/generate-open-graph-preview-image-code-front-matter/) ([1](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/))
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
 
 ## Getting Started

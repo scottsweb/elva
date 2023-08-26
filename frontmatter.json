@@ -253,7 +253,7 @@
   "frontMatter.content.snippets": {
     "Image": {
       "description": "Insert a responsive image",
-      "body": "{% image \"[[&mediaUrl]]\", \"[[alt]]\", \"[[mq]]\", \"[[loading]]\", \"[[fetch]]\", \"[[decoding]]\", \"[[mediaWidth]]\", \"[[mediaHeight]]\" %}",
+      "body": "{% image \"[[&mediaUrl]]\", \"[[alt]]\", \"[[mq]]\", \"[[classes]]\", \"[[loading]]\", \"[[fetch]]\", \"[[decoding]]\", \"[[mediaWidth]]\", \"[[mediaHeight]]\" %}",
       "isMediaSnippet": true,
       "fields": [
         {
@@ -262,6 +262,13 @@
           "type": "string",
           "single": true,
           "default": "(min-width: 800px) 580px, 100vw"
+        },
+        {
+          "name": "classes",
+          "title": "Class",
+          "type": "string",
+          "single": true,
+          "default": ""
         },
         {
           "name": "loading",
