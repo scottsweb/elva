@@ -374,6 +374,7 @@ a[aria-current="page"] {
 
 .home .site-intro p {
     margin: var(--space-s-2xl) auto 0 auto;
+    max-width: 550px;
 }
 
 /* posts */
