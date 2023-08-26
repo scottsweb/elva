@@ -253,7 +253,7 @@
   "frontMatter.content.snippets": {
     "Image": {
       "description": "Insert a responsive image",
-      "body": "{% image \"[[&mediaUrl]]\", \"[[alt]]\", \"[[mq]]\", \"[[classes]]\", \"[[loading]]\", \"[[fetch]]\", \"[[decoding]]\", \"[[mediaWidth]]\", \"[[mediaHeight]]\" %}",
+      "body": "{% image \"[[&mediaUrl]]\", \"[[alt]]\", \"[[mq]]\", \"[[caption]]\" , \"[[classes]]\", \"[[loading]]\", \"[[fetch]]\", \"[[decoding]]\", \"[[mediaWidth]]\", \"[[mediaHeight]]\" %}",
       "isMediaSnippet": true,
       "fields": [
         {

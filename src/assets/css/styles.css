@@ -93,8 +93,6 @@ h6 {
     font-family: var(--font-headings);
 }
 
-/* to-do: move all this inside article? */
-
 h1,
 h2,
 h3 {
@@ -160,6 +158,27 @@ h1,
 h2,
 h3 {
   max-width: 20ch;
+}
+figure {
+    position: relative;
+}
+
+figure > figcaption {
+    position: absolute;
+    bottom: var(--space-s-m);
+    left: var(--space-s-m);
+    color: var(--background);
+    margin-right: var(--space-s-m);
+    background-color: var(--foreground);
+    padding: var(--space-3xs) var(--space-xs);
+    box-shadow: 0px 4px color-mix(in srgb, var(--foreground), var(--black) 9%);
+    border-radius: var(--border-radius);
+    font-size: var(--step--1);
+}
+
+figure > figcaption::selection {
+    background: var(--nord13);
+    color: var(--nord0);
 }
 
 .entry-header {

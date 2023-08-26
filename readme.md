@@ -52,9 +52,7 @@ Features include:
 - [ ] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
-- [ ] Markdown-It — Support ins and mark, sup and sub via plugin
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
-- [ ] Images — Shortcode with caption (centralise image settings or using existing shortcode)
 - [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/)
 - [ ] .well-known support for the Fediverse and Nostr
 - [ ] Serve assets and styles for YouTube lite locally
