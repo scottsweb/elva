@@ -54,7 +54,7 @@ Features include:
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Markdown-It — Support ins and mark, sup and sub via plugin
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
-- [ ] Images — Shortcode with caption support (move image settings to somewhere central, or using existing shortcode)
+- [ ] Images — Shortcode with caption (centralise image settings or using existing shortcode)
 - [ ] Images — Support for custom clases
 - [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/)
 - [ ] .well-known support for the Fediverse and Nostr
@@ -107,15 +107,16 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 
 - [ ] At the top of `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging`. Make sure these environment variables are set in staging and production and tweak as necessary
 - [ ] Configure your sites settings in `/src/_data/settings.json` or in Front Matter CMS (under Data)
-- [ ] Add your chosen languages ([the demo site has docs for each step](https://elva.scott.ee/en/writing/adding-additional-languages/))
-- [ ] Set your own default images, icons and favicon by replacing the images in `/src/assets/img/`
-- [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes [all frontmatter](https://elva.scott.ee/en/writing/frontmatter/) in the UI
+- [ ] Add your chosen languages ([the demo site will soon have guide you through this](https://elva.scott.ee/en/writing/adding-additional-languages/))
+- [ ] Configure your sites navigation in `/src/_data/navigation.js`
+- [ ] Set your own default images, icons and favicon by replacing the images in `/src/assets/img/` 
+- [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/en/writing/frontmatter/) in the UI
 - [ ] Design your site by customising the CSS (`/src/assets/css/`), layouts (`/src/_layouts/`) and includes (`/src/_includes/`). 
 
 ### Optional
 
-- [ ] Set your preferred default image sizes and formats in the image shortcode `/src/_config/shortcodes/image.js`
-- [ ] If you add more Frontmatter to your markdown, you may wish to edit `frontmatter.json` to add [Front Matter CMS](https://frontmatter.codes/) support
+- [ ] Set your preferred image sizes and formats in the image shortcode `/src/_config/shortcodes/image.js`
+- [ ] If you add more front matter, you may wish to edit `frontmatter.json` to add [Front Matter CMS](https://frontmatter.codes/) support
 - [ ] You many not need [Alpine.js](https://alpinejs.dev/) which can be removed from `/src/assets/js/bundle.njk`
 - [ ] Use [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/) to grab some API data
 - [ ] If you enable Photon CDN support [familiarise yourself with these limitations](https://jetpack.com/support/site-accelerator/#limitations)
