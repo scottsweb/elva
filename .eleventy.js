@@ -4,6 +4,10 @@
 
 const {EleventyI18nPlugin, EleventyHtmlBasePlugin} = require('@11ty/eleventy');
 const markdownIt = require('markdown-it');
+const markdownItIns = require('markdown-it-ins');
+const markdownItMark = require('markdown-it-mark');
+const markdownItSub = require('markdown-it-sub');
+const markdownItSup = require('markdown-it-sup');
 const pluginRSS = require('@11ty/eleventy-plugin-rss');
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginEmbedEverything = require('eleventy-plugin-embed-everything');
@@ -114,6 +118,13 @@ module.exports = eleventyConfig => {
         linkify: true,
         typographer: true
     }));
+
+    eleventyConfig.amendLibrary('md', (mdLib) => {
+        mdLib.use(markdownItIns);
+        mdLib.use(markdownItMark);
+        mdLib.use(markdownItSub);
+        mdLib.use(markdownItSup);
+    });
 
     // 11ty Settings -----------------------------------
 

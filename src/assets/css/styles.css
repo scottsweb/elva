@@ -159,6 +159,12 @@ h2,
 h3 {
   max-width: 20ch;
 }
+
+mark {
+    background-color: var(--nord13);
+    color: var(--nord0);
+}
+
 figure {
     position: relative;
 }

@@ -3,13 +3,13 @@ title: Markdown test
 date: 2023-08-02
 ---
 
-Lorem ipsum dolor **sit amet**, consectetur adipiscing elit (C). Sed nec __risus elementum__, tempor tortor non, bibendum libero. Suspendisse potenti. Vivamus dapibus *tortor neque*, sed aliquet lacus _elementum nec_. Morbi vel ligula vitae leo placerat sollicitudin quis at eros. Pellentesque tristique mi a tortor auctor, sit amet elementum augue pulvinar. Donec non orci in ~~ipsum mollis~~ tempor. Integer libero est, pharetra vitae facilisis quis 🇬🇧.
+Lorem ipsum dolor **sit amet**, consectetur adipiscing elit (C). Sed nec __risus elementum__, tempor tortor non, bibendum libero. Suspendisse potenti. Vivamus dapibus *tortor neque*, sed aliquet lacus _elementum nec_. Morbi vel ligula vitae leo placerat sollicitudin quis at eros. Pellentesque tristique mi a tortor auctor, sit amet elementum augue pulvinar. Donec non orci in ~~ipsum mollis~~ tempor. Integer libero est, H~2~O pharetra ++vitae++ facilisis quis 🇬🇧.
 
 ## Quotes, code and typography
 
 > Maecenas vel quam id eros tristique sollicitudin. Nunc tincidunt orci malesuada, vehicula mauris ut, sollicitudin lacus. Quisque eget vestibulum quam. 
 
-Aenean ac tincidunt felis (r). Fusce eu arcu blandit, consectetur odio ullamcorper, maximus erat (R). Fusce aliquam sapien a commodo aliquet. Phasellus placerat sagittis euismod. Curabitur vitae est id nunc ornare --- scelerisque in vitae nisl. In non mi leo...
+Aenean ac tincidunt felis (r). Fusce eu ==arcu blandit==, consectetur odio ullamcorper, maximus erat (R). Fusce aliquam sapien a commodo aliquet. Phasellus placerat sagittis euismod. Curabitur vitae est id nunc ornare --- scelerisque in vitae nisl. In non mi leo...
 
 <!-- FM:Snippet:Start data:{"id":"Quote","fields":[{"name":"quote","value":"Maecenas vel quam id eros tristique sollicitudin. Nunc tincidunt orci malesuada, vehicula mauris ut, sollicitudin lacus. Quisque eget vestibulum quam."},{"name":"author","value":"Scott Evans"},{"name":"cite","value":"Website"},{"name":"url","value":"https://scott.ee"}]} -->
 <blockquote>
@@ -18,7 +18,7 @@ Aenean ac tincidunt felis (r). Fusce eu arcu blandit, consectetur odio ullamcorp
 </blockquote>
 <!-- FM:Snippet:End -->
 
-Cras quis sollicitudin eros (c). Fusce eget velit `quis nulla pharetra eleifend id vitae nisl`. Aenean vehicula sem vitae nunc semper porta. Donec porta leo vitae massa accumsan consequat. Praesent quis sodales orci, ut elementum quam. Phasellus ultrices lectus in tempus varius+-. Duis est nulla -- imperdiet dapibus ultricies non, hendrerit non mauris(tm).
+Cras quis sollicitudin eros (c). Fusce eget velit `quis nulla pharetra eleifend id vitae nisl`. Aenean vehicula sem vitae nunc semper porta. Donec porta leo vitae massa accumsan consequat. Praesent quis sodales orci, ut elementum quam. Phasellus ultrices lectus in tempus varius+-. Duis est nulla -- imperdiet dapibus ultricies non 19^th^, hendrerit non mauris(tm).
 
 ``` js
 var foo = function (bar) {
