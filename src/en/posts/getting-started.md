@@ -22,7 +22,7 @@ Install dependencies:
 npm install
 ```
 
-Run Eleventy for site development:
+Run Eleventy for site development. View the site at `http://localhost:8080`:
 
 ``` bash
 npm run dev
