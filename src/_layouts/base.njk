@@ -53,7 +53,7 @@
         <!-- set theme before page renders to stop fouc -->
         <script>document.documentElement.dataset.theme = localStorage.getItem('theme') === null ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : localStorage.getItem('theme')</script>
     </head>
-    <body class="{{tags | join(' ') }}">
+    <body class="{{tags or [] | join(' ') }}">
         <!-- header -->
         {% include "header.njk" %}
 
