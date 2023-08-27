@@ -6,7 +6,7 @@
 	"description": "{{ 'meta.description' | translate }}",
 	"categories": {{ settings.manifest.categories | dump | safe }},
 	"orientation": "{{ settings.manifest.orientation }}",
-	"scope": "/{{ page.lang }}/",
+	"scope": "{{ '/' | htmlBaseUrl(settings.url) }}",
 	"id": "/?v={% version %}",
 	"start_url": "{{ '/' | htmlBaseUrl(settings.url) }}",
 	"theme_color": "{{ settings.manifest.themeColor }}",
