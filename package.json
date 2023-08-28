@@ -1,7 +1,7 @@
 {
   "name": "elva",
-  "version": "0.0.1",
-  "description": "A multilingual, clean, green 11ty starter theme",
+  "version": "1.0.0",
+  "description": "A multilingual, clean, green, 11ty starter theme",
   "main": "index.js",
   "scripts": {
     "build": "export NODE_ENV=production && rimraf dist && eleventy",
