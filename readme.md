@@ -10,7 +10,7 @@
 
 ## About
 
-A multilingual, clean, green, [11ty starter theme](https://www.11ty.dev/docs/starter/). elva provides solid foundations for your next web project. [Try the demo!](https://elva.scott.ee/)
+A multilingual, clean, green, [11ty starter theme](https://www.11ty.dev/docs/starter/). elva provides solid foundations for your next web project and a built in CMS ([Front Matter CMS](https://frontmatter.codes/)) for managing content. [Try the demo!](https://elva.scott.ee/)
 
 Features include:
 
@@ -51,6 +51,7 @@ Features include:
 - [ ] [Explore activity feed](https://github.com/11ty/eleventy-activity-feed)
 - [ ] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
+- [ ] Reading time filter
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
 - [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/)
