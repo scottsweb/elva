@@ -1,9 +1,11 @@
+// finds a translation from src/_data/translations.js
+// can support data substitution, for example: {{ 'translation.key' | translate(page.lang, {data: 500}) }}
+// to-do: can this be made to support plurals also?
 const get = require('lodash.get');
+const templite = require('templite');
 
-module.exports = function translate(lookup, lang) {
-    // TO-DO: allow for variable subsitution e.g. Hello, {{name}} - need to handle plurals etc
-    // potential example: https://github.com/adamduncan/eleventy-plugin-i18n/blob/master/i18n.js
+module.exports = function translate(lookup, lang, data = {}) {
     if (!lang) lang = this.page.lang || this.ctx.lang;
-    const translation = get(this.ctx.translations[lang], `[${lookup}]`);
+    const translation = templite(get(this.ctx.translations[lang], `[${lookup}]`), data);
     return translation;
 }

@@ -14,7 +14,7 @@ module.exports = {
         readingTime: {
             underMinute: 'Less than 1 minute to read',
             minute: '1 minute to read',
-            other: '{{ subsitiute }} minutes to read'
+            other: '{{ minutes }} minutes to read'
         },
         feeds: {
             info: 'This is an RSS feed. Copy and paste the URL into your feed reader. Visit <a href="https://aboutfeeds.com">About Feeds</a> to learn more about RSS.',
@@ -38,7 +38,7 @@ module.exports = {
         readingTime: {
             underMinute: 'Mindre än 1 minut att läsa',
             minute: '1 minut till läsaren',
-            other: '{{ subsitiute }} minutes to read'
+            other: '{{ minutes }} minuter att läsa'
         },
         feeds: {
             info: 'Detta är ett RSS feed. Kopiera och klistra in webbadressen i din flödesläsare. Besök <a href="https://aboutfeeds.com">About Feeds</a> för att lära dig mer om RSS.',

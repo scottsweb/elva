@@ -1,5 +1,7 @@
 // calculate the time to read of a chunk of text (to the nearest minute)
 // based on https://www.bobmonsour.com/posts/calculating-reading-time/
+const templite = require('templite');
+
 module.exports = function(text) {
     var content = new String(text);
     const speed = 240; // reading speed in words per minute
@@ -20,8 +22,8 @@ module.exports = function(text) {
     if (readingTime === 0) {
     	return this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.underMinute;
     } else if (readingTime === 1) {
-    	return this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.minute;;
+    	return this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.minute;
     } else {
-    	return readingTime + " minutes to read";
+    	return templite(this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.other, { minutes: readingTime});
     }
 };
