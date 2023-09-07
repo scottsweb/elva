@@ -1,6 +1,7 @@
 // calculate the time to read of a chunk of text (to the nearest minute)
 // based on https://www.bobmonsour.com/posts/calculating-reading-time/
-const templite = require('templite');
+const nunjucks = require('nunjucks');
+nunjucks.configure({ autoescape: true });
 
 module.exports = function(text) {
     var content = new String(text);
@@ -24,6 +25,6 @@ module.exports = function(text) {
     } else if (readingTime === 1) {
     	return this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.minute;
     } else {
-    	return templite(this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.other, { minutes: readingTime});
+    	return nunjucks.renderString(this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.other, { minutes: readingTime});
     }
 };
