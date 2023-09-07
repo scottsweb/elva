@@ -51,7 +51,7 @@ Features include:
 - [ ] [Explore activity feed](https://github.com/11ty/eleventy-activity-feed)
 - [ ] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
-- [ ] Reading time filter
+- [x] Reading time filter
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
 - [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/)
