@@ -1,6 +1,6 @@
 {
   "name": "elva",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A multilingual, clean, green, 11ty starter theme",
   "main": "index.js",
   "scripts": {
@@ -51,6 +51,7 @@
     "markdown-it-sup": "^1.0.0",
     "mime-types": "^2.1.35",
     "rimraf": "^3.0.2",
+    "templite": "^1.2.0",
     "terser": "^5.19.2"
   }
 }

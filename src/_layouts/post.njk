@@ -8,6 +8,7 @@ layout: base
             <li class="meta-date">
                 <time class="entry-date published" datatime="{{ date | dateToRfc3339 }}">{{ date | formatDate }}</time>
             </li>
+            <li class="meta-reading-time">{{ content | readingTime }}</li>
         </ul>
     </header>
     <div class="entry-content">

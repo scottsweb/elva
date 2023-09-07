@@ -103,6 +103,7 @@ module.exports = eleventyConfig => {
     eleventyConfig.addFilter('where', require('./src/_config/filters/where'));
     eleventyConfig.addFilter('sort', require('./src/_config/filters/sort'));
     eleventyConfig.addFilter('base64', require('./src/_config/filters/base64'));
+    eleventyConfig.addFilter('readingTime', require('./src/_config/filters/readingtime'));
 
 
     // Passthrough -------------------------------------

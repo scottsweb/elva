@@ -51,7 +51,7 @@ Features include:
 - [ ] [Explore activity feed](https://github.com/11ty/eleventy-activity-feed)
 - [ ] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
-- [ ] Reading time filter
+- [x] Reading time filter
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
 - [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/)
@@ -59,7 +59,7 @@ Features include:
 - [ ] Serve assets and styles for YouTube lite locally
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js)?
 - [ ] Cleaner language selector
-- [ ] Allow for variable subsitution in translations e.g. `Hello, {{name}}` (needs to handle plurals)
+- [x] Allow for variable subsitution in translations e.g. `Hello, {{name}}` (still needs to handle plurals!)
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
 - [ ] Front Matter CMS — More data managed from the CMS
 - [ ] Front Matter CMS — Better support for templates, default templates etc
