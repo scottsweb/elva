@@ -430,7 +430,22 @@ a[aria-current="page"] {
     padding: 0;
 }
 
-.posts .meta-date {
+@media (min-width: 600px) {
+    .posts .meta {
+        display: flex;
+        gap: var(--space-3xs);
+    }
+
+    .posts .meta-reading-time::before {
+        content: '•';
+        display: inline-block;
+        padding-left: var(--space-2xs);
+        padding-right: var(--space-2xs);
+    }    
+}
+
+.posts .meta-date,
+.posts .meta-reading-time {
     color: var(--foreground-soft);
 }
 
