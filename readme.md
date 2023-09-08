@@ -38,6 +38,7 @@ Features include:
 ### Other things
 
 * [Front Matter CMS](https://frontmatter.codes/)
+* Open graph image generation from within Front Matter (dev server must be running)
 * Draft support
 * [Syntax highlighting](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
 * [Simplified embeds for YouTube, Vimeo etc](https://github.com/gfscott/eleventy-plugin-embed-everything)
@@ -63,7 +64,7 @@ Features include:
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
 - [ ] Front Matter CMS — More data managed from the CMS
 - [ ] Front Matter CMS — Better support for templates, default templates etc
-- [ ] Front Matter CMS — [Generated open graph images](https://www.eliostruyf.com/generate-open-graph-preview-image-code-front-matter/) ([1](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/))
+- [x] Front Matter CMS — [Generated open graph images](https://www.eliostruyf.com/generate-open-graph-preview-image-code-front-matter/) ([1](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/))
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
 
 ## Getting Started
@@ -105,11 +106,12 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 
 - [ ] At the top of `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging`. Make sure these environment variables are set in staging and production and tweak as necessary
 - [ ] Configure your sites settings in `/src/_data/settings.json` or in Front Matter CMS (under Data)
-- [ ] Add your chosen languages ([the demo site will soon have guide you through this](https://elva.scott.ee/en/writing/adding-additional-languages/))
+- [ ] Add your chosen languages ([the demo site will soon guide you through this](https://elva.scott.ee/en/writing/adding-additional-languages/))
 - [ ] Configure your sites navigation in `/src/_data/navigation.js`
 - [ ] Set your own default images, icons and favicon by replacing the images in `/src/assets/img/` 
 - [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/en/writing/frontmatter/) in the UI
-- [ ] Design your site by customising the CSS (`/src/assets/css/`), layouts (`/src/_layouts/`) and includes (`/src/_includes/`). 
+- [ ] Setup a custom template for your open graph images (`.frontmatter/scripts/opengraph-template.html`)
+- [ ] Design your site by customising the CSS (`/src/assets/css/`), layouts (`/src/_layouts/`) and includes (`/src/_includes/`)
 
 ### Optional
 
