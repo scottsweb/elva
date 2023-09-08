@@ -72,7 +72,13 @@ module.exports = eleventyConfig => {
                 modestBranding: true,
                 lazy: true,
                 lite: {
-                    thumbnailQuality: 'maxresdefault'
+                    thumbnailQuality: 'maxresdefault',
+                    css: {
+                        inline: true
+                    },
+                    js: {
+                        inline: true
+                    }
                 }
             }
         }
