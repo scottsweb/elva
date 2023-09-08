@@ -38,7 +38,7 @@ Features include:
 ### Other things
 
 * [Front Matter CMS](https://frontmatter.codes/)
-* Open graph image generation from within Front Matter (dev server must be running)
+* Open graph image generation from within Front Matter CMS (dev server must be running)
 * Draft support
 * [Syntax highlighting](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
 * [Simplified embeds for YouTube, Vimeo etc](https://github.com/gfscott/eleventy-plugin-embed-everything)

@@ -35,6 +35,7 @@ Funktioner inkluderar:
 ### Andra saker
 
 * [Front Matter CMS](https://frontmatter.codes/)
+* Open graph grafbildsgenerering inifrån Front Matter CMS (dev-servern måste vara igång)
 * Förslag stöd
 * [Syntax highlighting](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
 * [Förenklade inbäddningar för YouTube, Vimeo etc](https://github.com/gfscott/eleventy-plugin-embed-everything)
