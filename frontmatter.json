@@ -628,5 +628,9 @@
         "dashboard.snippets.view"
       ]
     }
-  ]
+  ],
+  "frontMatter.custom.scripts": [{
+    "title": "Generate open graph image",
+    "script": ".frontmatter/scripts/opengraph.js"
+  }]
 }
