@@ -42,7 +42,7 @@
 		<link rel="alternate" href="{{ "/feed/feed.json" | locale_url | htmlBaseUrl(settings.url) }}" type="application/json" title="{{ 'meta.jsonTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}">
 
         <!-- preload / prefetch -->
-        {% if settings.isProduction %}<link rel="dns-prefetch" href="//i0.wp.com">{% endif %}
+        {% if settings.cdn %}<link rel="dns-prefetch" href="//i0.wp.com">{% endif %}
 
         <!-- everything else -->
         <link rel="manifest" href="{{ "/site.webmanifest" | locale_url | htmlBaseUrl(settings.url) }}"">
