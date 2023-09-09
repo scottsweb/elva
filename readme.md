@@ -57,7 +57,7 @@ Features include:
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
 - [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/)
 - [ ] .well-known support for the Fediverse and Nostr
-- [ ] Serve assets and styles for YouTube lite locally
+- [x] Serve assets and styles for YouTube lite locally
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js)?
 - [ ] Cleaner language selector
 - [x] Allow for variable subsitution in translations e.g. `Hello, {{name}}` (still needs to handle plurals!)
