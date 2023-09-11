@@ -19,6 +19,7 @@
       "pageBundle": false,
       "previewPath": null,
       "template": "[[workspace]]/.frontmatter/templates/default.md",
+      "clearEmpty": true,
       "fields": [
         {
           "title": "Layout",
@@ -49,7 +50,6 @@
           "title": "Thumbnail",
           "name": "thumbnail",
           "type": "image",
-          "default": "/assets/img/opengraph-default.png",
           "isPreviewImage": true
         },
         {
@@ -69,7 +69,6 @@
           "title": "Modified",
           "name": "lastmod",
           "type": "datetime",
-          "default": "{{now}}",
           "isModifiedDate": true
         },
         {
@@ -90,15 +89,13 @@
             {
               "title": "Disable Indexing?",
               "name": "noIndex",
-              "type": "boolean",
-              "default": false
+              "type": "boolean"
             },
             {
               "title": "Title",
               "name": "title",
               "type": "string",
               "single": true,
-              "default": false,
               "when": {
                 "fieldRef": "noIndex",
                 "operator": "neq",
@@ -120,7 +117,6 @@
               "name": "slug",
               "type": "slug",
               "editable": true,
-              "default": false,
               "when": {
                 "fieldRef": "noIndex",
                 "operator": "neq",
@@ -131,13 +127,11 @@
               "title": "Exclude from Sitemap?",
               "name": "excludeFromSitemap",
               "type": "boolean",
-              "default": false
             },
             {
               "title": "Sitemap Change Frequency",
               "name": "changeFrequency",
               "type": "choice",
-              "default": "monthly",
               "when": {
                 "fieldRef": "excludeFromSitemap",
                 "operator": "neq",
@@ -174,7 +168,6 @@
               "title": "Sitemap Priority",
               "name": "sitemapPriority",
               "type": "number",
-              "default": 0.7,
               "when": {
                 "fieldRef": "excludeFromSitemap",
                 "operator": "neq",
@@ -199,13 +192,11 @@
           "name": "permalink",
           "type": "string",
           "single": true,
-          "default": false
         },
         {
           "title": "Exclude from collections?",
           "name": "eleventyExcludeFromCollections",
           "type": "boolean",
-          "default": false
         }
       ]
     }
