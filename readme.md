@@ -63,7 +63,7 @@ Features include:
 - [x] Allow for variable subsitution in translations e.g. `Hello, {{name}}` (still needs to handle plurals!)
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
 - [ ] Front Matter CMS — More data managed from the CMS
-- [ ] Front Matter CMS — Better support for templates, default templates etc
+- [x] Front Matter CMS — Better support for templates, default templates etc
 - [x] Front Matter CMS — [Generated open graph images](https://www.eliostruyf.com/generate-open-graph-preview-image-code-front-matter/) ([1](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/))
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
 
