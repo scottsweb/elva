@@ -48,7 +48,7 @@ Features include:
 
 ### Still to come:
 
-- [ ] [Critical CSS](https://github.com/11ty/eleventy-plugin-bundle) or per page CSS
+- [ ] [Critical CSS](https://github.com/11ty/eleventy-plugin-bundle) or per page CSS ([1](https://www.silvestar.codes/articles/extracting-and-using-critical-css-on-my-eleventy-site/))
 - [ ] [Explore activity feed](https://github.com/11ty/eleventy-activity-feed)
 - [ ] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
