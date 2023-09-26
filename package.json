@@ -51,7 +51,7 @@
     "markdown-it-sup": "^1.0.0",
     "mime-types": "^2.1.35",
     "node-html-to-image": "^4.0.0",
-    "rimraf": "^3.0.2",
+    "rimraf": "^5.0.4",
     "terser": "^5.20.0"
   }
 }
