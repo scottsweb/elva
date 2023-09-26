@@ -2,7 +2,7 @@
 
 // Imports --------------------------------------------
 
-const {EleventyI18nPlugin, EleventyHtmlBasePlugin} = require('@11ty/eleventy');
+const { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin } = require('@11ty/eleventy');
 const markdownIt = require('markdown-it');
 const markdownItIns = require('markdown-it-ins');
 const markdownItMark = require('markdown-it-mark');
@@ -51,6 +51,7 @@ module.exports = eleventyConfig => {
     eleventyConfig.addPlugin(pluginRSS);
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+    eleventyConfig.addPlugin(EleventyRenderPlugin);
     eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: 'en' });
     eleventyConfig.addPlugin(pluginEmbedEverything, {
         use: ['twitter', 'youtube', 'vimeo'],
