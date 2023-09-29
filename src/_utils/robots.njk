@@ -8,7 +8,12 @@ seo:
 User-agent: *
 Disallow: /
 {%- else -%}
-User-agent: *
 Sitemap: {{ "/sitemap.xml" | htmlBaseUrl(settings.url) }}
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: *
+Disallow:
 Disallow: /404.html
 {%- endif -%}
