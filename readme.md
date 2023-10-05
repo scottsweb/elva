@@ -34,6 +34,7 @@ Features include:
 * Web manifest for PWAs
 * humans.txt 
 * robots.txt
+* Discourage Google AI from indexing your content
 
 ### Other things
 
