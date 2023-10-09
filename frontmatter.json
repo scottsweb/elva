@@ -13,6 +13,10 @@
   "frontMatter.extensibility.scripts": [
     "[[workspace]]/.frontmatter/ui/image.js"
   ],
+  "frontMatter.panel.actions.disabled": [
+    "optimizeSlug",
+    "createContent"
+  ],
   "frontMatter.taxonomy.contentTypes": [
     {
       "name": "default",
