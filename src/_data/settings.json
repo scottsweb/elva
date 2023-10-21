@@ -3,11 +3,11 @@
 	"themeColorDark": "#2e3440",
 	"cdn": false,
 	"author": {
-		"name": "Scott Evans",
-		"email": "noreply@example.com",
-		"url": "https://scott.ee",
-		"location": "Stockholm, Sweden",
-		"fediverseProfile": "https://toot.scott.ee/@scott"
+		"name": "Dave Lawson",
+		"email": "dave@dropcase.com",
+		"url": "https://dropcase.com",
+		"location": "Portland, ME, US",
+		"fediverseProfile": "https://pkm.social/@dropcase"
 	},
 	"meta": {
 		"separator": "•",
@@ -22,6 +22,6 @@
 		"backgroundColor": "#eceff4",
 		"display": "minimal-ui",
 		"orientation": "portrait-primary",
-		"categories": ["business", "photo"]
+		"categories": ["productivity", "photo"]
 	}
 }
