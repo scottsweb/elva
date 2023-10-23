@@ -9,7 +9,7 @@ tags:
 ---
 ## It's Not the Beginning
 
-I can't count how many times I've "started over" this site since it began in May of 2003. I'm sure that if I looked hard enough I could pull up the archived version of everything from the Greymatter, Drupal, and Dokuwiki versions, along with the little one-off pages. I don't plan on it though; at least not any time in the near future. Maube instead of the middle this is more of a rebirth.
+I can't count how many times I've "started over" this site since it began in May of 2003. I'm sure that if I looked hard enough I could pull up the archived version of everything from the Greymatter, Drupal, and Dokuwiki versions, along with the little one-off pages. I don't plan on it though; at least not any time in the near future. Maybe instead of the middle this is more of a rebirth.
 
 Now? I'm right in the middle. The middle of the year, middle of projects at work and home, hell I'm even middle aged(ish). Middle-age isn't too bad so far - no plans for a fast car or big changes, I have enough to work on as it is. Still learning and trying apply what I'm learning to life. Sometimes that's easy; a lot of the time it isn't.
 

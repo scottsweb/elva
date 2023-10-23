@@ -4,7 +4,7 @@ seo:
   description: A multilingual, clean, green, 11ty starter theme. elva provides solid foundations for your next web project and a built in CMS for managing content.
 ---
 
-# Colophon
+(aka the Colophon)
 
 Thanks for visiting. I'm Dave, lifelong geek, family man, and bearded since 2007. Professionally I work as a Technical Account Manager (since mid-2019) after 15+ years in IT. Personally (and informally at work) I'm also a Tech Evangelist / Advocate - I like showing people new technology and getting them excited about using it.
 
