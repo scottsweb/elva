@@ -5,27 +5,27 @@ module.exports = {
 			url: '/about/'
 		},
 		{
-			text: 'Documentation',
+			text: 'Posts',
 			url: '/'
 		},
 		{
 			text: 'GitHub',
-			url: 'https://github.com/scottsweb/elva'
+			url: 'https://github.com/dropcase'
 		}
     ],
-    sv: [
-		{
-			text: 'Om',
-			url: '/om/'
-		},
-		{
-			text: 'Dokumentation',
-			url: '/'
-		},
-		{
-			text: 'GitHub',
-			url: 'https://github.com/scottsweb/elva'
-		}
-    ]
+    // sv: [
+	// 	{
+	// 		text: 'Om',
+	// 		url: '/om/'
+	// 	},
+	// 	{
+	// 		text: 'Dokumentation',
+	// 		url: '/'
+	// 	},
+	// 	{
+	// 		text: 'GitHub',
+	// 		url: 'https://github.com/dropcase'
+	// 	}
+    // ]
 };
   

@@ -2,7 +2,7 @@
     /* branding */
     --black: #000;
 	--white: #fff;
-    --nord0: #2e3440;
+    --nord0: #1A1615;
     --nord1: #3b4252;
     --nord2: #434c5e;
     --nord3: #4c566a;
@@ -10,7 +10,7 @@
     --nord5: #e5e9f0;
     --nord6: #eceff4;
     --nord7: #8fbcbb;
-    --nord8: #88c0d0;
+    --nord8: #9DC17B;
     --nord9: #81a1c1;
     --nord10: #5e81ac;
     --nord11: #bf616a;
@@ -18,6 +18,18 @@
     --nord13: #efc571;
     --nord14: #a3be8c;
     --nord15: #b48ead;
+
+    /* TESTING */
+    --dl01: #1A1615;
+    --dl02: #62594B;
+    --dl03: #9FA1A6;
+    --dl04: #A8B19E;
+    --dl05: #D0B993;
+    --dl06: #3F3923;
+    --dl07: #9A7E64;
+    --dl08: #9DC17B;
+    --dl09: #ABA09F;
+    --dl10: #D7B9A1;
 
     /* colours */
     --background: var(--nord6);
@@ -39,8 +51,10 @@
     --code-function: var(--nord8);
 
     /* typography */
-    --font-base: Georgia, Times, 'Times New Roman', serif;
-    --font-headings: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /* --font-base: Georgia, Times, 'Times New Roman', serif; */
+    --font-base: 'Atkinson Hyperlegible', Arial, 'Times New Roman', serif;
+    --font-headings: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     --font-quote: var();
     --font-mono: "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1500,22,1.333,6,1,800&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
