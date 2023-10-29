@@ -1,7 +1,7 @@
 ---
 title: About
 seo:
-  description: A multilingual, clean, green, 11ty starter theme. elva provides solid foundations for your next web project and a built in CMS for managing content.
+  description: Writing and tech with a bearded guy at the helm.
 ---
 
 (aka the Colophon)
