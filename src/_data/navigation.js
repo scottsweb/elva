@@ -9,6 +9,10 @@ module.exports = {
 			url: '/'
 		},
 		{
+			text: 'Fediverse',
+			url: '/fediverse/'
+		},
+		{
 			text: 'GitHub',
 			url: 'https://github.com/dropcase'
 		}
