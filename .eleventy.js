@@ -97,6 +97,7 @@ module.exports = eleventyConfig => {
     eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`);
     eleventyConfig.addShortcode('build', () => `${new Date().toISOString().split('T')[0]}`);
     eleventyConfig.addShortcode('image', require('./src/_config/shortcodes/image'));
+    //eleventyConfig.addShortcode('svgIcon', require('./src/_config/shortcodes/svgIcon'));
 
     // Filters ----------------------------------------
 
