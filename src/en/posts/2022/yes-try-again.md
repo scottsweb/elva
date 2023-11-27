@@ -5,6 +5,7 @@ date: 2022-01-22
 tags:
   - perspective
   - covid
+  - hobbies
 layout: post.njk
 ---
 
