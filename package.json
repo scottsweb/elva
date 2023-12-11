@@ -45,7 +45,7 @@
     "eleventy-plugin-embed-everything": "^1.17.0",
     "html-minifier-terser": "^7.2.0",
     "lodash.get": "^4.4.2",
-    "markdown-it-ins": "^3.0.1",
+    "markdown-it-ins": "^4.0.0",
     "markdown-it-mark": "^4.0.0",
     "markdown-it-sub": "^2.0.0",
     "markdown-it-sup": "^2.0.0",
