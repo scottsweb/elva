@@ -4,10 +4,7 @@ eleventyExcludeFromCollections: true
 seo:
   excludeFromSitemap: true
 ---
-{%- if settings.isStaging -%}
-User-agent: *
-Disallow: /
-{%- else -%}
+{%- if settings.isProduction -%}
 Sitemap: {{ "/sitemap.xml" | htmlBaseUrl(settings.url) }}
 
 User-agent: Google-Extended
@@ -19,4 +16,7 @@ Disallow: /
 User-agent: *
 Disallow:
 Disallow: /404.html
+{%- else -%}
+User-agent: *
+Disallow: /
 {%- endif -%}
