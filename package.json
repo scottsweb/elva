@@ -42,7 +42,7 @@
     "@alpinejs/intersect": "^3.13.3",
     "alpinejs": "^3.13.3",
     "clean-css": "^5.3.3",
-    "eleventy-plugin-embed-everything": "^1.18.1",
+    "eleventy-plugin-embed-everything": "^1.18.2",
     "html-minifier-terser": "^7.2.0",
     "lodash.get": "^4.4.2",
     "markdown-it-ins": "^4.0.0",
