@@ -130,7 +130,7 @@
             {
               "title": "Exclude from Sitemap?",
               "name": "excludeFromSitemap",
-              "type": "boolean",
+              "type": "boolean"
             },
             {
               "title": "Sitemap Change Frequency",
@@ -195,12 +195,12 @@
           "title": "Permalink",
           "name": "permalink",
           "type": "string",
-          "single": true,
+          "single": true
         },
         {
           "title": "Exclude from collections?",
           "name": "eleventyExcludeFromCollections",
-          "type": "boolean",
+          "type": "boolean"
         }
       ]
     }
@@ -245,6 +245,7 @@
     }
   ],
   "frontMatter.taxonomy.tags": [],
+  "frontMatter.snippets.wrapper.enabled": false,
   "frontMatter.content.snippets": {
     "Image": {
       "description": "Insert a responsive image",
