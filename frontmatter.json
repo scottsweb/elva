@@ -4,12 +4,18 @@
   "frontMatter.preview.host": "http://localhost:8080",
   "frontMatter.dashboard.openOnStart": true,
   "frontMatter.git.enabled": true,
-  "frontMatter.templates.enabled": true,
+  "frontMatter.templates.enabled": false,
   "frontMatter.content.fmHighlight": false,
   "frontMatter.taxonomy.seoDescriptionField": "seo.description",
   "frontMatter.templates.prefix": "",
   "frontMatter.taxonomy.dateFormat": "YYYY-MM-DD",
   "frontMatter.experimental": true,
+  "frontMatter.taxonomy.tags": [],
+  "frontMatter.snippets.wrapper.enabled": false,
+  "frontMatter.content.publicFolder": {
+    "path": "src",
+    "relative": true
+  },
   "frontMatter.extensibility.scripts": [
     "[[workspace]]/.frontmatter/ui/image.js"
   ],
