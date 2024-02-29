@@ -211,47 +211,43 @@
       ]
     }
   ],
-  "frontMatter.projects": [
+  "frontMatter.content.pageFolders": [
     {
-      "name": "EN",
-      "default": true,
-      "configuration": {
-        "frontMatter.content.pageFolders": [
-          {
-            "title": "Posts",
-            "path": "[[workspace]]/src/en/posts",
-            "previewPath": "en/writing"
-          },
-          {
-            "title": "Pages",
-            "path": "[[workspace]]/src/en/pages",
-            "previewPath": "en"
-          }
-        ],
-        "frontMatter.content.publicFolder": "[[workspace]]/src"
-      }
+      "title": "Posts",
+      "path": "[[workspace]]/src/en/posts",
+      "defaultLocale": "en",
+      "previewPath": "en/writing",
+      "locales": [
+        {
+          "title": "English",
+          "locale": "en"
+        },
+        {
+          "title": "Svensk",
+          "locale": "sv",
+          "path": "../../sv/posts/"
+        }
+      ]
     },
     {
-      "name": "SV",
-      "configuration": {
-        "frontMatter.content.pageFolders": [
-          {
-            "title": "Posts",
-            "path": "[[workspace]]/src/sv/posts",
-            "previewPath": "sv/skriv"
-          },
-          {
-            "title": "Pages",
-            "path": "[[workspace]]/src/sv/pages",
-            "previewPath": "sv"
-          }
-        ],
-        "frontMatter.content.publicFolder": "[[workspace]]/src"
-      }
+      "title": "Pages",
+      "path": "[[workspace]]/src/en/pages",
+      "defaultLocale": "en",
+      //"filePrefix": "src/",
+      "previewPath": "en",
+      "locales": [
+        {
+          "title": "English",
+          "locale": "en"
+        },
+        {
+          "title": "Svensk",
+          "locale": "sv",
+          "path": "../../sv/pages/"
+        }
+      ]
     }
   ],
-  "frontMatter.taxonomy.tags": [],
-  "frontMatter.snippets.wrapper.enabled": false,
   "frontMatter.content.snippets": {
     "Image": {
       "description": "Insert a responsive image",
