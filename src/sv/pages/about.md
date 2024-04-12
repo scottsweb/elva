@@ -31,7 +31,8 @@ Funktioner inkluderar:
 * [Web manifest for PWAs]({{ "/site.webmanifest" | locale_url }})
 * [humans.txt](/humans.txt) 
 * [robots.txt](/robots.txt)
-* Avskräcka Google AI från att indexera ditt innehåll
+* Avråda från [AI bots](https://github.com/ai-robots-txt/ai.robots.txt/)
+
 
 ### Andra saker
 

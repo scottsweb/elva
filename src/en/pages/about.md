@@ -30,7 +30,7 @@ Features include:
 * [Web manifest for PWAs]({{ "/site.webmanifest" | locale_url }})
 * [humans.txt](/humans.txt) 
 * [robots.txt](/robots.txt)
-* Discourage Google AI from indexing your content
+* Discourage [AI bots](https://github.com/ai-robots-txt/ai.robots.txt/)
 
 ### Other things
 
