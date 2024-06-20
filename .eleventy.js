@@ -131,7 +131,6 @@ export default async function(eleventyConfig) {
     eleventyConfig.addFilter('translate', translate);
     eleventyConfig.addFilter('sort', sort);
     eleventyConfig.addFilter('where', where);
-    //eleventyConfig.addFilter('widont', require('./src/_config/filters/widont'));
 
     // Passthrough -------------------------------------
 
