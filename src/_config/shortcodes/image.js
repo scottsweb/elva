@@ -1,6 +1,6 @@
-const Image = require('@11ty/eleventy-img');
+import Image from '@11ty/eleventy-img';
 
-module.exports = async function(src, alt, sizes, caption = '', classes = '', loading = 'lazy', fetch = 'auto', decoding = 'async') {
+export default async function(src, alt, sizes, caption = '', classes = '', loading = 'lazy', fetch = 'auto', decoding = 'async') {
     const settings = this.ctx.settings;
     let meta = {};
     let metadata = {

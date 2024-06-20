@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     en: {
         dir: 'ltr',
         label: 'English',

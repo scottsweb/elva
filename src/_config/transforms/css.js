@@ -1,6 +1,6 @@
-const CleanCSS = require('clean-css');
+import CleanCSS from 'clean-css';
 
-module.exports = eleventyConfig => {
+export default eleventyConfig => {
     eleventyConfig.addTransform('css-minify', (content, path) => {
         if (path && path.endsWith('.css') && eleventyConfig.globalData.settings.isProduction) {
             return new CleanCSS().minify(content).styles;

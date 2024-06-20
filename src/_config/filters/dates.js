@@ -3,6 +3,6 @@ const formatDate = function (date, format = { weekday: 'long', year: 'numeric', 
     return d.toLocaleDateString(this.ctx.locales[this.page.lang || this.ctx.lang].locale, format);
 }
 
-module.exports = {
+export {
     formatDate
 };

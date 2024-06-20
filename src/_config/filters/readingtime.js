@@ -1,9 +1,9 @@
 // calculate the time to read of a chunk of text (to the nearest minute)
 // based on https://www.bobmonsour.com/posts/calculating-reading-time/
-const nunjucks = require('nunjucks');
+import nunjucks from 'nunjucks';
 nunjucks.configure({ autoescape: true });
 
-module.exports = function(text) {
+export default function(text) {
     var content = new String(text);
     const speed = 240; // reading speed in words per minute
   

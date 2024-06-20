@@ -2,23 +2,44 @@
 
 // Imports --------------------------------------------
 
-const { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin } = require('@11ty/eleventy');
-const markdownIt = require('markdown-it');
-const markdownItIns = require('markdown-it-ins');
-const markdownItMark = require('markdown-it-mark');
-const markdownItSub = require('markdown-it-sub');
-const markdownItSup = require('markdown-it-sup');
-const pluginRSS = require('@11ty/eleventy-plugin-rss');
-const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
-const pluginEmbedEverything = require('eleventy-plugin-embed-everything');
+import { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin } from '@11ty/eleventy';
+import markdownIt from 'markdown-it';
+import markdownItIns from 'markdown-it-ins';
+import markdownItMark from 'markdown-it-mark';
+import markdownItSub from 'markdown-it-sub';
+import markdownItSup from 'markdown-it-sup';
+import pluginRSS from '@11ty/eleventy-plugin-rss';
+import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
+import pluginEmbedEverything from 'eleventy-plugin-embed-everything';
 
-// Local Imports --------------------------------------
+// Local ---------------------------------------------
 
-const { formatDate } = require('./src/_config/filters/dates');
+// Plugins
+import drafts from './src/_config/plugins/drafts.cjs';
+
+// Transforms
+import transformCSS from './src/_config/transforms/css.js';
+import transformHTML from './src/_config/transforms/html.js';
+import transformJS from './src/_config/transforms/js.js';
+
+// Shortcodes
+import image from './src/_config/shortcodes/image.js';
+
+// Filters
+import base64 from './src/_config/filters/base64.js';
+import cdnify from './src/_config/filters/cdnify.js';
+import { formatDate } from './src/_config/filters/dates.js';
+import languageFilter from './src/_config/filters/language.js';
+import mimetype from './src/_config/filters/mimetype.js';
+import random from './src/_config/filters/random.js';
+import readingTime from './src/_config/filters/readingtime.js';
+import sort from './src/_config/filters/sort.js';
+import translate from './src/_config/filters/translate.js';
+import where from './src/_config/filters/where.js';
 
 // 11ty -----------------------------------------------
 
-module.exports = eleventyConfig => {
+export default async function(eleventyConfig) {
 
     // Global Settings --------------------------------
 
@@ -47,12 +68,12 @@ module.exports = eleventyConfig => {
 
     // Plugins ----------------------------------------
 
-    eleventyConfig.addPlugin(require('./src/_config/plugins/drafts'));
-    eleventyConfig.addPlugin(pluginRSS);
-    eleventyConfig.addPlugin(pluginSyntaxHighlight);
+    await eleventyConfig.addPlugin(pluginRSS);
+    eleventyConfig.addPlugin(drafts);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(EleventyRenderPlugin);
     eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: 'en' });
+    eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(pluginEmbedEverything, {
         use: ['twitter', 'youtube', 'vimeo'],
         twitter: {
@@ -87,31 +108,30 @@ module.exports = eleventyConfig => {
 
     // Transforms -------------------------------------
 
-    eleventyConfig.addPlugin(require('./src/_config/transforms/css'));
-    eleventyConfig.addPlugin(require('./src/_config/transforms/html'));
-    eleventyConfig.addPlugin(require('./src/_config/transforms/js'));
+    eleventyConfig.addPlugin(transformCSS);
+    eleventyConfig.addPlugin(transformHTML);
+    eleventyConfig.addPlugin(transformJS);
 
     // Shortcodes --------------------------------------
 
     eleventyConfig.addShortcode('version', () => `${+ new Date()}`);
     eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`);
     eleventyConfig.addShortcode('build', () => `${new Date().toISOString().split('T')[0]}`);
-    eleventyConfig.addShortcode('image', require('./src/_config/shortcodes/image'));
+    eleventyConfig.addShortcode('image', image);
 
     // Filters ----------------------------------------
 
+    eleventyConfig.addFilter('base64', base64);
+    eleventyConfig.addFilter('cdnify', cdnify);
     eleventyConfig.addFilter('formatDate', formatDate);
-    eleventyConfig.addFilter('languageFilter', require('./src/_config/filters/language'));
-    eleventyConfig.addFilter('translate', require('./src/_config/filters/translate'));
-    eleventyConfig.addFilter('mimetype', require('./src/_config/filters/mimetype'));
-    eleventyConfig.addFilter('cdnify', require('./src/_config/filters/cdnify'));
-    eleventyConfig.addFilter('widont', require('./src/_config/filters/widont'));
-    eleventyConfig.addFilter('random', require('./src/_config/filters/random'));
-    eleventyConfig.addFilter('where', require('./src/_config/filters/where'));
-    eleventyConfig.addFilter('sort', require('./src/_config/filters/sort'));
-    eleventyConfig.addFilter('base64', require('./src/_config/filters/base64'));
-    eleventyConfig.addFilter('readingTime', require('./src/_config/filters/readingtime'));
-
+    eleventyConfig.addFilter('languageFilter', languageFilter);
+    eleventyConfig.addFilter('mimetype', mimetype);
+    eleventyConfig.addFilter('random', random);
+    eleventyConfig.addFilter('readingTime', readingTime);
+    eleventyConfig.addFilter('translate', translate);
+    eleventyConfig.addFilter('sort', sort);
+    eleventyConfig.addFilter('where', where);
+    //eleventyConfig.addFilter('widont', require('./src/_config/filters/widont'));
 
     // Passthrough -------------------------------------
 

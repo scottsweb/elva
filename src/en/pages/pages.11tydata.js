@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     layout: 'page',
     tags: 'page',
     permalink: function(data) {

@@ -1,6 +1,6 @@
-const htmlmin = require('html-minifier-terser');
+import htmlmin from 'html-minifier-terser';
 
-module.exports = eleventyConfig => {
+export default eleventyConfig => {
     eleventyConfig.addTransform('html-minify', (content, path) => {
         if (path && path.endsWith('.html') && eleventyConfig.globalData.settings.isProduction) {
             return htmlmin.minify(content, {
