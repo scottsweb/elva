@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "export NODE_ENV=production && rimraf dist && eleventy",
-    "dev": "eleventy --serve --watch",
+    "dev": "eleventy --serve --watch --incremental",
     "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release-patch": "npm version patch --force && npm publish",
