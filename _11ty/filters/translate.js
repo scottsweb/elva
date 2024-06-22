@@ -1,4 +1,4 @@
-// finds a translation from src/_data/translations.js
+// finds a translation from content/_data/translations.js
 // can support data substitution, for example: {{ 'translation.key' | translate(page.lang, {data: 500}) }}
 // to-do: can this be made to support plurals also?
 import get from 'lodash.get';

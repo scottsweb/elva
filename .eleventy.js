@@ -3,11 +3,13 @@
 // Imports --------------------------------------------
 
 import { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin } from '@11ty/eleventy';
+import fs from 'fs';
 import markdownIt from 'markdown-it';
 import markdownItIns from 'markdown-it-ins';
 import markdownItMark from 'markdown-it-mark';
 import markdownItSub from 'markdown-it-sub';
 import markdownItSup from 'markdown-it-sup';
+import path from 'path';
 import pluginRSS from '@11ty/eleventy-plugin-rss';
 import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 import pluginEmbedEverything from 'eleventy-plugin-embed-everything';
@@ -15,27 +17,30 @@ import pluginEmbedEverything from 'eleventy-plugin-embed-everything';
 // Local ---------------------------------------------
 
 // Plugins
-import drafts from './src/_config/plugins/drafts.cjs';
+import drafts from './_11ty/plugins/drafts.cjs';
 
 // Transforms
-import transformCSS from './src/_config/transforms/css.js';
-import transformHTML from './src/_config/transforms/html.js';
-import transformJS from './src/_config/transforms/js.js';
+import transformCSS from './_11ty/transforms/css.js';
+import transformHTML from './_11ty/transforms/html.js';
+import transformJS from './_11ty/transforms/js.js';
 
 // Shortcodes
-import image from './src/_config/shortcodes/image.js';
+import image from './_11ty/shortcodes/image.js';
 
 // Filters
-import base64 from './src/_config/filters/base64.js';
-import cdnify from './src/_config/filters/cdnify.js';
-import { formatDate } from './src/_config/filters/dates.js';
-import languageFilter from './src/_config/filters/language.js';
-import mimetype from './src/_config/filters/mimetype.js';
-import random from './src/_config/filters/random.js';
-import readingTime from './src/_config/filters/readingtime.js';
-import sort from './src/_config/filters/sort.js';
-import translate from './src/_config/filters/translate.js';
-import where from './src/_config/filters/where.js';
+import base64 from './_11ty/filters/base64.js';
+import cdnify from './_11ty/filters/cdnify.js';
+import { formatDate } from './_11ty/filters/dates.js';
+import languageFilter from './_11ty/filters/language.js';
+import mimetype from './_11ty/filters/mimetype.js';
+import random from './_11ty/filters/random.js';
+import readingTime from './_11ty/filters/readingtime.js';
+import sort from './_11ty/filters/sort.js';
+import translate from './_11ty/filters/translate.js';
+import where from './_11ty/filters/where.js';
+
+// Languages
+import locales from './content/_data/locales.js';
 
 // 11ty -----------------------------------------------
 
@@ -44,7 +49,7 @@ export default async function(eleventyConfig) {
     // Global Settings --------------------------------
 
     eleventyConfig.addGlobalData('settings', {
-        // these get merged with _data/settings.js
+        // these get merged with content/_data/settings.js
         url: process.env.URL || process.env.CF_PAGES_URL || 'http://localhost:8080',
         isProduction: process.env.NODE_ENV === 'production',
         isStaging: (process.env.URL && process.env.URL.includes('github.io')) || (process.env.CF_PAGES_URL && process.env.CF_PAGES_URL.includes('pages.dev')) || false
@@ -52,7 +57,7 @@ export default async function(eleventyConfig) {
 
     // Watch Targets ----------------------------------
 
-    eleventyConfig.addWatchTarget('./src/assets');
+    eleventyConfig.addWatchTarget('./content/assets');
 
     // Layouts ----------------------------------------
 
@@ -66,6 +71,30 @@ export default async function(eleventyConfig) {
     eleventyConfig.addLayoutAlias('post', 'post.njk');
     eleventyConfig.addLayoutAlias('posts', 'posts.njk');
 
+    // Virtual Templates ------------------------------
+
+    const cssTemplate = fs.readFileSync(path.resolve('theme/css/', 'bundle.njk'), 'utf-8');
+    const jsTemplate = fs.readFileSync(path.resolve('theme/js/', 'bundle.njk'), 'utf-8');
+    const robotsTemplate = fs.readFileSync(path.resolve('_11ty/templates/', 'robots.njk'), 'utf-8');
+    const sitemapTemplate = fs.readFileSync(path.resolve('_11ty/templates/', 'sitemap.njk'), 'utf-8');
+
+    eleventyConfig.addTemplate('css-bundle.njk', cssTemplate);
+    eleventyConfig.addTemplate('js-bundle.njk', jsTemplate);
+    eleventyConfig.addTemplate('robots.njk', robotsTemplate);
+    eleventyConfig.addTemplate('sitemap.njk', sitemapTemplate);
+
+    const feedTemplate = fs.readFileSync(path.resolve('_11ty/templates/', 'feed.njk'), 'utf-8');
+    const feedXSLTemplate = fs.readFileSync(path.resolve('_11ty/templates/', 'feed.xsl.njk'), 'utf-8');
+    const feedJSONTemplate = fs.readFileSync(path.resolve('_11ty/templates/', 'feed.json.njk'), 'utf-8');
+    const manifestTemplate = fs.readFileSync(path.resolve('_11ty/templates/', 'manifest.njk'), 'utf-8');
+
+    for (let [key, local] of Object.entries(locales)) {
+        eleventyConfig.addTemplate(key + '-feed.njk', feedTemplate, { lang: key });
+        eleventyConfig.addTemplate(key + '-feed.xsl.njk', feedXSLTemplate, { lang: key });
+        eleventyConfig.addTemplate(key + '-feed.json.njk', feedJSONTemplate, { lang: key });
+        eleventyConfig.addTemplate(key + '-manifest.njk', manifestTemplate, { lang: key });
+    }
+    
     // Plugins ----------------------------------------
 
     await eleventyConfig.addPlugin(pluginRSS);
@@ -134,9 +163,9 @@ export default async function(eleventyConfig) {
 
     // Passthrough -------------------------------------
 
-    eleventyConfig.addPassthroughCopy({'./src/assets/files': './assets/files'})
-    eleventyConfig.addPassthroughCopy({'./src/assets/img': './assets/img'})
-    eleventyConfig.addPassthroughCopy({'./src/assets/fonts': './assets/fonts'})
+    eleventyConfig.addPassthroughCopy({'./content/assets/files': './assets/files'})
+    eleventyConfig.addPassthroughCopy({'./content/assets/img': './assets/img'})
+    eleventyConfig.addPassthroughCopy({'./theme/fonts': './assets/fonts'})
 
     // Markdown ----------------------------------------
 
@@ -164,11 +193,11 @@ export default async function(eleventyConfig) {
         pathPrefix: '/',
 
         dir: {
-            input: 'src',
+            input: 'content',
             output: 'dist',
             data: '_data',
-            includes: '_includes',
-            layouts: '_layouts'
+            includes: '../theme/_includes',
+            layouts: '../theme/_layouts'
         }
     }
 }

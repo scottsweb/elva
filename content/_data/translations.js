@@ -28,7 +28,7 @@ export default {
             title: 'elva',
             rssTitle: 'RSS Feed',
             jsonTitle: 'JSON Feed',
-            description: 'A multilingual clean green 11ty starter theme',
+            description: 'A multilingual, clean, green, 11ty starter theme',
             opengraphDefaultAlt: 'A Swedish description of the default opengraph image'
         },
         header: {

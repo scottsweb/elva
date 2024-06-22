@@ -16,7 +16,7 @@ export default async function(src, alt, sizes, caption = '', classes = '', loadi
     };
 
     if (( settings.isProduction || settings.isStaging ) && settings.cdn ) {
-        meta = await Image('./src' + src, {
+        meta = await Image('./content' + src, {
                 ...metadata,
                 formats: ['webp', 'auto'],
                 urlFormat: function({width}) {
@@ -25,7 +25,7 @@ export default async function(src, alt, sizes, caption = '', classes = '', loadi
             }
         );
     } else {
-        meta = await Image('./src' + src, { 
+        meta = await Image('./content' + src, { 
             ...metadata,
             formats: ['avif', 'webp', 'auto']
         });

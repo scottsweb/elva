@@ -8,7 +8,7 @@ const frontmatter = args[4] && typeof args[4] === "string" ? JSON.parse(args[4])
 const data = {...frontmatter, ...{ 'url': 'http://localhost:8080' }};
 
 nodeHtmlToImage({
-    output: args[2] + '/src/assets/img/opengraph-' + slugify(data.title) + '.png',
+    output: args[2] + '/content/assets/img/opengraph-' + slugify(data.title) + '.png',
     html: template,
     content: data
 }).then(() => {

@@ -13,7 +13,7 @@
   "frontMatter.taxonomy.tags": [],
   "frontMatter.snippets.wrapper.enabled": false,
   "frontMatter.content.publicFolder": {
-    "path": "src",
+    "path": "content",
     "relative": true
   },
   "frontMatter.extensibility.scripts": [
@@ -214,7 +214,7 @@
   "frontMatter.content.pageFolders": [
     {
       "title": "Posts",
-      "path": "[[workspace]]/src/en/posts",
+      "path": "[[workspace]]/content/en/posts",
       "defaultLocale": "en",
       "previewPath": "en/writing",
       "locales": [
@@ -231,7 +231,7 @@
     },
     {
       "title": "Pages",
-      "path": "[[workspace]]/src/en/pages",
+      "path": "[[workspace]]/content/en/pages",
       "defaultLocale": "en",
       //"filePrefix": "src/",
       "previewPath": "en",
@@ -494,7 +494,7 @@
     {
       "id": "settings",
       "title": "Settings",
-      "file": "[[workspace]]/src/_data/settings.json",
+      "file": "[[workspace]]/content/_data/settings.json",
       "fileType": "json",
       "singleEntry": true,
       "schema": {
