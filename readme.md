@@ -97,8 +97,10 @@ npm run dev
 Generate a production-ready build to the `dist` folder:
 
 ```
-npm run build
+export NODE_ENV=production && npm run build
 ```
+
+You can set the environment variable `NODE_ENV=production` in your hosting control panel too.
 
 To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https://vscodium.com/) or [Visual Studio Code](https://code.visualstudio.com/) and enable the extension (if it doesn't enable automatically). It will open each time you launch your project.
 

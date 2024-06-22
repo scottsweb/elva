@@ -33,7 +33,9 @@ npm run dev
 Generera en produktionsklar build till mappen `dist`:
 
 ``` bash
-npm run build
+export NODE_ENV=production && npm run build
 ```
+
+Du kan också ställa in miljövariabeln `NODE_ENV=production` i din värdkontrollpanel.
 
 För att använda [Front Matter CMS](https://frontmatter.codes/), installera [VSCodium](https://vscodium.com/) eller [Visual Studio Code](https://code.visualstudio.com/) och aktivera tillägget (om det inte aktiveras automatiskt). Den öppnas varje gång du startar ditt projekt.
