@@ -1,6 +1,6 @@
-const fs = require('fs')
-const slugify = require('@sindresorhus/slugify');
-const nodeHtmlToImage = require('node-html-to-image');
+import fs from 'fs';
+import slugify from '@sindresorhus/slugify';
+import nodeHtmlToImage from 'node-html-to-image';
 
 const args = process.argv;
 const template = fs.readFileSync(args[1].replace('opengraph.js', 'opengraph-template.html'), 'utf8');
