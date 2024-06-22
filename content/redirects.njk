@@ -2,5 +2,10 @@
 permalink: /_redirects
 eleventyExcludeFromCollections: true
 ---
+{%- for lang, properties in locales %}
+{%- if lang === 'en' -%}
 /en/* /404.html 404
-/sv/* /sv/404.html 404
+{%- else %}
+/{{ lang }}/* /{{ lang }}/404.html 404
+{%- endif -%}
+{%- endfor -%}
