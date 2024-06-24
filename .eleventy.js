@@ -40,7 +40,10 @@ import translate from './_11ty/filters/translate.js';
 import where from './_11ty/filters/where.js';
 
 // Languages
-import locales from './content/_data/locales.js';
+// This is a temp fix based on this bug: https://github.com/11ty/eleventy-dependency-tree-esm/issues/2
+import { createRequire } from "node:module";
+const require = createRequire(import.meta.url);
+const locales = require('./content/_data/locales.json');1
 
 // 11ty -----------------------------------------------
 
@@ -88,7 +91,7 @@ export default async function(eleventyConfig) {
     const feedJSONTemplate = fs.readFileSync(path.resolve('_11ty/templates/', 'feed.json.njk'), 'utf-8');
     const manifestTemplate = fs.readFileSync(path.resolve('_11ty/templates/', 'manifest.njk'), 'utf-8');
 
-    for (let [key, local] of Object.entries(locales)) {
+    for (let [key, locale] of Object.entries(locales)) {
         eleventyConfig.addTemplate(key + '-feed.njk', feedTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-feed.xsl.njk', feedXSLTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-feed.json.njk', feedJSONTemplate, { lang: key });
