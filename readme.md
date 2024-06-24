@@ -106,21 +106,23 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 
 ## Personalisation Checklist
 
-- [ ] At the top of `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging`. Make sure these environment variables are set in staging and production and tweak as necessary
-- [ ] Configure your sites settings in `/src/_data/settings.json` or in Front Matter CMS (under Data)
+- [ ] In `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging` (under `Global Settings`). Make sure these environment variables are set in staging and production and tweak as necessary
+- [ ] Configure your sites settings in `/content/_data/settings.json` or in Front Matter CMS (under Data)
 - [ ] Add your chosen languages ([the demo site will soon guide you through this](https://elva.scott.ee/en/writing/adding-additional-languages/))
-- [ ] Configure your sites navigation in `/src/_data/navigation.js`
-- [ ] Set your own default images, icons and favicon by replacing the images in `/src/assets/img/` 
+- [ ] Configure your sites navigation in `/content/_data/navigation.js`
+- [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
 - [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/en/writing/frontmatter/) in the UI
 - [ ] Setup a custom template for your open graph images (`.frontmatter/scripts/opengraph-template.html`)
-- [ ] Design your site by customising the CSS (`/src/assets/css/`), layouts (`/src/_layouts/`) and includes (`/src/_includes/`)
+- [ ] Design your site by customising the CSS (`/theme/css/`), layouts (`/theme/_layouts/`) and includes (`/theme/_includes/`)
 
 ### Optional
 
-- [ ] Set your preferred image sizes and formats in the image shortcode `/src/_config/shortcodes/image.js`
-- [ ] If you add more front matter, you may wish to edit `frontmatter.json` to add [Front Matter CMS](https://frontmatter.codes/) support
-- [ ] You many not need [Alpine.js](https://alpinejs.dev/) which can be removed from `/src/assets/js/bundle.njk`
+- [ ] Set your preferred image sizes and formats in the image shortcode `/elva/shortcodes/image.js`
+- [ ] If you add more front matter, you may wish to edit `.frontmatter/frontmatter.json` to add [Front Matter CMS](https://frontmatter.codes/) support
+- [ ] You many not need [Alpine.js](https://alpinejs.dev/) which can be removed from `/theme/js/bundle.njk`
 - [ ] Use [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/) to grab some API data
 - [ ] If you enable Photon CDN support [familiarise yourself with these limitations](https://jetpack.com/support/site-accelerator/#limitations)
  
+### Updates
 
+As of version 2.0 of elva, there are now separate folders for the `/theme`, your sites `/content` and elva related stuff `/elva`. The idea is to make upgrades of elva simpler by seperating frequently changed things (the theme and content) from the guts of the project. Hopefully this is helpful, but please open an issue if you would like to see further improvements made. 
