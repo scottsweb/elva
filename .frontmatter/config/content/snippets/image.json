@@ -1,0 +1,79 @@
+{
+    "$schema": "https://frontmatter.codes/config/content.snippets.schema.json",
+	"title": "Image",
+    "description": "Insert a responsive image",
+    "body": "{% image \"[[&mediaUrl]]\", \"[[alt]]\", \"[[mq]]\", \"[[caption]]\" , \"[[classes]]\", \"[[loading]]\", \"[[fetch]]\", \"[[decoding]]\", \"[[mediaWidth]]\", \"[[mediaHeight]]\" %}",
+    "isMediaSnippet": true,
+    "fields": [
+      {
+        "name": "mq",
+        "title": "Media Query",
+        "type": "string",
+        "single": true,
+        "default": "(min-width: 800px) 580px, 100vw"
+      },
+      {
+        "name": "classes",
+        "title": "Class",
+        "type": "string",
+        "single": true,
+        "default": ""
+      },
+      {
+        "name": "loading",
+        "title": "Loading",
+        "type": "choice",
+        "default": "lazy",
+        "choices": [
+          {
+            "id": "lazy",
+            "title": "Lazy"
+          },
+          {
+            "id": "eager",
+            "title": "Eager"
+          }
+        ]
+      },
+      {
+        "name": "fetch",
+        "title": "Fetch Priority",
+        "type": "choice",
+        "default": "auto",
+        "choices": [
+          {
+            "id": "auto",
+            "title": "Auto"
+          },
+          {
+            "id": "high",
+            "title": "High"
+          },
+          {
+            "id": "low",
+            "title": "Low"
+          }
+        ]
+      },
+      {
+        "name": "decoding",
+        "title": "Decoding",
+        "type": "choice",
+        "default": "async",
+        "choices": [
+          {
+            "id": "auto",
+            "title": "Auto"
+          },
+          {
+            "id": "sync",
+            "title": "Sync"
+          },
+          {
+            "id": "async",
+            "title": "Async"
+          }
+        ]
+      }
+    ]
+  }
