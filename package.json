@@ -40,7 +40,7 @@
     "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@alpinejs/intersect": "^3.14.0",
-    "alpinejs": "^3.14.0",
+    "alpinejs": "^3.14.1",
     "clean-css": "^5.3.3",
     "eleventy-plugin-embed-everything": "^1.18.2",
     "html-minifier-terser": "^7.2.0",
