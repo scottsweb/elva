@@ -52,19 +52,15 @@ Features include:
 - [ ] [Critical CSS](https://github.com/11ty/eleventy-plugin-bundle) or per collection or per page CSS ([1](https://www.silvestar.codes/articles/extracting-and-using-critical-css-on-my-eleventy-site/))
 - [ ] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
-- [x] Reading time filter
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
 - [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/)
 - [ ] Profile verification / .well-known support for the Fediverse and Nostr
-- [x] Serve assets and styles for YouTube lite locally
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js)?
 - [ ] Cleaner language selector
 - [x] Allow for variable subsitution in translations e.g. `Hello, {{name}}` (still needs to handle plurals!)
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
 - [ ] Front Matter CMS — More data managed from the CMS
-- [x] Front Matter CMS — Better support for templates, default templates etc
-- [x] Front Matter CMS — [Generated open graph images](https://www.eliostruyf.com/generate-open-graph-preview-image-code-front-matter/) ([1](https://bnijenhuis.nl/notes/automatically-generate-open-graph-images-in-eleventy/))
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
 
 ## Getting Started
