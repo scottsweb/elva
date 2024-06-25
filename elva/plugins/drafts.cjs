@@ -34,7 +34,8 @@ module.exports = eleventyConfig => {
 			text = "Including";
 		}
 
-		// Only log once.
+		// Only log once
+		// to-do: use l1ty logging tool? https://github.com/d3v1an7/website-benwhite/blob/main/config/transforms.js#L4
 		if ( !logged ) {
 			console.log( `[11ty] ${text} drafts` );
 		}
