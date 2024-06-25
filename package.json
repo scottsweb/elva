@@ -8,6 +8,8 @@
     "build": "rimraf dist && eleventy",
     "dev": "eleventy --serve --watch --incremental",
     "clean": "rimraf dist",
+    "debug": "DEBUG=Eleventy* npm run dev",
+    "benchmark": "DEBUG=Eleventy:Benchmark* npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release-patch": "npm version patch --force && npm publish",
     "release-minor": "npm version minor --force && npm publish",
