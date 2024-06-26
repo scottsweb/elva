@@ -35,7 +35,7 @@ module.exports = eleventyConfig => {
 		}
 
 		// Only log once
-		// to-do: use l1ty logging tool? https://github.com/d3v1an7/website-benwhite/blob/main/config/transforms.js#L4
+		// to-do: use 11ty logging tool? https://github.com/d3v1an7/website-benwhite/blob/main/config/transforms.js#L4
 		if ( !logged ) {
 			console.log( `[11ty] ${text} drafts` );
 		}
