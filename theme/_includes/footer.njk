@@ -2,6 +2,8 @@
 
     {% include "switch-darkmode.njk" %}
 
+    <p class="subtle">The year is {% year %}</p>
+
     <a href="{{ "/feed/feed.xml" | locale_url }}" class="rss-icon" aria-label="{{ 'meta.rssTitle' | translate }}" >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-labelledby="icon-rss" role="img" width="24" height="24">
             <title id="icon-rss">{{ 'meta.rssTitle' | translate }}</title>
