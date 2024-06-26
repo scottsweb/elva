@@ -17,7 +17,10 @@ import pluginEmbedEverything from 'eleventy-plugin-embed-everything';
 // Local ---------------------------------------------
 
 // Plugins
-import drafts from './elva/plugins/drafts.cjs';
+import pluginDrafts from './elva/plugins/drafts.cjs';
+
+// Plugin Configs
+import pluginEmbedEverythingConfig from './elva/config/embeds.js';
 
 // Transforms
 import transformCSS from './elva/transforms/css.js';
@@ -97,42 +100,12 @@ export default async function(eleventyConfig) {
     // Plugins ----------------------------------------
 
     await eleventyConfig.addPlugin(pluginRSS);
-    eleventyConfig.addPlugin(drafts);
+    eleventyConfig.addPlugin(pluginDrafts);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(EleventyRenderPlugin);
     eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: 'en' });
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
-    eleventyConfig.addPlugin(pluginEmbedEverything, {
-        use: ['twitter', 'youtube', 'vimeo'],
-        twitter: {
-            options: {
-                embedClass: 'oembed oembed-twitter',
-                doNotTrack: true
-            }
-        },
-        vimeo: {
-            options: {
-                embedClass: 'oembed oembed-vimeo',
-                //wrapperStyle
-            }
-        },
-        youtube: {
-            options: {
-                embedClass: 'oembed oembed-youtube',
-                modestBranding: true,
-                lazy: true,
-                lite: {
-                    thumbnailQuality: 'maxresdefault',
-                    css: {
-                        inline: true
-                    },
-                    js: {
-                        inline: true
-                    }
-                }
-            }
-        }
-    });
+    eleventyConfig.addPlugin(pluginEmbedEverything, pluginEmbedEverythingConfig);
 
     // Transforms -------------------------------------
 
