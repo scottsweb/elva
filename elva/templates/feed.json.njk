@@ -1,0 +1,38 @@
+---
+permalink: /{{ lang }}/feed/feed.json
+eleventyExcludeFromCollections: true
+seo:
+  excludeFromSitemap: true
+---
+{
+    "version": "https://jsonfeed.org/version/1.1",
+    "title": "{{ 'meta.jsonTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}",
+    "description": "{{ 'meta.description' | translate }}",
+    "language": "{{ page.lang }}",
+    "home_page_url": "{{ "/" | htmlBaseUrl(settings.url) }}",
+    "feed_url": "{{ permalink | htmlBaseUrl(settings.url) }}",
+    "icon": "{{ "/assets/img/icon-512.png" | htmlBaseUrl(settings.url) | cdnify }}",
+    "favicon": "{{ "/assets/img/icon-180.png" | htmlBaseUrl(settings.url) | cdnify }}",
+    "authors": [
+        {
+            "name": "{{ settings.author.name }}",
+            "url": "{{ settings.author.url }}"
+        }
+    ],
+    "items": [
+        {%- for post in collections.posts | languageFilter(page.lang)| reverse %}
+        {%- set absolutePostUrl = post.url | htmlBaseUrl(settings.url) %}
+        {%- set image = (post.data.thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) | cdnify %}
+        {
+            "id": "{{ absolutePostUrl }}",
+            "url": "{{ absolutePostUrl }}",
+            "title": "{{ post.data.title }}",
+            "image": "{{ image | cdnify }}",
+            "content_html": {% if post.templateContent %}{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | dump | safe }}{% else %}""{% endif %},
+            "date_published": "{{ post.date | dateToRfc3339 }}",
+            "language": "{{ post.page.lang }}"
+        }
+        {%- if not loop.last %},{% endif %}
+        {%- endfor %}
+    ]
+}

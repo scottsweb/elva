@@ -1,0 +1,35 @@
+{
+    "$schema": "https://frontmatter.codes/config/content.snippets.schema.json",
+	"title": "Notice",
+    "description": "Show a notice, warning or error",
+    "body": "<div class=\"notice notice-[[type]]\">[[message]]</div>",
+    "fields": [
+      {
+        "name": "type",
+        "title": "type",
+        "type": "choice",
+        "choices": [
+          {
+            "id": "notice",
+            "title": "Notice"
+          },
+          {
+            "id": "warning",
+            "title": "Warning"
+          },
+          {
+            "id": "error",
+            "title": "Error"
+          }
+        ],
+        "default": "notice"
+      },
+      {
+        "name": "message",
+        "title": "message",
+        "type": "string",
+        "single": false,
+        "default": "FM_SELECTED_TEXT"
+      }
+    ]
+  }

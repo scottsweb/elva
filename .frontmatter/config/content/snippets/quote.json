@@ -1,0 +1,41 @@
+{
+    "$schema": "https://frontmatter.codes/config/content.snippets.schema.json",
+	"title": "Quote",
+    "description": "Quote with author",
+    "body": [
+      "<blockquote>",
+      "  <p>[[quote]]</p>",
+      "  <figcaption>— [[author]], <cite><a href=\"[[&url]]\">[[cite]]</a></cite></figcaption>",
+      "</blockquote>"
+    ],
+    "fields": [
+      {
+        "name": "quote",
+        "title": "Quote",
+        "type": "string",
+        "single": false,
+        "default": "FM_SELECTED_TEXT"
+      },
+      {
+        "name": "author",
+        "title": "Author",
+        "type": "string",
+        "single": true,
+        "default": ""
+      },
+      {
+        "name": "cite",
+        "title": "Cite",
+        "type": "string",
+        "single": true,
+        "default": ""
+      },
+      {
+        "name": "url",
+        "title": "Cite URL",
+        "type": "string",
+        "single": true,
+        "default": ""
+      }
+    ]
+  }

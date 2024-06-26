@@ -1,0 +1,187 @@
+{
+    "$schema": "https://frontmatter.codes/config/media.contenttypes.schema.json",
+    "name": "default",
+    "pageBundle": false,
+    "previewPath": null,
+    "template": "[[workspace]]/.frontmatter/templates/default.md",
+    "clearEmpty": true,
+    "fields": [
+      {
+        "title": "Layout",
+        "name": "layout",
+        "type": "choice",
+        "choices": [
+          {
+            "id": "",
+            "title": ""
+          },
+          {
+            "id": "post",
+            "title": "Post"
+          },
+          {
+            "id": "page",
+            "title": "Page"
+          }
+        ]
+      },
+      {
+        "title": "Title",
+        "name": "title",
+        "type": "string",
+        "single": true
+      },
+      {
+        "title": "Thumbnail",
+        "name": "thumbnail",
+        "type": "image",
+        "isPreviewImage": true
+      },
+      {
+        "title": "Thumbnail Description",
+        "name": "thumbnailDescription",
+        "type": "string",
+        "single": true
+      },
+      {
+        "title": "Date",
+        "name": "date",
+        "type": "datetime",
+        "default": "{{now}}",
+        "isPublishDate": true
+      },
+      {
+        "title": "Modified",
+        "name": "lastmod",
+        "type": "datetime",
+        "isModifiedDate": true
+      },
+      {
+        "title": "Tags",
+        "name": "tags",
+        "type": "tags"
+      },
+      {
+        "title": "Is in draft",
+        "name": "draft",
+        "type": "draft"
+      },
+      {
+        "title": "SEO",
+        "name": "seo",
+        "type": "fields",
+        "fields": [
+          {
+            "title": "Disable Indexing?",
+            "name": "noIndex",
+            "type": "boolean"
+          },
+          {
+            "title": "Title",
+            "name": "title",
+            "type": "string",
+            "single": true,
+            "when": {
+              "fieldRef": "noIndex",
+              "operator": "neq",
+              "value": true
+            }
+          },
+          {
+            "title": "Description",
+            "name": "description",
+            "type": "string",
+            "when": {
+              "fieldRef": "noIndex",
+              "operator": "neq",
+              "value": true
+            }
+          },
+          {
+            "title": "Slug",
+            "name": "slug",
+            "type": "slug",
+            "editable": true,
+            "when": {
+              "fieldRef": "noIndex",
+              "operator": "neq",
+              "value": true
+            }
+          },
+          {
+            "title": "Exclude from Sitemap?",
+            "name": "excludeFromSitemap",
+            "type": "boolean"
+          },
+          {
+            "title": "Sitemap Change Frequency",
+            "name": "changeFrequency",
+            "type": "choice",
+            "when": {
+              "fieldRef": "excludeFromSitemap",
+              "operator": "neq",
+              "value": true
+            },
+            "choices": [
+              {
+                "id": "always",
+                "title": "Always"
+              },
+              {
+                "id": "hourly",
+                "title": "Hourly"
+              },
+              {
+                "id": "daily",
+                "title": "Daily"
+              },
+              {
+                "id": "weekly",
+                "title": "Weekly"
+              },
+              {
+                "id": "monthly",
+                "title": "Monthly"
+              },
+              {
+                "id": "never",
+                "title": "Never"
+              }
+            ]
+          },
+          {
+            "title": "Sitemap Priority",
+            "name": "sitemapPriority",
+            "type": "number",
+            "when": {
+              "fieldRef": "excludeFromSitemap",
+              "operator": "neq",
+              "value": true
+            },
+            "numberOptions": {
+              "isDecimal": true,
+              "min": 0.1,
+              "max": 1,
+              "step": 0.1
+            }
+          }
+        ]
+      },
+      {
+        "title": "11ty",
+        "name": "eleventyDefaultMeta",
+        "type": "heading"
+      },
+      {
+        "title": "Permalink",
+        "name": "permalink",
+        "type": "string",
+        "single": true
+      },
+      {
+        "title": "Exclude from collections?",
+        "name": "eleventyExcludeFromCollections",
+        "type": "boolean"
+      }
+    ]
+  }

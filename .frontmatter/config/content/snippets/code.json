@@ -1,0 +1,93 @@
+{
+    "$schema": "https://frontmatter.codes/config/content.snippets.schema.json",
+	"title": "Code",
+	"description": "Insert a code block",
+	"body": [
+	  "``` [[type]]",
+	  "[[code]]",
+	  "```"
+	],
+	"fields": [
+	  {
+		"name": "type",
+		"title": "Language",
+		"type": "choice",
+		"choices": [
+		  {
+			"id": null,
+			"title": "—"
+		  },
+		  {
+			"id": "arduino",
+			"title": "Arduino"
+		  },
+		  {
+			"id": "bash",
+			"title": "Bash"
+		  },
+		  {
+			"id": "css",
+			"title": "CSS"
+		  },
+		  {
+			"id": "docker",
+			"title": "Docker"
+		  },
+		  {
+			"id": "git",
+			"title": "Git"
+		  },
+		  {
+			"id": "go",
+			"title": "Go"
+		  },
+		  {
+			"id": "html",
+			"title": "HTML"
+		  },
+		  {
+			"id": "javascript",
+			"title": "JavaScript"
+		  },
+		  {
+			"id": "json",
+			"title": "JSON"
+		  },
+		  {
+			"id": "latex",
+			"title": "LaTeX"
+		  },
+		  {
+			"id": "markdown",
+			"title": "Markdown"
+		  },
+		  {
+			"id": "php",
+			"title": "PHP"
+		  },
+		  {
+			"id": "python",
+			"title": "Python"
+		  },
+		  {
+			"id": "jsx",
+			"title": "React JSX"
+		  },
+		  {
+			"id": "typescript",
+			"title": "Typescript"
+		  },
+		  {
+			"id": "yaml",
+			"title": "YAML"
+		  }
+		]
+	  },
+	  {
+		"name": "code",
+		"title": "Code",
+		"type": "string",
+		"default": "FM_SELECTED_TEXT"
+	  }
+	]
+}

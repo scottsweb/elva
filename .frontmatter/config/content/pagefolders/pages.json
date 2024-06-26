@@ -1,0 +1,18 @@
+{
+    "$schema": "https://frontmatter.codes/config/content.pagefolders.schema.json",
+    "title": "Pages",
+    "path": "[[workspace]]/content/en/pages",
+    "defaultLocale": "en",
+    "previewPath": "{{locale}}",
+    "locales": [
+      {
+        "title": "English",
+        "locale": "en"
+      },
+      {
+        "title": "Svensk",
+        "locale": "sv",
+        "path": "../../sv/pages/"
+      }
+    ]
+  }
