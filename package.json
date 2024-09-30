@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "rimraf dist && eleventy",
+    "build": "npx @11ty/eleventy",
     "dev": "eleventy --serve --watch --incremental",
     "clean": "rimraf dist",
     "debug": "DEBUG=Eleventy* npm run dev",
