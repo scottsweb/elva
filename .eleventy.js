@@ -46,7 +46,7 @@ import where from './elva/filters/where.js';
 // to-do: This is a temp fix based on this bug: https://github.com/11ty/eleventy-dependency-tree-esm/issues/2
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
-const locales = require('./content/_data/locales.json');1
+const locales = require('./content/_data/locales.json');
 
 // 11ty -----------------------------------------------
 
