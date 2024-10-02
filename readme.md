@@ -125,4 +125,4 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
  
 ### Updates
 
-As of version 2.0 of elva, there are now separate folders for the `/theme`, your sites `/content` and elva related stuff `/elva`. The idea is to make upgrades of elva simpler by seperating frequently changed things (the theme and content) from the guts of the project. Hopefully this is helpful, but please open an issue if you would like to see further improvements made. 
+As of version 3.0 of elva, there are now separate folders for the `/theme`, your sites `/content` and elva related stuff `/elva`. The idea is to make upgrades of elva simpler by seperating frequently changed things (the theme and content) from the guts of the project. Hopefully this is helpful, but please open an issue if you would like to see further improvements made. 
