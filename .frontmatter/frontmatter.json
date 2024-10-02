@@ -1,0 +1,42 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "11ty",
+  "frontMatter.preview.host": "http://localhost:8080",
+  "frontMatter.dashboard.openOnStart": true,
+  "frontMatter.git.enabled": true,
+  "frontMatter.templates.enabled": false,
+  "frontMatter.content.fmHighlight": false,
+  "frontMatter.taxonomy.seoDescriptionField": "seo.description",
+  "frontMatter.templates.prefix": "",
+  "frontMatter.taxonomy.dateFormat": "YYYY-MM-DD",
+  "frontMatter.experimental": true,
+  "frontMatter.taxonomy.tags": [],
+  "frontMatter.snippets.wrapper.enabled": false,
+  "frontMatter.content.publicFolder": {
+    "path": "content",
+    "relative": true
+  },
+  "frontMatter.extensibility.scripts": [
+    "[[workspace]]/.frontmatter/ui/image.js"
+  ],
+  "frontMatter.panel.actions.disabled": [
+    "optimizeSlug",
+    "createContent"
+  ],
+  "frontMatter.global.activeMode": "",
+  "frontMatter.global.modes": [
+    {
+      "id": "Minimal",
+      "features": [
+        "panel.metadata",
+        "panel.actions",
+        "dashboard.data.view",
+        "dashboard.snippets.view"
+      ]
+    }
+  ],
+  "frontMatter.custom.scripts": [{
+    "title": "Generate open graph image",
+    "script": ".frontmatter/scripts/opengraph.js"
+  }]
+}

@@ -1,0 +1,12 @@
+---
+permalink: /_redirects
+eleventyExcludeFromCollections: true
+eleventyAllowMissingExtension: true
+---
+{%- for lang, properties in locales %}
+{%- if lang === 'en' -%}
+/en/* /404.html 404
+{%- else %}
+/{{ lang }}/* /{{ lang }}/404.html 404
+{%- endif -%}
+{%- endfor -%}

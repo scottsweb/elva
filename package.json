@@ -1,12 +1,17 @@
 {
   "name": "elva",
-  "version": "1.0.3",
+  "version": "3.0.0",
   "description": "A multilingual, clean, green, 11ty starter theme",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "build": "export NODE_ENV=production && rimraf dist && eleventy",
-    "dev": "eleventy --serve --watch",
+    "build": "rimraf dist && npx @11ty/eleventy",
+    "build:prod": "export NODE_ENV=production && rimraf dist && npx @11ty/eleventy",
+    "build:stage": "export NODE_ENV=staging && rimraf dist && npx @11ty/eleventy",
+    "dev": "npx @11ty/eleventy --watch --serve --incremental",
     "clean": "rimraf dist",
+    "debug": "DEBUG=Eleventy* npm run dev",
+    "benchmark": "DEBUG=Eleventy:Benchmark* npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release-patch": "npm version patch --force && npm publish",
     "release-minor": "npm version minor --force && npm publish",
@@ -33,11 +38,11 @@
     "email": "git@scott.ee"
   },
   "license": "MIT",
-  "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
+  "dependencies": {
+    "@11ty/eleventy": "3.0.0",
     "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-img": "^4.0.2",
-    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@alpinejs/intersect": "^3.14.0",
     "alpinejs": "^3.14.0",
