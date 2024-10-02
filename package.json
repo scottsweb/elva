@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "rimraf dist && npx @11ty/eleventy",
+    "build:prod": "export NODE_ENV=production && rimraf dist && npx @11ty/eleventy",
+    "build:stage": "export NODE_ENV=staging && rimraf dist && npx @11ty/eleventy",
     "dev": "npx @11ty/eleventy --watch --serve --incremental",
     "clean": "rimraf dist",
     "debug": "DEBUG=Eleventy* npm run dev",
