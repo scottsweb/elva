@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "npx @11ty/eleventy",
+    "build": "rimraf dist && npx @11ty/eleventy",
     "build:prod": "export NODE_ENV=production && rimraf dist && npx @11ty/eleventy",
     "build:stage": "export NODE_ENV=staging && rimraf dist && npx @11ty/eleventy",
     "dev": "npx @11ty/eleventy --watch --serve --incremental",
