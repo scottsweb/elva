@@ -27,7 +27,7 @@
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ u }}">
         <meta property="og:image" content="{{ i | cdnify }}">
-        <meta property="og:image:alt" content="{{ ia }}"/>
+        <meta property="og:image:alt" content="{{ ia }}">
 
         <!-- icons -->
         <link rel="icon" href="{{ "/favicon.ico" | htmlBaseUrl(settings.url) }}" sizes="any">
@@ -48,8 +48,9 @@
         <link rel="manifest" href="{{ "/site.webmanifest" | locale_url | htmlBaseUrl(settings.url) }}">
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ settings.themeColorLight }}">
         <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="{{ settings.themeColorDark }}">
-        {% if settings.isStaging or noIndex %}<meta name="robots" content="noindex, nofollow" />{% endif %}
+        {% if settings.isStaging or noIndex %}<meta name="robots" content="noindex, nofollow">{% endif %}
         {% if settings.author.fediverseProfile %}<link href="{{ settings.author.fediverseProfile }}" rel="me">{% endif %}
+        {% if settings.author.fediverseUsername %}<meta name="fediverse:creator" content="{{ settings.author.fediverseUsername }}">{% endif %}
 
         <!-- set theme before page renders to stop fouc -->
         <script>document.documentElement.dataset.theme = localStorage.getItem('theme') === null ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : localStorage.getItem('theme')</script>

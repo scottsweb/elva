@@ -7,7 +7,8 @@
 		"email": "noreply@example.com",
 		"url": "https://scott.ee",
 		"location": "Stockholm, Sweden",
-		"fediverseProfile": "https://toot.scott.ee/@scott"
+		"fediverseProfile": "https://toot.scott.ee/@scott",
+		"fediverseUsername": "@scott@toot.scott.ee"
 	},
 	"meta": {
 		"separator": "•",
