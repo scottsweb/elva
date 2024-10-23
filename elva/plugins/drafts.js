@@ -5,11 +5,11 @@ export default function (eleventyConfig) {
 		data.settings.isProduction && data.draft ? false : undefined;
 	});
 
-	eleventyConfig.on('eleventy.before', () => {
-		let text = 'Including';
+	eleventyConfig.on('eleventy.before', ({runMode}) => {
+		let text = 'Excluding';
 
-		if (eleventyConfig.globalData.settings.isProduction) {
-			text = 'Excluding';
+		if ( runMode === 'serve' || runMode === 'watch' ) {
+			text = "Including";
 		}
 
 		if (!logged) {
