@@ -2,7 +2,7 @@
 <html lang="{{ locales[page.lang].locale or page.lang }}" dir="{{ locales[page.lang].dir or 'ltr' }}" x-data :data-theme="$store.elva.theme">
     <head>
         {%- set t = ((seo.title or title) + ' ' + settings.meta.separator + ' ' + ('meta.title' | translate) if (seo.title or title) else ('meta.title' | translate)) %}
-        {%- set d = seo.description or ('meta.description' | translate) %}
+        {%- set d = (seo.description | striptags | truncate(140, false, '…')) or ('meta.description' | translate) %}
         {%- set u = page.url | htmlBaseUrl(settings.url) %}
         {%- set i = (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) %}
         {%- set ia = thumbnailDescription or ('meta.opengraphDefaultAlt' | translate) %}
@@ -18,7 +18,7 @@
         <!-- canonical / alternates -->
         <link rel="canonical" href="{{ u }}">
         <link rel="alternate" hreflang="{{ page.lang }}" href="{{ u }}">
-        {%- for link in page.url | locale_links %}<link rel="alternate" hreflang="{{ link.lang }}" href="{{ settings.url }}{{ link.url }}">{% endfor %}
+        {% for link in page.url | locale_links %}<link rel="alternate" hreflang="{{ link.lang }}" href="{{ settings.url }}{{ link.url }}">{% endfor %}
 
         <!-- open graph -->
         <meta property="og:site_name" content="{{ 'meta.title' | translate }}">
