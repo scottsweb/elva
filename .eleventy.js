@@ -17,7 +17,7 @@ import pluginEmbedEverything from 'eleventy-plugin-embed-everything';
 // Local ---------------------------------------------
 
 // Plugins
-import pluginDrafts from './elva/plugins/drafts.cjs';
+import pluginDrafts from './elva/plugins/drafts.js';
 
 // Plugin Configs
 import pluginEmbedEverythingConfig from './elva/config/embeds.js';
@@ -115,7 +115,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addPlugin(transformHTML);
     eleventyConfig.addPlugin(transformJS);
 
-    // Shortcodes --------------------------------------
+    // Shortcodes -------------------------------------
 
     eleventyConfig.addShortcode('version', () => `${+ new Date()}`);
     eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`);
