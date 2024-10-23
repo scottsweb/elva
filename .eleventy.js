@@ -18,6 +18,7 @@ import pluginEmbedEverything from 'eleventy-plugin-embed-everything';
 
 // Plugins
 import pluginDrafts from './elva/plugins/drafts.js';
+import pluginDescriptions from './elva/plugins/seodescriptions.js';
 
 // Plugin Configs
 import pluginEmbedEverythingConfig from './elva/config/embeds.js';
@@ -103,6 +104,7 @@ export default async function(eleventyConfig) {
 
     await eleventyConfig.addPlugin(pluginRSS);
     eleventyConfig.addPlugin(pluginDrafts);
+    eleventyConfig.addPlugin(pluginDescriptions);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(EleventyRenderPlugin);
     eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: 'en' });
