@@ -2,14 +2,14 @@ export default function (eleventyConfig) {
 	let logged = false;
 
 	eleventyConfig.addPreprocessor('drafts', 'njk,md', (data) => {
-		data.settings.isProduction && data.draft ? false : undefined;
+		return data.settings.isProduction && data.draft ? false : undefined;
 	});
 
-	eleventyConfig.on('eleventy.before', ({runMode}) => {
-		let text = 'Excluding';
+	eleventyConfig.on('eleventy.before', () => {
+		let text = 'Including';
 
-		if ( runMode === 'serve' || runMode === 'watch' ) {
-			text = "Including";
+		if (eleventyConfig.globalData.settings.isProduction) {
+			text = 'Excluding';
 		}
 
 		if (!logged) {
