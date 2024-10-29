@@ -1,6 +1,6 @@
 {
   "name": "elva",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "A multilingual, clean, green, 11ty starter theme",
   "main": "index.js",
   "type": "module",
@@ -51,6 +51,7 @@
     "html-minifier-terser": "^7.2.0",
     "lightningcss": "^1.27.0",
     "lodash.get": "^4.4.2",
+    "markdown-it-anchor": "^9.2.0",
     "markdown-it-ins": "^4.0.0",
     "markdown-it-mark": "^4.0.0",
     "markdown-it-sub": "^2.0.0",
