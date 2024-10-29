@@ -177,7 +177,7 @@ figure > figcaption {
     color: var(--background);
     margin-right: var(--space-s-m);
     background-color: var(--foreground);
-    padding: var(--space-3xs) var(--space-xs);
+    padding: var(--space-2xs) var(--space-xs) var(--space-3xs);
     box-shadow: 0px 4px color-mix(in srgb, var(--foreground), var(--black) 9%);
     border-radius: var(--border-radius);
     font-size: var(--step--1);
