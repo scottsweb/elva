@@ -66,7 +66,6 @@ Features include:
 - [ ] Front Matter CMS — Tagging and categories
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
 - [ ] CLI tool for managing languages (and possibly importing content)
-- [ ] Build caching improvements ([1](https://developers.cloudflare.com/pages/configuration/build-caching/#frameworks))
 
 ## Getting Started
 
@@ -123,6 +122,7 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 - [ ] You many not need [Alpine.js](https://alpinejs.dev/) which can be removed from `/theme/js/bundle.njk`
 - [ ] Use [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/) to grab some API data
 - [ ] If you enable Photon CDN support [familiarise yourself with these limitations](https://jetpack.com/support/site-accelerator/#limitations)
+- [ ] [Enable build caching for your host](https://developers.cloudflare.com/pages/configuration/build-caching/)
  
 ### Updates
 
