@@ -41,7 +41,7 @@
     /* typography */
     --font-base: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif;
     --font-headings: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --font-quote: var();
+    /* --font-quote: var(); */
     --font-mono: "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1500,22,1.333,6,1,800&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
     --step--1: clamp(0.94rem, calc(0.91rem + 0.13vw), 1.03rem);
@@ -90,7 +90,6 @@
 
     /* focus */
     --focus-outline: 0.3ch solid var( --nord13 );
-
 }
 
 /* dark mode */
