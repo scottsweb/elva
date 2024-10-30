@@ -5,6 +5,10 @@ seo:
 date: 2023-08-02
 ---
 
+**Innehåll:**
+
+[[toc]]
+
 Lorem ipsum dolor **sit amet**, consectetur adipiscing elit (C). Sed nec __risus elementum__, tempor tortor non, bibendum libero. Suspendisse potenti. Vivamus dapibus *tortor neque*, sed aliquet lacus _elementum nec_. Morbi vel ligula vitae leo placerat sollicitudin quis at eros. Pellentesque tristique mi a tortor auctor, sit amet elementum augue pulvinar. Donec non orci in ~~ipsum mollis~~ tempor. Integer libero est, H~2~O pharetra ++vitae++ facilisis quis 🇸🇪.
 
 ## Citat, kod och typografi
