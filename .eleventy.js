@@ -2,10 +2,9 @@
 
 // Imports --------------------------------------------
 
-import { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin } from '@11ty/eleventy';
+import { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin, IdAttributePlugin } from '@11ty/eleventy';
 import fs from 'fs';
 import markdownIt from 'markdown-it';
-import markdownItAnchor from 'markdown-it-anchor';
 import markdownItIns from 'markdown-it-ins';
 import markdownItMark from 'markdown-it-mark';
 import markdownItSub from 'markdown-it-sub';
@@ -111,6 +110,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(EleventyRenderPlugin);
     eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: 'en' });
+    eleventyConfig.addPlugin(IdAttributePlugin);
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(pluginEmbedEverything, pluginEmbedEverythingConfig);
 
@@ -155,7 +155,6 @@ export default async function(eleventyConfig) {
     }));
 
     eleventyConfig.amendLibrary('md', (mdLib) => {
-        mdLib.use(markdownItAnchor, { slugify, tabIndex: false });
         mdLib.use(markdownItIns);
         mdLib.use(markdownItMark);
         mdLib.use(markdownItSub);
