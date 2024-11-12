@@ -30,7 +30,6 @@ import pluginEmbedEverythingConfig from './elva/config/embeds.js';
 
 // Transforms
 import transformHTML from './elva/transforms/html.js';
-import transformJS from './elva/transforms/js.js';
 
 // Shortcodes
 import image from './elva/shortcodes/image.js';
