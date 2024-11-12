@@ -21,6 +21,8 @@ import slugify from '@sindresorhus/slugify';
 // Plugins
 import pluginDrafts from './elva/plugins/drafts.js';
 import pluginDescriptions from './elva/plugins/seodescriptions.js';
+import pluginCSS from './elva/plugins/css.js';
+
 
 // Plugin Configs
 import pluginEmbedEverythingConfig from './elva/config/embeds.js';
@@ -80,12 +82,10 @@ export default async function(eleventyConfig) {
 
     // Virtual Templates ------------------------------
 
-    const cssTemplate = fs.readFileSync(path.resolve('theme/css/', 'bundle.njk'), 'utf-8');
     const jsTemplate = fs.readFileSync(path.resolve('theme/js/', 'bundle.njk'), 'utf-8');
     const robotsTemplate = fs.readFileSync(path.resolve('elva/templates/', 'robots.njk'), 'utf-8');
     const sitemapTemplate = fs.readFileSync(path.resolve('elva/templates/', 'sitemap.njk'), 'utf-8');
 
-    eleventyConfig.addTemplate('css-bundle.njk', cssTemplate);
     eleventyConfig.addTemplate('js-bundle.njk', jsTemplate);
     eleventyConfig.addTemplate('robots.njk', robotsTemplate);
     eleventyConfig.addTemplate('sitemap.njk', sitemapTemplate);
@@ -104,6 +104,7 @@ export default async function(eleventyConfig) {
     
     // Plugins ----------------------------------------
 
+    eleventyConfig.addPlugin(pluginCSS);
     await eleventyConfig.addPlugin(pluginRSS);
     eleventyConfig.addPlugin(pluginDrafts);
     eleventyConfig.addPlugin(pluginDescriptions);
@@ -116,7 +117,6 @@ export default async function(eleventyConfig) {
 
     // Transforms -------------------------------------
 
-    eleventyConfig.addPlugin(transformCSS);
     eleventyConfig.addPlugin(transformHTML);
     eleventyConfig.addPlugin(transformJS);
 

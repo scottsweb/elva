@@ -35,7 +35,13 @@
         <link rel="apple-touch-icon" href="{{ "/assets/img/icon-180.png" | htmlBaseUrl(settings.url) | cdnify }}">
 
         <!-- styles -->
-        <link rel="stylesheet" href="/assets/css/bundle.css?v={% version %}">
+        {% css %}{% include '../css/reset.css' %}{% endcss -%}
+        {% css %}{% include '../css/variables.css' %}{% endcss -%}
+        {% css %}{% include '../css/styles.css' %}{% endcss -%}
+        {% css 'defer' %}{% include '../css/components/syntax.css' %}{% endcss -%}
+
+	    <style>{% getBundle 'css' %}</style>
+	    <link rel="stylesheet" href="{% getBundleFileUrl 'css', 'defer' %}?v={% version %}" fetchpriority="low">
 
         <!-- feeds -->
         <link rel="alternate" href="{{ "/feed/feed.xml" | locale_url | htmlBaseUrl(settings.url) }}" type="application/atom+xml" title="{{ 'meta.rssTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}">
