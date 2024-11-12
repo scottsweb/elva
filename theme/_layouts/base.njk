@@ -53,13 +53,16 @@
         <!-- everything else -->
         <link rel="manifest" href="{{ "/site.webmanifest" | locale_url | htmlBaseUrl(settings.url) }}">
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ settings.themeColorLight }}">
-        <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="{{ settings.themeColorDark }}">
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="{{ settings.themeColorDark }}">
         {% if settings.isStaging or noIndex %}<meta name="robots" content="noindex, nofollow">{% endif %}
         {% if settings.author.fediverseProfile %}<link href="{{ settings.author.fediverseProfile }}" rel="me">{% endif %}
         {% if settings.author.fediverseUsername %}<meta name="fediverse:creator" content="{{ settings.author.fediverseUsername }}">{% endif %}
 
         <!-- set theme before page renders to stop fouc -->
-        <script>document.documentElement.dataset.theme = localStorage.getItem('theme') === null ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : localStorage.getItem('theme')</script>
+        {% js %}document.documentElement.dataset.theme = localStorage.getItem('theme') === null ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : localStorage.getItem('theme'){% endjs %}
+        
+        <!-- inline scripts -->
+        <script>{% getBundle 'js' %}</script>
     </head>
     <body class="{{tags or [] | join(' ') }}">
         <!-- header -->
@@ -72,6 +75,9 @@
         {% include "footer.njk" %}
 
         <!-- scripts -->
-        <script src="/assets/js/bundle.js?v={% version %}" defer></script>
+        {% js 'defer' %}{% include '../../node_modules/alpinejs/dist/cdn.js' %}{% endjs -%}
+        {% js 'defer' %}{% include '../../node_modules/@alpinejs/intersect/dist/cdn.js' %}{% endjs -%}
+        {% js 'defer' %}{% include '../js/scripts.js' %}{% endjs -%}
+        <script src="{% getBundleFileUrl 'js', 'defer' %}?v={% version %}" defer></script>
     </body>
 </html>
