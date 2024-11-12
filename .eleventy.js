@@ -28,7 +28,6 @@ import pluginCSS from './elva/plugins/css.js';
 import pluginEmbedEverythingConfig from './elva/config/embeds.js';
 
 // Transforms
-import transformCSS from './elva/transforms/css.js';
 import transformHTML from './elva/transforms/html.js';
 import transformJS from './elva/transforms/js.js';
 
