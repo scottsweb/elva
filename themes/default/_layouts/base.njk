@@ -40,7 +40,11 @@
         {% css %}{% include '../css/styles.css' %}{% endcss -%}
         {% css 'defer' %}{% include '../css/components/syntax.css' %}{% endcss -%}
 
-	    <style>{% getBundle 'css' %}</style>
+        {%- if eleventy.env.runMode === "serve" -%}
+	        <link rel="stylesheet" href="{% getBundleFileUrl 'css' %}">
+        {%- else  -%}
+	        <style>{% getBundle 'css' %}</style>
+        {%- endif %}
 	    <link rel="stylesheet" href="{% getBundleFileUrl 'css', 'defer' %}?v={% version %}" fetchpriority="low">
 
         <!-- feeds -->
@@ -75,8 +79,8 @@
         {% include "footer.njk" %}
 
         <!-- scripts -->
-        {% js 'defer' %}{% include '../../node_modules/alpinejs/dist/cdn.js' %}{% endjs -%}
-        {% js 'defer' %}{% include '../../node_modules/@alpinejs/intersect/dist/cdn.js' %}{% endjs -%}
+        {% js 'defer' %}{% include '../../../node_modules/alpinejs/dist/cdn.js' %}{% endjs -%}
+        {% js 'defer' %}{% include '../../../node_modules/@alpinejs/intersect/dist/cdn.js' %}{% endjs -%}
         {% js 'defer' %}{% include '../js/scripts.js' %}{% endjs -%}
         <script src="{% getBundleFileUrl 'js', 'defer' %}?v={% version %}" defer></script>
     </body>
