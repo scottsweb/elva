@@ -68,6 +68,7 @@ export default async function(eleventyConfig) {
 
     // Watch Targets ----------------------------------
 
+    eleventyConfig.setUseGitIgnore(false);
     eleventyConfig.addWatchTarget('./content/assets');
     eleventyConfig.addWatchTarget('./themes/**/*.{css,js}');
     eleventyConfig.addWatchTarget('./elva/templates/*', { resetConfig: true });
