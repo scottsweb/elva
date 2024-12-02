@@ -45,7 +45,7 @@
     "@11ty/eleventy-plugin-rss": "^2.0.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@alpinejs/intersect": "^3.14.5",
-    "alpinejs": "^3.14.3",
+    "alpinejs": "^3.14.5",
     "browserslist": "^4.24.2",
     "eleventy-plugin-embed-everything": "^1.19.0",
     "html-minifier-terser": "^7.2.0",
