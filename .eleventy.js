@@ -21,14 +21,15 @@ import slugify from '@sindresorhus/slugify';
 // Plugins
 import pluginDrafts from './elva/plugins/drafts.js';
 import pluginDescriptions from './elva/plugins/seodescriptions.js';
+import pluginCSS from './elva/plugins/css.js';
+import pluginJS from './elva/plugins/js.js';
+
 
 // Plugin Configs
 import pluginEmbedEverythingConfig from './elva/config/embeds.js';
 
 // Transforms
-import transformCSS from './elva/transforms/css.js';
 import transformHTML from './elva/transforms/html.js';
-import transformJS from './elva/transforms/js.js';
 
 // Shortcodes
 import image from './elva/shortcodes/image.js';
@@ -61,13 +62,15 @@ export default async function(eleventyConfig) {
         // these get merged with content/_data/settings.js
         url: process.env.URL || process.env.CF_PAGES_URL || 'http://localhost:8080',
         isProduction: process.env.NODE_ENV === 'production',
-        isStaging: (process.env.URL && process.env.URL.includes('github.io')) || (process.env.CF_PAGES_URL && process.env.CF_PAGES_URL.includes('pages.dev')) || false
+        isStaging: (process.env.URL && process.env.URL.includes('github.io')) || (process.env.CF_PAGES_URL && process.env.CF_PAGES_URL.includes('pages.dev')) || false,
+        theme: 'default'
     });
 
     // Watch Targets ----------------------------------
 
+    eleventyConfig.setUseGitIgnore(false);
     eleventyConfig.addWatchTarget('./content/assets');
-    eleventyConfig.addWatchTarget('./theme/**/*.{css,js}');
+    eleventyConfig.addWatchTarget('./themes/**/*.{css,js}');
     eleventyConfig.addWatchTarget('./elva/templates/*', { resetConfig: true });
 
     // Layouts ----------------------------------------
@@ -80,13 +83,9 @@ export default async function(eleventyConfig) {
 
     // Virtual Templates ------------------------------
 
-    const cssTemplate = fs.readFileSync(path.resolve('theme/css/', 'bundle.njk'), 'utf-8');
-    const jsTemplate = fs.readFileSync(path.resolve('theme/js/', 'bundle.njk'), 'utf-8');
     const robotsTemplate = fs.readFileSync(path.resolve('elva/templates/', 'robots.njk'), 'utf-8');
     const sitemapTemplate = fs.readFileSync(path.resolve('elva/templates/', 'sitemap.njk'), 'utf-8');
 
-    eleventyConfig.addTemplate('css-bundle.njk', cssTemplate);
-    eleventyConfig.addTemplate('js-bundle.njk', jsTemplate);
     eleventyConfig.addTemplate('robots.njk', robotsTemplate);
     eleventyConfig.addTemplate('sitemap.njk', sitemapTemplate);
 
@@ -104,6 +103,8 @@ export default async function(eleventyConfig) {
     
     // Plugins ----------------------------------------
 
+    eleventyConfig.addPlugin(pluginCSS);
+    eleventyConfig.addPlugin(pluginJS);
     await eleventyConfig.addPlugin(pluginRSS);
     eleventyConfig.addPlugin(pluginDrafts);
     eleventyConfig.addPlugin(pluginDescriptions);
@@ -116,9 +117,7 @@ export default async function(eleventyConfig) {
 
     // Transforms -------------------------------------
 
-    eleventyConfig.addPlugin(transformCSS);
     eleventyConfig.addPlugin(transformHTML);
-    eleventyConfig.addPlugin(transformJS);
 
     // Shortcodes -------------------------------------
 
@@ -142,9 +141,10 @@ export default async function(eleventyConfig) {
 
     // Passthrough -------------------------------------
 
+    const fontsPath = `./themes/${eleventyConfig.globalData.settings.theme}/fonts`; 
     eleventyConfig.addPassthroughCopy({'./content/assets/files': './assets/files'});
     eleventyConfig.addPassthroughCopy({'./content/assets/img': './assets/img'});
-    eleventyConfig.addPassthroughCopy({'./theme/fonts': './assets/fonts'});
+    eleventyConfig.addPassthroughCopy({fontsPath: './assets/fonts'});
 
     // Markdown ----------------------------------------
 
@@ -164,6 +164,8 @@ export default async function(eleventyConfig) {
 
     // 11ty Settings -----------------------------------
 
+    eleventyConfig.logger.message(`Theme: ${eleventyConfig.globalData.settings.theme}`)
+
     return {
         markdownTemplateEngine: 'njk',
         htmlTemplateEngine: 'njk',
@@ -176,8 +178,8 @@ export default async function(eleventyConfig) {
             input: 'content',
             output: 'dist',
             data: '_data',
-            includes: '../theme/_includes',
-            layouts: '../theme/_layouts'
+            includes: `../themes/${eleventyConfig.globalData.settings.theme}/_includes`,
+            layouts: `../themes/${eleventyConfig.globalData.settings.theme}/_layouts`
         }
     }
 }
