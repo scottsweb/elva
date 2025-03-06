@@ -1,5 +1,5 @@
 export default {
-    use: ['twitter', 'youtube', 'vimeo'],
+    use: ['twitter', 'youtube', 'vimeo', 'instagram', 'tiktok', 'openstreetmap', 'ted', 'soundcloud', 'spotify'],
     twitter: {
         options: {
             embedClass: 'oembed oembed-twitter',
@@ -9,7 +9,6 @@ export default {
     vimeo: {
         options: {
             embedClass: 'oembed oembed-vimeo',
-            //wrapperStyle
         }
     },
     youtube: {
@@ -26,6 +25,36 @@ export default {
                     inline: true
                 }
             }
+        }
+    },
+    instagram: {
+        options: {
+            embedClass: 'oembed oembed-instagram'
+        }
+    },
+    tiktok: {
+        options: {
+            embedClass: 'oembed oembed-tiktok'
+        }
+    },
+    openstreetmap: {
+        options: {
+            embedClass: 'oembed oembed-openstreetmap'
+        }
+    },
+    ted: {
+        options: {
+            embedClass: 'oembed oembed-ted'
+        }
+    },
+    soundcloud: {
+        options: {
+            embedClass: 'oembed oembed-soundcloud'
+        }
+    },
+    spotify: {
+        options: {
+            embedClass: 'oembed oembed-spotify'
         }
     }
 }
