@@ -1,6 +1,6 @@
 {
   "name": "elva",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "A multilingual, clean, green, 11ty starter theme",
   "main": "index.js",
   "type": "module",
