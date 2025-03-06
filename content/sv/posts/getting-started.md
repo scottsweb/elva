@@ -2,7 +2,7 @@
 title: Komma igång
 seo:
   slug: komma-igang
-date: 2023-08-06
+date: 2023-08-07
 ---
 
 Skapa en katalog och navigera till den:
