@@ -3,6 +3,10 @@ title: Other embed examples
 date: 2023-07-31
 ---
 
+**Contents:**
+
+[[toc]]
+
 ## Instagram
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed risus consectetur, gravida justo ac, convallis leo. Duis et nisi ullamcorper, auctor quam vel, sollicitudin ligula.
