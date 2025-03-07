@@ -54,7 +54,7 @@ Features include:
 - [ ] Accessible tooltip component
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
-- [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/) ([1](https://www.11ty.dev/docs/plugins/image/#eleventy-transform))
+- [x] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/) ([1](https://www.11ty.dev/docs/plugins/image/#eleventy-transform))
 - [ ] Profile verification / .well-known support for the Fediverse and Nostr ([1](https://implicit.computer/blog/activitypub-1/))
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js) ([1](https://github.com/madrilene/eleventy-i18n/blob/main/netlify.toml))
 - [ ] Cleaner language selector and default language (that sets homepage)
