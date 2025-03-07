@@ -3,6 +3,7 @@
 // Imports --------------------------------------------
 
 import { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin, IdAttributePlugin } from '@11ty/eleventy';
+import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import fs from 'fs';
 import markdownIt from 'markdown-it';
 import markdownItIns from 'markdown-it-ins';
@@ -24,6 +25,7 @@ import pluginDescriptions from './elva/plugins/seodescriptions.js';
 
 // Plugin Configs
 import pluginEmbedEverythingConfig from './elva/config/embeds.js';
+import pluginImageTransformConfig from './elva/config/images.js';
 
 // Transforms
 import transformCSS from './elva/transforms/css.js';
@@ -113,6 +115,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addPlugin(IdAttributePlugin);
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(pluginEmbedEverything, pluginEmbedEverythingConfig);
+    eleventyConfig.addPlugin(eleventyImageTransformPlugin, pluginImageTransformConfig(eleventyConfig));
 
     // Transforms -------------------------------------
 
