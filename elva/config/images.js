@@ -9,8 +9,7 @@ export default (eleventyConfig) => ({
     urlPath: '/assets/img/',
 
     // generate CDN urls when turned on
-    urlFormat: (( eleventyConfig.globalData.settings.url.isProduction || eleventyConfig.globalData.settings.url.isStaging ) && settings.cdn ) ? function({hash, src, width, format}) {
-        console.log(settings)
+    urlFormat: (( eleventyConfig.globalData.settings.isProduction || eleventyConfig.globalData.settings.isStaging ) && settings.cdn ) ? function({src, width}) {
         return `//i0.wp.com/${eleventyConfig.globalData.settings.url.replace(/^https?:\/\//, '')}/${src.replace('content/', '')}?w=${width}&quality=70&strip=info`;
     } : undefined,
 
