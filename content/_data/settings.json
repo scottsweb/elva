@@ -1,7 +1,7 @@
 {
 	"themeColorLight": "#eceff4",
 	"themeColorDark": "#2e3440",
-	"cdn": true,
+	"cdn": false,
 	"author": {
 		"name": "Scott Evans",
 		"email": "noreply@example.com",
