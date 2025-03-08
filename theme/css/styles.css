@@ -211,6 +211,7 @@ figure > figcaption::selection {
     word-wrap: normal !important;
 }
 
+figure picture img,
 .rounded {
     border-radius: var(--border-radius);
 }
