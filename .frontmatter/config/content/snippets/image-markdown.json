@@ -2,7 +2,9 @@
   "$schema": "https://frontmatter.codes/config/content.snippets.schema.json",
   "title": "Image with caption (Markdown)",
   "description": "Insert a responsive image with a caption (Markdown)",
-  "body": "![ [[alt]] ]([[&mediaUrl]] \"[[caption]]\")",
+  "body": "![{{alt}}]({{&mediaUrl}} \"{{caption}}\")",
   "isMediaSnippet": true,
+  "openingTags": "{{",
+  "closingTags": "}}",
   "fields": []
 }
