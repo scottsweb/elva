@@ -35,6 +35,7 @@ import pluginImageTransformConfig from './elva/config/images.js';
 import transformHTML from './elva/transforms/html.js';
 
 // Shortcodes
+import image from './elva/shortcodes/image.js';
 
 // Filters
 import base64 from './elva/filters/base64.js';
@@ -124,6 +125,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addShortcode('version', () => `${+ new Date()}`);
     eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`);
     eleventyConfig.addShortcode('build', () => `${new Date().toISOString().split('T')[0]}`);
+    eleventyConfig.addShortcode('image', image);
 
     // Filters ----------------------------------------
 
