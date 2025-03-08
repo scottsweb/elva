@@ -258,6 +258,56 @@ figure picture img,
     margin-top: var(--space-m, 1em) !important;
 }
 
+@media (scripting: enabled) {
+    [loading="lazy"] {
+        opacity: 0;
+        filter: blur(10px);
+        transition: all 1s;
+        background-color: var(--background-soft);
+        position: relative;
+    }
+
+    picture:has(> [loading="lazy"]) {
+        background-color: var(--background-soft);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+    }
+
+    @property --gradient-angle {
+        syntax: "<angle>";
+        initial-value: 90deg;
+        inherits: false;
+    }
+
+    picture:has(> [loading="lazy"]:not(.loaded))::before {
+        content: " ";
+        position: absolute;
+        z-index: -1;
+        inset: -0.1rem;
+        background: conic-gradient(
+          from var(--gradient-angle),
+          var(--background-soft),
+          var(--nord10),
+          var(--nord11),
+          var(--nord12),
+          var(--nord13),
+          var(--nord14),
+          var(--background-soft)
+        );
+        border-radius: inherit;
+        animation: rotate 2.5s linear infinite;
+    }
+      
+    @keyframes rotate {
+        0% {
+            --gradient-angle: 0deg;
+        }
+        100% {
+            --gradient-angle: 360deg;
+        }
+    }
+}
+
 /* notice */
 
 .notice {
