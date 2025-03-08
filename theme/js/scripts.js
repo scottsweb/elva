@@ -3,6 +3,20 @@ document.addEventListener('alpine:init', () => {
         init() {
             this.theme = localStorage.getItem('theme') === null ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : localStorage.getItem('theme')
             this.scrollPosition = window.scrollY
+
+            document.querySelectorAll('[loading="lazy"]').forEach(element => {
+                const animateIn = () => {
+                    element.style.opacity = 1;
+                    element.style.filter = 'blur(0)';
+                    element.classList.add('loaded');
+                };
+              
+                if (element.complete) {
+                    animateIn();
+                } else {
+                    element.addEventListener('load', animateIn);
+                }
+            });
         },
         theme: null,
         scrollPosition: 0,
