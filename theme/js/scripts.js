@@ -6,16 +6,9 @@ document.addEventListener('alpine:init', () => {
 
             document.querySelectorAll('[loading="lazy"]').forEach(element => {
                 const animateIn = () => {
-                    element.style.opacity = 1;
-                    element.style.filter = 'blur(0)';
-                    element.classList.add('loaded');
+                    element.classList.add('elva-loaded');
                 };
-              
-                if (element.complete) {
-                    animateIn();
-                } else {
-                    element.addEventListener('load', animateIn);
-                }
+                (element.complete) ? animateIn() : element.addEventListener('load', animateIn);
             });
         },
         theme: null,
