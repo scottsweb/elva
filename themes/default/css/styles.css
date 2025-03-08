@@ -258,6 +258,8 @@ figure picture img,
     margin-top: var(--space-m, 1em) !important;
 }
 
+/* fancy lazy loading of images */
+
 @media (scripting: enabled) {
     [loading="lazy"] {
         opacity: 0;
@@ -265,6 +267,11 @@ figure picture img,
         transition: all 1s;
         background-color: var(--background-soft);
         position: relative;
+    }
+
+    [loading="lazy"].elva-loaded {
+        opacity: 1;
+        filter: blur(0);
     }
 
     picture:has(> [loading="lazy"]) {
@@ -279,7 +286,7 @@ figure picture img,
         inherits: false;
     }
 
-    picture:has(> [loading="lazy"]:not(.loaded))::before {
+    picture:has(> [loading="lazy"]:not(.elva-loaded))::before {
         content: " ";
         position: absolute;
         z-index: -1;
