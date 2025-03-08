@@ -1,0 +1,77 @@
+{
+  "$schema": "https://frontmatter.codes/config/content.snippets.schema.json",
+  "title": "Image with caption (HTML)",
+  "description": "Insert a responsive image with caption (HTML)",
+  "body": [
+    "<figure>",
+    "<img src=\"[[&mediaUrl]]\" alt=\"[[alt]]\" width=\"[[mediaWidth]]\" height=\"[[mediaHeight]]\" class=\"[[classes]]\" loading=\"[[loading]]\" fetchpriority=\"[[fetch]]\" decoding=\"[[decoding]]\">",
+    "<figcaption>[[caption]]</figcaption>",
+    "</figure>"
+  ],
+  "isMediaSnippet": true,
+  "fields": [
+    {
+      "name": "classes",
+      "title": "Class",
+      "type": "string",
+      "single": true,
+      "default": ""
+    },
+    {
+      "name": "loading",
+      "title": "Loading",
+      "type": "choice",
+      "default": "lazy",
+      "choices": [
+        {
+          "id": "lazy",
+          "title": "Lazy"
+        },
+        {
+          "id": "eager",
+          "title": "Eager"
+        }
+      ]
+    },
+    {
+      "name": "fetch",
+      "title": "Fetch Priority",
+      "type": "choice",
+      "default": "auto",
+      "choices": [
+        {
+          "id": "auto",
+          "title": "Auto"
+        },
+        {
+          "id": "high",
+          "title": "High"
+        },
+        {
+          "id": "low",
+          "title": "Low"
+        }
+      ]
+    },
+    {
+      "name": "decoding",
+      "title": "Decoding",
+      "type": "choice",
+      "default": "async",
+      "choices": [
+        {
+          "id": "auto",
+          "title": "Auto"
+        },
+        {
+          "id": "sync",
+          "title": "Sync"
+        },
+        {
+          "id": "async",
+          "title": "Async"
+        }
+      ]
+    }
+  ]
+}
