@@ -231,11 +231,6 @@ figure picture img,
     max-width: 100%;
 }
 
-.oembed-youtube lite-youtube::before {
-    background: none;
-    position: relative;
-}
-
 .oembed-instagram {
     margin-top: var(--space-m, 1em) !important;
     width: 100%;
