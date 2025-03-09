@@ -254,6 +254,16 @@ figure picture img,
     margin-top: var(--space-m, 1em) !important;
 }
 
+.oembed-spotify {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    display: block;
+
+    iframe {
+        display: block;
+    }
+}
+
 /* fancy lazy loading of images */
 
 @media (scripting: enabled) {
