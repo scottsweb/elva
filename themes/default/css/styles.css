@@ -256,8 +256,6 @@ figure picture img,
 
 .oembed-spotify {
     border-radius: var(--border-radius);
-    overflow: hidden;
-    display: block;
 
     iframe {
         display: block;
@@ -271,8 +269,7 @@ figure picture img,
         opacity: 0;
         filter: blur(10px);
         transition: all 1s;
-        background-color: var(--background-soft);
-        position: relative;
+        display: block;
     }
 
     [loading="lazy"].elva-loaded {
@@ -280,10 +277,11 @@ figure picture img,
         filter: blur(0);
     }
 
+    .oembed:has(> [loading="lazy"]),
     picture:has(> [loading="lazy"]) {
         background-color: var(--background-soft);
         border-radius: var(--border-radius);
-        overflow: hidden;
+        position: relative;
     }
 
     @property --gradient-angle {
@@ -292,6 +290,12 @@ figure picture img,
         inherits: false;
     }
 
+    .oembed:has(> [loading="lazy"].elva-loaded),
+    picture:has(> [loading="lazy"].elva-loaded) {
+        overflow: hidden;
+    }
+
+    .oembed:has(> [loading="lazy"]:not(.elva-loaded))::before,
     picture:has(> [loading="lazy"]:not(.elva-loaded))::before {
         content: " ";
         position: absolute;
