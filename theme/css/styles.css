@@ -340,7 +340,6 @@ figure picture img,
 .notice.notice-warning {
     background-color: var(--nord13);
     box-shadow: 0px 4px color-mix(in srgb, var(--nord13), var(--black) 9%);
-    color: var(--background);
 }
 
 .notice.notice-error {
