@@ -263,6 +263,11 @@ figure picture img,
 }
 
 /* fancy lazy loading of images */
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 90deg;
+    inherits: false;
+}
 
 @media (scripting: enabled) {
     [loading="lazy"] {
@@ -282,12 +287,6 @@ figure picture img,
         background-color: var(--background-soft);
         border-radius: var(--border-radius);
         position: relative;
-    }
-
-    @property --gradient-angle {
-        syntax: "<angle>";
-        initial-value: 90deg;
-        inherits: false;
     }
 
     .oembed:has(> [loading="lazy"].elva-loaded),
