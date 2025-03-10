@@ -10,6 +10,7 @@ import markdownItIns from 'markdown-it-ins';
 import markdownItMark from 'markdown-it-mark';
 import markdownItSub from 'markdown-it-sub';
 import markdownItSup from 'markdown-it-sup';
+import markdownItAnchor from 'markdown-it-anchor';
 import markdownItToc from 'markdown-it-table-of-contents';
 import markdownItImageFigures from 'markdown-it-image-figures';
 import path from 'path';
@@ -160,6 +161,7 @@ export default async function(eleventyConfig) {
         mdLib.use(markdownItMark);
         mdLib.use(markdownItSub);
         mdLib.use(markdownItSup);
+        mdLib.use(markdownItAnchor, { slugify })
         mdLib.use(markdownItImageFigures, { figcaption: true });
         mdLib.use(markdownItToc, { slugify, includeLevel: [2,3]});
     });
