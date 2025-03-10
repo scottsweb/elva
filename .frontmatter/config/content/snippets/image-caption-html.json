@@ -4,7 +4,7 @@
   "description": "Insert a responsive image with caption (HTML)",
   "body": [
     "<figure>",
-    "<img src=\"[[&mediaUrl]]\" alt=\"[[alt]]\" width=\"[[mediaWidth]]\" height=\"[[mediaHeight]]\" class=\"[[classes]]\" loading=\"[[loading]]\" fetchpriority=\"[[fetch]]\" decoding=\"[[decoding]]\">",
+    "<img src=\"[[&mediaUrl]]\" alt=\"[[alt]]\" width=\"[[mediaWidth]]\" height=\"[[mediaHeight]]\" class=\"[[classes]]\" loading=\"[[loading]]\" fetchpriority=\"[[fetch]]\" decoding=\"[[decoding]]\" sizes=\"[[mq]]\">",
     "<figcaption>[[caption]]</figcaption>",
     "</figure>"
   ],
@@ -16,6 +16,13 @@
       "type": "string",
       "single": true,
       "default": ""
+    },
+    {
+      "name": "mq",
+      "title": "Sizes / Media Query",
+      "type": "string",
+      "single": true,
+      "default": "(min-width: 800px) 580px, 100vw"
     },
     {
       "name": "loading",
