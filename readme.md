@@ -17,7 +17,7 @@ Features include:
 ### Performance things
 
 * Optimised CSS, JS and HTML
-* Responsive image shortcode that supports lazy loading and modern formats (avif, webp)
+* Responsive images that supports lazy loading and modern formats (avif, webp)
 * Support for the [Photon CDN](https://developer.wordpress.com/docs/photon/) (can be turned on via settings)
 
 ### Accessibility things
@@ -54,7 +54,7 @@ Features include:
 - [ ] Accessible tooltip component
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
-- [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/) ([1](https://www.11ty.dev/docs/plugins/image/#eleventy-transform))
+- [x] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/) ([1](https://www.11ty.dev/docs/plugins/image/#eleventy-transform))
 - [ ] Profile verification / .well-known support for the Fediverse and Nostr ([1](https://implicit.computer/blog/activitypub-1/))
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js) ([1](https://github.com/madrilene/eleventy-i18n/blob/main/netlify.toml))
 - [ ] Cleaner language selector and default language (that sets homepage)
@@ -117,7 +117,7 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 
 ### Optional
 
-- [ ] Set your preferred image sizes and formats in the image shortcode `/elva/shortcodes/image.js`
+- [ ] Set your preferred image sizes and formats in `/elva/config/image.js`
 - [ ] If you add more front matter, you may wish to edit `.frontmatter/frontmatter.json` to add [Front Matter CMS](https://frontmatter.codes/) support
 - [ ] You many not need [Alpine.js](https://alpinejs.dev/) which can be removed from `/theme/js/bundle.njk`
 - [ ] Use [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/) to grab some API data
