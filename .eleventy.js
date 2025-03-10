@@ -9,6 +9,7 @@ import markdownItIns from 'markdown-it-ins';
 import markdownItMark from 'markdown-it-mark';
 import markdownItSub from 'markdown-it-sub';
 import markdownItSup from 'markdown-it-sup';
+import markdownItAnchor from 'markdown-it-anchor';
 import markdownItToc from 'markdown-it-table-of-contents';
 import path from 'path';
 import pluginRSS from '@11ty/eleventy-plugin-rss';
@@ -159,7 +160,8 @@ export default async function(eleventyConfig) {
         mdLib.use(markdownItMark);
         mdLib.use(markdownItSub);
         mdLib.use(markdownItSup);
-        mdLib.use(markdownItToc, { slugify, includeLevel: [2,3]});
+        mdLib.use(markdownItAnchor, {slugify})
+        mdLib.use(markdownItToc, {slugify, includeLevel: [2,3]});
     });
 
     // 11ty Settings -----------------------------------
