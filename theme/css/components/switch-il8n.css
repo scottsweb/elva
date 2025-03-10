@@ -17,6 +17,6 @@
 
 .switch-language span.disabled {
     background-color: var(--background-soft);
-    color: var(--foreground-soft);
+    color: var(--foreground);
     cursor: not-allowed;
 }
