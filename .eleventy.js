@@ -160,8 +160,8 @@ export default async function(eleventyConfig) {
         mdLib.use(markdownItMark);
         mdLib.use(markdownItSub);
         mdLib.use(markdownItSup);
-        mdLib.use(markdownItAnchor, { slugify })
-        mdLib.use(markdownItToc, { slugify, includeLevel: [2,3]});
+        mdLib.use(markdownItAnchor, {slugify})
+        mdLib.use(markdownItToc, {slugify, includeLevel: [2,3]});
     });
 
     // 11ty Settings -----------------------------------
