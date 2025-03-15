@@ -22,7 +22,7 @@ npx @11ty/import wordpress https://blog.fontawesome.com --output=content/en/post
 # --dryrun --assetrefs=disabled --within=7d
 ```
 
-<div class="notice notice-warning">Note: Images are imported alongside the markdown. You may need to move assets to a more suitable folder (/content/assets/).</div>
+<div class="notice notice-warning">Note: Images are imported alongside the markdown. You may need to move assets to a more suitable folder (/content/assets/) or update the refrences to your images.</div>
 
 ## Fediverse
 

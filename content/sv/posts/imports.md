@@ -22,7 +22,7 @@ npx @11ty/import wordpress https://blog.fontawesome.com --output=content/sv/post
 # --dryrun --assetrefs=disabled --within=7d
 ```
 
-<div class="notice notice-warning">Obs! Bilder importeras tillsammans med markdown. Du kan behöva flytta tillgångar till en mer lämplig mapp (/content/assets/).</div>
+<div class="notice notice-warning">Obs! Bilder importeras tillsammans med markdown. Du kan behöva flytta tillgångar till en mer lämplig mapp (/content/assets/) eller uppdatera referenserna till dina bilder.</div>
 
 ## Fediverse
 
