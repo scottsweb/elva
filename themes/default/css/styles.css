@@ -324,6 +324,28 @@ figure picture img,
     }
 }
 
+.oembed-instagram {
+    margin-top: var(--space-m, 1em) !important;
+    width: 100%;
+    max-width: 65ch;
+}
+
+.oembed-twitter {
+    max-width: 65ch;
+}
+
+.oembed-twitter .twitter-tweet {
+    margin: 0 auto;   
+}
+
+.oembed-tiktok {
+    max-width: 325px !important;
+}
+
+.oembed-tiktok.tiktok-embed {
+    margin-top: var(--space-m, 1em) !important;
+}
+
 /* notice */
 
 .notice {
@@ -339,6 +361,7 @@ figure picture img,
 .notice.notice-warning {
     background-color: var(--nord13);
     box-shadow: 0px 4px color-mix(in srgb, var(--nord13), var(--black) 9%);
+    color: var(--background);
 }
 
 .notice.notice-error {
