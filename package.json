@@ -11,7 +11,7 @@
     "dev": "npx @11ty/eleventy --watch --serve --incremental",
     "clean": "rimraf dist",
     "debug": "DEBUG=Eleventy* npm run dev",
-    "benchmark": "DEBUG=Eleventy:Benchmark* npm run build",
+    "benchmark": "DEBUG=Eleventy:Benchmark* npm run build:prod",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release-patch": "npm version patch --force && npm publish",
     "release-minor": "npm version minor --force && npm publish",
@@ -39,7 +39,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@11ty/eleventy": "3.0.0",
+    "@11ty/eleventy": "3.0.1-alpha.5",
     "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-img": "^5.0.0",
     "@11ty/eleventy-plugin-rss": "^2.0.2",
