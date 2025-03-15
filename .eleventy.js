@@ -3,6 +3,7 @@
 // Imports --------------------------------------------
 
 import { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin, IdAttributePlugin } from '@11ty/eleventy';
+import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import fs from 'fs';
 import markdownIt from 'markdown-it';
 import markdownItIns from 'markdown-it-ins';
@@ -11,6 +12,7 @@ import markdownItSub from 'markdown-it-sub';
 import markdownItSup from 'markdown-it-sup';
 import markdownItAnchor from 'markdown-it-anchor';
 import markdownItToc from 'markdown-it-table-of-contents';
+import markdownItImageFigures from 'markdown-it-image-figures';
 import path from 'path';
 import pluginRSS from '@11ty/eleventy-plugin-rss';
 import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
@@ -25,6 +27,7 @@ import pluginDescriptions from './elva/plugins/seodescriptions.js';
 
 // Plugin Configs
 import pluginEmbedEverythingConfig from './elva/config/embeds.js';
+import pluginImageTransformConfig from './elva/config/images.js';
 
 // Transforms
 import transformCSS from './elva/transforms/css.js';
@@ -47,10 +50,7 @@ import translate from './elva/filters/translate.js';
 import where from './elva/filters/where.js';
 
 // Languages
-// to-do: This is a temp fix based on this bug: https://github.com/11ty/eleventy-dependency-tree-esm/issues/2
-import { createRequire } from "node:module";
-const require = createRequire(import.meta.url);
-const locales = require('./content/_data/locales.json');
+import locales from './content/_data/locales.json' with { type: 'json' }
 
 // 11ty -----------------------------------------------
 
@@ -114,6 +114,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addPlugin(IdAttributePlugin);
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(pluginEmbedEverything, pluginEmbedEverythingConfig);
+    eleventyConfig.addPlugin(eleventyImageTransformPlugin, pluginImageTransformConfig(eleventyConfig));
 
     // Transforms -------------------------------------
 
@@ -160,6 +161,7 @@ export default async function(eleventyConfig) {
         mdLib.use(markdownItMark);
         mdLib.use(markdownItSub);
         mdLib.use(markdownItSup);
+        mdLib.use(markdownItImageFigures, { figcaption: true });
         mdLib.use(markdownItAnchor, {slugify})
         mdLib.use(markdownItToc, {slugify, includeLevel: [2,3]});
     });
