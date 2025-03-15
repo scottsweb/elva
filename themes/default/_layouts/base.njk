@@ -39,12 +39,7 @@
         {% css %}{% include '../css/variables.css' %}{% endcss -%}
         {% css %}{% include '../css/styles.css' %}{% endcss -%}
         {% css 'defer' %}{% include '../css/components/syntax.css' %}{% endcss -%}
-
-        {%- if eleventy.env.runMode === "serve" -%}
-	        <link rel="stylesheet" href="{% getBundleFileUrl 'css' %}">
-        {%- else  -%}
-	        <style>{% getBundle 'css' %}</style>
-        {%- endif %}
+	    <style>{% getBundle 'css' %}</style>
 	    <link rel="stylesheet" href="{% getBundleFileUrl 'css', 'defer' %}?v={% version %}" fetchpriority="low">
 
         <!-- feeds -->
