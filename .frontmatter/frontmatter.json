@@ -14,7 +14,7 @@
   "frontMatter.snippets.wrapper.enabled": false,
   "frontMatter.content.publicFolder": {
     "path": "content",
-    "relative": true
+    "relative": false
   },
   "frontMatter.extensibility.scripts": [
     "[[workspace]]/.frontmatter/ui/image.js"
