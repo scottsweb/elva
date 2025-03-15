@@ -143,10 +143,11 @@ export default async function(eleventyConfig) {
 
     // Passthrough -------------------------------------
 
-    const fontsPath = `./themes/${eleventyConfig.globalData.settings.theme}/fonts`; 
-    eleventyConfig.addPassthroughCopy({'./content/assets/files': './assets/files'});
+    const fontsPath = `./themes/${eleventyConfig.globalData.settings.theme}/fonts`;
+    eleventyConfig.addPassthroughCopy({'./content/assets/img/favicon.ico': './favicon.ico'});
     eleventyConfig.addPassthroughCopy({'./content/assets/img': './assets/img'});
     eleventyConfig.addPassthroughCopy({fontsPath: './assets/fonts'});
+    eleventyConfig.addPassthroughCopy({'./content/assets/files': './assets/files'});
 
     // Markdown ----------------------------------------
 
