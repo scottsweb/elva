@@ -541,11 +541,15 @@ a[aria-current="page"] {
 
 .posts .meta {
     list-style: none;
-    margin: 0 0 var(--space-s-2xl) 0;
+    margin: var(--space-3xs) 0 var(--space-s-2xl) 0;
     padding: 0;
 }
 
-@media (min-width: 600px) {
+.posts .meta .meta-tag {
+    display: inline-block;
+}
+
+@media (min-width: 780px) {
     .posts .meta {
         display: flex;
         gap: var(--space-3xs);
