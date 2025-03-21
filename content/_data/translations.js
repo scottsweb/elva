@@ -22,7 +22,8 @@ export default {
         },
         dark: 'Dark',
         light: 'Light',
-        tagged: 'Tagged'
+        tagged: 'Tagged',
+        footer: 'The year is {{ year }}.'
     },
     sv: {
         meta: {
@@ -47,6 +48,7 @@ export default {
         },
         dark: 'Mörk',
         light: 'Ljus',
-        tagged: 'Taggade'
+        tagged: 'Taggade',
+        footer: 'Året är {{ year }}.'
     }
 }

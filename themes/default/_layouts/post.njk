@@ -10,7 +10,7 @@ layout: base
             </li>
             <li class="meta-reading-time">{{ content | readingTime }}</li>
             {%- for tag in tags | filterPrivateTags %}
-	        {%- set tagUrl %}/{{lang}}/tag/{{ tag | slugify }}/{% endset %}
+	        {%- set tagUrl %}/{{ lang }}/tag/{{ tag | slugify }}/{% endset %}
 	        <li class="meta-tag"><a href="{{ tagUrl }}">{{ tag }}</a>{%- if not loop.last %}, {% endif %}</li>
 	        {%- endfor %}
         </ul>

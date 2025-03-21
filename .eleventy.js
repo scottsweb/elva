@@ -66,6 +66,7 @@ export default async function(eleventyConfig) {
         url: process.env.URL || process.env.CF_PAGES_URL || 'http://localhost:8080',
         isProduction: process.env.NODE_ENV === 'production',
         isStaging: (process.env.URL && process.env.URL.includes('github.io')) || (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_BRANCH !== 'main') || (process.env.ELEVENTY_RUN_MODE && process.env.ELEVENTY_RUN_MODE !== 'build') || false,
+        year: new Date().getFullYear(),
         theme: 'default'
     });
 
@@ -127,7 +128,7 @@ export default async function(eleventyConfig) {
     // Shortcodes -------------------------------------
 
     eleventyConfig.addShortcode('version', () => `${+ new Date()}`);
-    eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`);
+    eleventyConfig.addShortcode('year', () => `${eleventyConfig.globalData.settings.year}`);
     eleventyConfig.addShortcode('build', () => `${new Date().toISOString().split('T')[0]}`);
     eleventyConfig.addShortcode('image', image);
 
