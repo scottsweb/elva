@@ -1,6 +1,10 @@
 ---
 title: Getting started
 date: 2023-08-07
+tags:
+  - tag1
+  - tag2
+  - unique
 ---
 
 Make a directory and navigate to it:

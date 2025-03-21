@@ -42,7 +42,9 @@ import image from './elva/shortcodes/image.js';
 import base64 from './elva/filters/base64.js';
 import cdnify from './elva/filters/cdnify.js';
 import { formatDate } from './elva/filters/dates.js';
+import filterPrivateTags from './elva/filters/filterprivatetags.js';
 import languageFilter from './elva/filters/language.js';
+import fixLocaleLinks from './elva/filters/fixlocalelinks.js';
 import mimetype from './elva/filters/mimetype.js';
 import random from './elva/filters/random.js';
 import readingTime from './elva/filters/readingtime.js';
@@ -81,6 +83,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addLayoutAlias('page', 'page.njk');
     eleventyConfig.addLayoutAlias('post', 'post.njk');
     eleventyConfig.addLayoutAlias('posts', 'posts.njk');
+    eleventyConfig.addLayoutAlias('tag', 'tag.njk');
 
     // Virtual Templates ------------------------------
 
@@ -132,8 +135,10 @@ export default async function(eleventyConfig) {
 
     eleventyConfig.addFilter('base64', base64);
     eleventyConfig.addFilter('cdnify', cdnify);
+    eleventyConfig.addFilter('filterPrivateTags', filterPrivateTags);
     eleventyConfig.addFilter('formatDate', formatDate);
     eleventyConfig.addFilter('languageFilter', languageFilter);
+    eleventyConfig.addFilter('fix_locale_links', fixLocaleLinks);
     eleventyConfig.addFilter('mimetype', mimetype);
     eleventyConfig.addFilter('random', random);
     eleventyConfig.addFilter('readingTime', readingTime);

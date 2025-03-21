@@ -1,6 +1,9 @@
 ---
 title: Importing content
 date: 2023-08-06
+tags:
+  - tag3
+  - tag4
 ---
 
 You can import content into elva using [11ty import](https://github.com/11ty/eleventy-import). It supports importing content from WordPress, RSS/Atom, Bluesky, the Fediverse and YouTube. 

@@ -1,6 +1,9 @@
 ---
 title: Importera innehåll
 date: 2023-08-06
+tags:
+  - tag3
+  - tag4
 ---
 
 Du kan importera innehåll till elva med hjälp av [11ty import](https://github.com/11ty/eleventy-import). Den stöder import av innehåll från WordPress, RSS/Atom, Bluesky, Fediverse och YouTube. 

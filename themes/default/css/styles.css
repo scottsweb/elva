@@ -551,17 +551,25 @@ a[aria-current="page"] {
         gap: var(--space-3xs);
     }
 
-    .posts .meta-reading-time::before {
+    .posts .meta-reading-time::before,
+    .posts .meta :nth-child(1 of .meta-tag)::before {
         content: '•';
         display: inline-block;
         padding-left: var(--space-2xs);
         padding-right: var(--space-2xs);
-    }    
+    } 
 }
 
 .posts .meta-date,
-.posts .meta-reading-time {
+.posts .meta-reading-time
+.posts .meta-tag {
     color: var(--foreground-soft);
+}
+
+/* tags */
+
+.tag h1 {
+    margin: 0 0 var(--space-s-2xl) 0
 }
 
 /* footer */
@@ -575,30 +583,4 @@ a[aria-current="page"] {
 
 .rss-icon {
     width: 44px;
-}
-
-/* feed xslt */
-
-.rss-xslt h1 {
-    margin-top: var(--space-s-l);
-}
-
-.rss-xslt .posts {
-    list-style: none;
-    margin: var(--space-s-l) 0 0 0;
-    padding: 0;
-}
-
-.rss-xslt .posts li {
-    margin-bottom: var(--space-s-m);
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-}
-
-.rss-xslt .posts span {
-    color: var(--foreground-soft);
-    font-size: var(--step--1);
-    display: block;
 }

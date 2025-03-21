@@ -21,7 +21,8 @@ export default {
             title: 'Recently published'
         },
         dark: 'Dark',
-        light: 'Light'
+        light: 'Light',
+        tagged: 'Tagged'
     },
     sv: {
         meta: {
@@ -45,6 +46,7 @@ export default {
             title: 'Nyligen publicerad'
         },
         dark: 'Mörk',
-        light: 'Ljus'
+        light: 'Ljus',
+        tagged: 'Taggade'
     }
 }

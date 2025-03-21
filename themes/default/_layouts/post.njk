@@ -9,6 +9,10 @@ layout: base
                 <time class="entry-date published" datatime="{{ date | dateToRfc3339 }}">{{ date | formatDate }}</time>
             </li>
             <li class="meta-reading-time">{{ content | readingTime }}</li>
+            {%- for tag in tags | filterPrivateTags %}
+	        {%- set tagUrl %}/{{lang}}/tag/{{ tag | slugify }}/{% endset %}
+	        <li class="meta-tag"><a href="{{ tagUrl }}">{{ tag }}</a>{%- if not loop.last %}, {% endif %}</li>
+	        {%- endfor %}
         </ul>
     </header>
     <div class="entry-content">

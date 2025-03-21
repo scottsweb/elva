@@ -6,6 +6,7 @@
         {%- set u = page.url | htmlBaseUrl(settings.url) %}
         {%- set i = (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) %}
         {%- set ia = thumbnailDescription or ('meta.opengraphDefaultAlt' | translate) %}
+        {%- set ta = tags or [] %}
 
         <!-- charset / viewport -->
         <meta charset="utf-8">
@@ -18,7 +19,7 @@
         <!-- canonical / alternates -->
         <link rel="canonical" href="{{ u }}">
         <link rel="alternate" hreflang="{{ page.lang }}" href="{{ u }}">
-        {% for link in page.url | locale_links %}<link rel="alternate" hreflang="{{ link.lang }}" href="{{ settings.url }}{{ link.url }}">{% endfor %}
+        {% for link in page.url | locale_links | fix_locale_links %}<link rel="alternate" hreflang="{{ link.lang }}" href="{{ settings.url }}{{ link.url }}">{% endfor %}
 
         <!-- open graph -->
         <meta property="og:site_name" content="{{ 'meta.title' | translate }}">
@@ -63,7 +64,8 @@
         <!-- inline scripts -->
         <script>{% getBundle 'js' %}</script>
     </head>
-    <body class="{{tags or [] | join(' ') }}">
+
+    <body class="{% set space = joiner(" ") -%}{% for tag in ta -%}{{ space() }}{{ tag | slugify }}{% endfor -%}">
         <!-- header -->
         {% include "header.njk" %}
 
