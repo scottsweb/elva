@@ -20,7 +20,7 @@ seo:
         }
     ],
     "items": [
-        {%- for post in collections.posts | languageFilter(page.lang)| reverse %}
+        {%- for post in collections._posts | languageFilter(page.lang)| reverse %}
         {%- set absolutePostUrl = post.url | htmlBaseUrl(settings.url) %}
         {%- set image = (post.data.thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) | cdnify %}
         {
@@ -30,7 +30,8 @@ seo:
             "image": "{{ image | cdnify }}",
             "content_html": {% if post.templateContent %}{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | dump | safe }}{% else %}""{% endif %},
             "date_published": "{{ post.date | dateToRfc3339 }}",
-            "language": "{{ post.page.lang }}"
+            "language": "{{ post.page.lang }}",
+            "tags": [{% set comma = joiner(",") %}{% for tag in post.data.tags | filterPrivateTags %}{{ comma() }}"{{ tag }}"{% endfor %}]
         }
         {%- if not loop.last %},{% endif %}
         {%- endfor %}

@@ -1,6 +1,9 @@
 ---
 title: Front matter
 date: 2023-08-04
+tags:
+  - tag4
+  - tag5
 ---
 
 ``` markdown

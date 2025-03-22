@@ -1,6 +1,10 @@
 ---
 title: Andra inbäddningsexempel
 date: 2023-07-31
+tags:
+  - tag1
+  - tag3
+  - tag5
 ---
 
 **Innehåll:**

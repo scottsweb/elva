@@ -6,6 +6,7 @@
         {%- set u = page.url | htmlBaseUrl(settings.url) %}
         {%- set i = (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) %}
         {%- set ia = thumbnailDescription or ('meta.opengraphDefaultAlt' | translate) %}
+        {%- set ta = tags or [] %}
 
         <!-- charset / viewport -->
         <meta charset="utf-8">
@@ -18,7 +19,7 @@
         <!-- canonical / alternates -->
         <link rel="canonical" href="{{ u }}">
         <link rel="alternate" hreflang="{{ page.lang }}" href="{{ u }}">
-        {% for link in page.url | locale_links %}<link rel="alternate" hreflang="{{ link.lang }}" href="{{ settings.url }}{{ link.url }}">{% endfor %}
+        {% for link in page.url | locale_links | fix_locale_links %}<link rel="alternate" hreflang="{{ link.lang }}" href="{{ settings.url }}{{ link.url }}">{% endfor %}
 
         <!-- open graph -->
         <meta property="og:site_name" content="{{ 'meta.title' | translate }}">
@@ -35,7 +36,12 @@
         <link rel="apple-touch-icon" href="{{ "/assets/img/icon-180.png" | htmlBaseUrl(settings.url) | cdnify }}">
 
         <!-- styles -->
-        <link rel="stylesheet" href="/assets/css/bundle.css?v={% version %}">
+        {% css %}{% include '../css/reset.css' %}{% endcss -%}
+        {% css %}{% include '../css/variables.css' %}{% endcss -%}
+        {% css %}{% include '../css/styles.css' %}{% endcss -%}
+        {% css 'defer' %}{% include '../css/components/syntax.css' %}{% endcss -%}
+	    <style>{% getBundle 'css' %}</style>
+	    <link rel="stylesheet" href="{% getBundleFileUrl 'css', 'defer' %}?v={% version %}" fetchpriority="low">
 
         <!-- feeds -->
         <link rel="alternate" href="{{ "/feed/feed.xml" | locale_url | htmlBaseUrl(settings.url) }}" type="application/atom+xml" title="{{ 'meta.rssTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}">
@@ -47,15 +53,19 @@
         <!-- everything else -->
         <link rel="manifest" href="{{ "/site.webmanifest" | locale_url | htmlBaseUrl(settings.url) }}">
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ settings.themeColorLight }}">
-        <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="{{ settings.themeColorDark }}">
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="{{ settings.themeColorDark }}">
         {% if settings.isStaging or noIndex %}<meta name="robots" content="noindex, nofollow">{% endif %}
         {% if settings.author.fediverseProfile %}<link href="{{ settings.author.fediverseProfile }}" rel="me">{% endif %}
         {% if settings.author.fediverseUsername %}<meta name="fediverse:creator" content="{{ settings.author.fediverseUsername }}">{% endif %}
 
         <!-- set theme before page renders to stop fouc -->
-        <script>document.documentElement.dataset.theme = localStorage.getItem('theme') === null ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : localStorage.getItem('theme')</script>
+        {% js %}document.documentElement.dataset.theme = localStorage.getItem('theme') === null ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : localStorage.getItem('theme'){% endjs %}
+        
+        <!-- inline scripts -->
+        <script>{% getBundle 'js' %}</script>
     </head>
-    <body class="{{tags or [] | join(' ') }}">
+
+    <body class="{% set space = joiner(" ") -%}{% for tag in ta -%}{{ space() }}{{ tag | slugify }}{% endfor -%}">
         <!-- header -->
         {% include "header.njk" %}
 
@@ -66,6 +76,9 @@
         {% include "footer.njk" %}
 
         <!-- scripts -->
-        <script src="/assets/js/bundle.js?v={% version %}" defer></script>
+        {% js 'defer' %}{% include '../../../node_modules/alpinejs/dist/cdn.js' %}{% endjs -%}
+        {% js 'defer' %}{% include '../../../node_modules/@alpinejs/intersect/dist/cdn.js' %}{% endjs -%}
+        {% js 'defer' %}{% include '../js/scripts.js' %}{% endjs -%}
+        <script src="{% getBundleFileUrl 'js', 'defer' %}?v={% version %}" defer></script>
     </body>
 </html>

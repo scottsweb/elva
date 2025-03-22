@@ -1,5 +1,5 @@
 // return a random item from a collection, excluding the current page
-// {% set collection = collections.posts | random(page) %}
+// {% set collection = collections._posts | random(page) %}
 export default function(collections, avoid) {
     let selected = collections[Math.floor(Math.random() * collections.length)];
     while (selected.url === avoid.url) {

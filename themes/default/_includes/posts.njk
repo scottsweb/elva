@@ -1,4 +1,3 @@
-{% set postslist = collections.posts | languageFilter | reverse %}
 <ol reversed class="postlist" style="counter-reset: start-from {{ postslist.length + 1 }}">
 {% for post in postslist %}
 	<li class="postlist-item{% if post.url === url %} postlist-item-active{% endif %}">

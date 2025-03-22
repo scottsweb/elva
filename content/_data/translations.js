@@ -21,7 +21,9 @@ export default {
             title: 'Recently published'
         },
         dark: 'Dark',
-        light: 'Light'
+        light: 'Light',
+        tagged: 'Tagged',
+        footer: 'The year is {{ year }}.'
     },
     sv: {
         meta: {
@@ -45,6 +47,8 @@ export default {
             title: 'Nyligen publicerad'
         },
         dark: 'Mörk',
-        light: 'Ljus'
+        light: 'Ljus',
+        tagged: 'Taggade',
+        footer: 'Året är {{ year }}.'
     }
 }

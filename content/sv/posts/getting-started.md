@@ -3,6 +3,9 @@ title: Komma igång
 seo:
   slug: komma-igang
 date: 2023-08-07
+tags:
+  - tag1
+  - tag2
 ---
 
 Skapa en katalog och navigera till den:
@@ -36,6 +39,6 @@ Generera en produktionsklar build till mappen `dist`:
 npm run build:prod
 ```
 
-Du kan också ställa in miljövariabeln `NODE_ENV=production` i din värdkontrollpanel och använd `npm run build` som tidigare.
+Du kan också ställa in miljövariabeln `NODE_ENV=production` i din värdkontrollpanel och använda `npm run build` som med tidigare versioner av elva.
 
 För att använda [Front Matter CMS](https://frontmatter.codes/), installera [VSCodium](https://vscodium.com/) eller [Visual Studio Code](https://code.visualstudio.com/) och aktivera tillägget (om det inte aktiveras automatiskt). Den öppnas varje gång du startar ditt projekt.

@@ -1,6 +1,6 @@
 export default {
     layout: 'page',
-    tags: 'page',
+    tags: '_pages',
     permalink: function(data) {
         // slug override for localized URL slugs
         if (data.seo?.slug) {

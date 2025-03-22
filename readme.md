@@ -17,7 +17,7 @@ Features include:
 ### Performance things
 
 * Optimised CSS, JS and HTML
-* Responsive image shortcode that supports lazy loading and modern formats (avif, webp)
+* Responsive images that supports lazy loading and modern formats (avif, webp)
 * Support for the [Photon CDN](https://developer.wordpress.com/docs/photon/) (can be turned on via settings)
 
 ### Accessibility things
@@ -49,12 +49,12 @@ Features include:
 
 ### Still to come:
 
-- [ ] [Critical CSS](https://github.com/11ty/eleventy-plugin-bundle) or per collection or per page CSS ([1](https://www.silvestar.codes/articles/extracting-and-using-critical-css-on-my-eleventy-site/))
+- [x] [Critical CSS](https://github.com/11ty/eleventy-plugin-bundle) or per collection or per page CSS ([1](https://www.silvestar.codes/articles/extracting-and-using-critical-css-on-my-eleventy-site/))
 - [ ] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
-- [ ] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/) ([1](https://www.11ty.dev/docs/plugins/image/#eleventy-transform))
+- [x] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/) ([1](https://www.11ty.dev/docs/plugins/image/#eleventy-transform))
 - [ ] Profile verification / .well-known support for the Fediverse and Nostr ([1](https://implicit.computer/blog/activitypub-1/))
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js) ([1](https://github.com/madrilene/eleventy-i18n/blob/main/netlify.toml))
 - [ ] Cleaner language selector and default language (that sets homepage)
@@ -113,17 +113,17 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 - [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
 - [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/en/writing/frontmatter/) in the UI
 - [ ] Setup a custom template for your open graph images (`.frontmatter/scripts/opengraph-template.html`)
-- [ ] Design your site by customising the CSS (`/theme/css/`), layouts (`/theme/_layouts/`) and includes (`/theme/_includes/`)
+- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)
 
 ### Optional
 
-- [ ] Set your preferred image sizes and formats in the image shortcode `/elva/shortcodes/image.js`
+- [ ] Set your preferred image sizes and formats in `/elva/config/image.js`
 - [ ] If you add more front matter, you may wish to edit `.frontmatter/frontmatter.json` to add [Front Matter CMS](https://frontmatter.codes/) support
-- [ ] You many not need [Alpine.js](https://alpinejs.dev/) which can be removed from `/theme/js/bundle.njk`
+- [ ] You many not need [Alpine.js](https://alpinejs.dev/) which can be removed from `/themes/default/_layouts/base.njk`
 - [ ] Use [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/) to grab some API data
 - [ ] If you enable Photon CDN support [familiarise yourself with these limitations](https://jetpack.com/support/site-accelerator/#limitations)
 - [ ] [Enable build caching for your host](https://developers.cloudflare.com/pages/configuration/build-caching/)
  
 ### Updates
 
-As of version 3.0 of elva, there are now separate folders for the `/theme`, your sites `/content` and elva related stuff `/elva`. The idea is to make upgrades of elva simpler by seperating frequently changed things (the theme and content) from the guts of the project. Hopefully this is helpful, but please open an issue if you would like to see further improvements made. 
+As of version 3.0 of elva, there are now separate folders for `/themes`, your sites `/content` and elva related stuff `/elva`. The idea is to make upgrades of elva simpler by seperating frequently changed things (the theme and content) from the guts of the project. Hopefully this is helpful, but please open an issue if you would like to see further improvements made. 
