@@ -14,9 +14,14 @@
     }
   },
   eleventyComputed: {
-    title: "{{ 'tagged' | translate }} “{{ tag }}”",
+    title: "{{ 'tags.tagged' | translate }} “{{ tag }}”",
     permalink: function(data) { return `/${data.lang}/tag/${this.slugify(data.tag)}/`; },
-    tags: function(data) { return ['tag', `tag-${this.slugify(data.tag)}`]; }
+    tags: function(data) { return ['tag', `tag-${this.slugify(data.tag)}`]; },
+    seo: {
+      changeFrequency: 'weekly',
+      sitemapPriority: '0.3',
+      description: "{{ 'tags.description' | translate }} “{{ tag }}“."
+    }
   }
 }
 ---
