@@ -177,7 +177,7 @@ export default async function(eleventyConfig) {
 
     // 11ty Settings -----------------------------------
 
-    eleventyConfig.logger.message(`Theme: ${eleventyConfig.globalData.settings.theme}`)
+    eleventyConfig.logger.message(`Theme: ${eleventyConfig.globalData.settings.theme}`);
 
     return {
         markdownTemplateEngine: 'njk',
