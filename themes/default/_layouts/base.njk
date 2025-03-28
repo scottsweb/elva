@@ -27,8 +27,10 @@
         <meta property="og:description" content="{{ d }}">
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ u }}">
+        <meta property="og:logo" content="{{ "/assets/img/icon-192.png" | htmlBaseUrl(settings.url) | cdnify }}">
         <meta property="og:image" content="{{ i | cdnify }}">
         <meta property="og:image:alt" content="{{ ia }}">
+        <meta property="og:locale" content="{{ locales[page.lang].locale or page.lang }}">
 
         <!-- icons -->
         <link rel="icon" href="{{ "/favicon.ico" | htmlBaseUrl(settings.url) }}" sizes="any">
@@ -56,7 +58,8 @@
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ settings.themeColorLight }}">
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="{{ settings.themeColorDark }}">
         {% if settings.isStaging or noIndex %}<meta name="robots" content="noindex, nofollow">{% endif %}
-        {% if settings.author.fediverseProfile %}<link href="{{ settings.author.fediverseProfile }}" rel="me">{% endif %}
+        {% if settings.author.githubProfile %}<link rel="me" href="{{ settings.author.githubProfile }}">{% endif %}
+        {% if settings.author.fediverseProfile %}<link rel="me" href="{{ settings.author.fediverseProfile }}">{% endif %}
         {% if settings.author.fediverseUsername %}<meta name="fediverse:creator" content="{{ settings.author.fediverseUsername }}">{% endif %}
 
         <!-- set theme before page renders to stop fouc -->

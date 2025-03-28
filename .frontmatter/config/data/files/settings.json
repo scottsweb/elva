@@ -48,6 +48,16 @@
               "type": "string",
               "title": "Fediverse URL",
               "default": "https://mastodon.social/@person"
+            },
+            "fediverseUsername": {
+              "type": "string",
+              "title": "Fediverse Username",
+              "default": "@person@mastodon.social"
+            },
+            "githubProfile": {
+              "type": "string",
+              "title": "GitHub URL",
+              "default": "https://github.com/person"
             }
           }
         },

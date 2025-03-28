@@ -8,7 +8,8 @@
 		"url": "https://scott.ee",
 		"location": "Stockholm, Sweden",
 		"fediverseProfile": "https://toot.scott.ee/@scott",
-		"fediverseUsername": "@scott@toot.scott.ee"
+		"fediverseUsername": "@scott@toot.scott.ee",
+		"githubProfile": "https://github.com/scottsweb"
 	},
 	"meta": {
 		"separator": "•",
