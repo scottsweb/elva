@@ -107,6 +107,11 @@ export default async function(eleventyConfig) {
         eleventyConfig.addTemplate(key + '-manifest.njk', manifestTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-blogroll.xml.njk', blogrollXMLTemplate, { lang: key });
     }
+
+    // Collections ------------------------------------
+
+    for (let [key, locale] of Object.entries(locales)) {
+        eleventyConfig.addCollection(`_posts.${key}`, (collectionApi) => collectionApi.getFilteredByTag('_posts').filter((item) => item.data.lang === key));
     }
     
     // Plugins ----------------------------------------
