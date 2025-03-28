@@ -4,6 +4,7 @@ export default {
             title: 'elva',
             rssTitle: 'RSS Feed',
             jsonTitle: 'JSON Feed',
+            blogrollTitle: 'Blogroll',
             description: 'A multilingual, clean, green, 11ty starter theme',
             opengraphDefaultAlt: 'An English description of the default opengraph image'
         },
@@ -33,6 +34,7 @@ export default {
             title: 'elva',
             rssTitle: 'RSS Feed',
             jsonTitle: 'JSON Feed',
+            blogrollTitle: 'Blogroll',
             description: 'A multilingual, clean, green, 11ty starter theme',
             opengraphDefaultAlt: 'A Swedish description of the default opengraph image'
         },
