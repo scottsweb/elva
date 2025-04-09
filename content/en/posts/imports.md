@@ -26,6 +26,7 @@ npx @11ty/import wordpress https://blog.fontawesome.com --output=content/en/post
 ```
 
 <div class="notice notice-warning">Note: Images are imported alongside the markdown. You may need to move assets to a more suitable folder (/content/assets/) or update the references to your images.</div>
+
 ## Fediverse
 
 Run the following command from within the elva directory in Terminal:
