@@ -13,7 +13,7 @@ Features include:
 ### Performance things
 
 * Optimised CSS, JS and HTML
-* Responsive images that supports lazy loading and modern formats (avif, webp)
+* Responsive images that support lazy loading and modern formats (avif, webp)
 * Support for the [Photon CDN](https://developer.wordpress.com/docs/photon/) (can be turned on via settings)
 
 ### Accessibility things
