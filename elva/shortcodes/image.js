@@ -37,7 +37,8 @@ export default async function(src, alt, sizes, caption = '', classes = '', loadi
         sizes,
         loading,
         fetch,
-        decoding
+        decoding,
+        "eleventy:ignore": ""
     };
     
     const generated = Image.generateHTML(meta, imageAttributes);

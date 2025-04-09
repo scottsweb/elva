@@ -1,6 +1,9 @@
 ---
 title: Importing content
 date: 2023-08-06
+tags:
+  - tag3
+  - tag4
 ---
 
 You can import content into elva using [11ty import](https://github.com/11ty/eleventy-import). It supports importing content from WordPress, RSS/Atom, Bluesky, the Fediverse and YouTube. 
@@ -22,8 +25,7 @@ npx @11ty/import wordpress https://blog.fontawesome.com --output=content/en/post
 # --dryrun --assetrefs=disabled --within=7d
 ```
 
-<div class="notice notice-warning">Note: Images are imported alongside the markdown. You may need to move assets to a more suitable folder (/content/assets/).</div>
-
+<div class="notice notice-warning">Note: Images are imported alongside the markdown. You may need to move assets to a more suitable folder (/content/assets/) or update the references to your images.</div>
 ## Fediverse
 
 Run the following command from within the elva directory in Terminal:

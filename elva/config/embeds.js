@@ -54,6 +54,7 @@ export default {
     },
     spotify: {
         options: {
+            lazy: true,
             embedClass: 'oembed oembed-spotify'
         }
     }

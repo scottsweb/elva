@@ -1,5 +1,5 @@
 // sort collection by an arbitrary key
-// {% set collection = collections.posts | sort('title', false, false) %}
+// {% set collection = collections._posts | sort('title', false, false) %}
 export default function(collections, key, reversed = false, forceLowerCase = false) {
     return collections.sort((a, b) => {
         let x = key ? a.data[key] : a;

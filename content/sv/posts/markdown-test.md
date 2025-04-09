@@ -3,6 +3,9 @@ title: Markdown testa
 seo:
   slug: markdown-testa
 date: 2023-08-02
+tags:
+  - tag4
+  - tag5
 ---
 
 **Innehåll:**

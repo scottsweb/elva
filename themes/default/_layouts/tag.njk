@@ -1,0 +1,11 @@
+---
+layout: base
+---
+<h1>{{ 'tags.tagged' | translate }} “{{ tag }}”</h1>
+
+{{ content | safe }}
+
+<div class="posts-list">
+    {% set postslist = collections[ tag ] | languageFilter | reverse %}
+    {% include "posts.njk" %}
+</div>

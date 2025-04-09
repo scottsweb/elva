@@ -10,11 +10,11 @@
   "frontMatter.templates.prefix": "",
   "frontMatter.taxonomy.dateFormat": "YYYY-MM-DD",
   "frontMatter.experimental": true,
-  "frontMatter.taxonomy.tags": [],
+  "frontMatter.content.filters": ["contentFolders", "tags"],
   "frontMatter.snippets.wrapper.enabled": false,
   "frontMatter.content.publicFolder": {
     "path": "content",
-    "relative": true
+    "relative": false
   },
   "frontMatter.extensibility.scripts": [
     "[[workspace]]/.frontmatter/ui/image.js"

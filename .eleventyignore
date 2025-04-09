@@ -1,0 +1,11 @@
+.DS_Store
+.gitignore
+.cache/
+.frontmatter/
+.github/
+.vscode/
+dist
+node_modules
+notes.md
+package-lock.json
+readme.md

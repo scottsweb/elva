@@ -1,6 +1,9 @@
 ---
 title: Markdown test
 date: 2023-08-02
+tags:
+  - tag4
+  - tag5
 ---
 
 **Contents:**

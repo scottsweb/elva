@@ -1,3 +1,5 @@
+{% css 'defer' %}{% include '../css/components/switch-darkmode.css' %}{% endcss -%}
+
 <div class="switch-wrapper" x-data x-cloak>
 	<input class="switch" id="darkmode" type="checkbox" value="dark" :checked="$store.elva.theme === 'dark'" />
 	<label class="switch-btn" for="darkmode" tabindex="0" aria-label="Toggle dark/light theme" @keydown.prevent.space @click="$store.elva.themeToggle()" @keyup.prevent.space="$store.elva.themeToggle()" :class="$store.elva.theme === 'dark' ? 'switch-button-on' : 'switch-button-off'">

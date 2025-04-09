@@ -1,6 +1,9 @@
 ---
 title: Importera innehåll
 date: 2023-08-06
+tags:
+  - tag3
+  - tag4
 ---
 
 Du kan importera innehåll till elva med hjälp av [11ty import](https://github.com/11ty/eleventy-import). Den stöder import av innehåll från WordPress, RSS/Atom, Bluesky, Fediverse och YouTube. 
@@ -22,7 +25,7 @@ npx @11ty/import wordpress https://blog.fontawesome.com --output=content/sv/post
 # --dryrun --assetrefs=disabled --within=7d
 ```
 
-<div class="notice notice-warning">Obs! Bilder importeras tillsammans med markdown. Du kan behöva flytta tillgångar till en mer lämplig mapp (/content/assets/).</div>
+<div class="notice notice-warning">Obs! Bilder importeras tillsammans med markdown. Du kan behöva flytta tillgångar till en mer lämplig mapp (/content/assets/) eller uppdatera referenserna till dina bilder.</div>
 
 ## Fediverse
 

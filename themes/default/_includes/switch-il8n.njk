@@ -1,14 +1,18 @@
+{% css 'defer' %}{% include '../css/components/switch-il8n.css' %}{% endcss -%}
+
 <div class="switch-language">
-	{% for lang, properties in locales %}
+	{% for lang, properties in locales | dictsort %}
 		{% if page.lang === lang %}
 			<a href="{{ page.url }}" lang="{{ page.lang }}" hreflang="{{ page.lang }}"  aria-label="{{ properties.shorthand }}: {{ properties.label }}" aria-current="page" class="current">
 				{{ properties.shorthand }}
 			</a>
 		{% else %}
 			{% set found = false %}
-			{% for link in page.url | locale_links %}
+
+			{% for link in page.url | locale_links | fix_locale_links %}
 				{% if lang === link.lang %}{% set found = link %}{% endif %}
 			{% endfor %}
+
 			{% if found  %}
 				<a href="{{ found.url }}" lang="{{ found.lang }}" hreflang="{{ found.lang }}"  aria-label="{{ properties.shorthand }}: {{ properties.label }}">
 					{{ properties.shorthand }}

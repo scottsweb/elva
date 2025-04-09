@@ -35,6 +35,7 @@ body {
     text-decoration: none;
 }
 
+iframe:focus-within,
 :focus:not(:focus-visible) {
     outline: none;
 }
@@ -211,6 +212,7 @@ figure > figcaption::selection {
     word-wrap: normal !important;
 }
 
+figure picture img,
 .rounded {
     border-radius: var(--border-radius);
 }
@@ -230,9 +232,96 @@ figure > figcaption::selection {
     max-width: 100%;
 }
 
-.oembed-youtube lite-youtube::before {
-    background: none;
-    position: relative;
+.oembed-instagram {
+    margin-top: var(--space-m, 1em) !important;
+    width: 100%;
+    max-width: 65ch;
+}
+
+.oembed-twitter {
+    max-width: 65ch;
+}
+
+.oembed-twitter .twitter-tweet {
+    margin: 0 auto;   
+}
+
+.oembed-tiktok {
+    max-width: 325px !important;
+}
+
+.oembed-tiktok.tiktok-embed {
+    margin-top: var(--space-m, 1em) !important;
+}
+
+.oembed-spotify {
+    border-radius: var(--border-radius);
+
+    iframe {
+        display: block;
+    }
+}
+
+/* fancy lazy loading of images */
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 90deg;
+    inherits: false;
+}
+
+@media (scripting: enabled) {
+    [loading="lazy"] {
+        opacity: 0;
+        filter: blur(10px);
+        transition: all 1s;
+        display: block;
+    }
+
+    [loading="lazy"].elva-loaded {
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    .oembed:has(> [loading="lazy"]),
+    picture:has(> [loading="lazy"]) {
+        background-color: var(--background-soft);
+        border-radius: var(--border-radius);
+        position: relative;
+    }
+
+    .oembed:has(> [loading="lazy"].elva-loaded),
+    picture:has(> [loading="lazy"].elva-loaded) {
+        overflow: hidden;
+    }
+
+    .oembed:has(> [loading="lazy"]:not(.elva-loaded))::before,
+    picture:has(> [loading="lazy"]:not(.elva-loaded))::before {
+        content: " ";
+        position: absolute;
+        z-index: -1;
+        inset: -0.1rem;
+        background: conic-gradient(
+          from var(--gradient-angle),
+          var(--background-soft),
+          var(--nord10),
+          var(--nord11),
+          var(--nord12),
+          var(--nord13),
+          var(--nord14),
+          var(--background-soft)
+        );
+        border-radius: inherit;
+        animation: rotate 2.5s linear infinite;
+    }
+      
+    @keyframes rotate {
+        0% {
+            --gradient-angle: 0deg;
+        }
+        100% {
+            --gradient-angle: 360deg;
+        }
+    }
 }
 
 .oembed-instagram {
@@ -270,6 +359,7 @@ figure > figcaption::selection {
 }
 
 .notice.notice-warning {
+    color: var(--nord0);
     background-color: var(--nord13);
     box-shadow: 0px 4px color-mix(in srgb, var(--nord13), var(--black) 9%);
     color: var(--background);
@@ -451,27 +541,39 @@ a[aria-current="page"] {
 
 .posts .meta {
     list-style: none;
-    margin: 0 0 var(--space-s-2xl) 0;
+    margin: var(--space-3xs) 0 var(--space-s-2xl) 0;
     padding: 0;
 }
 
-@media (min-width: 600px) {
+.posts .meta .meta-tag {
+    display: inline-block;
+}
+
+@media (min-width: 780px) {
     .posts .meta {
         display: flex;
         gap: var(--space-3xs);
     }
 
-    .posts .meta-reading-time::before {
+    .posts .meta-reading-time::before,
+    .posts .meta :nth-child(1 of .meta-tag)::before {
         content: '•';
         display: inline-block;
         padding-left: var(--space-2xs);
         padding-right: var(--space-2xs);
-    }    
+    } 
 }
 
 .posts .meta-date,
-.posts .meta-reading-time {
+.posts .meta-reading-time
+.posts .meta-tag {
     color: var(--foreground-soft);
+}
+
+/* tags */
+
+.tag h1 {
+    margin: 0 0 var(--space-s-2xl) 0
 }
 
 /* footer */
@@ -485,30 +587,4 @@ a[aria-current="page"] {
 
 .rss-icon {
     width: 44px;
-}
-
-/* feed xslt */
-
-.rss-xslt h1 {
-    margin-top: var(--space-s-l);
-}
-
-.rss-xslt .posts {
-    list-style: none;
-    margin: var(--space-s-l) 0 0 0;
-    padding: 0;
-}
-
-.rss-xslt .posts li {
-    margin-bottom: var(--space-s-m);
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-}
-
-.rss-xslt .posts span {
-    color: var(--foreground-soft);
-    font-size: var(--step--1);
-    display: block;
 }

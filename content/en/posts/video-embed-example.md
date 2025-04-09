@@ -1,6 +1,9 @@
 ---
 title: Video embed example
 date: 2023-08-01
+tags:
+  - tag2
+  - tag4
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed risus consectetur, gravida justo ac, convallis leo. Duis et nisi ullamcorper, auctor quam vel, sollicitudin ligula. Vestibulum faucibus metus nec diam egestas, sed auctor elit rhoncus. Duis a velit vel lacus placerat porta ac vitae urna. Etiam a dictum tortor, id venenatis eros. Donec vehicula ex ut quam porta auctor. Suspendisse at purus enim. Donec sed pharetra nisl.
