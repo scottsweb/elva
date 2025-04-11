@@ -2,6 +2,10 @@
 	* {
 		transition: none !important;
 	}
+
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 html {
