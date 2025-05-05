@@ -3,12 +3,14 @@
         "dir": "ltr",
         "label": "English",
         "shorthand": "EN",
-        "locale": "en-gb"
+        "locale": "en-gb",
+        "default": true
     },
     "sv": {
         "dir": "ltr",
         "label": "Svenska",
         "shorthand": "SE",
-        "locale": "sv-se"
+        "locale": "sv-se",
+        "default": false
     }
 }

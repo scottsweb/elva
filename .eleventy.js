@@ -88,20 +88,26 @@ export default async function(eleventyConfig) {
 
     // Virtual Templates ------------------------------
 
+    // development only css bundle for opengraph generation
+    if (process.env.ELEVENTY_RUN_MODE && process.env.ELEVENTY_RUN_MODE !== 'build') {
+        const cssTemplate = fs.readFileSync(path.resolve(`themes/${eleventyConfig.globalData.settings.theme}/_layouts/`, 'css-opengraph.njk'), 'utf-8');
+        eleventyConfig.addTemplate('css-opengraph.njk', cssTemplate, { theme: eleventyConfig.globalData.settings.theme });
+    }
+
     const robotsTemplate = fs.readFileSync(path.resolve('elva/templates/', 'robots.njk'), 'utf-8');
     const sitemapTemplate = fs.readFileSync(path.resolve('elva/templates/', 'sitemap.njk'), 'utf-8');
 
     eleventyConfig.addTemplate('robots.njk', robotsTemplate);
     eleventyConfig.addTemplate('sitemap.njk', sitemapTemplate);
 
-    const feedTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.njk'), 'utf-8');
+    const feedTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.xml.njk'), 'utf-8');
     const feedXSLTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.xsl.njk'), 'utf-8');
     const feedJSONTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.json.njk'), 'utf-8');
     const manifestTemplate = fs.readFileSync(path.resolve('elva/templates/', 'manifest.njk'), 'utf-8');
     const blogrollXMLTemplate = fs.readFileSync(path.resolve('elva/templates/', 'blogroll.xml.njk'), 'utf-8');
 
     for (let [key, locale] of Object.entries(locales)) {
-        eleventyConfig.addTemplate(key + '-feed.njk', feedTemplate, { lang: key });
+        eleventyConfig.addTemplate(key + '-feed.xml.njk', feedTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-feed.xsl.njk', feedXSLTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-feed.json.njk', feedJSONTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-manifest.njk', manifestTemplate, { lang: key });

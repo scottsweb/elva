@@ -27,6 +27,7 @@ export default {
         },
         dark: 'Dark',
         light: 'Light',
+        lightDarkToggle: 'Toggle dark/light theme',
         footer: 'The year is {{ year }}.'
     },
     sv: {
@@ -57,6 +58,7 @@ export default {
         },
         dark: 'Mörk',
         light: 'Ljus',
+        lightDarkToggle: 'Växla mellan mörkt/ljus tema',
         footer: 'Året är {{ year }}.'
     }
 }
