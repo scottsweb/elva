@@ -13,7 +13,7 @@ excludeFromSitemap: true
 	"orientation": "{{ settings.manifest.orientation }}",
 	"scope": "{{ '/' | htmlBaseUrl(settings.url) }}",
 	"id": "/?v={% version %}",
-	"start_url": "{{ '/' | htmlBaseUrl(settings.url) }}",
+	"start_url": "{{ '/' | locale_url | htmlBaseUrl(settings.url) }}",
 	"theme_color": "{{ settings.manifest.themeColor }}",
 	"background_color": "{{ settings.manifest.backgroundColor }}",
 	"display": "{{ settings.manifest.display }}",
