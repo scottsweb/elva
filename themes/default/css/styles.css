@@ -328,28 +328,6 @@ figure picture img,
     }
 }
 
-.oembed-instagram {
-    margin-top: var(--space-m, 1em) !important;
-    width: 100%;
-    max-width: 65ch;
-}
-
-.oembed-twitter {
-    max-width: 65ch;
-}
-
-.oembed-twitter .twitter-tweet {
-    margin: 0 auto;   
-}
-
-.oembed-tiktok {
-    max-width: 325px !important;
-}
-
-.oembed-tiktok.tiktok-embed {
-    margin-top: var(--space-m, 1em) !important;
-}
-
 /* notice */
 
 .notice {
