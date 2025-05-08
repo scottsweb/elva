@@ -68,7 +68,7 @@ Start numbering with offset:
 
 ---
 
-### Notices and links
+## Notices and links
 
 <div class="notice notice-notice">General notice</div>
 
@@ -86,7 +86,7 @@ Aenean ac tincidunt felis. Fusce eu arcu blandit, consectetur odio ullamcorper, 
 
 https://github.com/scottsweb/elva
 
-### Tables
+## Tables
 
 | Title  | Description |
 | ------ | ----------- |

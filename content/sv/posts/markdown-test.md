@@ -70,7 +70,7 @@ Starta numrering med offset:
 
 ---
 
-### Meddelanden och länkar
+## Meddelanden och länkar
 
 <div class="notice notice-notice">Allmänt meddelande</div>
 
@@ -88,7 +88,7 @@ Aenean ac tincidunt felis. Fusce eu arcu blandit, consectetur odio ullamcorper, 
 
 https://github.com/scottsweb/elva
 
-### Tabeller
+## Tabeller
 
 | Titel  | Beskrivning |
 | ------ | ----------- |
