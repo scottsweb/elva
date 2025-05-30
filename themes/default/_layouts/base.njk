@@ -51,7 +51,7 @@
         {% if blogroll | length %}<link rel="blogroll"  href="{{ "/feed/blogroll.xml" | locale_url | htmlBaseUrl(settings.url) }}" type="text/xml" title="{{ 'meta.blogrollTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}">{% endif %}
 
         <!-- preload / prefetch -->
-        {% if (settings.isProduction or settings.isStaging) and settings.cdn %}<link rel="dns-prefetch" href="//i0.wp.com">{% endif %}
+        {% if (settings.isProduction or settings.isStaging) and settings.cdn %}<link rel="dns-prefetch" href="https://i0.wp.com/">{% endif %}
 
         <!-- everything else -->
         <meta name="generator" content="{{ eleventy.generator }}">
