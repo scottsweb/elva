@@ -28,7 +28,7 @@ seo:
             "url": "{{ absolutePostUrl }}",
             "title": "{{ post.data.title }}",
             "image": "{{ image | cdnify }}",
-            "content_html": {% if post.templateContent %}{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | dump | safe }}{% else %}""{% endif %},
+            "content_html": {% if post.templateContent %}{{ post.templateContent | renderTransforms | htmlToAbsoluteUrls(absolutePostUrl) | dump | safe }}{% else %}""{% endif %},
             "date_published": "{{ post.date | dateToRfc3339 }}",
             "language": "{{ post.page.lang }}",
             "tags": [{% set comma = joiner(",") %}{% for tag in post.data.tags | filterPrivateTags %}{{ comma() }}"{{ tag }}"{% endfor %}]
