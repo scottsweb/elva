@@ -10,7 +10,7 @@ export default async function(src, alt, sizes, caption = '', classes = '', loadi
         outputDir: './dist/assets/img/',
         sharpWebpOptions: {
             options: {
-                quality: 70,
+                quality: 85,
             },
         }
     };
@@ -20,7 +20,7 @@ export default async function(src, alt, sizes, caption = '', classes = '', loadi
                 ...metadata,
                 formats: ['webp', 'auto'],
                 urlFormat: function({width}) {
-                    return `//i0.wp.com/${settings.url.replace(/^https?:\/\//, '')}${src}?w=${width}&quality=70&strip=info`;
+                    return `//i0.wp.com/${settings.url.replace(/^https?:\/\//, '')}${src}?w=${width}&quality=85&strip=info`;
                 }
             }
         );
