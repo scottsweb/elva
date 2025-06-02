@@ -58,7 +58,7 @@
         <link rel="manifest" href="{{ "/site.webmanifest" | locale_url | htmlBaseUrl(settings.url) }}">
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ settings.themeColorLight }}">
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="{{ settings.themeColorDark }}">
-        {% if settings.isStaging or noIndex %}<meta name="robots" content="noindex, nofollow">{% endif %}
+        {% if settings.isStaging or seo.noIndex %}<meta name="robots" content="noindex, nofollow">{% endif %}
         {% if settings.author.githubProfile %}<link rel="me" href="{{ settings.author.githubProfile }}">{% endif %}
         {% if settings.author.fediverseProfile %}<link rel="me" href="{{ settings.author.fediverseProfile }}">{% endif %}
         {% if settings.author.fediverseUsername %}<meta name="fediverse:creator" content="{{ settings.author.fediverseUsername }}">{% endif %}
