@@ -80,7 +80,7 @@ Starta numrering med offset:
 
 ### Rubrik nivå 3
 
-Cras quis sollicitudin eros [link with title](https://scott.ee "title text!"). Fusce eget velit quis nulla pharetra eleifend id vitae nisl. Aenean [normal link](https://scott.ee) vitae nunc semper porta. Donec porta leo vitae massa accumsan consequat. Praesent quis sodales orci, ut elementum quam. Phasellus ultrices lectus in tempus varius. Duis est nulla, imperdiet dapibus ultricies non, hendrerit non mauris.
+Cras quis sollicitudin eros [link with title](https://scott.ee "title text!"){target="_blank"}. Fusce eget velit quis nulla pharetra eleifend id vitae nisl. Aenean [normal link](https://scott.ee) vitae nunc semper porta. Donec porta leo vitae massa accumsan consequat. Praesent quis sodales orci, ut elementum quam. Phasellus ultrices lectus in tempus varius. Duis est nulla, imperdiet dapibus ultricies non, hendrerit non mauris.
 
 #### Rubrik nivå 4
 

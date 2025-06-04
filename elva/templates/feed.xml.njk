@@ -26,7 +26,7 @@ seo:
 		<link href="{{ absolutePostUrl }}" />
 		<updated>{{ post.date | dateToRfc3339 }}</updated>
 		<id>{{ absolutePostUrl }}</id>
-		<content xml:lang="{{ post.page.lang }}" type="html">{{ post.templateContent | transformWithHtmlBase(settings.url) }}</content>
+		<content xml:lang="{{ post.page.lang }}" type="html">{{ post.templateContent | renderTransforms | transformWithHtmlBase(settings.url) }}</content>
 		<enclosure url="{{ image | cdnify }}" length="0" type="{{ image | mimetype }}" />
 		{%- for tag in post.data.tags | filterPrivateTags %}
 		<category term="{{ tag }}" />
