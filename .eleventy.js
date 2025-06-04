@@ -5,6 +5,7 @@
 import { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin, IdAttributePlugin } from '@11ty/eleventy';
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import fs from 'fs';
+import markdownItAttrs from 'markdown-it-attrs';
 import markdownIt from 'markdown-it';
 import markdownItIns from 'markdown-it-ins';
 import markdownItMark from 'markdown-it-mark';
@@ -175,7 +176,8 @@ export default async function(eleventyConfig) {
         mdLib.use(markdownItMark);
         mdLib.use(markdownItSub);
         mdLib.use(markdownItSup);
-        mdLib.use(markdownItAnchor, {slugify})
+        mdLib.use(markdownItAnchor, {slugify});
+        mdLib.use(markdownItAttrs);
         mdLib.use(markdownItImageFigures, { figcaption: true });
         mdLib.use(markdownItToc, {slugify, includeLevel: [2,3]});
     });
