@@ -62,6 +62,6 @@
     "mime-types": "^3.0.1",
     "node-html-to-image": "^5.0.0",
     "rimraf": "^6.0.1",
-    "terser": "^5.41.0"
+    "terser": "^5.42.0"
   }
 }
