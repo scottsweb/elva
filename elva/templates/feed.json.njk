@@ -1,5 +1,6 @@
 ---
-permalink: /{{ lang }}/feed/feed.json
+eleventyComputed:
+  permalink: "{{ ('/' + lang + '/feed/feed.json') | default_locale_url }}"
 eleventyExcludeFromCollections: true
 seo:
   excludeFromSitemap: true

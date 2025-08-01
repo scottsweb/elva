@@ -6,7 +6,7 @@ export default {
 		},
 		{
 			text: 'Documentation',
-			url: '/'
+			url: '/documentation/'
 		},
 		{
 			text: 'GitHub',
@@ -20,7 +20,7 @@ export default {
 		},
 		{
 			text: 'Dokumentation',
-			url: '/'
+			url: '/dokumentation/'
 		},
 		{
 			text: 'GitHub',

@@ -1,11 +1,12 @@
 ---
-permalink: /{{ lang }}/feed/feed.xml
+eleventyComputed:
+  permalink: "{{ ('/' + lang + '/feed/feed.xml') | default_locale_url }}"
 eleventyExcludeFromCollections: true
 seo:
   excludeFromSitemap: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet href="/{{ page.lang }}/feed/feed.xsl" type="text/xsl"?>
+<?xml-stylesheet href="{{ ('/' + lang + '/feed/feed.xsl') | default_locale_url }}" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:base="{{ "/" | htmlBaseUrl(settings.url) }}">
     <title>{{ 'meta.rssTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}</title>
     <subtitle>{{ 'meta.description' | translate }}</subtitle>
