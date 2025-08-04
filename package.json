@@ -43,7 +43,7 @@
     "@11ty/eleventy-fetch": "^5.0.2",
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-rss": "^2.0.4",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "@alpinejs/intersect": "^3.14.9",
     "alpinejs": "^3.14.9",
     "browserslist": "^4.25.1",
