@@ -1,3 +1,8 @@
 ---
 layout: base
 ---
+<div class="posts-list">
+    {% set postslist = collections._posts | languageFilter | reverse %}
+    {% include "posts.njk" %}
+    {{ content | safe }}
+</div>

@@ -1,5 +1,6 @@
 ---
-permalink: /{{ lang }}/feed/feed.xsl
+eleventyComputed:
+  permalink: "{{ ('/' + lang + '/feed/feed.xsl') | default_locale_url }}"
 eleventyExcludeFromCollections: true
 seo:
   excludeFromSitemap: true

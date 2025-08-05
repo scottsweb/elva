@@ -1,5 +1,6 @@
 ---
-permalink: /{{ lang }}/feed/blogroll.xml
+eleventyComputed:
+  permalink: "{{ ('/' + lang + '/feed/blogroll.xml') | default_locale_url }}"
 eleventyExcludeFromCollections: true
 seo:
   excludeFromSitemap: true

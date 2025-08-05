@@ -1,5 +1,6 @@
 ---
-permalink: /{{ lang }}/site.webmanifest
+eleventyComputed:
+  permalink: "{{ ('/' + lang + '/site.webmanifest') | default_locale_url }}"
 eleventyExcludeFromCollections: true
 excludeFromSitemap: true
 ---

@@ -46,6 +46,7 @@ import { formatDate } from './elva/filters/dates.js';
 import filterPrivateTags from './elva/filters/filterprivatetags.js';
 import languageFilter from './elva/filters/language.js';
 import fixLocaleLinks from './elva/filters/fixlocalelinks.js';
+import defaultLocaleURL from './elva/filters/defaultlocaleurl.js';
 import mimetype from './elva/filters/mimetype.js';
 import random from './elva/filters/random.js';
 import readingTime from './elva/filters/readingtime.js';
@@ -124,7 +125,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addPlugin(pluginDescriptions);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(EleventyRenderPlugin);
-    eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: 'en' });
+    eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: 'en', errorMode: 'never'});
     eleventyConfig.addPlugin(IdAttributePlugin);
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(pluginEmbedEverything, pluginEmbedEverythingConfig);
@@ -149,6 +150,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addFilter('formatDate', formatDate);
     eleventyConfig.addFilter('languageFilter', languageFilter);
     eleventyConfig.addFilter('fix_locale_links', fixLocaleLinks);
+    eleventyConfig.addFilter('default_locale_url', defaultLocaleURL);
     eleventyConfig.addFilter('mimetype', mimetype);
     eleventyConfig.addFilter('random', random);
     eleventyConfig.addFilter('readingTime', readingTime);

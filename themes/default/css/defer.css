@@ -1,0 +1,130 @@
+/* skip to content link */
+
+.skip-link {
+	transform: translateY( -140px );
+	transition: var(--transition-base);
+    padding: var(--space-s-l);
+    background-color: var(--foreground);
+    color: var(--background);
+    font-family: var(--font-headings);
+    font-weight: 500;
+    border-radius: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+}
+
+.skip-link:hover {
+    color: var(--background);
+}
+
+.skip-link:focus {
+	transform: translateY( 0 );
+	position: fixed;
+	display: block;
+    z-index: 10;
+}
+
+/* oembed */
+
+.oembed-youtube,
+.oembed-vimeo,
+.oembed-ted {
+    border: 1px solid var(--foreground);
+}
+
+.oembed-youtube lite-youtube {
+    max-width: 100%;
+}
+
+.oembed-instagram {
+    margin-top: var(--space-m, 1em) !important;
+    width: 100%;
+    max-width: 65ch;
+}
+
+.oembed-twitter {
+    max-width: 65ch;
+}
+
+.oembed-twitter .twitter-tweet {
+    margin: 0 auto;   
+}
+
+.oembed-tiktok {
+    max-width: 325px !important;
+}
+
+.oembed-tiktok.tiktok-embed {
+    margin-top: var(--space-m, 1em) !important;
+}
+
+.oembed-spotify {
+    border-radius: var(--border-radius);
+
+    iframe {
+        display: block;
+    }
+}
+
+/* fancy lazy loading of images */
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 90deg;
+    inherits: false;
+}
+
+@media (scripting: enabled) {
+    [loading="lazy"] {
+        opacity: 0;
+        filter: blur(10px);
+        transition: all 1s;
+        display: block;
+    }
+
+    [loading="lazy"].elva-loaded {
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    .oembed:has(> [loading="lazy"]),
+    picture:has(> [loading="lazy"]) {
+        background-color: var(--background-soft);
+        border-radius: var(--border-radius);
+        position: relative;
+    }
+
+    .oembed:has(> [loading="lazy"].elva-loaded),
+    picture:has(> [loading="lazy"].elva-loaded) {
+        overflow: hidden;
+    }
+
+    .oembed:has(> [loading="lazy"]:not(.elva-loaded))::before,
+    picture:has(> [loading="lazy"]:not(.elva-loaded))::before {
+        content: " ";
+        position: absolute;
+        z-index: -1;
+        inset: -0.1rem;
+        background: conic-gradient(
+          from var(--gradient-angle),
+          var(--background-soft),
+          var(--nord10),
+          var(--nord11),
+          var(--nord12),
+          var(--nord13),
+          var(--nord14),
+          var(--background-soft)
+        );
+        border-radius: inherit;
+        animation: rotate 2.5s linear infinite;
+    }
+      
+    @keyframes rotate {
+        0% {
+            --gradient-angle: 0deg;
+        }
+        100% {
+            --gradient-angle: 360deg;
+        }
+    }
+}

@@ -1,16 +1,17 @@
 import fs from "node:fs";
+import path from "node:path";
 import settings from '../../content/_data/settings.json' with { type: 'json' }
 
 export default (eleventyConfig) => {
     const cdnify = (eleventyConfig.globalData.settings.isProduction || eleventyConfig.globalData.settings.isStaging) && settings.cdn;
-    let outputdir = { outputDir: './dist/assets/img/' }
+    let outputdir = { outputDir: path.join(eleventyConfig.directories.output, '/assets/img/') }
 
     // cache images for faster builds
     if (process.env.ELEVENTY_RUN_MODE === 'build' && !cdnify) {
         outputdir.outputDir = '.cache/@11ty/img/';
 
         eleventyConfig.on('eleventy.after', () => {
-            fs.cpSync('.cache/@11ty/img/', './dist/assets/img/', { recursive: true });
+            fs.cpSync('.cache/@11ty/img/', path.join(eleventyConfig.directories.output, '/assets/img/'), { recursive: true });
         });
     }
 
