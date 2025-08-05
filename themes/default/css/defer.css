@@ -10,6 +10,8 @@
     font-weight: 500;
     border-radius: 0;
     width: 100%;
+    position: fixed;
+    z-index: 10;
 }
 
 .skip-link:hover {
@@ -20,10 +22,6 @@
 	transform: translateY( 0 );
 	position: fixed;
 	display: block;
-	clip: auto !important;
-	clip-path: none;
-	height: auto;
-    width: 100%;
     z-index: 10;
 }
 
