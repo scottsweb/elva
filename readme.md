@@ -113,7 +113,7 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 - [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
 - [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/en/writing/frontmatter/) in the UI
 - [ ] Setup a custom template for your open graph images (`.frontmatter/scripts/opengraph-template.html`)
-- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)
+- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme and set the theme variable in `.eleventy.js` (~ line 72) to the name of your new themes folder.
 
 ### Optional
 
