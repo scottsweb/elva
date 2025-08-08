@@ -25,7 +25,8 @@ export default (eleventyConfig) => {
 
         // generate CDN urls when turned on
         urlFormat: (cdnify) ? function({src, width}) {
-            return `https://i0.wp.com/${eleventyConfig.globalData.settings.url.replace(/^https?:\/\//, '')}/${src.replace('content/', '')}?w=${width}&quality=85&strip=info`;
+            const quality = (src.endsWith('.gif')) ? '100' : '85';
+            return `https://i0.wp.com/${eleventyConfig.globalData.settings.url.replace(/^https?:\/\//, '')}/${src.replace('content/', '')}?w=${width}&quality=${quality}&strip=info`;
         } : undefined,
 
         // sharp options: https://www.11ty.dev/docs/plugins/image/#advanced-control-of-sharp-image-processor
