@@ -1,6 +1,6 @@
 {
   "name": "elva",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "A multilingual, clean, green, 11ty starter theme",
   "main": "index.js",
   "type": "module",
@@ -47,6 +47,7 @@
     "@alpinejs/intersect": "^3.14.9",
     "alpinejs": "^3.14.9",
     "browserslist": "^4.25.2",
+    "cheerio": "^1.1.2",
     "eleventy-plugin-embed-everything": "^1.21.0",
     "html-minifier-terser": "^7.2.0",
     "lightningcss": "^1.30.1",
