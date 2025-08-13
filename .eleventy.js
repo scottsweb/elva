@@ -27,7 +27,7 @@ import pluginDrafts from './elva/plugins/drafts.js';
 import pluginDescriptions from './elva/plugins/seodescriptions.js';
 import pluginCSS from './elva/plugins/css.js';
 import pluginJS from './elva/plugins/js.js';
-
+import pluginSVG from './elva/plugins/svg.js';
 
 // Plugin Configs
 import pluginEmbedEverythingConfig from './elva/config/embeds.js';
@@ -120,6 +120,7 @@ export default async function(eleventyConfig) {
 
     eleventyConfig.addPlugin(pluginCSS);
     eleventyConfig.addPlugin(pluginJS);
+    eleventyConfig.addPlugin(pluginSVG);
     await eleventyConfig.addPlugin(pluginRSS);
     eleventyConfig.addPlugin(pluginDrafts);
     eleventyConfig.addPlugin(pluginDescriptions);
