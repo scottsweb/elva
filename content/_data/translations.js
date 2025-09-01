@@ -60,5 +60,36 @@ export default {
         light: 'Ljus',
         lightDarkToggle: 'Växla mellan mörkt/ljus tema',
         footer: 'Året är {{ year }}.'
+    },
+    de: {
+        meta: {
+            title: 'elva',
+            rssTitle: 'RSS-Feed',
+            jsonTitle: 'JSON-Feed',
+            blogrollTitle: 'Blogroll',
+            description: 'Ein mehrsprachiges, sauberes, nachhaltiges 11ty-Starter-Theme',
+            opengraphDefaultAlt: 'Eine deutsche Beschreibung des Standard-Opengraph-Bildes'
+        },
+        header: {
+            skipLink: 'Zum Inhalt springen',
+            home: 'Startseite'
+        },
+        readingTime: {
+            underMinute: 'Weniger als 1 Minute Lesezeit',
+            minute: '1 Minute Lesezeit',
+            other: '{{ minutes }} Minuten Lesezeit'
+        },
+        feeds: {
+            info: 'Dies ist ein RSS-Feed. Kopiere die URL und füge sie in deinen Feed-Reader ein. Besuche <a href="https://aboutfeeds.com">About Feeds</a>, um mehr über RSS zu erfahren.',
+            title: 'Kürzlich veröffentlicht'
+        },
+        tags: {
+            tagged: 'Getaggt',
+            description: 'Alle Inhalte mit dem Tag:'
+        },
+        dark: 'Dunkel',
+        light: 'Hell',
+        lightDarkToggle: 'Dunkles/helles Theme umschalten',
+        footer: 'Das Jahr ist {{ year }}.'
     }
 }

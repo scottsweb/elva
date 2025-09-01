@@ -4,9 +4,9 @@ export default {
     permalink: function(data) {
         // slug override for localized URL slugs
         if (data.seo?.slug) {
-            return `/${data.lang}/skrift/${this.slugify(data.seo.slug)}/`;
+            return `/${data.lang}/geschriebenes/${this.slugify(data.seo.slug)}/`;
         } else {
-            return `/${data.lang}/skrift/${this.slugify(data.page.fileSlug)}/`;
+            return `/${data.lang}/geschriebenes/${this.slugify(data.page.fileSlug)}/`;
         }
     }
 }
