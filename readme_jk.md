@@ -11,6 +11,13 @@ in WSL:
 
 ### build
 (from readme.md)
+Install / update dependencies:
+
+```
+npm install
+```
+
+Run Eleventy for site development. View the site at `http://localhost:8080`:
 
 ```
 npm run dev
