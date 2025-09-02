@@ -26,6 +26,19 @@ export default {
 			text: 'GitHub',
 			url: 'https://github.com/scottsweb/elva'
 		}
+    ],
+    de: [
+		{
+			text: 'Über',
+			url: '/ueber/'
+		},
+		{
+			text: 'Dokumentation',
+			url: '/dokumentation/'
+		},
+		{
+			text: 'GitHub',
+			url: 'https://github.com/scottsweb/elva'
+		}
     ]
 };
-  

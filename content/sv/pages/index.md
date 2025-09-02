@@ -10,4 +10,4 @@ seo:
 
 En flerspråkig, ren, grön, <a href="https://www.11ty.dev/" target="_blank" rel="noopener">11ty starter theme</a>. Elva ger en solid grund för ditt nästa webbprojekt.
 
-Demo tillgänglig på [engelska](/) and [svenska](/sv/).{class="subtle"}
+Demo tillgänglig på [engelska](/), [svenska](/sv/) and [tyska](/de/).{class="subtle"}
