@@ -1,7 +1,7 @@
 ---
 title: Über uns
 seo:
-  slug: ueberuns
+  slug: ueber
   description: Ein mehrsprachiges, sauberes, grünes 11ty Starter-Theme. elva stellt ein solides Fundament für dein nächstes Web-Projekt zur Verfügung und beinhaltet ein eingebautes CSM um Inhalte zu verwalten.
 ---
 
