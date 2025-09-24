@@ -1,0 +1,27 @@
+---js
+{
+  layout: 'tag',
+  pagination: {
+    data: 'collections',
+    size: 1,
+    alias: 'tag',
+    addAllPagesToCollections: true,
+    before: function(paginationData, fullData) {
+      return paginationData.filter(collectionTag => {
+        let taggedInLanguage = fullData.collections[collectionTag].filter(item => item.page.lang === fullData.lang);
+        return taggedInLanguage.length > 0 && !collectionTag.startsWith('_');
+      });
+    }
+  },
+  eleventyComputed: {
+    title: "{{ 'tags.tagged' | translate }} “{{ tag }}”",
+    permalink: function(data) { return `/${data.lang}/tag/${this.slugify(data.tag)}/`; },
+    tags: function(data) { return ['tag', `tag-${this.slugify(data.tag)}`]; },
+    seo: {
+      changeFrequency: 'weekly',
+      sitemapPriority: '0.3',
+      description: "{{ 'tags.description' | translate }} “{{ tag }}“."
+    }
+  }
+}
+---
