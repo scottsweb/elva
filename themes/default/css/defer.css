@@ -68,6 +68,7 @@
 }
 
 /* fancy lazy loading of images */
+
 @property --gradient-angle {
     syntax: "<angle>";
     initial-value: 90deg;
@@ -126,5 +127,64 @@
         100% {
             --gradient-angle: 360deg;
         }
+    }
+}
+
+/* tooltips */
+
+.tooltip {
+    position: relative;
+    
+    &::after {
+        border-radius: var(--border-radius);
+        content: attr(data-tooltip);
+        font-family: var(--font-headings);
+        text-transform: uppercase;
+        padding: .2rem .6rem;
+        white-space: nowrap;
+        -webkit-font-smoothing: subpixel-antialiased;
+        background-color: var(--foreground);
+        background-color: rgb(from var(--background-soft) r g b / 90%);
+        backdrop-filter: blur(6px);
+        color: var(--foreground);
+        font-size: 13px;
+        transform-origin: top;
+        top: 100%;
+        right: 0px;
+        outline: none;
+        backface-visibility: hidden;
+        will-change: transform;
+        position: absolute;
+        transition: var(--transition-base);
+        opacity: 0;
+        z-index: 10;
+    }
+
+    &:hover::after {
+        top: 115%;
+        opacity: 1;
+    }
+
+    &.tooltip-top {    
+        &::after {
+            top: auto;
+            bottom: 100%;
+        }
+    
+        &:hover::after {
+            top: auto;
+            bottom: 115%;
+            opacity: 1;
+        }
+    }
+}
+
+@media (min-width: 1140px) {
+    .tooltip {
+         &::after {
+            transform: translate3d(-50%, 0, 0);
+            right: auto;
+            left: 50%;
+         }
     }
 }
