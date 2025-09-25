@@ -79,15 +79,6 @@ export default async function(eleventyConfig) {
     eleventyConfig.addWatchTarget('./themes/**/*.{css,js}');
     eleventyConfig.addWatchTarget('./elva/templates/*', { resetConfig: true });
 
-    // Layouts ----------------------------------------
-
-    eleventyConfig.addLayoutAlias('base', 'base.njk');
-    eleventyConfig.addLayoutAlias('home', 'home.njk');
-    eleventyConfig.addLayoutAlias('page', 'page.njk');
-    eleventyConfig.addLayoutAlias('post', 'post.njk');
-    eleventyConfig.addLayoutAlias('posts', 'posts.njk');
-    eleventyConfig.addLayoutAlias('tag', 'tag.njk');
-
     // Virtual Templates ------------------------------
 
     // development only css bundle for opengraph generation
