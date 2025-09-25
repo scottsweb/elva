@@ -50,7 +50,7 @@ import defaultLocaleURL from './elva/filters/defaultlocaleurl.js';
 import mimetype from './elva/filters/mimetype.js';
 import random from './elva/filters/random.js';
 import readingTime from './elva/filters/readingtime.js';
-import sort from './elva/filters/sort.js';
+import sortBy from './elva/filters/sortby.js';
 import translate from './elva/filters/translate.js';
 import where from './elva/filters/where.js';
 
@@ -156,7 +156,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addFilter('random', random);
     eleventyConfig.addFilter('readingTime', readingTime);
     eleventyConfig.addFilter('translate', translate);
-    eleventyConfig.addFilter('sort', sort);
+    eleventyConfig.addFilter('sortBy', sortBy);
     eleventyConfig.addFilter('where', where);
 
     // Passthrough -------------------------------------
