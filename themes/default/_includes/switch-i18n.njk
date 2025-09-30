@@ -3,7 +3,7 @@
 <div class="switch-language">
 	{% for lang, properties in locales | dictsort %}
 		{% if page.lang === lang %}
-			<a href="{{ page.url }}" lang="{{ page.lang }}" hreflang="{{ page.lang }}"  aria-label="{{ properties.shorthand }}: {{ properties.label }}" aria-current="page" class="current">
+			<a href="{{ page.url }}" lang="{{ page.lang }}" hreflang="{{ page.lang }}"  aria-label="{{ properties.shorthand }}: {{ properties.label }}" aria-current="page" data-tooltip="{{ properties.label }}" class="current tooltip">
 				{{ properties.shorthand }}
 			</a>
 		{% else %}
@@ -14,11 +14,11 @@
 			{% endfor %}
 
 			{% if found  %}
-				<a href="{{ found.url }}" lang="{{ found.lang }}" hreflang="{{ found.lang }}"  aria-label="{{ properties.shorthand }}: {{ properties.label }}">
+				<a href="{{ found.url }}" lang="{{ found.lang }}" hreflang="{{ found.lang }}"  aria-label="{{ properties.shorthand }}: {{ properties.label }}" data-tooltip="{{ properties.label }}" class="tooltip">
 					{{ properties.shorthand }}
 				</a>
 			{% else %}
-				<span aria-label="{{ properties.shorthand }}: {{ properties.label }}" class="disabled">
+				<span aria-label="{{ properties.shorthand }}: {{ properties.label }}" data-tooltip="{{ properties.label }}" class="disabled tooltip">
 					{{ properties.shorthand }}
 				</span>
 			{% endif %}
