@@ -12,5 +12,12 @@
         "shorthand": "SE",
         "locale": "sv-se",
         "default": false
+    },
+    "de": {
+        "dir": "ltr",
+        "label": "Deutsch",
+        "shorthand": "DE",
+        "locale": "de-de",
+        "default": false
     }
 }
