@@ -60,7 +60,7 @@
     "markdown-it-sub": "^2.0.0",
     "markdown-it-sup": "^2.0.0",
     "markdown-it-table-of-contents": "^1.1.0",
-    "mime-types": "^3.0.1",
+    "mime-types": "^3.0.2",
     "node-html-to-image": "^5.0.0",
     "rimraf": "^6.1.2",
     "terser": "^5.44.1"
