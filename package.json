@@ -47,7 +47,7 @@
     "@alpinejs/intersect": "^3.15.4",
     "alpinejs": "^3.15.4",
     "browserslist": "^4.28.1",
-    "cheerio": "^1.1.2",
+    "cheerio": "^1.2.0",
     "eleventy-plugin-embed-everything": "^1.21.1",
     "html-minifier-terser": "^7.2.0",
     "lightningcss": "^1.30.2",
