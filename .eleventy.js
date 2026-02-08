@@ -50,7 +50,8 @@ import defaultLocaleURL from './elva/filters/defaultlocaleurl.js';
 import mimetype from './elva/filters/mimetype.js';
 import random from './elva/filters/random.js';
 import readingTime from './elva/filters/readingtime.js';
-import sort from './elva/filters/sort.js';
+import sortBy from './elva/filters/sortby.js';
+import tagged from './elva/filters/tagged.js';
 import translate from './elva/filters/translate.js';
 import where from './elva/filters/where.js';
 
@@ -78,15 +79,6 @@ export default async function(eleventyConfig) {
     eleventyConfig.addWatchTarget('./content/assets');
     eleventyConfig.addWatchTarget('./themes/**/*.{css,js}');
     eleventyConfig.addWatchTarget('./elva/templates/*', { resetConfig: true });
-
-    // Layouts ----------------------------------------
-
-    eleventyConfig.addLayoutAlias('base', 'base.njk');
-    eleventyConfig.addLayoutAlias('home', 'home.njk');
-    eleventyConfig.addLayoutAlias('page', 'page.njk');
-    eleventyConfig.addLayoutAlias('post', 'post.njk');
-    eleventyConfig.addLayoutAlias('posts', 'posts.njk');
-    eleventyConfig.addLayoutAlias('tag', 'tag.njk');
 
     // Virtual Templates ------------------------------
 
@@ -155,8 +147,9 @@ export default async function(eleventyConfig) {
     eleventyConfig.addFilter('mimetype', mimetype);
     eleventyConfig.addFilter('random', random);
     eleventyConfig.addFilter('readingTime', readingTime);
+    eleventyConfig.addFilter('tagged', tagged);
     eleventyConfig.addFilter('translate', translate);
-    eleventyConfig.addFilter('sort', sort);
+    eleventyConfig.addFilter('sortBy', sortBy);
     eleventyConfig.addFilter('where', where);
 
     // Passthrough -------------------------------------
