@@ -8,7 +8,7 @@ seo:
 {
     "api_url": "{{ permalink | htmlBaseUrl(settings.url) }}",
     "language": "{{ page.lang }}",
-    "home_page_url": "{{ "/" | htmlBaseUrl(settings.url) }}",
+    "url": "{{ "/" | htmlBaseUrl(settings.url) }}",
     "icon": "{{ "/assets/img/icon-512.png" | htmlBaseUrl(settings.url) | cdnify }}",
     "data": [
         {% set counter = loop %}
