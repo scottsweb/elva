@@ -1,6 +1,6 @@
 {
   "name": "elva",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "A multilingual, clean, green, 11ty starter theme",
   "main": "index.js",
   "type": "module",
@@ -39,7 +39,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@11ty/eleventy": "3.1.2",
+    "@11ty/eleventy": "3.1.5",
     "@11ty/eleventy-fetch": "^5.1.1",
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-rss": "^2.0.4",
