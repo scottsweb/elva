@@ -58,6 +58,7 @@ import indexer from './elva/filters/indexer.js';
 
 // Languages
 import locales from './content/_data/locales.json' with { type: 'json' }
+const defaultLanguage = Object.keys(locales).find(key => locales[key].default);
 
 // 11ty -----------------------------------------------
 
@@ -121,7 +122,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addPlugin(pluginDescriptions);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(EleventyRenderPlugin);
-    eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: 'en', errorMode: 'never'});
+    eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: defaultLanguage, errorMode: 'never'});
     eleventyConfig.addPlugin(IdAttributePlugin);
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(pluginEmbedEverything, pluginEmbedEverythingConfig);
