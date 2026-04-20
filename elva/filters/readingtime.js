@@ -1,6 +1,6 @@
 // calculate the time to read of a chunk of text (to the nearest minute)
 // based on https://www.bobmonsour.com/posts/calculating-reading-time/
-import nunjucks from 'nunjucks';
+import nunjucks from '@11ty/nunjucks';
 nunjucks.configure({ autoescape: true });
 
 export default function(text) {

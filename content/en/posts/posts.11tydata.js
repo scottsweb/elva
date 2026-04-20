@@ -1,6 +1,6 @@
 export default {
     layout: 'post',
-    tags: '_posts',
+    tags: ['_posts', '_search'],
     permalink: function(data) {
         // default language has no lang prefix
         let prefix = `/${data.lang}`;
