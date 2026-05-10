@@ -54,9 +54,14 @@ import sortBy from './elva/filters/sortby.js';
 import tagged from './elva/filters/tagged.js';
 import translate from './elva/filters/translate.js';
 import where from './elva/filters/where.js';
+import indexer from './elva/filters/indexer.js';
 
 // Languages
 import locales from './content/_data/locales.json' with { type: 'json' }
+const defaultLanguage = Object.keys(locales).find(key => locales[key].default);
+
+// Settings
+import settings from './content/_data/settings.json' with { type: 'json' }
 
 // 11ty -----------------------------------------------
 
@@ -70,7 +75,7 @@ export default async function(eleventyConfig) {
         isProduction: process.env.NODE_ENV === 'production',
         isStaging: (process.env.URL && process.env.URL.includes('github.io')) || (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_BRANCH !== 'main') || (process.env.ELEVENTY_RUN_MODE && process.env.ELEVENTY_RUN_MODE !== 'build') || false,
         year: new Date().getFullYear(),
-        theme: 'default'
+        theme: process.env.ELVA_THEME || settings.theme
     });
 
     // Watch Targets ----------------------------------
@@ -99,6 +104,7 @@ export default async function(eleventyConfig) {
     const feedJSONTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.json.njk'), 'utf-8');
     const manifestTemplate = fs.readFileSync(path.resolve('elva/templates/', 'manifest.njk'), 'utf-8');
     const blogrollXMLTemplate = fs.readFileSync(path.resolve('elva/templates/', 'blogroll.xml.njk'), 'utf-8');
+    const searchApiTemplate = fs.readFileSync(path.resolve('elva/templates/', 'search.json.njk'), 'utf-8');
 
     for (let [key, locale] of Object.entries(locales)) {
         eleventyConfig.addTemplate(key + '-feed.xml.njk', feedTemplate, { lang: key });
@@ -106,6 +112,7 @@ export default async function(eleventyConfig) {
         eleventyConfig.addTemplate(key + '-feed.json.njk', feedJSONTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-manifest.njk', manifestTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-blogroll.xml.njk', blogrollXMLTemplate, { lang: key });
+        eleventyConfig.addTemplate(key + '-search-api.json.njk', searchApiTemplate, { lang: key, collection: '_search' });
     }
     
     // Plugins ----------------------------------------
@@ -118,7 +125,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addPlugin(pluginDescriptions);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(EleventyRenderPlugin);
-    eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: 'en', errorMode: 'never'});
+    eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: defaultLanguage, errorMode: 'never'});
     eleventyConfig.addPlugin(IdAttributePlugin);
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(pluginEmbedEverything, pluginEmbedEverythingConfig);
@@ -151,6 +158,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addFilter('translate', translate);
     eleventyConfig.addFilter('sortBy', sortBy);
     eleventyConfig.addFilter('where', where);
+    eleventyConfig.addFilter('index', indexer);
 
     // Passthrough -------------------------------------
 

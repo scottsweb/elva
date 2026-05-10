@@ -10,6 +10,7 @@
     "build:stage": "export NODE_ENV=staging && rimraf dist && npx @11ty/eleventy",
     "dev": "npx @11ty/eleventy --watch --serve --incremental",
     "clean": "rimraf dist",
+    "cli": "node .cli/index.js",
     "debug": "DEBUG=Eleventy* npm run dev",
     "benchmark": "DEBUG=Eleventy:Benchmark* npm run build:prod",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -39,12 +40,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@11ty/eleventy": "3.1.5",
+    "@11ty/eleventy": "4.0.0-alpha.7",
     "@11ty/eleventy-fetch": "^5.1.2",
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-rss": "^3.0.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "@alpinejs/intersect": "^3.15.11",
+    "@inquirer/prompts": "^8.4.2",
     "alpinejs": "^3.15.11",
     "browserslist": "^4.28.2",
     "cheerio": "^1.2.0",
@@ -63,6 +65,7 @@
     "mime-types": "^3.0.2",
     "node-html-to-image": "^5.0.0",
     "rimraf": "^6.1.3",
-    "terser": "^5.46.1"
+    "terser": "^5.46.1",
+    "yoctocolors": "^2.1.2"
   }
 }
