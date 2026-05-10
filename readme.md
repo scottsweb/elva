@@ -38,6 +38,7 @@ Features include:
 
 ### Other things
 
+* A CLI for managing common tasks (`npm run cli`)
 * [Front Matter CMS](https://frontmatter.codes/)
 * Open graph image generation from within Front Matter CMS (dev server must be running)
 * Draft support
@@ -65,7 +66,7 @@ Features include:
 - [ ] Front Matter CMS — [More helpful scripts](https://frontmatter.codes/docs/custom-actions#creating-a-media-script)
 - [ ] Front Matter CMS — Tagging and categories
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
-- [ ] CLI tool for managing languages (and possibly importing content)
+- [x] CLI tool for managing languages (and possibly importing content)
 
 ## Getting Started
 
@@ -123,7 +124,35 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 - [ ] Use [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/) to grab some API data
 - [ ] If you enable Photon CDN support [familiarise yourself with these limitations](https://jetpack.com/support/site-accelerator/#limitations)
 - [ ] [Enable build caching for your host](https://developers.cloudflare.com/pages/configuration/build-caching/)
- 
+## CLI
+
+You can use the CLI to manage languages and content directly from the command line. Start with `npm run cli`. The CLI defaults to an interactive menu, but you can also use shortcuts for common tasks.
+
+### Command Shortcuts
+
+#### Settings Commands 
+
+- `npm run cli setup site` - Setup the basic site settings for a new project
+- `npm run cli setup theme` - Choose the theme you wish to use
+
+#### Language Commands
+
+- `npm run cli language add` - Add a new language
+- `npm run cli language remove` - Remove an existing language
+- `npm run cli language list` - List all languages
+- `npm run cli language default` - Change the default language
+
+#### Content Commands
+
+- `npm run cli content add` - Add new content
+- `npm run cli content remove` - Remove existing content
+
 ### Updates
+
+#### 4.0.0
+
+With 4, you'll find a a new command line interface (documented above). This should make getting started and managing languages much easier. There is also a new search index you can use to build a custom search component, an example of that will be released soon.
+
+#### 3.0.0
 
 As of version 3.0 of elva, there are now separate folders for `/themes`, your sites `/content` and elva related stuff `/elva`. The idea is to make upgrades of elva simpler by seperating frequently changed things (the theme and content) from the guts of the project. Hopefully this is helpful, but please open an issue if you would like to see further improvements made. 
