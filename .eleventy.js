@@ -60,6 +60,9 @@ import indexer from './elva/filters/indexer.js';
 import locales from './content/_data/locales.json' with { type: 'json' }
 const defaultLanguage = Object.keys(locales).find(key => locales[key].default);
 
+// Settings
+import settings from './content/_data/settings.json' with { type: 'json' }
+
 // 11ty -----------------------------------------------
 
 export default async function(eleventyConfig) {
@@ -72,7 +75,7 @@ export default async function(eleventyConfig) {
         isProduction: process.env.NODE_ENV === 'production',
         isStaging: (process.env.URL && process.env.URL.includes('github.io')) || (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_BRANCH !== 'main') || (process.env.ELEVENTY_RUN_MODE && process.env.ELEVENTY_RUN_MODE !== 'build') || false,
         year: new Date().getFullYear(),
-        theme: 'default'
+        theme: process.env.ELVA_THEME || settings.theme
     });
 
     // Watch Targets ----------------------------------
