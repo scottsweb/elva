@@ -89,8 +89,11 @@ export default async function(eleventyConfig) {
 
     // development only css bundle for opengraph generation
     if (process.env.ELEVENTY_RUN_MODE && process.env.ELEVENTY_RUN_MODE !== 'build') {
-        const cssTemplate = fs.readFileSync(path.resolve(`themes/${eleventyConfig.globalData.settings.theme}/_layouts/`, 'css-opengraph.njk'), 'utf-8');
-        eleventyConfig.addTemplate('css-opengraph.njk', cssTemplate, { theme: eleventyConfig.globalData.settings.theme });
+        const ogPreviewTemplate = fs.readFileSync(path.resolve('elva/templates/', 'opengraph-preview.njk'), 'utf-8');
+        eleventyConfig.addTemplate('opengraph-preview.njk', ogPreviewTemplate, {  });
+
+        const cssTemplate = fs.readFileSync(path.resolve('elva/templates', 'opengraph-css.njk'), 'utf-8');
+        eleventyConfig.addTemplate('opengraph-css.njk', cssTemplate, { theme: eleventyConfig.globalData.settings.theme });
     }
 
     const robotsTemplate = fs.readFileSync(path.resolve('elva/templates/', 'robots.njk'), 'utf-8');

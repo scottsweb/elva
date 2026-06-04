@@ -1,22 +1,9 @@
 <html data-theme="dark">
 	<head>
-	<!-- set the URL to http://localhost:8080 with your 11ty server running for testing -->
-	<link href="{{ url }}/assets/css/opengraph.css" rel="stylesheet">
-	<style>
-		html {
-			background-color:var(--white);
-		}
-
-		body {
-			width: 1200px;
-			height: 630px;
-			min-height: auto;
-			padding: var(--space-2xl);
-			justify-content: space-between;
-		}
-		</style>
+	<!-- CSS is inlined by opengraph.js at build time to avoid dealing with urls -->
+	<link href="/assets/css/opengraph.css" rel="stylesheet">
 	</head>
-	<body>
+	<body class="opengraph-template">
         <div style="max-height: 100px;">
 			<svg fill="none" style="width:100%; height:100%;" height="242" viewBox="0 0 541 242" width="541" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-labelledby="intro-title" role="img">
 				<title id="intro-title">{{ title }}</title>

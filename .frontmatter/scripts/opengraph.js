@@ -1,26 +1,44 @@
 import fs from 'fs';
+import path from 'path';
 import slugify from '@sindresorhus/slugify';
-import nodeHtmlToImage from 'node-html-to-image';
+import nunjucks from '@11ty/nunjucks';
+import { chromium } from 'playwright';
 
+const { renderString } = nunjucks;
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const args = process.argv;
-const template = fs.readFileSync(args[1].replace('opengraph.js', 'opengraph-template.html'), 'utf8');
-const frontmatter = args[4] && typeof args[4] === "string" ? JSON.parse(args[4]) : null;
-let data = {...frontmatter, ...{ 'url': 'http://localhost:8080' }};
+const cssPath = path.join(args[2], 'dist/assets/css/opengraph.css');
+const css = fs.readFileSync(cssPath, 'utf8');
+const outputDir = args[2];
+const frontmatter = args[4] && typeof args[4] === 'string' ? JSON.parse(args[4]) : null;
+const template = fs.readFileSync(path.join(__dirname, 'opengraph-template.html'), 'utf8');
+
+let data = { ...frontmatter };
 
 // fix some potential encoding issues
 data.title && (data.title = decodeURIComponent(data.title));
-data.seo.title && (data.seo.title = decodeURIComponent(data.seo.title));
-data.seo.description && (data.seo.description = decodeURIComponent(data.seo.description));
+data.seo?.title && (data.seo.title = decodeURIComponent(data.seo.title));
+data.seo?.description && (data.seo.description = decodeURIComponent(data.seo.description));
 
-nodeHtmlToImage({
-    output: args[2] + '/content/assets/img/opengraph-' + slugify(data.title, {decamelize: false}) + '.png',
-    html: template,
-    content: data
-}).then(() => {
-    const output = JSON.stringify({
-        'frontmatter': {
-            'thumbnail': '/assets/img/opengraph-' + slugify(data.title, {decamelize: false}) + '.png'
-        }
-    });
-    console.log(output);
-}).catch(e => console.log(e?.message || e));
+const slug = slugify(data.title, { decamelize: false });
+const outputPath = `${outputDir}/content/assets/img/opengraph-${slug}.png`;
+
+const browser = await chromium.launch();
+const page = await browser.newPage();
+
+try {
+  await page.setViewportSize({ width: 1200, height: 630 });
+  await page.setContent(
+    (await renderString(template, data)).replace(
+      '<link href="/assets/css/opengraph.css" rel="stylesheet">',
+      `<style>${css}</style>`
+    ),
+    { waitUntil: 'networkidle' }
+  );
+  await page.screenshot({ path: outputPath, type: 'png' });
+  console.log(JSON.stringify({ frontmatter: { thumbnail: `/assets/img/opengraph-${slug}.png` } }));
+} catch (e) {
+  console.log(e?.message || e);
+} finally {
+  await browser.close();
+}
