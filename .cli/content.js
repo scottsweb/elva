@@ -3,6 +3,8 @@ import { success, error, warning, info, getLocaleData, LOCALES_PATH} from './uti
 import * as path from 'path';
 import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync } from 'fs';
 import { readdir } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+import matter from '@11ty/gray-matter';
 
 const addContent = async () => {
     const content = {};
@@ -138,4 +140,69 @@ const removeContent = async () => {
     success(`Deleted ${files.length} file(s) with slug '${slug}'.`);
 };
 
-export { addContent, removeContent };
+const regenerateOpengraph = async () => {
+    const cssPath = path.join(process.cwd(), 'dist/assets/css/opengraph.css');
+    if (!existsSync(cssPath)) {
+        error('CSS file not found: dist/assets/css/opengraph.css');
+        warning('Please build the site first (npm run dev) before running this tool again.');
+        return;
+    }
+
+    if (!await confirm({ message: 'This will regenerate all open graph images across all locales. Continue?' })) {
+        return;
+    }
+
+    const localesData = getLocaleData();
+    const globP = await import('glob');
+
+    let totalGenerated = 0;
+    let totalFailed = 0;
+
+    for (const locale of localesData.locales) {
+        const pattern = `content/${locale.value}/**/*.md`;
+        const files = await globP.glob(pattern, { ignore: ['content/**/_*/**/*'] });
+
+        if (files.length === 0) {
+            info(`No markdown files found in content/${locale.value}/`);
+            continue;
+        }
+
+        info(`Processing ${files.length} markdown file(s) in ${locale.value}...`);
+
+        for (const file of files) {
+            try {
+                const fileContent = readFileSync(file, 'utf-8');
+                const { data: fm, content } = matter(fileContent);
+
+                const fmJson = JSON.stringify(fm);
+                const result = spawnSync('node', ['.frontmatter/scripts/opengraph.js', process.cwd(), file, fmJson], {
+                    encoding: 'utf-8'
+                }).stdout?.trim();
+
+                if (result) {
+                    try {
+                        const output = JSON.parse(result);
+                        if (output.frontmatter?.thumbnail) {
+                            fm.thumbnail = output.frontmatter.thumbnail;
+                            const updatedContent = matter.stringify(content, fm);
+                            writeFileSync(file, updatedContent);
+                            totalGenerated++;
+                        }
+                    } catch {
+                        totalFailed++;
+                    }
+                }
+            } catch (e) {
+                totalFailed++;
+            }
+        }
+    }
+
+    let message = `Regenerated ${totalGenerated} open graph image(s).`;
+    if (totalFailed > 0) {
+        message += ` ${totalFailed} failed.`;
+    }
+    success(message);
+};
+
+export { addContent, removeContent, regenerateOpengraph };

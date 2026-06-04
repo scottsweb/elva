@@ -2,7 +2,7 @@
 
 import { select } from '@inquirer/prompts';
 import { addLanguage, removeLanguage, listLanguages, changeDefaultLanguage } from './languages.js';
-import { addContent, removeContent, } from './content.js';
+import { addContent, removeContent, regenerateOpengraph } from './content.js';
 import { setupSite, setupTheme } from './setup.js';
 import { error, info, handleExitError } from './utils.js';
 
@@ -71,6 +71,13 @@ if (args.length >= 2) {
                 case 'remove':
                     try {
                         await removeContent();
+                        process.exit(0);
+                    } catch (error) {
+                        handleExitError(error);
+                    }
+                case 'regenerate':
+                    try {
+                        await regenerateOpengraph();
                         process.exit(0);
                     } catch (error) {
                         handleExitError(error);
@@ -204,6 +211,7 @@ async function manageContent() {
     const actions = [
         { name: 'Add content', value: 'add' },
         { name: 'Remove content', value: 'remove' },
+        { name: 'Regenerate all open graph images', value: 'regenerate' },
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
     ];
@@ -221,6 +229,9 @@ async function manageContent() {
                     break;
                 case 'remove':
                     await removeContent();
+                    break;
+                case 'regenerate':
+                    await regenerateOpengraph();
                     break;
                 case 'back':
                     await runCLI();
