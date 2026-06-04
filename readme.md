@@ -146,6 +146,7 @@ You can use the CLI to manage languages and content directly from the command li
 
 - `npm run cli content add` - Add new content
 - `npm run cli content remove` - Remove existing content
+- `npm run cli content regenerate` - Regenerate all open graph images
 
 ### Updates
 
