@@ -3,7 +3,6 @@ import * as path from 'path';
 import { readFileSync, rmSync } from 'fs';
 
 export const LOCALES_PATH = path.join(process.cwd(), 'content', '_data', 'locales.json');
-export const TRANSLATIONS_PATH = path.join(process.cwd(), 'content', '_data', 'translations.json');
 export const SETTINGS_PATH = path.join(process.cwd(), 'content', '_data', 'settings.json');
 export const PACKAGE_PATH = path.join(process.cwd(), 'package.json')
 export const THEMES_PATH = path.join(process.cwd(), '/themes')

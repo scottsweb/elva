@@ -1,7 +1,7 @@
 import { input, confirm, rawlist } from '@inquirer/prompts';
-import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, cpSync, readdirSync} from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, cpSync, readdirSync, unlinkSync } from 'fs';
 import * as path from 'path';
-import { success, error, getLocaleData, LOCALES_PATH, TRANSLATIONS_PATH } from './utils.js';
+import { success, error, getLocaleData, LOCALES_PATH } from './utils.js';
 import colors from 'yoctocolors';
 
 const getLanguages = () => {
@@ -72,14 +72,25 @@ const addLanguage = async () => {
     const localesData = getLocaleData();
     const defaultLocale = localesData.defaultLocale;
 
-    // update content/_data/translations.json, copying the default strings
+    // create data files for new locale
+    const createLocaleFile = (type, content) => {
+        const dir = path.join(process.cwd(), 'content', '_data', type);
+        mkdirSync(dir, { recursive: true });
+        const filePath = path.join(dir, `${newLanguage.locale}.json`);
+        writeFileSync(filePath, JSON.stringify(content, null, 4));
+    };
+
     try {
-        let translations = JSON.parse(readFileSync(TRANSLATIONS_PATH, 'utf-8'));
-        const defaultLocaleTranslations = JSON.parse(JSON.stringify(translations[defaultLocale]));
-        translations[newLanguage.locale] = defaultLocaleTranslations;
-        writeFileSync(TRANSLATIONS_PATH, JSON.stringify(translations, null, 4));
+        const defaultTranslations = JSON.parse(readFileSync(path.join(process.cwd(), 'content', '_data', 'translations', `${defaultLocale}.json`), 'utf-8'));
+        createLocaleFile('translations', defaultTranslations);
     } catch (err) {
-        error(`Failed to update translations.json: ${err.message}.`);
+        error(`Failed to create translations file: ${err.message}.`);
+    }
+
+    try {
+        createLocaleFile('stopwords', []);
+    } catch (err) {
+        error(`Failed to create stopwords file: ${err.message}.`);
     }
 
     // ask if user wants to copy content from default locale
@@ -132,13 +143,18 @@ const removeLanguage = async () => {
         rmSync(contentFolderPath, { recursive: true });
     }
 
-    // remove translations stored in content/_data/translations.json
+    // remove per-locale files
+    const translationsPath = path.join(process.cwd(), 'content', '_data', 'translations', `${result}.json`);
+    const stopwordsPath = path.join(process.cwd(), 'content', '_data', 'stopwords', `${result}.json`);
     try {
-        let translations = JSON.parse(readFileSync(TRANSLATIONS_PATH, 'utf-8'));
-        delete translations[result];
-        writeFileSync(TRANSLATIONS_PATH, JSON.stringify(translations, null, 4));
+        if (existsSync(translationsPath)) {
+            unlinkSync(translationsPath);
+        }
+        if (existsSync(stopwordsPath)) {
+            unlinkSync(stopwordsPath);
+        }
     } catch (err) {
-        error(`Failed to remove ${result} from translations.json: ${err.message}.`);
+        error(`Failed to remove locale files for ${result}: ${err.message}.`);
     }
 
     // update locales.json
