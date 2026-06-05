@@ -4,17 +4,18 @@ import { select } from '@inquirer/prompts';
 import { addLanguage, removeLanguage, listLanguages, changeDefaultLanguage } from './languages.js';
 import { addContent, removeContent, regenerateOpengraph } from './content.js';
 import { setupSite, setupTheme } from './setup.js';
-import { error, info, handleExitError } from './utils.js';
+import { error, info, handleExitError, clean } from './utils.js';
 
 // parse command-line arguments
 const args = process.argv.slice(2);
 
-// check for shortcuts like "language add", "content remove" etc
-if (args.length >= 2) {
+// check for shortcuts like "language add", "content remove", "clean" etc
+if (args.length >= 1) {
     const [firstArg, secondArg, ...rest] = args;
     
     switch (firstArg) {
         case 'setup':
+            if (!secondArg) break;
             switch (secondArg) {
                 case 'site':
                     try {
@@ -33,6 +34,7 @@ if (args.length >= 2) {
             }
         case 'language':
         case 'languages':
+            if (!secondArg) break;
             switch (secondArg) {
                 case 'add':
                     try {
@@ -60,6 +62,7 @@ if (args.length >= 2) {
                     }
             }
         case 'content':
+            if (!secondArg) break;
             switch (secondArg) {
                 case 'add':
                     try {
@@ -82,6 +85,13 @@ if (args.length >= 2) {
                     } catch (error) {
                         handleExitError(error);
                     }
+            }
+        case 'clean':
+            try {
+                clean();
+                process.exit(0);
+            } catch (error) {
+                handleExitError(error);
             }
         default:
             try {

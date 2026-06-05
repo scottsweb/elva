@@ -1,6 +1,6 @@
 import colors from 'yoctocolors';
 import * as path from 'path';
-import { readFileSync } from 'fs';
+import { readFileSync, rmSync } from 'fs';
 
 export const LOCALES_PATH = path.join(process.cwd(), 'content', '_data', 'locales.json');
 export const TRANSLATIONS_PATH = path.join(process.cwd(), 'content', '_data', 'translations.json');
@@ -47,4 +47,12 @@ export const handleExitError = (error) => {
         console.error(error);
         process.exit(1);
     }
+}
+
+export const clean = () => {
+    // because the output folder can be customised in 11ty, we need to check the value for our clean up script
+    const match = readFileSync('.eleventy.js', 'utf-8').match(/dir:\s*\{[^}]*output:\s*['"]([^'"]+)['"]/s);
+    const outputDir = match?.[1] ?? 'dist';
+    info(`Deleting ${outputDir} folder...`);
+    rmSync(outputDir, { recursive: true, force: true });
 }
