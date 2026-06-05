@@ -142,13 +142,13 @@ const removeContent = async () => {
 
 const regenerateOpengraph = async () => {
     const cssPath = path.join(process.cwd(), 'dist/assets/css/opengraph.css');
+    
     if (!existsSync(cssPath)) {
-        error('CSS file not found: dist/assets/css/opengraph.css');
-        warning('Please build the site first (npm run dev) before running this tool again.');
+        error('CSS file not found: dist/assets/css/opengraph.css. Please build the site first (npm run dev) before running this tool again.');
         return;
     }
 
-    if (!await confirm({ message: 'This will regenerate all open graph images across all locales. Continue?' })) {
+    if (!await confirm({ message: 'This will regenerate all open graph images. Continue?' })) {
         return;
     }
 
