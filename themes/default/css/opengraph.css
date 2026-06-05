@@ -3,9 +3,9 @@ html {
 }
 
 body { 
-    width:1200px; 
-    height:630px; 
-    min-height:auto; 
+    width: 1200px; 
+    height: 630px; 
+    min-height: auto; 
     padding:var(--space-2xl); 
-    justify-content:space-between; 
+    justify-content: space-between; 
 }

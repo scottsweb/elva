@@ -141,10 +141,10 @@ const removeContent = async () => {
 };
 
 const regenerateOpengraph = async () => {
-    const cssPath = path.join(process.cwd(), 'dist/assets/css/opengraph.css');
-    
-    if (!existsSync(cssPath)) {
-        error('CSS file not found: dist/assets/css/opengraph.css. Please build the site first (npm run dev) before running this tool again.');
+    try {
+        await fetch('http://localhost:8080', { signal: AbortSignal.timeout(3000) });
+    } catch {
+        error('Dev server not running at localhost:8080. Please start it with npm run dev before running this tool.');
         return;
     }
 

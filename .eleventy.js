@@ -84,16 +84,14 @@ export default async function(eleventyConfig) {
     eleventyConfig.addWatchTarget('./content/assets');
     eleventyConfig.addWatchTarget('./themes/**/*.{css,js}');
     eleventyConfig.addWatchTarget('./elva/templates/*', { resetConfig: true });
+    eleventyConfig.addWatchTarget(`./themes/${eleventyConfig.globalData.settings.theme}/_layouts/opengraph-preview.njk`, { resetConfig: true });
 
     // Virtual Templates ------------------------------
 
     // development only css bundle for open graph generation
     if (process.env.ELEVENTY_RUN_MODE && process.env.ELEVENTY_RUN_MODE !== 'build') {
-        const ogPreviewTemplate = fs.readFileSync(path.resolve('elva/templates/', 'opengraph-preview.njk'), 'utf-8');
-        eleventyConfig.addTemplate('opengraph-preview.njk', ogPreviewTemplate, {  });
-
-        const cssTemplate = fs.readFileSync(path.resolve('elva/templates', 'opengraph-css.njk'), 'utf-8');
-        eleventyConfig.addTemplate('opengraph-css.njk', cssTemplate, { theme: eleventyConfig.globalData.settings.theme });
+        const ogPreviewTemplate = fs.readFileSync(path.resolve(`themes/${eleventyConfig.globalData.settings.theme}/_layouts/`, 'opengraph-preview.njk'), 'utf-8');
+        eleventyConfig.addTemplate('opengraph-preview.njk', ogPreviewTemplate, { theme: eleventyConfig.globalData.settings.theme });
     }
 
     const robotsTemplate = fs.readFileSync(path.resolve('elva/templates/', 'robots.njk'), 'utf-8');

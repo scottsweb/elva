@@ -1,12 +1,42 @@
+---
+permalink: opengraph-preview.html
+eleventyExcludeFromCollections: true
+title: Example title for my content
+seo:
+  description: A description about my example content
+---
+<!--
+    defaults
+    ---
+    set default frontmatter values above as fallbacks. These are rendered by Nunjucks at build time
+    and used when no ?fm= query parameter is provided.
+    
+    query params:
+    the CLI and front matter cmss pass frontmatter via ?fm=<URL-encoded-JSON>. alpine.js merges this
+    on top of the frontmatter defaults using Object.assign(), so query params win.
+    
+    example URL: /opengraph-preview.html?fm=%7B%22title%22%3A%22Override%22%7D
+    decoded:    /opengraph-preview.html?fm={"title":"Override"}
+    
+    extending:
+    any frontmatter field can be displayed with Alpine:
+      <span x-text="ogData.seo.description">{{ seo.description }}</span>
+    
+    The ogData object contains all frontmatter keys plus any query param overrides.
+-->
 <html data-theme="dark">
 	<head>
-	<!-- CSS is inlined by opengraph.js at build time to avoid dealing with urls -->
-	<link href="/assets/css/opengraph.css" rel="stylesheet">
+        <!-- styles -->
+        {% css %}{% include '../themes/' + theme + '/css/reset.css' %}{% endcss -%}
+        {% css %}{% include '../themes/' + theme + '/css/variables.css' %}{% endcss -%}
+        {% css %}{% include '../themes/' + theme + '/css/styles.css' %}{% endcss -%}
+        {% css %}{% include '../themes/' + theme + '/css/opengraph.css' %}{% endcss -%}
+	    <style>{% getBundle 'css' %}</style>
 	</head>
-	<body class="opengraph-template">
+	<body class="opengraph-template" x-data="{ ogData: (function() { const p = new URLSearchParams(window.location.search); const j = p.get('fm'); try { return Object.assign({ title: '{{ title }}' }, JSON.parse(decodeURIComponent(j))) } catch(e) { return { title: '{{ title }}' } } })() }">
         <div style="max-height: 100px;">
 			<svg fill="none" style="width:100%; height:100%;" height="242" viewBox="0 0 541 242" width="541" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-labelledby="intro-title" role="img">
-				<title id="intro-title">{{ title }}</title>
+				<title id="intro-title" x-text="ogData.title"></title>
 				<clipPath id="a"><path d="m0 0h541v242h-541z"/></clipPath>
 				<clipPath id="b"><path d="m0 0h541v242h-541z"/></clipPath>
 				<g clip-path="url(#a)">
@@ -20,7 +50,11 @@
 			</svg>
         </div>
 		<h1>
-        	{{title}} 
+         	<span x-text="ogData.title">{{ title }}</span>
         </h1>
+
+        <!-- scripts -->
+        {% js 'defer' %}{% include '../node_modules/alpinejs/dist/cdn.js' %}{% endjs -%}
+        <script src="{% getBundleFileUrl 'js', 'defer' %}?v={% version %}" defer></script>
 	</body>
 </html>
