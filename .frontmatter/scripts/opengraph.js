@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import mime from 'mime-types';
 import slugify from '@sindresorhus/slugify';
 import nunjucks from '@11ty/nunjucks';
 import { chromium } from 'playwright';
@@ -12,7 +13,20 @@ if (!outputDir) {
     process.exit(1);
 }
 
-const css = fs.readFileSync(path.join(outputDir, 'dist/assets/css/opengraph.css'), 'utf8');
+// grab bundled css and inline fonts as base64 so headless Chromium can render them
+const css = fs.readFileSync(path.join(outputDir, 'dist/assets/css/opengraph.css'), 'utf8').replace(
+  /url\(\s*['"]?(\/assets\/fonts\/[^)'"]+)['"]?\s*\)/g,
+  (_, url) => {
+    try {
+      const font = fs.readFileSync(path.join(outputDir, 'dist', url));
+      const type = mime.lookup(path.extname(url).slice(1)) || 'application/octet-stream';
+      return `url("data:${type};base64,${font.toString('base64')}")`;
+    } catch {
+      return `url('${url}')`;
+    }
+  }
+);
+
 const frontmatter = args[4] && typeof args[4] === 'string' ? JSON.parse(args[4]) : null;
 const template = fs.readFileSync(new URL('opengraph-template.html', import.meta.url), 'utf8');
 
