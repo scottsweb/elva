@@ -18,6 +18,7 @@ Features include:
 
 * Optimised CSS, JS and HTML
 * Responsive images that supports lazy loading and modern formats (avif, webp)
+* [Critical CSS](https://github.com/11ty/eleventy-plugin-bundle) using 11ty bundle
 * Support for the [Photon CDN](https://developer.wordpress.com/docs/photon/) (can be turned on via settings)
 
 ### Accessibility things
@@ -38,24 +39,22 @@ Features include:
 
 ### Other things
 
-* A CLI for managing common tasks (`npm run cli`)
+* A CLI for managing languages, setup and common tasks (`npm run cli`)
 * [Front Matter CMS](https://frontmatter.codes/)
 * Open graph image generation from within Front Matter CMS (dev server must be running)
 * Draft support
 * [Syntax highlighting](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
 * [Simplified embeds for YouTube, Vimeo etc](https://github.com/gfscott/eleventy-plugin-embed-everything)
-* Plenty of helpful filters and functions
+* Plenty of helpful filters and functions (see `/elva/filters/*`)
 * [Alpine.js](https://alpinejs.dev/)
 * [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/)
 
 ### Still to come:
 
-- [x] [Critical CSS](https://github.com/11ty/eleventy-plugin-bundle) or per collection or per page CSS ([1](https://www.silvestar.codes/articles/extracting-and-using-critical-css-on-my-eleventy-site/))
 - [ ] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
-- [x] [Support markdown style images](https://nhoizey.github.io/eleventy-plugin-images-responsiver/) ([1](https://www.11ty.dev/docs/plugins/image/#eleventy-transform))
 - [ ] Profile verification / .well-known support for the Fediverse and Nostr ([1](https://implicit.computer/blog/activitypub-1/))
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js) ([1](https://github.com/madrilene/eleventy-i18n/blob/main/netlify.toml))
 - [ ] Cleaner language selector and default language (that sets homepage)
@@ -108,22 +107,22 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 ## Personalisation Checklist
 
 - [ ] In `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging` (under `Global Settings`). Make sure these environment variables are set in staging and production and tweak as necessary
-- [ ] Configure your sites settings in `/content/_data/settings.json` or in Front Matter CMS (under Data)
-- [ ] Add your chosen languages ([the demo site will soon guide you through this](https://elva.scott.ee/en/writing/adding-additional-languages/))
+- [ ] Configure your sites settings with the CLI `npm run cli settings site`, manually by editing `/content/_data/settings.json` or in Front Matter CMS (under Data)
+- [ ] Configure site languages via the CLI `npm run cli`, under the `languages` sub-menu. ([The demo site will soon guide you through this](https://elva.scott.ee/en/writing/adding-additional-languages/))
 - [ ] Configure your sites navigation in `/content/_data/navigation.js`
 - [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
 - [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/en/writing/frontmatter/) in the UI
-- [ ] Setup a custom template for your open graph images (`.frontmatter/scripts/opengraph-template.html`)
-- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme and set the theme variable in `.eleventy.js` (~ line 72) to the name of your new themes folder.
+- [ ] Setup a custom template for your open graph images (`/themes/{theme}/_layouts/opengraph-preview.njk`)
+- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme and set the theme in `/content/_data/settings.json` to the name of your new themes folder. We also have support for this in the cli `npm run cli settings theme` although it doesn't setup a new theme for you just yet.
 
 ### Optional
 
 - [ ] Set your preferred image sizes and formats in `/elva/config/image.js`
 - [ ] If you add more front matter, you may wish to edit `.frontmatter/frontmatter.json` to add [Front Matter CMS](https://frontmatter.codes/) support
-- [ ] You many not need [Alpine.js](https://alpinejs.dev/) which can be removed from `/themes/default/_layouts/base.njk`
 - [ ] Use [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/) to grab some API data
 - [ ] If you enable Photon CDN support [familiarise yourself with these limitations](https://jetpack.com/support/site-accelerator/#limitations)
 - [ ] [Enable build caching for your host](https://developers.cloudflare.com/pages/configuration/build-caching/)
+ 
 ## CLI
 
 You can use the CLI to manage languages and content directly from the command line. Start with `npm run cli`. The CLI defaults to an interactive menu, but you can also use shortcuts for common tasks.
@@ -148,12 +147,12 @@ You can use the CLI to manage languages and content directly from the command li
 - `npm run cli content remove` - Remove existing content
 - `npm run cli content regenerate` - Regenerate all open graph images
 
-### Updates
+## Updates
 
-#### 4.0.0
+### 4.0.0
 
 With 4, you'll find a a new command line interface (documented above). This should make getting started and managing languages much easier. There is also a new search index you can use to build a custom search component, an example of that will be released soon.
 
-#### 3.0.0
+### 3.0.0
 
 As of version 3.0 of elva, there are now separate folders for `/themes`, your sites `/content` and elva related stuff `/elva`. The idea is to make upgrades of elva simpler by seperating frequently changed things (the theme and content) from the guts of the project. Hopefully this is helpful, but please open an issue if you would like to see further improvements made. 
