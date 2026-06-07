@@ -40,6 +40,7 @@ Features include:
 ### Other things
 
 * A CLI for managing languages, setup and common tasks (`npm run cli`)
+* Search API (see `dist/api/search.json`). Any content tagged `_search` will appear in the search index
 * [Front Matter CMS](https://frontmatter.codes/)
 * Open graph image generation from within Front Matter CMS (dev server must be running)
 * Draft support
