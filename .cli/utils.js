@@ -4,6 +4,7 @@ import { readFileSync, rmSync } from 'fs';
 
 export const LOCALES_PATH = path.join(process.cwd(), 'content', '_data', 'locales.json');
 export const SETTINGS_PATH = path.join(process.cwd(), 'content', '_data', 'settings.json');
+export const BLOGROLL_PATH = path.join(process.cwd(), 'content', '_data', 'blogroll.json');
 export const PACKAGE_PATH = path.join(process.cwd(), 'package.json')
 export const THEMES_PATH = path.join(process.cwd(), '/themes')
 

@@ -148,6 +148,12 @@ You can use the CLI to manage languages and content directly from the command li
 - `npm run cli content remove` - Remove existing content
 - `npm run cli content regenerate` - Regenerate all open graph images
 
+#### Blogroll Commands
+
+- `npm run cli blogroll list` - List all blogroll entries
+- `npm run cli blogroll add` - Add a new blogroll entry
+- `npm run cli blogroll remove` - Remove blogroll entries
+
 ## Updates
 
 ### 4.0.0

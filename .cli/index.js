@@ -3,6 +3,7 @@
 import { select } from '@inquirer/prompts';
 import { addLanguage, removeLanguage, listLanguages, changeDefaultLanguage } from './languages.js';
 import { addContent, removeContent, regenerateOpengraph } from './content.js';
+import { addBlogroll, listBlogroll, removeBlogroll } from './blogroll.js';
 import { setupSite, setupTheme } from './setup.js';
 import { error, info, handleExitError, clean } from './utils.js';
 
@@ -86,6 +87,31 @@ if (args.length >= 1) {
                         handleExitError(error);
                     }
             }
+        case 'blogroll':
+            if (!secondArg) break;
+            switch (secondArg) {
+                case 'list':
+                    try {
+                        listBlogroll();
+                        process.exit(0);
+                    } catch (error) {
+                        handleExitError(error);
+                    }
+                case 'add':
+                    try {
+                        await addBlogroll();
+                        process.exit(0);
+                    } catch (error) {
+                        handleExitError(error);
+                    }
+                case 'remove':
+                    try {
+                        await removeBlogroll();
+                        process.exit(0);
+                    } catch (error) {
+                        handleExitError(error);
+                    }
+            }
         case 'clean':
             try {
                 clean();
@@ -111,6 +137,7 @@ async function runCLI() {
                 { name: 'Settings', value: 'settings' },
                 { name: 'Languages', value: 'languages' },
                 { name: 'Content', value: 'content' },
+                { name: 'Blogroll', value: 'blogroll' },
                 { name: '⏹ Exit', value: 'exit' }
             ]
         });
@@ -124,6 +151,9 @@ async function runCLI() {
                 break;
             case 'content':
                 await manageContent();
+                break;
+            case 'blogroll':
+                await manageBlogroll();
                 break;
             case 'exit':
                 info('Goodbye!');
@@ -221,7 +251,7 @@ async function manageContent() {
     const actions = [
         { name: 'Add content', value: 'add' },
         { name: 'Remove content', value: 'remove' },
-        { name: 'Regenerate all open graph images', value: 'regenerate' },
+        { name: 'Regenerate open graph images', value: 'regenerate' },
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
     ];
@@ -242,6 +272,46 @@ async function manageContent() {
                     break;
                 case 'regenerate':
                     await regenerateOpengraph();
+                    break;
+                case 'back':
+                    await runCLI();
+                    break;
+                case 'exit':
+                    info('Goodbye!');
+                    process.exit(0);
+            }
+        } catch (error) {
+            handleExitError(error);
+        }
+    }
+}
+
+// sub-menu: blogroll
+ async function manageBlogroll() {
+    const actions = [
+        { name: 'List', value: 'list' },
+        { name: 'Add to blogroll', value: 'add' },
+        { name: 'Remove from blogroll', value: 'remove' },
+        { name: '⏴ Back', value: 'back' },
+        { name: '⏹ Exit', value: 'exit' }
+    ];
+    
+    while (true) {
+        try {
+            const action = await select({
+                message: 'Blogroll:',
+                choices: actions
+            });
+
+            switch (action) {
+                case 'list':
+                    listBlogroll();
+                    break;
+                case 'add':
+                    await addBlogroll();
+                    break;
+                case 'remove':
+                    await removeBlogroll();
                     break;
                 case 'back':
                     await runCLI();
