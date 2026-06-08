@@ -58,6 +58,7 @@
         <!-- everything else -->
         <meta name="generator" content="{{ eleventy.generator }}">
         <link rel="manifest" href="{{ "/site.webmanifest" | locale_url | htmlBaseUrl(settings.url) }}">
+        <meta name="color-scheme" content="light dark">
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="{{ settings.themeColorLight }}">
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="{{ settings.themeColorDark }}">
         {% if settings.isStaging or seo.noIndex %}<meta name="robots" content="noindex, nofollow">{% endif %}
