@@ -101,7 +101,7 @@ const removeBlogroll = async () => {
     const filtered = blogroll.filter((_, index) => !selectedSet.has(index));
     writeFileSync(BLOGROLL_PATH, JSON.stringify(filtered, null, 4) + '\n');
 
-    success(`Removed ${selected.length} links from the blogroll.`);
+    success(`Removed ${selected.length} link(s) from the blogroll.`);
 };
 
 export { listBlogroll, addBlogroll, removeBlogroll };

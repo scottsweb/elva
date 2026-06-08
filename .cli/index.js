@@ -287,7 +287,7 @@ async function manageContent() {
 }
 
 // sub-menu: blogroll
- async function manageBlogroll() {
+async function manageBlogroll() {
     const actions = [
         { name: 'List', value: 'list' },
         { name: 'Add to blogroll', value: 'add' },
