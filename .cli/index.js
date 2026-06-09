@@ -11,164 +11,121 @@ import { error, info, handleExitError, clean } from './utils.js';
 // parse command-line arguments
 const args = process.argv.slice(2);
 
-// check for shortcuts like "language add", "content remove", "clean" etc
+// helper to run a command with error handling
+const runCommand = async (fn) => {
+    try {
+        await fn();
+        process.exit(0);
+    } catch (error) {
+        handleExitError(error);
+    }
+};
+
+// command registry for CLI shortcuts
+const commands = {
+    setup: {
+        site: setupSite,
+        theme: setupTheme
+    },
+    language: {
+        add: addLanguage,
+        remove: removeLanguage,
+        list: listLanguages,
+        default: changeDefaultLanguage
+    },
+    languages: {
+        add: addLanguage,
+        remove: removeLanguage,
+        list: listLanguages,
+        default: changeDefaultLanguage
+    },
+    content: {
+        add: addContent,
+        remove: removeContent,
+        regenerate: regenerateOpengraph
+    },
+    blogroll: {
+        list: listBlogroll,
+        add: addBlogroll,
+        remove: removeBlogroll
+    },
+    collection: {
+        list: listCollections,
+        add: addCollection,
+        remove: removeCollection,
+        edit: editCollection
+    },
+    collections: {
+        list: listCollections,
+        add: addCollection,
+        remove: removeCollection,
+        edit: editCollection
+    }
+};
+
+// generate command descriptions from registry keys
+const commandDescriptions = Object.fromEntries(
+    Object.entries(commands).map(([key, value]) => [key, Object.keys(value).join(', ')])
+);
+
+// handle CLI shortcuts
 if (args.length >= 1) {
     const [firstArg, secondArg, ...rest] = args;
     
-    switch (firstArg) {
-        case 'setup':
-            if (!secondArg) break;
-            switch (secondArg) {
-                case 'site':
-                    try {
-                        await setupSite();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-                case 'theme':
-                    try {
-                        await setupTheme();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-            }
-        case 'language':
-        case 'languages':
-            if (!secondArg) break;
-            switch (secondArg) {
-                case 'add':
-                    try {
-                        await addLanguage();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-                case 'remove':
-                    try {
-                        await removeLanguage();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-                case 'list':
-                    listLanguages();
-                    process.exit(0);
-                case 'default':
-                    try {
-                        await changeDefaultLanguage();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-            }
-        case 'content':
-            if (!secondArg) break;
-            switch (secondArg) {
-                case 'add':
-                    try {
-                        await addContent();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-                case 'remove':
-                    try {
-                        await removeContent();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-                case 'regenerate':
-                    try {
-                        await regenerateOpengraph();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-            }
-        case 'blogroll':
-            if (!secondArg) break;
-            switch (secondArg) {
-                case 'list':
-                    try {
-                        listBlogroll();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-                case 'add':
-                    try {
-                        await addBlogroll();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-                case 'remove':
-                    try {
-                        await removeBlogroll();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-            }
-        case 'collections':
-            if (!secondArg) break;
-            switch (secondArg) {
-                case 'list':
-                    try {
-                        listCollections();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-                case 'add':
-                    try {
-                        await addCollection();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-                case 'edit':
-                    try {
-                        await editCollection();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-                case 'remove':
-                    try {
-                        await removeCollection();
-                        process.exit(0);
-                    } catch (error) {
-                        handleExitError(error);
-                    }
-            }
-        case 'clean':
-            try {
-                clean();
-                process.exit(0);
-            } catch (error) {
-                handleExitError(error);
-            }
-        case 'sync-collections':
-            try {
-                syncTemplates();
-                process.exit(0);
-            } catch (error) {
-                handleExitError(error);
-            }
-        default:
-            try {
-                await runCLI();
-                process.exit(0);
-            } catch (error) {
-                handleExitError(error);
-            }
+    // single-argument commands
+    if (firstArg === 'clean') {
+        try { clean(); process.exit(0); }
+        catch (error) { handleExitError(error); }
+    } else if (firstArg === 'sync-collections') {
+        try { syncTemplates(); process.exit(0); }
+        catch (error) { handleExitError(error); }
+    } else if (commands[firstArg]) {
+        // two-argument commands
+        if (!secondArg) {
+            error(`Missing subcommand for '${firstArg}'. Available commands: ${commandDescriptions[firstArg]}`);
+            process.exit(1);
+        }
+        
+        const handler = commands[firstArg][secondArg];
+        if (handler) {
+            await runCommand(handler);
+        } else {
+            error(`Unknown command: '${firstArg} ${secondArg}'. Available commands: ${commandDescriptions[firstArg]}`);
+            process.exit(1);
+        }
+    } else {
+        // unknown command - fall through to interactive menu
+        await runCLI();
     }
 }
 
+// generic sub-menu manager
+async function manageMenu(message, actions, handlers) {
+    while (true) {
+        try {
+            const action = await select({
+                message,
+                choices: actions
+            });
+
+            if (action === 'back') {
+                await runCLI();
+                return;
+            }
+            if (action === 'exit') {
+                info('Goodbye!');
+                process.exit(0);
+            }
+            if (handlers[action]) {
+                await handlers[action]();
+            }
+        } catch (error) {
+            handleExitError(error);
+        }
+    }
+}
+
+// interactive CLI menu
 async function runCLI() {
     try {
         const choice = await select({
@@ -210,7 +167,7 @@ async function runCLI() {
     }
 }
 
-// sub-menu: settings
+// sub-menu handlers with their actions
 async function manageSettings() {
     const actions = [
         { name: 'Site setup', value: 'setup' },
@@ -218,35 +175,13 @@ async function manageSettings() {
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
     ];
-
-    while (true) {
-        try {
-            const action = await select({
-                message: 'Settings:',
-                choices: actions
-            });
-
-            switch (action) {
-                case 'setup':
-                    await setupSite();
-                    break;
-                case 'theme':
-                    await setupTheme();
-                    break;
-                case 'back':
-                    await runCLI();
-                    break;
-                case 'exit':
-                    info('Goodbye!');
-                    process.exit(0);
-            }
-        } catch (error) {
-            handleExitError(error);
-        }
-    }
+    const handlers = {
+        setup: setupSite,
+        theme: setupTheme
+    };
+    await manageMenu('Settings:', actions, handlers);
 }
 
-// sub-menu: languages
 async function manageLanguages() {
     const actions = [
         { name: 'List languages', value: 'list' },
@@ -256,41 +191,15 @@ async function manageLanguages() {
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
     ];
-    
-    while (true) {
-        try {
-            const action = await select({
-                message: 'Languages:',
-                choices: actions
-            });
-
-            switch (action) {
-                case 'add':
-                    await addLanguage();
-                    break;
-                case 'remove':
-                    await removeLanguage();
-                    break;
-                case 'list':
-                    listLanguages();
-                    break;
-                case 'default':
-                    await changeDefaultLanguage();
-                    break;
-                case 'back':
-                    await runCLI();
-                    break;
-                case 'exit':
-                    info('Goodbye!');
-                    process.exit(0);
-            }
-        } catch (error) {
-            handleExitError(error);
-        }
-    }
+    const handlers = {
+        add: addLanguage,
+        remove: removeLanguage,
+        list: listLanguages,
+        default: changeDefaultLanguage
+    };
+    await manageMenu('Languages:', actions, handlers);
 }
 
-// sub-menu: content
 async function manageContent() {
     const actions = [
         { name: 'Add content', value: 'add' },
@@ -299,38 +208,14 @@ async function manageContent() {
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
     ];
-    
-    while (true) {
-        try {
-            const action = await select({
-                message: 'Content:',
-                choices: actions
-            });
-
-            switch (action) {
-                case 'add':
-                    await addContent();
-                    break;
-                case 'remove':
-                    await removeContent();
-                    break;
-                case 'regenerate':
-                    await regenerateOpengraph();
-                    break;
-                case 'back':
-                    await runCLI();
-                    break;
-                case 'exit':
-                    info('Goodbye!');
-                    process.exit(0);
-            }
-        } catch (error) {
-            handleExitError(error);
-        }
-    }
+    const handlers = {
+        add: addContent,
+        remove: removeContent,
+        regenerate: regenerateOpengraph
+    };
+    await manageMenu('Content:', actions, handlers);
 }
 
-// sub-menu: blogroll
 async function manageBlogroll() {
     const actions = [
         { name: 'List', value: 'list' },
@@ -339,38 +224,14 @@ async function manageBlogroll() {
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
     ];
-    
-    while (true) {
-        try {
-            const action = await select({
-                message: 'Blogroll:',
-                choices: actions
-            });
-
-            switch (action) {
-                case 'list':
-                    listBlogroll();
-                    break;
-                case 'add':
-                    await addBlogroll();
-                    break;
-                case 'remove':
-                    await removeBlogroll();
-                    break;
-                case 'back':
-                    await runCLI();
-                    break;
-                case 'exit':
-                    info('Goodbye!');
-                    process.exit(0);
-            }
-        } catch (error) {
-            handleExitError(error);
-        }
-    }
+    const handlers = {
+        list: listBlogroll,
+        add: addBlogroll,
+        remove: removeBlogroll
+    };
+    await manageMenu('Blogroll:', actions, handlers);
 }
 
-// sub-menu: collections
 async function manageCollections() {
     const actions = [
         { name: 'List collections', value: 'list' },
@@ -380,38 +241,13 @@ async function manageCollections() {
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
     ];
-    
-    while (true) {
-        try {
-            const action = await select({
-                message: 'Collections:',
-                choices: actions
-            });
-
-            switch (action) {
-                case 'list':
-                    listCollections();
-                    break;
-                case 'add':
-                    await addCollection();
-                    break;
-                case 'remove':
-                    await removeCollection();
-                    break;
-                case 'edit':
-                    await editCollection();
-                    break;
-                case 'back':
-                    await runCLI();
-                    break;
-                case 'exit':
-                    info('Goodbye!');
-                    process.exit(0);
-            }
-        } catch (error) {
-            handleExitError(error);
-        }
-    }
+    const handlers = {
+        list: listCollections,
+        add: addCollection,
+        remove: removeCollection,
+        edit: editCollection
+    };
+    await manageMenu('Collections:', actions, handlers);
 }
 
 // start the CLI

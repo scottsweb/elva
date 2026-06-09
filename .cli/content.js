@@ -1,7 +1,7 @@
 import { input, rawlist, checkbox, confirm } from '@inquirer/prompts';
-import { success, error, warning, info, getLocaleData, LOCALES_PATH} from './utils.js';
+import { success, error, warning, info, getLocaleData, LOCALES_PATH, COLLECTIONS_PATH } from './utils.js';
 import * as path from 'path';
-import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync, globSync } from 'fs';
 import { readdir } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import matter from '@11ty/gray-matter';
@@ -10,15 +10,10 @@ const addContent = async () => {
     const content = {};
     const localesData = getLocaleData();
     
-    // get available content types from actual folders
-    const contentDir = `content/${localesData.defaultLocale}/`;
-    const contentTypes = await readdir(contentDir, { withFileTypes: true });
-    
-    // filter to only return child folders (and none starting with _)
-    const contentTypeList = contentTypes
-        .filter((folder) => folder.isDirectory())
-        .filter((folder) => !folder.name.startsWith('_') && folder.name != 'content')
-        .map((folder) => ({ name: folder.name, value: folder.name }))
+    // get available content types from content-types.json
+   const collections = JSON.parse(readFileSync(COLLECTIONS_PATH, 'utf-8'));
+    const contentTypeList = Object.entries(collections)
+        .map(([name, config]) => ({ name: `${config.label} (${name})`, value: name }))
         .sort((a, b) => a.name.localeCompare(b.name));
     
     content.contentType = await rawlist({
@@ -108,11 +103,10 @@ const removeContent = async () => {
         required: true
     });
 
-    // glob through all markdown files in the content folder looking for a match
+   // glob through all markdown files in the content folder looking for a match
     slug = path.parse(slug).name;
-    const globP = await import('glob');
     const pattern = `content/**/${slug}.md`;
-    const files = await globP.glob(pattern);
+    const files = globSync(pattern, { cwd: process.cwd() });
 
     if (files.length === 0) {
         error(`No files found matching slug '${slug}'`);
@@ -153,14 +147,13 @@ const regenerateOpengraph = async () => {
     }
 
     const localesData = getLocaleData();
-    const globP = await import('glob');
 
     let totalGenerated = 0;
     let totalFailed = 0;
 
     for (const locale of localesData.locales) {
         const pattern = `content/${locale.value}/**/*.md`;
-        const files = await globP.glob(pattern, { ignore: ['content/**/_*/**/*'] });
+        const files = globSync(pattern, { cwd: process.cwd(), ignore: ['content/**/_*/**/*'] });
 
         if (files.length === 0) {
             info(`No markdown files found in content/${locale.value}/`);
