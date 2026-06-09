@@ -1,9 +1,11 @@
 import collections from '../../_data/content-types.json' with { type: 'json' };
 
 const collectionName = import.meta.url.split('/').at(-2);
+const locale = import.meta.url.split('/').at(-3);
 const config = collections[collectionName];
 
 export default {
+    lang: locale,
     layout: config.layout,
     tags: [`_${collectionName}`, ...(config.searchable ? ['_search'] : [])],
     permalink: function(data) {
@@ -16,5 +18,10 @@ export default {
 
         let collectionSlug = config.locales?.[data.lang] || config.prefix || collectionName;
         return `${prefix}/${collectionSlug}/${this.slugify(data.seo?.slug || data.page.fileSlug)}/`;
-    }
+    },
+    eleventyComputed: {
+        page: {
+            lang: () => locale
+        }
+    },
 }
