@@ -4,7 +4,7 @@ import { select } from '@inquirer/prompts';
 import { addLanguage, removeLanguage, listLanguages, changeDefaultLanguage } from './languages.js';
 import { addContent, removeContent, regenerateOpengraph } from './content.js';
 import { addBlogroll, listBlogroll, removeBlogroll } from './blogroll.js';
-import { listCollections, addCollection, removeCollection, editCollection } from './collections.js';
+import { listCollections, addCollection, removeCollection, editCollection, syncTemplates } from './collections.js';
 import { setupSite, setupTheme } from './setup.js';
 import { error, info, handleExitError, clean } from './utils.js';
 
@@ -148,6 +148,13 @@ if (args.length >= 1) {
         case 'clean':
             try {
                 clean();
+                process.exit(0);
+            } catch (error) {
+                handleExitError(error);
+            }
+        case 'sync-collections':
+            try {
+                syncTemplates();
                 process.exit(0);
             } catch (error) {
                 handleExitError(error);

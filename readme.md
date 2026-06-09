@@ -154,6 +154,14 @@ You can use the CLI to manage languages and content directly from the command li
 - `npm run cli blogroll add` - Add a new blogroll entry
 - `npm run cli blogroll remove` - Remove blogroll entries
 
+#### Collections Commands
+
+- `npm run cli collections list` - List all collections
+- `npm run cli collections add` - Add a new collection
+- `npm run cli collections remove` - Remove a collection
+- `npm run cli collections edit` - Edit a collection
+- `npm run cli sync-collections` - Sync the `collection.11tydata.js` template to all collections
+
 ## Updates
 
 ### 4.0.0

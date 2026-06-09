@@ -258,4 +258,24 @@ const editCollection = async () => {
     success(`Collection '${config.label} (${choice})' has been updated.`);
 };
 
-export { listCollections, addCollection, removeCollection, editCollection };
+const syncTemplates = () => {
+    const localesData = getLocaleData();
+    const collections = getCollections();
+    const templateContent = readFileSync(COLLECTIONS_TEMPLATE_PATH, 'utf-8');
+    let syncedCount = 0;
+
+    for (const [collectionName] of Object.entries(collections)) {
+        for (const locale of localesData.locales) {
+            const collectionDir = path.join(process.cwd(), 'content', locale.value, collectionName);
+            if (existsSync(collectionDir)) {
+                const filePath = path.join(collectionDir, `${collectionName}.11tydata.js`);
+                writeFileSync(filePath, templateContent);
+                syncedCount++;
+            }
+        }
+    }
+
+    success(`Synced collection.11tydata.js template to ${syncedCount} collection(s).`);
+};
+
+export { listCollections, addCollection, removeCollection, editCollection, syncTemplates };
