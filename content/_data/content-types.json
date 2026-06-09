@@ -6,8 +6,8 @@
         "searchable": true,
         "layout": "post",
         "locales": {
-            "en": "writing",
-            "sv": "skrivningar"
+            "en": "documentation",
+            "sv": "dokumentation"
         }
     },
     "pages": {
