@@ -5,6 +5,12 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync, globSyn
 import { readdir } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import matter from '@11ty/gray-matter';
+import yaml from 'js-yaml';
+
+const yamlEngine = {
+  parse: (str, options) => yaml.load(str, { schema: yaml.JSON_SCHEMA }),
+  stringify: (obj) => yaml.dump(obj, { schema: yaml.JSON_SCHEMA })
+};
 
 const addContent = async () => {
     const content = {};
@@ -165,7 +171,7 @@ const regenerateOpengraph = async () => {
         for (const file of files) {
             try {
                 const fileContent = readFileSync(file, 'utf-8');
-                const { data: fm, content } = matter(fileContent);
+                const { data: fm, content } = matter(fileContent, { engines: { yaml: yamlEngine } });
 
                 const fmJson = JSON.stringify(fm);
                 const result = spawnSync('node', ['.frontmatter/scripts/opengraph.js', process.cwd(), file, fmJson], {
@@ -175,10 +181,14 @@ const regenerateOpengraph = async () => {
                 if (result) {
                     try {
                         const output = JSON.parse(result);
-                        if (output.frontmatter?.thumbnail) {
+                         if (output.frontmatter?.thumbnail) {
+                            // update thumbnail
                             fm.thumbnail = output.frontmatter.thumbnail;
-                            const updatedContent = matter.stringify(content, fm);
-                            writeFileSync(file, updatedContent);
+                            
+                            // stringify with gray-matter (dates preserved as-is with JSON_SCHEMA)
+                            let newContent = matter.stringify(content, fm, { engines: { yaml: yamlEngine } });
+                            
+                            writeFileSync(file, newContent);
                             totalGenerated++;
                         }
                     } catch {
