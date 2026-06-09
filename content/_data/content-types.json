@@ -1,0 +1,20 @@
+{
+    "posts": {
+        "label": "Posts",
+        "prefix": "writing",
+        "protected": true,
+        "searchable": true,
+        "layout": "post",
+        "locales": {
+            "en": "writing",
+            "sv": "skrivningar"
+        }
+    },
+    "pages": {
+        "label": "Pages",
+        "protected": true,
+        "searchable": false,
+        "layout": "page",
+        "locales": {}
+    }
+}

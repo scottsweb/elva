@@ -1,18 +1,20 @@
+import collections from '../../_data/content-types.json' with { type: 'json' };
+
+const collectionName = import.meta.url.split('/').at(-2);
+const config = collections[collectionName];
+
 export default {
-    layout: 'page',
-    tags: '_pages',
+    layout: config.layout,
+    tags: [`_${collectionName}`, ...(config.searchable ? ['_search'] : [])],
     permalink: function(data) {
-        // default language has no lang prefix
         let prefix = `/${data.lang}`;
-        if (data.locales[data.lang].default) {
-            prefix = '';
+        if (data.locales[data.lang].default) prefix = '';
+
+        if (collectionName === 'pages') {
+            return `${prefix}/${this.slugify(data.seo?.slug || data.page.fileSlug)}/`.replace(/\/{2,}/g, '/');
         }
 
-        // slug override for localized URL slugs
-        if (data.seo?.slug) {
-            return `${prefix}/${this.slugify(data.seo.slug)}/`.replace(/\/{2,}/g, '/');
-        } else {
-            return `${prefix}/${this.slugify(data.page.fileSlug)}/`;
-        }
+        let collectionSlug = config.locales?.[data.lang] || config.prefix || collectionName;
+        return `${prefix}/${collectionSlug}/${this.slugify(data.seo?.slug || data.page.fileSlug)}/`;
     }
 }

@@ -1,1 +1,7 @@
-[]
+[
+    {
+        "name": "Scott",
+        "feed": "https://scott.ee/feed/feed.xml",
+        "url": "https://scott.ee"
+    }
+]

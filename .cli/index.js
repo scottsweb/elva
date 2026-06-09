@@ -4,6 +4,7 @@ import { select } from '@inquirer/prompts';
 import { addLanguage, removeLanguage, listLanguages, changeDefaultLanguage } from './languages.js';
 import { addContent, removeContent, regenerateOpengraph } from './content.js';
 import { addBlogroll, listBlogroll, removeBlogroll } from './blogroll.js';
+import { listCollections, addCollection, removeCollection, editCollection } from './collections.js';
 import { setupSite, setupTheme } from './setup.js';
 import { error, info, handleExitError, clean } from './utils.js';
 
@@ -112,6 +113,38 @@ if (args.length >= 1) {
                         handleExitError(error);
                     }
             }
+        case 'collections':
+            if (!secondArg) break;
+            switch (secondArg) {
+                case 'list':
+                    try {
+                        listCollections();
+                        process.exit(0);
+                    } catch (error) {
+                        handleExitError(error);
+                    }
+                case 'add':
+                    try {
+                        await addCollection();
+                        process.exit(0);
+                    } catch (error) {
+                        handleExitError(error);
+                    }
+                case 'edit':
+                    try {
+                        await editCollection();
+                        process.exit(0);
+                    } catch (error) {
+                        handleExitError(error);
+                    }
+                case 'remove':
+                    try {
+                        await removeCollection();
+                        process.exit(0);
+                    } catch (error) {
+                        handleExitError(error);
+                    }
+            }
         case 'clean':
             try {
                 clean();
@@ -134,10 +167,11 @@ async function runCLI() {
         const choice = await select({
             message: 'What would you like to manage?',
             choices: [
-                { name: 'Settings', value: 'settings' },
-                { name: 'Languages', value: 'languages' },
                 { name: 'Content', value: 'content' },
                 { name: 'Blogroll', value: 'blogroll' },
+                { name: 'Collections', value: 'collections' },
+                { name: 'Languages', value: 'languages' },
+                { name: 'Settings', value: 'settings' },
                 { name: '⏹ Exit', value: 'exit' }
             ]
         });
@@ -154,6 +188,9 @@ async function runCLI() {
                 break;
             case 'blogroll':
                 await manageBlogroll();
+                break;
+            case 'collections':
+                await manageCollections();
                 break;
             case 'exit':
                 info('Goodbye!');
@@ -312,6 +349,50 @@ async function manageBlogroll() {
                     break;
                 case 'remove':
                     await removeBlogroll();
+                    break;
+                case 'back':
+                    await runCLI();
+                    break;
+                case 'exit':
+                    info('Goodbye!');
+                    process.exit(0);
+            }
+        } catch (error) {
+            handleExitError(error);
+        }
+    }
+}
+
+// sub-menu: collections
+async function manageCollections() {
+    const actions = [
+        { name: 'List collections', value: 'list' },
+        { name: 'Add collection', value: 'add' },
+        { name: 'Edit collection', value: 'edit' },
+        { name: 'Remove collection', value: 'remove' },
+        { name: '⏴ Back', value: 'back' },
+        { name: '⏹ Exit', value: 'exit' }
+    ];
+    
+    while (true) {
+        try {
+            const action = await select({
+                message: 'Collections:',
+                choices: actions
+            });
+
+            switch (action) {
+                case 'list':
+                    listCollections();
+                    break;
+                case 'add':
+                    await addCollection();
+                    break;
+                case 'remove':
+                    await removeCollection();
+                    break;
+                case 'edit':
+                    await editCollection();
                     break;
                 case 'back':
                     await runCLI();
