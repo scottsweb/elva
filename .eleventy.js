@@ -55,6 +55,7 @@ import tagged from './elva/filters/tagged.js';
 import translate from './elva/filters/translate.js';
 import where from './elva/filters/where.js';
 import indexer from './elva/filters/indexer.js';
+import section from './elva/filters/section.js';
 
 // Languages
 import locales from './content/_data/locales.json' with { type: 'json' }
@@ -160,6 +161,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addFilter('sortBy', sortBy);
     eleventyConfig.addFilter('where', where);
     eleventyConfig.addFilter('index', indexer);
+    eleventyConfig.addFilter('section', section);
 
     // Passthrough -------------------------------------
 
