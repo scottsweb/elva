@@ -10,6 +10,11 @@
       "type": "object",
       "required": [],
       "properties": {
+        "theme": {
+          "type": "string",
+          "title": "Theme",
+          "default": "default"
+        },
         "themeColorLight": {
           "type": "string",
           "title": "Theme Color (Light)"
