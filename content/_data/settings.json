@@ -13,7 +13,7 @@
     },
     "meta": {
         "separator": "•",
-        "opengraphDefaultImage": "/assets/img/opengraph-default.png"
+        "opengraphDefaultImage": "/assets/img/og/opengraph-default.png"
     },
     "seo": {
         "defaultChangeFrequency": "monthly",

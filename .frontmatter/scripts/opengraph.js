@@ -22,7 +22,7 @@ const browser = await chromium.launch();
 const page = await browser.newPage();
 
 const slug = slugify(frontmatter.title, { decamelize: false });
-const outputPath = `${outputDir}/content/assets/img/opengraph-${slug}.png`;
+const outputPath = `${outputDir}/content/assets/img/og/opengraph-${slug}.png`;
 
 try {
     await page.setViewportSize({ width: 1200, height: 630 });
@@ -30,7 +30,7 @@ try {
     const url = `http://localhost:8080/opengraph-preview.html?fm=${fmEncoded}`;
     await page.goto(url, { waitUntil: 'networkidle' });
     await page.screenshot({ path: outputPath, type: 'png' });
-    console.log(JSON.stringify({ frontmatter: { thumbnail: `/assets/img/opengraph-${slug}.png` } }));
+    console.log(JSON.stringify({ frontmatter: { thumbnail: `/assets/img/og/opengraph-${slug}.png` } }));
 } catch (e) {
     console.log(e?.message || e);
 } finally {

@@ -72,7 +72,7 @@
             "opengraphDefaultImage": {
               "type": "string",
               "title": "Default Opengraph Image",
-              "default": "/assets/img/opengraph-default.png"
+              "default": "/assets/img/og/opengraph-default.png"
             }
           }
         },
