@@ -89,7 +89,7 @@ export default async function(eleventyConfig) {
 
     // Virtual Templates ------------------------------
 
-    // development only css bundle for open graph generation
+    // development only open graph template
     if (process.env.ELEVENTY_RUN_MODE && process.env.ELEVENTY_RUN_MODE !== 'build') {
         const ogPreviewTemplate = fs.readFileSync(path.resolve(`themes/${eleventyConfig.globalData.settings.theme}/_layouts/`, 'opengraph-preview.njk'), 'utf-8');
         eleventyConfig.addTemplate('opengraph-preview.njk', ogPreviewTemplate, { theme: eleventyConfig.globalData.settings.theme });
