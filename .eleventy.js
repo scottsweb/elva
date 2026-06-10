@@ -4,6 +4,7 @@
 
 import { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin, IdAttributePlugin } from '@11ty/eleventy';
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
+import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 import fs from 'fs';
 import markdownItAttrs from 'markdown-it-attrs';
 import markdownIt from 'markdown-it';
@@ -132,6 +133,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(pluginEmbedEverything, pluginEmbedEverythingConfig);
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, pluginImageTransformConfig(eleventyConfig));
+    eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
     // Transforms -------------------------------------
 

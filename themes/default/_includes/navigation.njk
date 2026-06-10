@@ -15,17 +15,19 @@
         </svg>
     </a>
     <ul class="navigation-menu">
-        {% for item in navigation[page.lang] %}
-        {%- set url = item.url | locale_url %}
+        {% set nav = collections.all | languageFilter | eleventyNavigation %}
+        {% set home = '/' | locale_url %}
+        {%- for entry in nav %}
         <li>
             <a 
-                href="{{ url }}"
-                {% if page.url === url %}aria-current="page"{% endif %}
+                href="{{ entry.url }}"
+                {% if entry.url === page.url or (page.url.startsWith(entry.url) and entry.url !== home) %}aria-current="page"{% endif %}
             >
-                {{ item.text }}
+                {{ entry.title }}
             </a>
         </li>
         {%- endfor %}
+        <li><a href="https://github.com/scottsweb/elva" target="_blank">GitHub</a></li>
     </ul>
 
     {% include "switch-i18n.njk" %}

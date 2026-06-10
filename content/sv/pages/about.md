@@ -4,6 +4,10 @@ tags: _search
 seo:
   slug: om
   description: Ett flerspråkigt, rent, grönt, 11ty starter theme. elva ger en solid grund för ditt nästa webbprojekt och ett inbyggt CMS för att hantera innehåll.
+eleventyNavigation:
+  key: about
+  title: Om
+  order: 1
 ---
 
 Ett flerspråkigt, rent, grönt, [11ty starter theme](https://www.11ty.dev/docs/starter/). elva ger en solid grund för ditt nästa webbprojekt och ett inbyggt CMS ([Front Matter CMS](https://frontmatter.codes/)) för att hantera innehåll. Du tittar för närvarande på demosidan som också innehåller [lite dokumentation]({{ "/" | locale_url }}) som hjälper dig att komma igång. Gå över till [GitHub för att göra funktionsförfrågningar, pull requests och rapportera problem](https://github.com/scottsweb/elva/issues).
