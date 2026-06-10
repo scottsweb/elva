@@ -165,6 +165,7 @@ export default async function(eleventyConfig) {
 
     eleventyConfig.addPassthroughCopy({'./content/assets/img/favicon.ico': './favicon.ico'});
     eleventyConfig.addPassthroughCopy({'./content/assets/img': './assets/img'});
+    eleventyConfig.addPassthroughCopy({'./content/assets/svg': './assets/svg'});
     eleventyConfig.addPassthroughCopy({[`./themes/${eleventyConfig.globalData.settings.theme}/fonts`]: './assets/fonts'});
     eleventyConfig.addPassthroughCopy({'./content/assets/files': './assets/files'});
 
