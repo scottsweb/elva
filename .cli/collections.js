@@ -82,7 +82,7 @@ const addCollection = async () => {
     });
 
     const searchableChoice = await rawlist({
-        message: 'Is this collection searchable?',
+        message: 'Include entire collection in search index?',
         default: true,
         choices: [
             { name: 'Yes', value: true },
@@ -219,7 +219,7 @@ const editCollection = async () => {
 
     // edit searchable
     const searchableChoice = await rawlist({
-        message: `Is this collection searchable? (current: ${config.searchable ? 'Yes' : 'No'})`,
+        message: `Include entire collection in search index? (current: ${config.searchable ? 'Yes' : 'No'})`,
         default: config.searchable,
         choices: [
             { name: 'Yes', value: true },
