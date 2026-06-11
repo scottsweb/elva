@@ -46,6 +46,7 @@
     "@11ty/eleventy-navigation": "^1.0.5",
     "@11ty/eleventy-plugin-rss": "^3.0.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "@11ty/import": "^1.0.21",
     "@alpinejs/intersect": "^3.15.12",
     "@inquirer/prompts": "^8.4.2",
     "@minify-html/node": "^0.18.1",

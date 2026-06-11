@@ -1,7 +1,9 @@
-import { input, rawlist, checkbox, confirm } from '@inquirer/prompts';
+import { input, rawlist, checkbox, confirm, select } from '@inquirer/prompts';
 import { success, error, warning, info, getLocaleData, LOCALES_PATH, COLLECTIONS_PATH } from './utils.js';
+import { Importer } from '@11ty/import';
+import * as entities from 'entities';
 import * as path from 'path';
-import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync, globSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync, globSync, renameSync, rmSync, readdirSync } from 'fs';
 import { readdir } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import matter from '@11ty/gray-matter';
@@ -208,4 +210,205 @@ const regenerateOpengraph = async () => {
     success(message);
 };
 
-export { addContent, removeContent, regenerateOpengraph };
+const importContent = async () => {
+    const localesData = getLocaleData();
+    const collections = JSON.parse(readFileSync(COLLECTIONS_PATH, 'utf-8'));
+
+    // select source
+    const sourceType = await rawlist({
+        message: 'Select import source:',
+        default: 'wordpress',
+        choices: [
+            { name: 'WordPress', value: 'wordpress' },
+            { name: 'Atom', value: 'atom' },
+            { name: 'RSS', value: 'rss' },
+            { name: 'Fediverse', value: 'fediverse' },
+            { name: 'Bluesky', value: 'bluesky' }
+        ]
+    });
+
+    // get additional info for source
+    let sourceValue;
+    if (['wordpress', 'atom', 'rss'].includes(sourceType)) {
+        sourceValue = await input({
+            message: 'Enter feed or website URL:',
+            required: true
+        });
+    } else {
+        const example = sourceType === 'bluesky' ? '@handle.bsky.social' : '@user@mastodon.social';
+        sourceValue = await input({
+            message: `Enter username (e.g. ${example}):`,
+            required: true
+        });
+    }
+
+    // select target locale
+    const localeChoices = localesData.locales.map((locale) => ({
+        name: locale.name,
+        value: locale.value
+    }));
+    const targetLocale = await rawlist({
+        message: 'Select target locale:',
+        choices: localeChoices,
+        default: localesData.defaultLocale
+    });
+
+    // select target collection
+    const collectionChoices = Object.entries(collections)
+        .map(([name, config]) => ({ name: `${config.label} (${name})`, value: name }))
+        .sort((a, b) => a.name.localeCompare(b.name));
+    const targetCollection = await rawlist({
+        message: 'Select target collection:',
+        choices: collectionChoices
+    });
+
+    // select timeframe
+    const within = await rawlist({
+        message: 'Select timeframe:',
+        default: '*',
+        choices: [
+            { name: 'Last 7 days', value: '7d' },
+            { name: 'Last 30 days', value: '30d' },
+            { name: 'Last 90 days', value: '90d' },
+            { name: 'Last 1 year', value: '1y' },
+            { name: 'All time', value: '*' }
+        ]
+    });
+
+    // dry run or real import?
+    const isDryRun = await confirm({
+        message: 'Run as dry run? (no files will be written)',
+        default: true
+    });
+
+    let limit = 0;
+    if (isDryRun) {
+        const limitInput = await input({
+            message: 'Limit number of entries to import (0 = no limit):',
+            default: '0',
+            validate: (value) => !isNaN(Number(value)) || 'Please enter a number'
+        });
+        limit = parseInt(limitInput, 10);
+    }
+
+    // summary
+    info('Import configuration:');
+    console.log(`  Source: ${sourceType} - ${sourceValue}`);
+    console.log(`  Target: content/${targetLocale}/${targetCollection}/`);
+    console.log(`  Assets folder: content/assets/img/`);
+    console.log(`  Timeframe: ${within}`);
+    console.log(`  Mode: ${isDryRun ? 'Dry run' : 'Live'}`);
+    if (isDryRun) {
+        console.log(`  Limit: ${limit === 0 ? 'No limit' : limit}`);
+    }
+    console.log(`  Cache: 48h`);
+    console.log();
+
+    if (!isDryRun) {
+        if (!await confirm({ message: 'This will import your content. Continue?' })) {
+            return;
+        }
+    }
+
+    // configure and run importer
+    const importer = new Importer();
+    importer.setOutputFolder(`content/${targetLocale}/${targetCollection}/`);
+    importer.setCacheDuration('48h');
+    importer.setAssetReferenceType('colocate');
+    importer.setAssetsFolder('/assets/img');
+    importer.setDryRun(isDryRun);
+    importer.setVerbose(false);
+
+    importer.addSource(sourceType, {
+        url: sourceValue,
+        filepathFormat: (url, fallbackPath) => {
+            // strip leading/trailing slashes, get last segment, add .md extension
+            const segments = fallbackPath.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
+            return segments.pop() + '.md';
+        }
+    });
+
+    // hack: RSS based imports are lumpy, this attempts to convert them into clean markdown
+    // if there is a bug, it's probably here
+    const isRssBased = ['atom', 'rss', 'fediverse'].includes(sourceType);
+    const originalGetEntries = importer.getEntries.bind(importer);
+    importer.getEntries = async (options) => {
+        let entries = await originalGetEntries(options);
+
+        if (isRssBased) {
+            // force contentType=html so markdown conversion triggers
+            for (const entry of entries) {
+                entry.contentType = 'html';
+            }
+
+            // decode HTML entities and strip backslash escapes, then convert to markdown
+            await importer.markdownService.asyncInit();
+            for (const entry of entries) {
+                if (entry.content) {
+                    // strip backslash escapes (e.g., \<p> -> <p>)
+                    let content = entry.content.replace(/\\([<>!&"'])/g, '$1');
+                    content = entities.decodeHTML(content);
+                    content = await importer.markdownService.toMarkdown(content, entry);
+                    // fix markdownService escaping ![ to !\[ and \] to ]
+                    content = content.split('!\\[').join('![');
+                    content = content.split('\\]').join(']');
+                    entry.content = content;
+                }
+            }
+        }
+
+        return entries;
+    };
+
+    info(`Starting import${isDryRun ? ' (dry run)' : ''}...`);
+
+    try {
+        const entries = await importer.getEntries({
+            within,
+            limit,
+            outputContentType: 'markdown'
+        });
+
+        if (entries.length === 0) {
+            warning('No content was found using your chosen import criteria.');
+            return;
+        }
+
+        info(`Found ${entries.length} item(s) to import.`);
+
+        if (!isDryRun) {
+            await importer.toFiles(entries);
+
+            // move assets from per-collection folders to shared content/assets/img/
+            const assetsSourceDir = `./content/${targetLocale}/${targetCollection}/assets/img`;
+            const assetsTargetDir = `./content/assets/img`;
+
+            if (existsSync(assetsSourceDir)) {
+                mkdirSync(assetsTargetDir, { recursive: true });
+
+                const assetFiles = readdirSync(assetsSourceDir);
+                for (const assetFile of assetFiles) {
+                    const src = path.join(assetsSourceDir, assetFile);
+                    const dest = path.join(assetsTargetDir, assetFile);
+
+                    if (!existsSync(dest)) {
+                        renameSync(src, dest);
+                    } else {
+                        unlinkSync(src);
+                    }
+                }
+
+                rmSync(path.join(`./content/${targetLocale}/${targetCollection}/assets`), { recursive: true, force: true });
+
+                info(`Moved ${assetFiles.length} asset(s) to ${assetsTargetDir}.`);
+            }
+        }
+
+        importer.logResults();
+        success('Import completed.');
+    } catch (importError) {
+        error(`Import failed: ${importError.message}`);
+    }
+};
+
+export { addContent, removeContent, regenerateOpengraph, importContent };

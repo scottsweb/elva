@@ -166,7 +166,7 @@ const removeCollection = async () => {
     delete collections[choice];
     saveCollection(collections);
 
-    success(`Collection '${config.label}' (${choice}) has been removed.`);
+    success(`Collection '${config.label} (${choice})' has been removed.`);
 };
 
 const editCollection = async () => {

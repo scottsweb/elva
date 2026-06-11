@@ -2,7 +2,7 @@
 
 import { select } from '@inquirer/prompts';
 import { addLanguage, removeLanguage, listLanguages, changeDefaultLanguage } from './languages.js';
-import { addContent, removeContent, regenerateOpengraph } from './content.js';
+import { addContent, removeContent, regenerateOpengraph, importContent } from './content.js';
 import { addBlogroll, listBlogroll, removeBlogroll } from './blogroll.js';
 import { listCollections, addCollection, removeCollection, editCollection, syncTemplates } from './collections.js';
 import { setupSite, setupTheme } from './setup.js';
@@ -42,7 +42,8 @@ const commands = {
     content: {
         add: addContent,
         remove: removeContent,
-        regenerate: regenerateOpengraph
+        regenerate: regenerateOpengraph,
+        import: importContent
     },
     blogroll: {
         list: listBlogroll,
@@ -204,6 +205,7 @@ async function manageContent() {
     const actions = [
         { name: 'Add content', value: 'add' },
         { name: 'Remove content', value: 'remove' },
+        { name: 'Import content', value: 'import' },
         { name: 'Regenerate open graph images', value: 'regenerate' },
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
@@ -211,14 +213,15 @@ async function manageContent() {
     const handlers = {
         add: addContent,
         remove: removeContent,
-        regenerate: regenerateOpengraph
+        regenerate: regenerateOpengraph,
+        import: importContent
     };
     await manageMenu('Content:', actions, handlers);
 }
 
 async function manageBlogroll() {
     const actions = [
-        { name: 'List', value: 'list' },
+        { name: 'List blogroll', value: 'list' },
         { name: 'Add to blogroll', value: 'add' },
         { name: 'Remove from blogroll', value: 'remove' },
         { name: '⏴ Back', value: 'back' },
