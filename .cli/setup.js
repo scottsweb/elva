@@ -55,7 +55,7 @@ const setupSite = async () => {
     }
     
     newPackageJson.name = await input({
-        message: 'Enter site name (e.g. Compás):',
+        message: 'Enter site name:',
         required: true,
         default: packageJson.name
     });
