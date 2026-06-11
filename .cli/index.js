@@ -5,7 +5,7 @@ import { addLanguage, removeLanguage, listLanguages, changeDefaultLanguage } fro
 import { addContent, removeContent, regenerateOpengraph, importContent } from './content.js';
 import { addBlogroll, listBlogroll, removeBlogroll } from './blogroll.js';
 import { listCollections, addCollection, removeCollection, editCollection, syncTemplates } from './collections.js';
-import { setupSite, setupTheme } from './setup.js';
+import { setupSite, setupTheme, deleteDefaultContent } from './setup.js';
 import { error, info, handleExitError, clean } from './utils.js';
 
 // parse command-line arguments
@@ -25,7 +25,8 @@ const runCommand = async (fn) => {
 const commands = {
     setup: {
         site: setupSite,
-        theme: setupTheme
+        theme: setupTheme,
+        'delete-default-content': deleteDefaultContent
     },
     language: {
         add: addLanguage,
@@ -136,14 +137,14 @@ async function runCLI() {
                 { name: 'Blogroll', value: 'blogroll' },
                 { name: 'Collections', value: 'collections' },
                 { name: 'Languages', value: 'languages' },
-                { name: 'Settings', value: 'settings' },
+                { name: 'Setup', value: 'setup' },
                 { name: '⏹ Exit', value: 'exit' }
             ]
         });
 
         switch (choice) {
-            case 'settings':
-                await manageSettings();
+            case 'setup':
+                await manageSetup();
                 break;
             case 'languages':
                 await manageLanguages();
@@ -169,18 +170,20 @@ async function runCLI() {
 }
 
 // sub-menu handlers with their actions
-async function manageSettings() {
+async function manageSetup() {
     const actions = [
         { name: 'Site setup', value: 'setup' },
         { name: 'Pick theme', value: 'theme' },
+        { name: 'Delete default content', value: 'deleteDefaultContent' },
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
     ];
     const handlers = {
         setup: setupSite,
-        theme: setupTheme
+        theme: setupTheme,
+        deleteDefaultContent: deleteDefaultContent
     };
-    await manageMenu('Settings:', actions, handlers);
+    await manageMenu('Setup:', actions, handlers);
 }
 
 async function manageLanguages() {

@@ -1,6 +1,7 @@
-import { input, rawlist } from '@inquirer/prompts';
-import { readFileSync, writeFileSync, readdirSync, statSync } from 'fs';
-import { success, error, warning, PACKAGE_PATH, SETTINGS_PATH, THEMES_PATH } from './utils.js';
+import { input, rawlist, confirm } from '@inquirer/prompts';
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, unlinkSync } from 'fs';
+import { success, error, warning, PACKAGE_PATH, SETTINGS_PATH, THEMES_PATH, getLocaleData } from './utils.js';
+import * as path from 'path';
 
 const getSettings = () => {
     const data = JSON.parse(readFileSync(SETTINGS_PATH, 'utf-8'));
@@ -148,4 +149,40 @@ const setupTheme = async () => {
     success(`Theme '${theme}' selected.`);
 }
 
-export { setupSite, setupTheme };
+const deleteDefaultContent = async () => {
+    if (!await confirm({ message: 'Are you sure?' })) {
+        return;
+    }
+
+    const localesData = getLocaleData();
+    const collections = ['posts', 'pages'];
+    let deletedCount = 0;
+
+    for (const locale of localesData.locales) {
+        for (const collection of collections) {
+            const collectionDir = path.join(process.cwd(), 'content', locale.value, collection);
+            if (!existsSync(collectionDir)) {
+                continue;
+            }
+
+            const files = readdirSync(collectionDir).filter(f => f.endsWith('.md'));
+            for (const file of files) {
+                if (file === '404.md' || file === 'index.md') {
+                    continue;
+                }
+                const filePath = path.join(collectionDir, file);
+                try {
+                    unlinkSync(filePath);
+                    deletedCount++;
+                } catch (err) {
+                    error(`Failed to delete ${filePath}: ${err.message}.`);
+                }
+            }
+
+        }
+    }
+
+    success(`Deleted ${deletedCount} file(s).`);
+};
+
+export { setupSite, setupTheme, deleteDefaultContent };

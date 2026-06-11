@@ -108,13 +108,13 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 ## Personalisation Checklist
 
 - [ ] In `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging` (under `Global Settings`). Make sure these environment variables are set in staging and production and tweak as necessary
-- [ ] Configure your sites settings with the CLI `npm run cli settings site`, manually by editing `/content/_data/settings.json` or in Front Matter CMS (under Data)
+- [ ] Configure your sites settings with the CLI `npm run cli setup site`, manually by editing `/content/_data/settings.json` or in Front Matter CMS (under Data)
 - [ ] Configure site languages via the CLI `npm run cli`, under the `languages` sub-menu. ([The demo site will soon guide you through this](https://elva.scott.ee/en/writing/adding-additional-languages/))
 - [ ] Configure your sites navigation in `/content/_data/navigation.js`
 - [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
 - [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/en/writing/frontmatter/) in the UI
 - [ ] Setup a custom template for your open graph images (`/themes/{theme}/_layouts/opengraph-preview.njk`)
-- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme and set the theme in `/content/_data/settings.json` to the name of your new themes folder. We also have support for this in the cli `npm run cli settings theme` although it doesn't setup a new theme for you just yet.
+- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme and set the theme in `/content/_data/settings.json` to the name of your new themes folder. We also have support for this in the cli `npm run cli setup theme` although it doesn't setup a new theme for you just yet.
 
 ### Optional
 
@@ -130,10 +130,11 @@ You can use the CLI to manage languages and content directly from the command li
 
 ### Command Shortcuts
 
-#### Settings Commands 
+#### Setup Commands 
 
 - `npm run cli setup site` - Setup the basic site settings for a new project
 - `npm run cli setup theme` - Choose the theme you wish to use
+- `npm run cli setup delete-default-content` - Delete all the default content that ships with elva
 
 #### Language Commands
 
@@ -146,6 +147,7 @@ You can use the CLI to manage languages and content directly from the command li
 
 - `npm run cli content add` - Add new content
 - `npm run cli content remove` - Remove existing content
+- `npm run cli content import` - Import content from WordPress etc
 - `npm run cli content regenerate` - Regenerate all open graph images
 
 #### Blogroll Commands
