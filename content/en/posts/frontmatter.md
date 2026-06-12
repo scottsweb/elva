@@ -35,7 +35,7 @@ eleventyNavigation:
 * `layout` — [Page layout](https://www.11ty.dev/docs/layouts/) for the page. Default is `post` for posts and `page` for pages.
 * `title` — The title of the current page.
 * `date` — [Published date](https://www.11ty.dev/docs/dates/). You can set special values here like `Last Modified`.
-* `modifed` — Modified date.
+* `modified` — Modified date.
 * `thumbnail` — Relative path to thumbnail / opengraph image. Size `1200px x 630px`.
 * `thumbnailDescription` — Alt text for thumbnail.
 * `tags` – [Tags](https://www.11ty.dev/docs/collections/#add-to-a-collection-using-tags) are currently used for custom body classes.

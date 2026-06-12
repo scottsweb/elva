@@ -20,6 +20,7 @@ Funktioner inkluderar:
 
 * Optimerad CSS, JS och HTML
 * Responsiva bilder som stöder lazy loading och moderna format (avif, webp)
+* [Critical CSS](https://github.com/11ty/eleventy-plugin-bundle) med 11ty bundle
 * Stöd för [Photon CDN](https://developer.wordpress.com/docs/photon/) (kan slås på via inställningar)
 
 ### Tillgänglighets saker
@@ -41,11 +42,14 @@ Funktioner inkluderar:
 
 ### Andra saker
 
+* [Ett CLI](/documentation/setup/) för att hantera språk, installation och vanliga uppgifter (`npm run cli`)
+* Sök-API (se `dist/api/search.json`). Allt innehåll taggat med `_search` kommer att visas i sökindexet
 * [Front Matter CMS](https://frontmatter.codes/)
-* Open graph grafbildsgenerering inifrån Front Matter CMS (dev-servern måste vara igång)
-* Förslag stöd
-* [Syntax highlighting](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
-* [Förenklade inbäddningar för YouTube, Vimeo etc](https://github.com/gfscott/eleventy-plugin-embed-everything)
-* Användbara filter och funktioner
+* Generering av öppna grafbilder (utvecklingsservern måste vara igång)
+* Utkaststöd
+* [Syntaxmarkering](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
+* [Förenklade inbäddningar för YouTube, Vimeo etc.](https://github.com/gfscott/eleventy-plugin-embed-everything)
+* Många användbara filter och funktioner (se `/elva/filters/*`)
 * [Alpine.js](https://alpinejs.dev/)
 * [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/)
+* [Eleventy Navigation](https://www.11ty.dev/docs/plugins/navigation/)
