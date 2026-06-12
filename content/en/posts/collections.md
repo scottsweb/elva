@@ -56,7 +56,7 @@ Removing a collection deletes it from `content-types.json` and removes all conte
 npm run cli collections remove
 ```
 
-## Editing content-types.json by hand
+## Editing content-types.json
 
 All collection configuration is stored in `content/_data/content-types.json`. You can edit this file directly if you prefer. Here is what the file looks like:
 

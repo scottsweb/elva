@@ -40,7 +40,7 @@ The remove command shows all current blogroll entries and lets you select one or
 npm run cli blogroll remove
 ```
 
-## Editing blogroll.json by hand
+## Editing blogroll.json
 
 All blogroll entries are stored in `content/_data/blogroll.json`. You can edit this file directly if you prefer. Each entry contains the following fields:
 

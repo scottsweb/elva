@@ -50,7 +50,7 @@ Removing a language deletes the language folder and all its content, along with 
 npm run cli languages remove
 ```
 
-## Editing locales.json by hand
+## Editing locales.json
 
 All language configuration is stored in `content/_data/locales.json`. You can edit this file directly if you prefer. Each language entry contains the following fields:
 
