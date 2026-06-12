@@ -1,6 +1,6 @@
 ---
 title: Front matter
-date: 2023-08-04
+date: 2026-06-05
 tags:
   - tag4
   - tag5
@@ -25,6 +25,10 @@ seo:
   sitemapPriority: '1.0'
   excludeFromSitemap: true
   noIndex: true
+eleventyNavigation:
+  key: docs
+  title: Documentation
+  order: 2
 ---
 ```
 
@@ -44,5 +48,8 @@ seo:
 * `seo.sitemapPriority` — [The priority of this URL relative to other URLs on your site](https://www.sitemaps.org/protocol.html#prioritydef).
 * `seo.excludeFromSitemap` — Hide this page from your sitemap.xml.
 * `seo.noIndex` — Discourage search engine indexing.
+* `eleventyNavigation.key` — A unique identifier for the page in the [eleventy navigation](https://www.11ty.dev/docs/plugins/navigation/) plugin.
+* `eleventyNavigation.title` — The display title for the page in the navigation menu.
+* `eleventyNavigation.order` — The sort order of the page in the navigation menu. Lower numbers appear first.
 
 Nearly all front matter is optional, except for titles (and dates for posts).

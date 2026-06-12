@@ -17,7 +17,7 @@ Features include:
 ### Performance things
 
 * Optimised CSS, JS and HTML
-* Responsive images that supports lazy loading and modern formats (avif, webp)
+* Responsive images that support lazy loading and modern formats (avif, webp)
 * [Critical CSS](https://github.com/11ty/eleventy-plugin-bundle) using 11ty bundle
 * Support for the [Photon CDN](https://developer.wordpress.com/docs/photon/) (can be turned on via settings)
 
@@ -39,34 +39,33 @@ Features include:
 
 ### Other things
 
-* A CLI for managing languages, setup and common tasks (`npm run cli`)
+* [A CLI](https://elva.scott.ee/documentation/setup/) for managing languages, setup and common tasks (`npm run cli`)
 * Search API (see `dist/api/search.json`). Any content tagged `_search` will appear in the search index
 * [Front Matter CMS](https://frontmatter.codes/)
-* Open graph image generation from within Front Matter CMS (dev server must be running)
+* Open graph image generation (dev server must be running)
 * Draft support
 * [Syntax highlighting](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
 * [Simplified embeds for YouTube, Vimeo etc](https://github.com/gfscott/eleventy-plugin-embed-everything)
 * Plenty of helpful filters and functions (see `/elva/filters/*`)
 * [Alpine.js](https://alpinejs.dev/)
 * [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/)
+* [Eleventy Navigation](https://www.11ty.dev/docs/plugins/navigation/)
 
 ### Still to come:
 
+- [ ] A fancy default theme
 - [ ] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
 - [ ] Profile verification / .well-known support for the Fediverse and Nostr ([1](https://implicit.computer/blog/activitypub-1/))
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js) ([1](https://github.com/madrilene/eleventy-i18n/blob/main/netlify.toml))
-- [ ] Cleaner language selector and default language (that sets homepage)
+- [ ] Cleaner language selector
 - [ ] Pagination examples
 - [x] Allow for variable subsitution in translations e.g. `Hello, {{name}}` (still needs to handle plurals!)
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
-- [ ] Front Matter CMS — More data managed from the CMS
 - [ ] Front Matter CMS — [More helpful scripts](https://frontmatter.codes/docs/custom-actions#creating-a-media-script)
-- [ ] Front Matter CMS — Tagging and categories
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
-- [x] CLI tool for managing languages (and possibly importing content)
 
 ## Getting Started
 
@@ -103,16 +102,17 @@ npm run build:prod
 
 You can set the environment variable `NODE_ENV=production` in your hosting control panel too and use `npm run build` as before.
 
-To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https://vscodium.com/) or [Visual Studio Code](https://code.visualstudio.com/) and enable the extension (if it doesn't enable automatically). It will open each time you launch your project.
+To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https://vscodium.com/) or [Visual Studio Code](https://code.visualstudio.com/) and enable the extension (if it doesn't enable automatically). It will open each time you launch your project. 
+
+For next steps, [see the documentation](https://elva.scott.ee/documentation/).
 
 ## Personalisation Checklist
 
 - [ ] In `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging` (under `Global Settings`). Make sure these environment variables are set in staging and production and tweak as necessary
-- [ ] Configure your sites settings with the CLI `npm run cli setup site`, manually by editing `/content/_data/settings.json` or in Front Matter CMS (under Data)
-- [ ] Configure site languages via the CLI `npm run cli`, under the `languages` sub-menu. ([The demo site will soon guide you through this](https://elva.scott.ee/en/writing/adding-additional-languages/))
-- [ ] Configure your sites navigation in `/content/_data/navigation.js`
+- [ ] [Configure your sites settings](https://elva.scott.ee/documentation/setup/)
+- [ ] [Configure site languages via the CLI](https://elva.scott.ee/documentation/adding-additional-languages/) `npm run cli`, under the `languages` sub-menu
 - [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
-- [ ] Add your content — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/en/writing/frontmatter/) in the UI
+- [ ] [Add your content](https://elva.scott.ee/documentation/content/) — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/en/writing/frontmatter/) in the UI
 - [ ] Setup a custom template for your open graph images (`/themes/{theme}/_layouts/opengraph-preview.njk`)
 - [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme and set the theme in `/content/_data/settings.json` to the name of your new themes folder. We also have support for this in the cli `npm run cli setup theme` although it doesn't setup a new theme for you just yet.
 
