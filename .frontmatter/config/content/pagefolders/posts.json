@@ -3,7 +3,7 @@
     "title": "Posts",
     "path": "[[workspace]]/content/en/posts",
     "defaultLocale": "en",
-    "previewPath": "{{locale}}/writing",
+    "previewPath": "{{locale}}/documentation",
     "locales": [
       {
         "title": "English",
