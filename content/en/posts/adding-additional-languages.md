@@ -2,13 +2,13 @@
 title: Managing languages
 date: 2026-06-10
 tags:
-  - i18n
-  - cli
+  - tag2
+  - tag4
 ---
 
 Language management can be handled through the CLI, with all language configuration stored in `content/_data/locales.json`. You can manage languages through the interactive menu by running `npm run cli` and selecting `"Languages"`, or use the direct command shortcuts documented below.
 
-<div class="notice notice-notice">If you only need a single language site, that is perfectly fine. You can simply keep the default language in &#x60;locales.json&#x60; and not add another.</div>
+<div class="notice notice-notice">If you only need a single language site, that is perfectly fine. You can simply keep the default language and not add another.</div>
 
 ## List languages
 
@@ -28,7 +28,7 @@ Name               Key     Locale      Dir   Default
 
 Adding a language through the CLI creates the necessary folder structure and configuration files automatically. You will be prompted to enter the language name (e.g. "Francais"), the locale code (e.g. "fr-fr"), a shorthand code (e.g. "FR"), and the text direction (left-to-right or right-to-left).
 
-After the language is registered, the CLI will ask whether you want to copy existing content from your default language into the new language folder. This is useful as a starting point for translation, but you can always delete or modify the copied content afterward. The CLI also creates translations and stopword files for the new locale under `content/_data/translations/` and `content/_data/stopwords/`. Stopwords are common words that appear in a language that will be filtered out of the search index template.
+After the language is registered, the CLI will ask whether you want to copy existing content from your default language into the new language folder. This is useful as a starting point for translation, but you can always delete or modify the copied content afterward. The CLI also creates translations and stopword files for the new locale under `content/_data/translations/` and `content/_data/stopwords/`. [Stopwords](https://www.kaggle.com/datasets/heeraldedhia/stop-words-in-28-languages/data?select=english.txt) are common words that appear in a language that will be filtered out of the search index template.
 
 ``` bash
 npm run cli languages add

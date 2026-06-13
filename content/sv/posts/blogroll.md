@@ -2,8 +2,7 @@
 title: Skapa en blogglista
 date: 2026-06-07
 tags:
-  - blogroll
-  - cli
+  - tag4
 ---
 
 
@@ -54,4 +53,4 @@ Alla blogroll-poster lagras i `content/_data/blogroll.json`. Du kan redigera den
 
 ## Redigera via Front Matter CMS
 
-Blogroll-poster kan också hanteras via Front Matter CMS. Du kan lägga till, redigera och ta bort blogroll-poster via CMS-gränssnittet utan att behöva använda kommandoraden eller redigera JSON-filer direkt.
+Blogroll-poster kan också hanteras via Front Matter CMS. Du kan lägga till, redigera och ta bort blogroll-poster via CMS-gränssnittet (i datamenyn) utan att behöva använda kommandoraden eller redigera JSON-filer direkt.

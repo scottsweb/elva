@@ -47,4 +47,4 @@ For att använda [Front Matter CMS](https://frontmatter.codes/), installera [VSC
 
 ## Kommandotolgsgränssnitt
 
-elva inneháller ett inbyggt CLI-verktyg som tillgángs via `npm run cli`. Det erbjuder ett interaktivt menygránssnitt for att hantera ditt sites inneháll, sprák, samlingar och instállningskonfiguration. Det ár en bra utgángspunkt for [att instállla din webbplats](/documentation/dokumentation/setup/).
+elva inneháller ett inbyggt CLI-verktyg som tillgángs via `npm run cli`. Det erbjuder ett interaktivt menygránssnitt for att hantera ditt sites inneháll, sprák, samlingar och instállningskonfiguration. Det ár en bra utgángspunkt for [att instállla din webbplats](/sv/dokumentation/installningar/).

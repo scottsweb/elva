@@ -2,8 +2,8 @@
 title: Managing content
 date: 2026-06-08
 tags:
-  - content
-  - cli
+  - tag2
+  - tag5
 ---
 
 The preferred approach is to manage your content through [Front Matter CMS](https://frontmatter.codes/). This provides a graphical interface for creating, editing, and deleting content files without using the command line. Front Matter CMS is enabled automatically when you have VSCodium or Visual Studio Code installed and the extension active.

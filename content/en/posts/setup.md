@@ -2,8 +2,8 @@
 title: Setup
 date: 2026-06-11
 tags:
-  - setup
-  - cli
+  - tag3
+  - tag4
 ---
 
 The setup menu is accessed through the CLI by running `npm run cli` and selecting "Setup" from the main menu, or by using the direct command shortcuts documented below.

@@ -2,8 +2,8 @@
 title: Managing collections
 date: 2026-06-09
 tags:
-  - collections
-  - cli
+  - tag1
+  - tag3
 ---
 
 Collections in elva are similar to custom post types in WordPress. They are the mechanism by which you organise different kinds of content into groups, each with its own URL structure, layout, and behaviour.

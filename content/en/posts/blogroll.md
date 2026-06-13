@@ -2,8 +2,7 @@
 title: Create a blogroll
 date: 2026-06-07
 tags:
-  - blogroll
-  - cli
+  - tag4
 ---
 
 
@@ -54,4 +53,4 @@ All blogroll entries are stored in `content/_data/blogroll.json`. You can edit t
 
 ## Editing via Front Matter CMS
 
-Blogroll entries can also be managed through Front Matter CMS. You can add, edit, and remove blogroll entries through the CMS interface without touching the command line or editing JSON files directly.
+Blogroll entries can also be managed through Front Matter CMS. You can add, edit, and remove blogroll entries through the CMS interface (in the data menu) without touching the command line or editing JSON files directly.
