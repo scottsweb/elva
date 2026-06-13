@@ -8,7 +8,7 @@ tags:
   - tag2
 ---
 
-elva är ett flersprákigt startpaket for statiska webbplatser byggt pá [Eleventy](https://11ty.dev). Det är designat for personliga webbplatser, bloggar, portföljer och sajter som ska fungera bra pá flera sprák. [elva](https://github.com/scottsweb/elva) ger en solid grund for ditt nästa webbprojekt, du kan se en fullständig lista over funktioner pá [om-sidan](/om/).
+elva är ett flersprákigt startpaket for statiska webbplatser byggt pá [Eleventy](https://11ty.dev). Det är designat for personliga webbplatser, bloggar, portföljer och sajter som ska fungera bra pá flera sprák. [elva](https://github.com/scottsweb/elva) ger en solid grund for ditt nästa webbprojekt, du kan se en fullständig lista over funktioner pá [om-sidan](/sv/om/).
 
 Börja med att skapa en katalog och navigera dit:
 

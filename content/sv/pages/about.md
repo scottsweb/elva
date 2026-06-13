@@ -42,7 +42,7 @@ Funktioner inkluderar:
 
 ### Andra saker
 
-* [Ett CLI](/documentation/setup/) för att hantera språk, installation och vanliga uppgifter (`npm run cli`)
+* [Ett CLI](/sv/dokumentation/installningar/) för att hantera språk, installation och vanliga uppgifter (`npm run cli`)
 * Sök-API (se `dist/api/search.json`). Allt innehåll taggat med `_search` kommer att visas i sökindexet
 * [Front Matter CMS](https://frontmatter.codes/)
 * Generering av öppna grafbilder (utvecklingsservern måste vara igång)
