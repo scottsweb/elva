@@ -119,7 +119,7 @@ For next steps, [see the documentation](https://elva.scott.ee/documentation/).
 ### Optional
 
 - [ ] Set your preferred image sizes and formats in `/elva/config/image.js`
-- [ ] If you add more front matter, you may wish to edit `.frontmatter/frontmatter.json` to add [Front Matter CMS](https://frontmatter.codes/) support
+- [ ] If you add more front matter, you may wish to edit `.frontmatter/frontmatter.json / .frontmatter/config/content/pagefodlers/*.json` to add [Front Matter CMS](https://frontmatter.codes/) support
 - [ ] Use [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/) to grab some API data
 - [ ] If you enable Photon CDN support [familiarise yourself with these limitations](https://jetpack.com/support/site-accelerator/#limitations)
 - [ ] [Enable build caching for your host](https://developers.cloudflare.com/pages/configuration/build-caching/)
