@@ -39,7 +39,7 @@ npm run cli languages add
 Only one language can be marked as the default. This serves as the base for your site and is served at the root URL. If you need to change which language is the default, use this command to select a different one from your configured languages.
 
 ``` bash
-npm run cli languages default
+npm run cli language default
 ```
 
 ## Remove a language
@@ -47,7 +47,7 @@ npm run cli languages default
 Removing a language deletes the language folder and all its content, along with the associated translation and stopwords files. The CLI will not let you remove the default language, and it will ask for confirmation before deleting anything.
 
 ``` bash
-npm run cli languages remove
+npm run cli language remove
 ```
 
 ## Editing locales.json

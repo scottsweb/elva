@@ -35,7 +35,7 @@ Adding a collection through the CLI creates the collection entry in `content-typ
 For multilingual sites, you will also be asked to provide a slug for each language. This allows you to have different URL prefixes per language if needed (e.g. "projects" in English and "projekt" in Swedish). The CLI creates a `collectionname.11tydata.js` file in each collection folder, which configures the permalinks and metadata for all items within that collection.
 
 ``` bash
-npm run cli collections add
+npm run cli collection add
 ```
 
 ## Edit a collection
@@ -45,7 +45,7 @@ The edit command lets you modify any existing collection. The edit menu shows th
 After [adding a new language](/documentation/adding-additional-languages/), you may want to edit your collections to add custom slug for each collection type.
 
 ``` bash
-npm run cli collections edit
+npm run cli collection edit
 ```
 
 ## Remove a collection
@@ -53,7 +53,7 @@ npm run cli collections edit
 Removing a collection deletes it from `content-types.json` and removes all content files across all languages. The CLI only shows non-protected collections in the selection list, since protected collections cannot be removed. You will be asked to confirm before any files are deleted.
 
 ``` bash
-npm run cli collections remove
+npm run cli collection remove
 ```
 
 ## Editing content-types.json
