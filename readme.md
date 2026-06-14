@@ -30,11 +30,11 @@ Features include:
 ### Standards things
 
 * [RSS feed](https://www.11ty.dev/docs/plugins/rss/) with XSLT styles
-* JSON feeds
-* Sitemap
-* Web manifest for PWAs
-* humans.txt 
-* robots.txt
+* [JSON feeds](https://elva.scott.ee/feed/feed.json)
+* [Sitemap](https://elva.scott.ee/sitemap.xml)
+* [Web manifest for PWAs](https://elva.scott.ee/site.webmanifest)
+* [humans.txt](https://elva.scott.ee/humans.txt) 
+* [robots.txt](https://elva.scott.ee/robots.txt)
 * Discourage [AI bots](https://github.com/ai-robots-txt/ai.robots.txt/)
 
 ### Other things
