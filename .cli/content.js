@@ -305,7 +305,7 @@ const importContent = async () => {
     console.log();
 
     if (!isDryRun) {
-        if (!await confirm({ message: 'This will import your content. Continue?' })) {
+        if (!await confirm({ message: 'Ready to begin import?' })) {
             return;
         }
     }
