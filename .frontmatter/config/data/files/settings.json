@@ -10,6 +10,11 @@
       "type": "object",
       "required": [],
       "properties": {
+        "theme": {
+          "type": "string",
+          "title": "Theme",
+          "default": "default"
+        },
         "themeColorLight": {
           "type": "string",
           "title": "Theme Color (Light)"
@@ -72,7 +77,7 @@
             "opengraphDefaultImage": {
               "type": "string",
               "title": "Default Opengraph Image",
-              "default": "/assets/img/opengraph-default.png"
+              "default": "/assets/img/og/opengraph-default.png"
             }
           }
         },

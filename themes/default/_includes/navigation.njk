@@ -1,5 +1,5 @@
 <nav class="navigation">
-    <a class="site-logo" href="/" {% if page.url === '/' %}aria-current="page"{% endif %} aria-label="{{ 'header.home' | translate }}">
+    <a class="site-logo" href="{{ "/" | locale_url }}" {% if page.url === '/' %}aria-current="page"{% endif %} aria-label="{{ 'header.home' | translate }}">
         <svg fill="none" height="242" viewBox="0 0 541 242" width="541" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-labelledby="logo-title" role="img">
             <title id="logo-title">{{ 'meta.title' | translate }}</title>
             <clipPath id="a"><path d="m0 0h541v242h-541z"/></clipPath>
@@ -15,17 +15,19 @@
         </svg>
     </a>
     <ul class="navigation-menu">
-        {% for item in navigation[page.lang] %}
-        {%- set url = item.url | locale_url %}
+        {% set nav = collections.all | languageFilter | eleventyNavigation %}
+        {% set home = '/' | locale_url %}
+        {%- for entry in nav %}
         <li>
             <a 
-                href="{{ url }}"
-                {% if page.url === url %}aria-current="page"{% endif %}
+                href="{{ entry.url }}"
+                {% if entry.url === page.url or (page.url.startsWith(entry.url) and entry.url !== home) %}aria-current="page"{% endif %}
             >
-                {{ item.text }}
+                {{ entry.title }}
             </a>
         </li>
         {%- endfor %}
+        <li><a href="https://github.com/scottsweb/elva" target="_blank">GitHub</a></li>
     </ul>
 
     {% include "switch-i18n.njk" %}

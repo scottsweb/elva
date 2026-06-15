@@ -1,29 +1,33 @@
 {
-	"themeColorLight": "#eceff4",
-	"themeColorDark": "#2e3440",
-	"cdn": false,
-	"author": {
-		"name": "Scott Evans",
-		"email": "noreply@example.com",
-		"url": "https://scott.ee",
-		"location": "Stockholm, Sweden",
-		"fediverseProfile": "https://toot.scott.ee/@scott",
-		"fediverseUsername": "@scott@toot.scott.ee",
-		"githubProfile": "https://github.com/scottsweb"
-	},
-	"meta": {
-		"separator": "•",
-		"opengraphDefaultImage": "/assets/img/opengraph-default.png"
-	},
-	"seo": {
-		"defaultChangeFrequency": "monthly",
-		"defaultPriority": "0.7"
-	},
-	"manifest": {
-		"themeColor": "#eceff4",
-		"backgroundColor": "#eceff4",
-		"display": "minimal-ui",
-		"orientation": "portrait-primary",
-		"categories": ["business", "photo"]
-	}
+    "themeColorLight": "#eceff4",
+    "themeColorDark": "#2e3440",
+    "cdn": false,
+    "author": {
+        "name": "Scott Evans",
+        "email": "noreply@example.com",
+        "url": "https://scott.ee",
+        "location": "Stockholm, Sweden",
+        "fediverseProfile": "https://toot.scott.ee/@scott",
+        "fediverseUsername": "@scott@toot.scott.ee",
+        "githubProfile": "https://github.com/scottsweb"
+    },
+    "meta": {
+        "separator": "•",
+        "opengraphDefaultImage": "/assets/img/og/opengraph-default.png"
+    },
+    "seo": {
+        "defaultChangeFrequency": "monthly",
+        "defaultPriority": "0.7"
+    },
+    "manifest": {
+        "themeColor": "#eceff4",
+        "backgroundColor": "#eceff4",
+        "display": "minimal-ui",
+        "orientation": "portrait-primary",
+        "categories": [
+            "business",
+            "photo"
+        ]
+    },
+    "theme": "default"
 }

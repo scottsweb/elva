@@ -1,7 +1,7 @@
 ---
 layout: base
 ---
-<div class="posts-list">
+<div class="posts-list h-feed">
     {% set postslist = collections._posts | languageFilter | reverse %}
     {% include "posts.njk" %}
     {{ content | safe }}

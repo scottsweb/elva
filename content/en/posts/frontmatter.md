@@ -1,6 +1,6 @@
 ---
 title: Front matter
-date: 2023-08-04
+date: 2026-06-05
 tags:
   - tag4
   - tag5
@@ -25,13 +25,17 @@ seo:
   sitemapPriority: '1.0'
   excludeFromSitemap: true
   noIndex: true
+eleventyNavigation:
+  key: docs
+  title: Documentation
+  order: 2
 ---
 ```
 
 * `layout` — [Page layout](https://www.11ty.dev/docs/layouts/) for the page. Default is `post` for posts and `page` for pages.
 * `title` — The title of the current page.
 * `date` — [Published date](https://www.11ty.dev/docs/dates/). You can set special values here like `Last Modified`.
-* `modifed` — Modified date.
+* `modified` — Modified date.
 * `thumbnail` — Relative path to thumbnail / opengraph image. Size `1200px x 630px`.
 * `thumbnailDescription` — Alt text for thumbnail.
 * `tags` – [Tags](https://www.11ty.dev/docs/collections/#add-to-a-collection-using-tags) are currently used for custom body classes.
@@ -44,5 +48,8 @@ seo:
 * `seo.sitemapPriority` — [The priority of this URL relative to other URLs on your site](https://www.sitemaps.org/protocol.html#prioritydef).
 * `seo.excludeFromSitemap` — Hide this page from your sitemap.xml.
 * `seo.noIndex` — Discourage search engine indexing.
+* `eleventyNavigation.key` — A unique identifier for the page in the [eleventy navigation](https://www.11ty.dev/docs/plugins/navigation/) plugin.
+* `eleventyNavigation.title` — The display title for the page in the navigation menu.
+* `eleventyNavigation.order` — The sort order of the page in the navigation menu. Lower numbers appear first.
 
 Nearly all front matter is optional, except for titles (and dates for posts).

@@ -4,6 +4,7 @@
 
 import { EleventyI18nPlugin, EleventyHtmlBasePlugin, EleventyRenderPlugin, IdAttributePlugin } from '@11ty/eleventy';
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
+import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 import fs from 'fs';
 import markdownItAttrs from 'markdown-it-attrs';
 import markdownIt from 'markdown-it';
@@ -37,7 +38,7 @@ import pluginImageTransformConfig from './elva/config/images.js';
 import transformHTML from './elva/transforms/html.js';
 
 // Shortcodes
-import image from './elva/shortcodes/image.js';
+// None
 
 // Filters
 import base64 from './elva/filters/base64.js';
@@ -54,9 +55,15 @@ import sortBy from './elva/filters/sortby.js';
 import tagged from './elva/filters/tagged.js';
 import translate from './elva/filters/translate.js';
 import where from './elva/filters/where.js';
+import indexer from './elva/filters/indexer.js';
+import section from './elva/filters/section.js';
 
 // Languages
 import locales from './content/_data/locales.json' with { type: 'json' }
+const defaultLanguage = Object.keys(locales).find(key => locales[key].default);
+
+// Settings
+import settings from './content/_data/settings.json' with { type: 'json' }
 
 // 11ty -----------------------------------------------
 
@@ -68,9 +75,9 @@ export default async function(eleventyConfig) {
         // these get merged with content/_data/settings.js
         url: process.env.URL || process.env.CF_PAGES_URL || 'http://localhost:8080',
         isProduction: process.env.NODE_ENV === 'production',
-        isStaging: (process.env.URL && process.env.URL.includes('github.io')) || (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_BRANCH !== 'main') || (process.env.ELEVENTY_RUN_MODE && process.env.ELEVENTY_RUN_MODE !== 'build') || false,
+        isStaging: (process.env.URL && process.env.URL.includes('github.io')) || (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_BRANCH !== 'main') || (process.env.NODE_ENV === 'staging') || false,
         year: new Date().getFullYear(),
-        theme: 'default'
+        theme: process.env.ELVA_THEME || settings.theme
     });
 
     // Watch Targets ----------------------------------
@@ -79,13 +86,14 @@ export default async function(eleventyConfig) {
     eleventyConfig.addWatchTarget('./content/assets');
     eleventyConfig.addWatchTarget('./themes/**/*.{css,js}');
     eleventyConfig.addWatchTarget('./elva/templates/*', { resetConfig: true });
+    eleventyConfig.addWatchTarget(`./themes/${eleventyConfig.globalData.settings.theme}/_layouts/opengraph-preview.njk`, { resetConfig: true });
 
     // Virtual Templates ------------------------------
 
-    // development only css bundle for opengraph generation
+    // development only open graph template
     if (process.env.ELEVENTY_RUN_MODE && process.env.ELEVENTY_RUN_MODE !== 'build') {
-        const cssTemplate = fs.readFileSync(path.resolve(`themes/${eleventyConfig.globalData.settings.theme}/_layouts/`, 'css-opengraph.njk'), 'utf-8');
-        eleventyConfig.addTemplate('css-opengraph.njk', cssTemplate, { theme: eleventyConfig.globalData.settings.theme });
+        const ogPreviewTemplate = fs.readFileSync(path.resolve(`themes/${eleventyConfig.globalData.settings.theme}/_layouts/`, 'opengraph-preview.njk'), 'utf-8');
+        eleventyConfig.addTemplate('opengraph-preview.njk', ogPreviewTemplate, { theme: eleventyConfig.globalData.settings.theme });
     }
 
     const robotsTemplate = fs.readFileSync(path.resolve('elva/templates/', 'robots.njk'), 'utf-8');
@@ -99,6 +107,7 @@ export default async function(eleventyConfig) {
     const feedJSONTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.json.njk'), 'utf-8');
     const manifestTemplate = fs.readFileSync(path.resolve('elva/templates/', 'manifest.njk'), 'utf-8');
     const blogrollXMLTemplate = fs.readFileSync(path.resolve('elva/templates/', 'blogroll.xml.njk'), 'utf-8');
+    const searchApiTemplate = fs.readFileSync(path.resolve('elva/templates/', 'search.json.njk'), 'utf-8');
 
     for (let [key, locale] of Object.entries(locales)) {
         eleventyConfig.addTemplate(key + '-feed.xml.njk', feedTemplate, { lang: key });
@@ -106,6 +115,7 @@ export default async function(eleventyConfig) {
         eleventyConfig.addTemplate(key + '-feed.json.njk', feedJSONTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-manifest.njk', manifestTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-blogroll.xml.njk', blogrollXMLTemplate, { lang: key });
+        eleventyConfig.addTemplate(key + '-search-api.json.njk', searchApiTemplate, { lang: key, collection: '_search' });
     }
     
     // Plugins ----------------------------------------
@@ -118,11 +128,12 @@ export default async function(eleventyConfig) {
     eleventyConfig.addPlugin(pluginDescriptions);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(EleventyRenderPlugin);
-    eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: 'en', errorMode: 'never'});
+    eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: defaultLanguage, errorMode: 'never'});
     eleventyConfig.addPlugin(IdAttributePlugin);
     eleventyConfig.addPlugin(pluginSyntaxHighlight);
     eleventyConfig.addPlugin(pluginEmbedEverything, pluginEmbedEverythingConfig);
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, pluginImageTransformConfig(eleventyConfig));
+    eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
     // Transforms -------------------------------------
 
@@ -133,8 +144,6 @@ export default async function(eleventyConfig) {
     eleventyConfig.addShortcode('version', () => `${+ new Date()}`);
     eleventyConfig.addShortcode('year', () => `${eleventyConfig.globalData.settings.year}`);
     eleventyConfig.addShortcode('build', () => `${new Date().toISOString().split('T')[0]}`);
-    eleventyConfig.addShortcode('image', image);
-
     // Filters ----------------------------------------
 
     eleventyConfig.addFilter('base64', base64);
@@ -151,11 +160,14 @@ export default async function(eleventyConfig) {
     eleventyConfig.addFilter('translate', translate);
     eleventyConfig.addFilter('sortBy', sortBy);
     eleventyConfig.addFilter('where', where);
+    eleventyConfig.addFilter('index', indexer);
+    eleventyConfig.addFilter('section', section);
 
     // Passthrough -------------------------------------
 
     eleventyConfig.addPassthroughCopy({'./content/assets/img/favicon.ico': './favicon.ico'});
     eleventyConfig.addPassthroughCopy({'./content/assets/img': './assets/img'});
+    eleventyConfig.addPassthroughCopy({'./content/assets/svg': './assets/svg'});
     eleventyConfig.addPassthroughCopy({[`./themes/${eleventyConfig.globalData.settings.theme}/fonts`]: './assets/fonts'});
     eleventyConfig.addPassthroughCopy({'./content/assets/files': './assets/files'});
 

@@ -1,26 +1,38 @@
-import fs from 'fs';
+import path from 'path';
 import slugify from '@sindresorhus/slugify';
-import nodeHtmlToImage from 'node-html-to-image';
+import { chromium } from 'playwright';
 
 const args = process.argv;
-const template = fs.readFileSync(args[1].replace('opengraph.js', 'opengraph-template.html'), 'utf8');
-const frontmatter = args[4] && typeof args[4] === "string" ? JSON.parse(args[4]) : null;
-let data = {...frontmatter, ...{ 'url': 'http://localhost:8080' }};
+const outputDir = args[2];
+const frontmatter = args[4] && typeof args[4] === 'string' ? JSON.parse(args[4]) : null;
 
-// fix some potential encoding issues
-data.title && (data.title = decodeURIComponent(data.title));
-data.seo.title && (data.seo.title = decodeURIComponent(data.seo.title));
-data.seo.description && (data.seo.description = decodeURIComponent(data.seo.description));
+if (!outputDir) { 
+    console.log('Error: missing output directory argument');
+    process.exit(1);
+}
 
-nodeHtmlToImage({
-    output: args[2] + '/content/assets/img/opengraph-' + slugify(data.title, {decamelize: false}) + '.png',
-    html: template,
-    content: data
-}).then(() => {
-    const output = JSON.stringify({
-        'frontmatter': {
-            'thumbnail': '/assets/img/opengraph-' + slugify(data.title, {decamelize: false}) + '.png'
-        }
-    });
-    console.log(output);
-}).catch(e => console.log(e?.message || e));
+try {
+    await fetch('http://localhost:8080', { signal: AbortSignal.timeout(3000) });
+} catch {
+    console.log('Dev server not running at localhost:8080.');
+    process.exit(1);
+}
+
+const browser = await chromium.launch();
+const page = await browser.newPage();
+
+const slug = slugify(frontmatter.title, { decamelize: false });
+const outputPath = `${outputDir}/content/assets/img/og/opengraph-${slug}.png`;
+
+try {
+    await page.setViewportSize({ width: 1200, height: 630 });
+    const fmEncoded = encodeURIComponent(JSON.stringify(frontmatter));
+    const url = `http://localhost:8080/opengraph-preview.html?fm=${fmEncoded}`;
+    await page.goto(url, { waitUntil: 'networkidle' });
+    await page.screenshot({ path: outputPath, type: 'png' });
+    console.log(JSON.stringify({ frontmatter: { thumbnail: `/assets/img/og/opengraph-${slug}.png` } }));
+} catch (e) {
+    console.log(e?.message || e);
+} finally {
+    await browser.close();
+}
