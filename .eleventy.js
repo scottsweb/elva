@@ -49,7 +49,7 @@ import languageFilter from './elva/filters/language.js';
 import fixLocaleLinks from './elva/filters/fixlocalelinks.js';
 import defaultLocaleURL from './elva/filters/defaultlocaleurl.js';
 import mimetype from './elva/filters/mimetype.js';
-import random from './elva/filters/random.js';
+import shuffle from './elva/filters/shuffle.js';
 import readingTime from './elva/filters/readingtime.js';
 import sortBy from './elva/filters/sortby.js';
 import tagged from './elva/filters/tagged.js';
@@ -154,7 +154,7 @@ export default async function(eleventyConfig) {
     eleventyConfig.addFilter('fix_locale_links', fixLocaleLinks);
     eleventyConfig.addFilter('default_locale_url', defaultLocaleURL);
     eleventyConfig.addFilter('mimetype', mimetype);
-    eleventyConfig.addFilter('random', random);
+    eleventyConfig.addFilter('shuffle', shuffle);
     eleventyConfig.addFilter('readingTime', readingTime);
     eleventyConfig.addFilter('tagged', tagged);
     eleventyConfig.addFilter('translate', translate);
