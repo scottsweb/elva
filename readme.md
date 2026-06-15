@@ -62,7 +62,7 @@ Features include:
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js) ([1](https://github.com/madrilene/eleventy-i18n/blob/main/netlify.toml))
 - [ ] Cleaner language selector
 - [ ] Pagination examples
-- [x] Allow for variable subsitution in translations e.g. `Hello, {{name}}` (still needs to handle plurals!)
+- [x] Allow for variable substitution in translations e.g. `Hello, {{name}}` and plurals e.g. `{{ count }} item(s)`
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
 - [ ] Front Matter CMS — [More helpful scripts](https://frontmatter.codes/docs/custom-actions#creating-a-media-script)
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))

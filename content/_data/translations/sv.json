@@ -13,8 +13,10 @@
     },
     "readingTime": {
         "underMinute": "Mindre än 1 minut att läsa",
-        "minute": "1 minut till läsaren",
-        "other": "{{ minutes }} minuter att läsa"
+        "count": {
+            "one": "{{ minutes }} minut att läsa",
+            "other": "{{ minutes }} minuter att läsa"
+        }
     },
     "feeds": {
         "info": "Detta är ett RSS feed. Kopiera och klistra in webbadressen i din flödesläsare. Besök <a href=\"https://aboutfeeds.com\">About Feeds</a> för att lära dig mer om RSS.",

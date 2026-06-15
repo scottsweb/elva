@@ -1,7 +1,6 @@
 // calculate the time to read of a chunk of text (to the nearest minute)
 // based on https://www.bobmonsour.com/posts/calculating-reading-time/
-import nunjucks from '@11ty/nunjucks';
-nunjucks.configure({ autoescape: true });
+import translate from './translate.js';
 
 export default function(text) {
     let content = new String(text);
@@ -22,9 +21,7 @@ export default function(text) {
     let readingTime = Math.round(count / speed);
     if (readingTime === 0) {
     	return this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.underMinute;
-    } else if (readingTime === 1) {
-    	return this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.minute;
     } else {
-    	return nunjucks.renderString(this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.other, { minutes: readingTime});
+    	return translate.call(this, 'readingTime.count', this.page.lang || this.ctx.lang, { minutes: readingTime });
     }
 };

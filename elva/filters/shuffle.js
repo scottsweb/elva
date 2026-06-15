@@ -27,4 +27,4 @@ export default function shuffle(collections, exclude, limit = 1) {
     filtered.sort(() => 0.5 - rng());
 
     return filtered.slice(0, limit);
-};
+}
