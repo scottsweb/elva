@@ -1,11 +1,12 @@
 // shuffle items from a collection and return a limited number
 // {% set collection = collections._posts | shuffle(page, 3) %}
 // deterministic: same fileSlug produces same random selection across locales
-export default function random(collections, exclude, limit = 1) {
+export default function shuffle(collections, exclude, limit = 1) {
     const filtered = collections.filter((page) => page.url !== exclude.url);
 
-    // deterministic seed from fileSlug (same across all locales)
-    const seedStr = exclude.fileSlug || exclude.url;
+    // deterministic seed from fileSlug + date (same across locales, changes daily)
+    const today = new Date().toISOString().slice(0, 10);
+    const seedStr = `${exclude.fileSlug || exclude.url}-${today}`;
     let seed = 0;
     for (let i = 0; i < seedStr.length; i++) {
         seed = ((seed << 5) - seed) + seedStr.charCodeAt(i);
