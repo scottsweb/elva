@@ -36,7 +36,7 @@ const createCollectionFolder = (collectionName, localeKey) => {
 
 const listCollections = () => {
     const collections = getCollections();
-    const header = 'Label'.padEnd(24) + 'Layout'.padEnd(12) + 'Protected'.padEnd(12) + 'Searchable';
+    const header = 'Label'.padEnd(24) + 'Layout'.padEnd(12) + 'Protected'.padEnd(12) + 'Search'.padEnd(12) + 'Feed';
     console.log(colors.bold(colors.cyan(header)));
     console.log('-'.repeat(header.length));
 
@@ -44,7 +44,8 @@ const listCollections = () => {
         const label = `${i + 1}. ${config.label} (${name})`;
         const row = label.padEnd(24) + (config.layout || '').padEnd(12) +
             (config.protected ? colors.green('Yes'.padEnd(12)) : 'No '.padEnd(12)) +
-            (config.searchable ? colors.green('Yes'.padEnd(12)) : 'No '.padEnd(12));
+            (config.searchable ? colors.green('Yes'.padEnd(12)) : 'No '.padEnd(12)) +
+            (config.feed ? colors.green('Yes'.padEnd(12)) : 'No '.padEnd(12));
         console.log(row);
     });
     console.log('-'.repeat(header.length));
@@ -90,6 +91,15 @@ const addCollection = async () => {
         ]
     });
 
+    const feedChoice = await rawlist({
+        message: 'Generate RSS/JSON feed for this collection?',
+        default: true,
+        choices: [
+            { name: 'Yes', value: true },
+            { name: 'No', value: false }
+        ]
+    });
+
     const protectedChoice = await rawlist({
         message: 'Is this collection protected?',
         default: false,
@@ -115,6 +125,7 @@ const addCollection = async () => {
         prefix: finalPrefix,
         protected: protectedChoice,
         searchable: searchableChoice,
+        feed: feedChoice,
         layout,
         locales
     };
@@ -227,6 +238,17 @@ const editCollection = async () => {
         ]
     });
     config.searchable = searchableChoice;
+
+    // edit feed
+    const feedChoice = await rawlist({
+        message: `Generate RSS/JSON feed for this collection? (current: ${config.feed ? 'Yes' : 'No'})`,
+        default: config.feed,
+        choices: [
+            { name: 'Yes', value: true },
+            { name: 'No', value: false }
+        ]
+    });
+    config.feed = feedChoice;
 
     // edit protected (skip for posts and pages)
     if (!['posts', 'pages'].includes(choice)) {

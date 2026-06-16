@@ -16,21 +16,21 @@ Collection configuration is stored in `content/_data/content-types.json`. You ca
 
 ## List collections
 
-The list command shows all configured collections with their label, assigned layout, and whether they are protected or included in the search index.
+The list command shows all configured collections with a summary of useful settings.
 
 ``` bash
 npm run cli collections list
 
-Label                  Layout    Protected  Searchable
-------------------------------------------------------------------------
-1. Posts (posts)       post      Yes        Yes     
-2. Pages (pages)       page      Yes        No      
-------------------------------------------------------------------------
+Label                  Layout    Protected    Search      Feed
+--------------------------------------------------------------------------------------------
+1. Posts (posts)       post      Yes          Yes         Yes     
+2. Pages (pages)       page      Yes          No          No      
+--------------------------------------------------------------------------------------------
 ```
 
 ## Add a collection
 
-Adding a collection through the CLI creates the collection entry in `content-types.json` and sets up the folder structure for each configured language. You will be prompted for a friendly collection label (e.g. "Projects"), a default URL prefix (e.g. "projects"), the layout template to use, whether the collection should be included in the search index, and whether it should be protected.
+Adding a collection through the CLI creates the collection entry in `content-types.json` and sets up the folder structure for each configured language. You will be prompted for a friendly collection label (e.g. "Projects"), a default URL prefix (e.g. "projects"), the layout template to use, whether the collection should be included in the search index, whether it should generate RSS/JSON feeds, and whether it should be protected.
 
 For multilingual sites, you will also be asked to provide a slug for each language. This allows you to have different URL prefixes per language if needed (e.g. "projects" in English and "projekt" in Swedish). The CLI creates a `collectionname.11tydata.js` file in each collection folder, which configures the permalinks and metadata for all items within that collection.
 
@@ -70,6 +70,7 @@ Each collection entry contains the following fields:
 - `prefix` — The default URL prefix for items in this collection.
 - `protected` — When `true`, the collection cannot be removed via the CLI. Posts and pages are always protected.
 - `searchable` — When `true`, all items in this collection are included in the site search index.
+- `feed` — When `true`, RSS and JSON feeds are generated for this collection at `/feed/{collection}.xml` and `/feed/{collection}.json`.
 - `layout` — The theme template used to render items in this collection (e.g. `post`, `page`, `project`).
 - `locales` — Per-language URL slugs. If a language is not listed here, the `prefix` value is used as a fallback.
 

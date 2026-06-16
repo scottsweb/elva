@@ -18,21 +18,21 @@ Samlingskonfigurationen lagras i `content/_data/content-types.json`. Du kan visa
 
 ## Lista samlingar
 
-Kommandot list visar alla konfigurerade samlingar med deras etikett, tilldelad layout och om de är skyddade eller ingår i sökindexet.
+Kommandot list visar alla konfigurerade samlingar med en sammanfattning av användbara inställningar.
 
 ``` bash
 npm run cli collections list
 
-Label                  Layout    Protected  Searchable
-------------------------------------------------------------------------
-1. Posts (posts)       post      Yes        Yes     
-2. Pages (pages)       page      Yes        No      
-------------------------------------------------------------------------
+Label                  Layout    Protected    Search      Feed
+--------------------------------------------------------------------------------------------
+1. Posts (posts)       post      Yes          Yes         Yes     
+2. Pages (pages)       page      Yes          No          No      
+--------------------------------------------------------------------------------------------
 ```
 
 ## Lägg till en samling
 
-När du lägger till en samling via CLI skapas en samlingspost i `content-types.json` och mappstrukturen konfigureras för varje konfigurerat språk. Du ombeds ange en beskrivande samlingsetikett (t.ex. "Projekt"), ett standard-URL-prefix (t.ex. "projects"), vilken layoutmall som ska användas, om samlingen ska inkluderas i sökindexet och om den ska skyddas.
+När du lägger till en samling via CLI skapas en samlingspost i `content-types.json` och mappstrukturen konfigureras för varje konfigurerat språk. Du ombeds ange en beskrivande samlingsetikett (t.ex. "Projekt"), ett standard-URL-prefix (t.ex. "projects"), vilken layoutmall som ska användas, om samlingen ska inkluderas i sökindexet, om den ska generera RSS/JSON-matningar och om den ska skyddas.
 
 För flerspråkiga webbplatser ombeds du också att ange en slug för varje språk. Detta gör att du kan ha olika URL-prefix per språk om det behövs (t.ex. "projects" på engelska och "projekt" på svenska). CLI skapar en `collectionname.11tydata.js` fil i varje samlingsmapp, som konfigurerar permalänkarna och metadatan för alla objekt i den samlingen.
 
@@ -72,6 +72,7 @@ Varje samlingspost innehåller följande fält:
 - `prefix` — Standard-URL-prefixet för objekt i denna samling.
 - `protected` — När `true`, kan samlingen inte tas bort via CLI. Inlägg och sidor är alltid skyddade.
 - `searchable` — När `true`, inkluderas alla objekt i denna samling i webbplatsens sökindex.
+- `feed` — När `true`, genereras RSS- och JSON-matningar för denna samling på `/feed/{collection}.xml` och `/feed/{collection}.json`.
 - `layout` — Temamallen som används för att rendera objekt i denna samling (t.ex. `post`, `page`, `project`).
 - `locales` — URL-slugs per språk. Om ett språk inte finns med här används värdet för `prefix` som fallback.
 

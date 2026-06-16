@@ -4,6 +4,7 @@
         "prefix": "writing",
         "protected": true,
         "searchable": true,
+        "feed": true,
         "layout": "post",
         "locales": {
             "en": "documentation",
@@ -14,6 +15,7 @@
         "label": "Pages",
         "protected": true,
         "searchable": false,
+        "feed": false,
         "layout": "page",
         "locales": {}
     }
