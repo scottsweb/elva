@@ -115,10 +115,11 @@ export default async function(eleventyConfig) {
 
     // Transforms -------------------------------------
 
-    await autoImportPlugins(eleventyConfig, './elva/transforms/');
+    // await autoImportTransforms(eleventyConfig, './elva/transforms/');
 
     // Shortcodes -------------------------------------
 
+    // await autoImportShortcodes(eleventyConfig, './elva/shortcodes/');
     eleventyConfig.addShortcode('version', () => `${+ new Date()}`);
     eleventyConfig.addShortcode('year', () => `${eleventyConfig.globalData.settings.year}`);
     eleventyConfig.addShortcode('build', () => `${new Date().toISOString().split('T')[0]}`);
