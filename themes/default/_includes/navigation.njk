@@ -15,7 +15,7 @@
         </svg>
     </a>
     <ul class="navigation-menu">
-        {% set nav = collections.all | languageFilter | eleventyNavigation %}
+        {% set nav = collections.all | languagefilter | eleventyNavigation %}
         {% set home = '/' | locale_url %}
         {%- for entry in nav %}
         <li>

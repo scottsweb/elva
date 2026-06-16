@@ -1,7 +1,7 @@
 // shuffle items from a collection and return a limited number
 // {% set collection = collections._posts | shuffle(page, 3) %}
 // deterministic: same fileSlug produces same random selection across locales
-export default function shuffle(collections, exclude, limit = 1) {
+export function shuffle(collections, exclude, limit = 1) {
     const filtered = collections.filter((page) => page.url !== exclude.url);
 
     // deterministic seed from fileSlug + date (same across locales, changes daily)

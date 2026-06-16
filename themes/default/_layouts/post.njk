@@ -6,12 +6,12 @@ layout: base
         <h1 class="entry-title">{{title}}</h1>
         <ul class="meta">
             <li class="meta-date">
-                <time class="entry-date published dt-published" datetime="{{ date | dateToRfc3339 }}">{{ date | formatDate }}</time>
+                <time class="entry-date published dt-published" datetime="{{ date | dateToRfc3339 }}">{{ date | formatdate }}</time>
             </li>
-            <li class="meta-reading-time">{{ content | readingTime }}</li>
-            {%- for tag in tags | filterPrivateTags %}
+            <li class="meta-reading-time">{{ content | readingtime }}</li>
+            {%- for tag in tags | filterprivatetags %}
 	        {%- set tagUrl %}/{{ lang }}/tag/{{ tag | slugify }}/{% endset %}
-	        <li class="meta-tag"><a class="p-category" href="{{ tagUrl | default_locale_url }}">{{ tag }}</a>{%- if not loop.last %}, {% endif %}</li>
+	        <li class="meta-tag"><a class="p-category" href="{{ tagUrl | defaultlocaleurl }}">{{ tag }}</a>{%- if not loop.last %}, {% endif %}</li>
 	        {%- endfor %}
         </ul>
     </header>

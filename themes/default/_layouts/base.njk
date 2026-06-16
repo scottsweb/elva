@@ -20,7 +20,7 @@
         <!-- canonical / alternates -->
         <link rel="canonical" href="{{ u }}">
         <link rel="alternate" hreflang="{{ page.lang }}" href="{{ u }}">
-        {% for link in page.url | locale_links | fix_locale_links %}<link rel="alternate" hreflang="{{ link.lang }}" href="{{ settings.url }}{{ link.url }}">{% endfor %}
+        {% for link in page.url | locale_links | fixlocalelinks %}<link rel="alternate" hreflang="{{ link.lang }}" href="{{ settings.url }}{{ link.url }}">{% endfor %}
 
         <!-- open graph -->
         <meta property="og:site_name" content="{{ 'meta.title' | translate }}">

@@ -1,4 +1,4 @@
-export default function (eleventyConfig) {
+export function drafts(eleventyConfig) {
 	let logged = false;
 
 	eleventyConfig.addPreprocessor('drafts', 'njk,md', (data) => {

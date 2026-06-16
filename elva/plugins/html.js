@@ -1,7 +1,7 @@
 import minifyHtml from '@minify-html/node';
 import { Buffer } from 'node:buffer';
 
-export default eleventyConfig => {
+export function html(eleventyConfig) {
     eleventyConfig.addTransform('html-minify', (content, path) => {
         if (path && path.endsWith('.html') && eleventyConfig.globalData.settings.isProduction) {
             try {
@@ -22,4 +22,4 @@ export default eleventyConfig => {
         }
         return content;
     });
-};
+}

@@ -4,7 +4,7 @@
 import nunjucks from '@11ty/nunjucks';
 nunjucks.configure({ autoescape: true });
 
-export default function translate(lookup, lang, data = {}) {
+export function translate(lookup, lang, data = {}) {
     if (!lang) lang = this.page.lang || this.ctx.lang;
     // traverse the translations object using the dot-separated lookup path
     const value = lookup.split('.').reduce((o, k) => o?.[k], this.ctx.translations[lang]);

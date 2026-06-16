@@ -1,8 +1,8 @@
 // calculate the time to read of a chunk of text (to the nearest minute)
 // based on https://www.bobmonsour.com/posts/calculating-reading-time/
-import translate from './translate.js';
+import { translate } from './translate.js';
 
-export default function(text) {
+export function readingtime(text) {
     let content = new String(text);
     const speed = 240; // reading speed in words per minute
   

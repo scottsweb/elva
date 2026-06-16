@@ -1,12 +1,12 @@
 ---
 eleventyComputed:
-  permalink: "{{ ('/' + lang + '/feed/' + feedSlug + '.xml') | default_locale_url }}"
+  permalink: "{{ ('/' + lang + '/feed/' + feedSlug + '.xml') | defaultlocaleurl }}"
 eleventyExcludeFromCollections: true
 seo:
   excludeFromSitemap: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet href="{{ ('/' + lang + '/feed/feed.xsl') | default_locale_url }}" type="text/xsl"?>
+<?xml-stylesheet href="{{ ('/' + lang + '/feed/feed.xsl') | defaultlocaleurl }}" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:base="{{ "/" | htmlBaseUrl(settings.url) }}">
     <title>{{ label }} {{ settings.meta.separator }} {{ 'meta.rssTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}</title>
     <subtitle>{{ 'meta.description' | translate }}</subtitle>
@@ -29,7 +29,7 @@ seo:
 		<id>{{ absolutePostUrl }}</id>
 		<content xml:lang="{{ post.lang }}" type="html">{{ post.templateContent | renderTransforms | transformWithHtmlBase(settings.url) }}</content>
 		<enclosure url="{{ image | cdnify }}" length="0" type="{{ image | mimetype }}" />
-		{%- for tag in post.data.tags | filterPrivateTags %}
+		{%- for tag in post.data.tags | filterprivatetags %}
 		<category term="{{ tag }}" />
 		{%- endfor %}
 	</entry>

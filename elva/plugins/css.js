@@ -1,7 +1,7 @@
 import { transform, Features, browserslistToTargets } from 'lightningcss';
 import browserslist from 'browserslist';
 
-export default function (eleventyConfig) {
+export function css(eleventyConfig) {
     eleventyConfig.addBundle('css', { toFileDirectory: 'assets/css', transforms: [
         async function(content) {
             const css = await transform({

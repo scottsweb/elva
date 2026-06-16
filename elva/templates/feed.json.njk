@@ -1,6 +1,6 @@
 ---
 eleventyComputed:
-  permalink: "{{ ('/' + lang + '/feed/' + feedSlug + '.json') | default_locale_url }}"
+  permalink: "{{ ('/' + lang + '/feed/' + feedSlug + '.json') | defaultlocaleurl }}"
 eleventyExcludeFromCollections: true
 seo:
   excludeFromSitemap: true
@@ -32,7 +32,7 @@ seo:
             "content_html": {% if post.templateContent %}{{ post.templateContent | renderTransforms | htmlToAbsoluteUrls(absolutePostUrl) | dump | safe }}{% else %}""{% endif %},
             "date_published": "{{ post.date | dateToRfc3339 }}",
             "language": "{{ post.lang }}",
-            "tags": [{% set comma = joiner(",") %}{% for tag in post.data.tags | filterPrivateTags %}{{ comma() }}"{{ tag }}"{% endfor %}]
+            "tags": [{% set comma = joiner(",") %}{% for tag in post.data.tags | filterprivatetags %}{{ comma() }}"{{ tag }}"{% endfor %}]
         }
         {%- if not loop.last %},{% endif %}
         {%- endfor %}
