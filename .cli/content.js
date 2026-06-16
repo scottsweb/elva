@@ -18,14 +18,14 @@ const addContent = async () => {
     const content = {};
     const localesData = getLocaleData();
     
-    // get available content types from content-types.json
+    // get available content types from types.json
    const collections = JSON.parse(readFileSync(COLLECTIONS_PATH, 'utf-8'));
     const contentTypeList = Object.entries(collections)
         .map(([name, config]) => ({ name: `${config.label} (${name})`, value: name }))
         .sort((a, b) => a.name.localeCompare(b.name));
     
     content.contentType = await rawlist({
-        message: 'Select content type:',
+        message: 'Select collection:',
         choices: contentTypeList
     });
     

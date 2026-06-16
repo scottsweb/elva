@@ -1,4 +1,4 @@
-import collections from '../../_data/content-types.json' with { type: 'json' };
+import collections from '../../_data/types.json' with { type: 'json' };
 
 const collectionName = import.meta.url.split('/').at(-2);
 const locale = import.meta.url.split('/').at(-3);

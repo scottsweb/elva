@@ -173,7 +173,7 @@ const removeCollection = async () => {
         }
     }
 
-    // remove from content-types.json
+    // remove from types.json
     delete collections[choice];
     saveCollection(collections);
 

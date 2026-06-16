@@ -66,8 +66,7 @@ const defaultLanguage = Object.keys(locales).find(key => locales[key].default);
 import settings from './content/_data/settings.json' with { type: 'json' }
 
 // Collections
-const collections = await import('./content/_data/content-types.json', { with: { type: 'json' } });
-
+const collections = await import('./content/_data/types.json', { with: { type: 'json' } });
 
 // 11ty -----------------------------------------------
 
