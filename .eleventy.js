@@ -102,7 +102,7 @@ export default async function(eleventyConfig) {
     
     // Plugins ----------------------------------------
 
-    await autoImportPlugins(eleventyConfig, './elva/plugins/');
+    await autoImportPlugins(eleventyConfig);
     await eleventyConfig.addPlugin(pluginRSS);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(EleventyRenderPlugin);
@@ -115,18 +115,18 @@ export default async function(eleventyConfig) {
 
     // Transforms -------------------------------------
 
-    // await autoImportTransforms(eleventyConfig, './elva/transforms/');
+    // await autoImportTransforms(eleventyConfig);
 
     // Shortcodes -------------------------------------
 
-    // await autoImportShortcodes(eleventyConfig, './elva/shortcodes/');
+    // await autoImportShortcodes(eleventyConfig);
     eleventyConfig.addShortcode('version', () => `${+ new Date()}`);
     eleventyConfig.addShortcode('year', () => `${eleventyConfig.globalData.settings.year}`);
     eleventyConfig.addShortcode('build', () => `${new Date().toISOString().split('T')[0]}`);
 
     // Filters ----------------------------------------
 
-    await autoImportFilters(eleventyConfig, './elva/filters/');
+    await autoImportFilters(eleventyConfig);
 
     // Passthrough -------------------------------------
 

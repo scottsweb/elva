@@ -26,26 +26,26 @@ export async function autoImport(eleventyConfig, dir, register, { aliases = fals
     }
 }
 
-export async function autoImportFilters(eleventyConfig, dir) {
-    await autoImport(eleventyConfig, dir, (fn, name) => {
+export async function autoImportFilters(eleventyConfig) {
+    await autoImport(eleventyConfig, './elva/filters/', (fn, name) => {
         eleventyConfig.addFilter(name, fn);
     }, { aliases: true });
 }
 
-export async function autoImportPlugins(eleventyConfig, dir) {
-    await autoImport(eleventyConfig, dir, (fn) => {
+export async function autoImportPlugins(eleventyConfig) {
+    await autoImport(eleventyConfig, './elva/plugins/', (fn) => {
         eleventyConfig.addPlugin(fn);
     }, { aliases: false });
 }
 
-export async function autoImportTransforms(eleventyConfig, dir) {
-    await autoImport(eleventyConfig, dir, (fn, name) => {
+export async function autoImportTransforms(eleventyConfig) {
+    await autoImport(eleventyConfig, './elva/transforms/', (fn, name) => {
         eleventyConfig.addTransform(name, fn);
     }, { aliases: false });
 }
 
-export async function autoImportShortcodes(eleventyConfig, dir) {
-    await autoImport(eleventyConfig, dir, (fn, name) => {
+export async function autoImportShortcodes(eleventyConfig) {
+    await autoImport(eleventyConfig, './elva/shortcodes/', (fn, name) => {
         eleventyConfig.addShortcode(name, fn);
     }, { aliases: false });
 }
