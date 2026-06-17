@@ -28,7 +28,7 @@ npm run cli translation add
 
 ## Ta bort en översättning
 
-Kommandot för borttagning söker efter översättningar utifrån deras visade värde i standardlokalen. Du anger en söksträng, väljer den översättning som ska tas bort bland de matchande resultaten och bekräftar borttagningen. Översättningen tas bort från alla lokalfiler på en gång.
+Kommandot för borttagning söker efter översättningar utifrån deras visade värde i standardlokalen. Du anger en söksträng, väljer den översättning som ska tas bort bland de matchande resultaten och bekräftar borttagningen. Översättningen tas bort från alla översättningsfiler på en gång.
 
 ``` bash
 npm run cli translation remove
@@ -76,8 +76,8 @@ Filtret `translate` finns tillgängligt i alla mallfiler. Det hämtar översätt
 
 {% raw %}
 ```html
-<h1>{{ 'header.home' | translate(page.lang) }}</h1>
-<p>{{ 'footer' | translate(page.lang) }}</p>
+<h1>{{ 'header.home' | translate }}</h1>
+<p>{{ 'footer' | translate }}</p>
 ```
 {% endraw %}
 
@@ -105,7 +105,7 @@ Detta renderas som: `Hej, Alice!`
 
 ### Pluralisering
 
-För strängar som ändras beroende på antal använder du `count`-objektet med nycklarna `one` och `other` i din översättningsfil. Filtret använder ICU:s `Intl.PluralRules`-API för att välja rätt form utifrån språkets pluraliseringsregler.
+För strängar som ändras beroende på antal använder du `count`-objektet med nycklarna `one` och `other` i din översättningsfil. Filtret använder `Intl.PluralRules`-API för att välja rätt form utifrån språkets pluraliseringsregler.
 
 {% raw %}
 ```json

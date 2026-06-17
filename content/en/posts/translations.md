@@ -8,7 +8,7 @@ tags:
 
 Translations in elva are stored as JSON files under `content/_data/translations/`, with one file per language (e.g. `en.json`, `sv.json`). The default language's translation file serves as the source of truth. When you add a new language, a copy of the default translation file is created for that locale, which you can then customize.
 
-Translation strings are referenced in your theme templates using the `translate` filter. This allows you to externalize all user-facing text from your templates, making it easy to update wording or add new languages without modifying template code.
+Translation strings are referenced in your theme templates using the `translate` filter. This allows you to externalise all user-facing text from your templates, making it easy to update wording or add new languages without modifying template code.
 
 <div class="notice notice-notice">If you only need a single language site, that is perfectly fine. You can still use the translate filter for all your strings, or leave it out entirely if you prefer not to use translations at all.</div>
 
@@ -26,7 +26,7 @@ npm run cli translation add
 
 ## Remove a translation
 
-The remove command searches for translations by their displayed value in the default locale. You enter a search string, select the translation to remove from the matching results, and confirm the deletion. The translation is removed from all locale files at once.
+The remove command searches for translations by their displayed value in the default locale. You enter a search string, select the translation to remove from the matching results, and confirm the deletion. The translation is removed from all translation files at once.
 
 ``` bash
 npm run cli translation remove
@@ -74,8 +74,8 @@ The `translate` filter is available in all template files. It finds the translat
 
 {% raw %}
 ```html
-<h1>{{ 'header.home' | translate(page.lang) }}</h1>
-<p>{{ 'footer' | translate(page.lang) }}</p>
+<h1>{{ 'header.home' | translate }}</h1>
+<p>{{ 'footer' | translate }}</p>
 ```
 {% endraw %}
 
@@ -103,7 +103,7 @@ This renders as: `Hello, Alice!`
 
 ### Pluralization
 
-For strings that change based on a count, use the `count` object with `one` and `other` keys in your translation file. The filter uses the ICU `Intl.PluralRules` API to select the correct form based on the language's pluralization rules.
+For strings that change based on a count, use the `count` object with `one` and `other` keys in your translation file. The filter uses the `Intl.PluralRules` API to select the correct form based on the language's pluralization rules.
 
 {% raw %}
 ```json
