@@ -1,5 +1,5 @@
 import { input, rawlist, confirm } from '@inquirer/prompts';
-import { success, error, getLocaleData, COLLECTIONS_PATH, COLLECTIONS_TEMPLATE_PATH, SETTINGS_PATH } from './utils.js';
+import { success, error, getLocaleData, getTemplatePartChoices, COLLECTIONS_PATH, COLLECTIONS_TEMPLATE_PATH } from './utils.js';
 import * as path from 'path';
 import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync, readdirSync } from 'fs';
 import colors from 'yoctocolors';
@@ -11,17 +11,6 @@ const getCollections = () => {
 
 const saveCollection = (data) => {
     writeFileSync(COLLECTIONS_PATH, JSON.stringify(data, null, 4));
-};
-
-const getLayoutChoices = () => {
-    const settings = JSON.parse(readFileSync(SETTINGS_PATH, 'utf-8'));
-    const theme = settings.theme || 'default';
-    const layoutsDir = path.join(process.cwd(), 'themes', theme, '_layouts');
-    const layoutFiles = readdirSync(layoutsDir);
-    return layoutFiles
-        .filter(f => !f.startsWith('_'))
-        .map(f => f.replace(/\.[^.]+$/, ''))
-        .sort();
 };
 
 const createCollectionFolder = (collectionName, localeKey) => {
@@ -74,7 +63,7 @@ const addCollection = async () => {
     });
     const finalPrefix = slugify(overridePrefix) || prefix;
 
-    const layoutChoices = getLayoutChoices();
+    const layoutChoices = getTemplatePartChoices({ type: 'layouts' });
 
     const layout = await rawlist({
         message: 'Choose an available layout:',
@@ -220,7 +209,7 @@ const editCollection = async () => {
     }
 
     // edit layout
-    const layoutChoices = getLayoutChoices();
+    const layoutChoices = getTemplatePartChoices({ type: 'layouts' });
     const newLayout = await rawlist({
         message: `Choose a layout (current: '${config.layout}'):`,
         choices: layoutChoices,

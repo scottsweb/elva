@@ -117,7 +117,7 @@ const removeContent = async () => {
     const files = globSync(pattern, { cwd: process.cwd() });
 
     if (files.length === 0) {
-        error(`No files found matching slug '${slug}'`);
+        error(`No files found matching slug '${slug}'.`);
         return;
     }
 

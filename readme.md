@@ -164,6 +164,11 @@ You can use the CLI to manage languages and content directly from the command li
 - `npm run cli collections edit` - Edit a collection
 - `npm run cli sync-collections` - Sync the `collection.11tydata.js` template to all collections
 
+#### Translation Commands
+
+- `npm run cli translations add` - Add a new translation
+- `npm run cli translations remove` - Remove a translation
+
 ## Updates
 
 ### 4.0.0

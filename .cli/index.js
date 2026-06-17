@@ -6,6 +6,7 @@ import { addContent, removeContent, regenerateOpengraph, importContent } from '.
 import { addBlogroll, listBlogroll, removeBlogroll } from './blogroll.js';
 import { listCollections, addCollection, removeCollection, editCollection, syncTemplates } from './collections.js';
 import { setupSite, setupTheme, deleteDefaultContent } from './setup.js';
+import { addTranslation, removeTranslation } from './translations.js';
 import { error, info, handleExitError, clean } from './utils.js';
 
 // parse command-line arguments
@@ -62,6 +63,10 @@ const commands = {
         add: addCollection,
         remove: removeCollection,
         edit: editCollection
+    },
+    translations: {
+        add: addTranslation,
+        remove: removeTranslation
     }
 };
 
@@ -135,6 +140,7 @@ async function runCLI() {
             choices: [
                 { name: 'Content', value: 'content' },
                 { name: 'Blogroll', value: 'blogroll' },
+                { name: 'Translations', value: 'translations' },
                 { name: 'Collections', value: 'collections' },
                 { name: 'Languages', value: 'languages' },
                 { name: 'Setup', value: 'setup' },
@@ -157,6 +163,9 @@ async function runCLI() {
                 break;
             case 'collections':
                 await manageCollections();
+                break;
+            case 'translations':
+                await manageTranslations();
                 break;
             case 'exit':
                 info('Goodbye!');
@@ -254,6 +263,20 @@ async function manageCollections() {
         edit: editCollection
     };
     await manageMenu('Collections:', actions, handlers);
+}
+
+async function manageTranslations() {
+    const actions = [
+        { name: 'Add translation', value: 'add' },
+        { name: 'Remove translation', value: 'remove' },
+        { name: '⏴ Back', value: 'back' },
+        { name: '⏹ Exit', value: 'exit' }
+    ];
+    const handlers = {
+        add: addTranslation,
+        remove: removeTranslation
+    };
+    await manageMenu('Translations:', actions, handlers);
 }
 
 // start the CLI
