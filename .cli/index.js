@@ -64,6 +64,10 @@ const commands = {
         remove: removeCollection,
         edit: editCollection
     },
+    translation: {
+        add: addTranslation,
+        remove: removeTranslation
+    },
     translations: {
         add: addTranslation,
         remove: removeTranslation
