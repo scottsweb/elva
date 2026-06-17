@@ -1,6 +1,6 @@
 import markdownIt from 'markdown-it';
 
-export default function (eleventyConfig) {
+export function seodescriptions(eleventyConfig) {
 
     eleventyConfig.addGlobalData("eleventyComputed.seo.description", () => (data) => {
         const md = markdownIt({

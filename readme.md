@@ -54,7 +54,7 @@ Features include:
 ### Still to come:
 
 - [ ] A fancy default theme
-- [ ] Fix: Make the random filter choose the same article for both languages
+- [x] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
 - [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
@@ -62,7 +62,7 @@ Features include:
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js) ([1](https://github.com/madrilene/eleventy-i18n/blob/main/netlify.toml))
 - [ ] Cleaner language selector
 - [ ] Pagination examples
-- [x] Allow for variable subsitution in translations e.g. `Hello, {{name}}` (still needs to handle plurals!)
+- [x] Allow for variable substitution in translations e.g. `Hello, {{name}}` and plurals e.g. `{{ count }} item(s)`
 - [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
 - [ ] Front Matter CMS — [More helpful scripts](https://frontmatter.codes/docs/custom-actions#creating-a-media-script)
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
@@ -163,6 +163,12 @@ You can use the CLI to manage languages and content directly from the command li
 - `npm run cli collections remove` - Remove a collection
 - `npm run cli collections edit` - Edit a collection
 - `npm run cli sync-collections` - Sync the `collection.11tydata.js` template to all collections
+
+#### Translation Commands
+
+- `npm run cli translations add` - Add a new translation
+- `npm run cli translations remove` - Remove a translation
+- `npm run cli translations sync` - Sync missing keys from the default language to other locales
 
 ## Updates
 

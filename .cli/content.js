@@ -2,6 +2,7 @@ import { input, rawlist, checkbox, confirm, select } from '@inquirer/prompts';
 import { success, error, warning, info, getLocaleData, LOCALES_PATH, COLLECTIONS_PATH } from './utils.js';
 import { Importer } from '@11ty/import';
 import * as entities from 'entities';
+import { getProperty } from 'dot-prop';
 import * as path from 'path';
 import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync, globSync, renameSync, rmSync, readdirSync } from 'fs';
 import { readdir } from 'node:fs/promises';
@@ -18,14 +19,14 @@ const addContent = async () => {
     const content = {};
     const localesData = getLocaleData();
     
-    // get available content types from content-types.json
+    // get available content types from types.json
    const collections = JSON.parse(readFileSync(COLLECTIONS_PATH, 'utf-8'));
     const contentTypeList = Object.entries(collections)
         .map(([name, config]) => ({ name: `${config.label} (${name})`, value: name }))
         .sort((a, b) => a.name.localeCompare(b.name));
     
     content.contentType = await rawlist({
-        message: 'Select content type:',
+        message: 'Select collection:',
         choices: contentTypeList
     });
     
@@ -105,7 +106,7 @@ const addContent = async () => {
 };
 
 const removeContent = async () => {
-    // ask for a page slug
+    // ask for a slug
     let slug = await input({
         message: 'Enter content slug (e.g example or example.md):',
         required: true
@@ -117,7 +118,7 @@ const removeContent = async () => {
     const files = globSync(pattern, { cwd: process.cwd() });
 
     if (files.length === 0) {
-        error(`No files found matching slug '${slug}'`);
+        error(`No files found matching slug '${slug}'.`);
         return;
     }
 
@@ -133,7 +134,7 @@ const removeContent = async () => {
     // delete the files
     for (const file of files) {
         try {
-            await unlinkSync(file);
+            unlinkSync(file);
         } catch (error) {
             error(`Failed to delete ${file}: ${error.message}`);
         }
@@ -183,9 +184,10 @@ const regenerateOpengraph = async () => {
                 if (result) {
                     try {
                         const output = JSON.parse(result);
-                         if (output.frontmatter?.thumbnail) {
+                         const thumbnail = getProperty(output, 'frontmatter.thumbnail');
+                         if (thumbnail) {
                             // update thumbnail
-                            fm.thumbnail = output.frontmatter.thumbnail;
+                            fm.thumbnail = thumbnail;
                             
                             // stringify with gray-matter (dates preserved as-is with JSON_SCHEMA)
                             let newContent = matter.stringify(content, fm, { engines: { yaml: yamlEngine } });
@@ -270,7 +272,7 @@ const importContent = async () => {
             { name: 'Last 7 days', value: '7d' },
             { name: 'Last 30 days', value: '30d' },
             { name: 'Last 90 days', value: '90d' },
-            { name: 'Last 1 year', value: '1y' },
+            { name: 'Last 12 months', value: '1y' },
             { name: 'All time', value: '*' }
         ]
     });

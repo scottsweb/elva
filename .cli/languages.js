@@ -1,5 +1,6 @@
 import { input, confirm, rawlist } from '@inquirer/prompts';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, cpSync, readdirSync, unlinkSync } from 'fs';
+import { getProperty, setProperty } from 'dot-prop';
 import * as path from 'path';
 import { success, error, getLocaleData, LOCALES_PATH } from './utils.js';
 import colors from 'yoctocolors';
@@ -52,7 +53,6 @@ const addLanguage = async () => {
     });
     
     newLanguage.default = false;
-    newLanguage.locale = newLanguage.locale.toLowerCase();
 
     const data = JSON.parse(readFileSync(LOCALES_PATH, 'utf-8'));
 
@@ -175,12 +175,12 @@ const changeDefaultLanguage = async () => {
     // remove all existing defaults
     for (const key in data) {
         if (key !== result) {
-            data[key].default = false;
+            setProperty(data, `${key}.default`, false);
         }
     }
 
     // set the new default
-    data[result].default = true;
+    setProperty(data, `${result}.default`, true);
     
     writeFileSync(LOCALES_PATH, JSON.stringify(data, null, 4));
     success(`Default language changed to '${result}'.`);

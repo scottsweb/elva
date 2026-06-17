@@ -23,40 +23,12 @@ import slugify from '@sindresorhus/slugify';
 
 // Local ---------------------------------------------
 
-// Plugins
-import pluginDrafts from './elva/plugins/drafts.js';
-import pluginDescriptions from './elva/plugins/seodescriptions.js';
-import pluginCSS from './elva/plugins/css.js';
-import pluginJS from './elva/plugins/js.js';
-import pluginSVG from './elva/plugins/svg.js';
-
 // Plugin Configs
 import pluginEmbedEverythingConfig from './elva/config/embeds.js';
 import pluginImageTransformConfig from './elva/config/images.js';
 
-// Transforms
-import transformHTML from './elva/transforms/html.js';
-
-// Shortcodes
-// None
-
-// Filters
-import base64 from './elva/filters/base64.js';
-import cdnify from './elva/filters/cdnify.js';
-import { formatDate } from './elva/filters/dates.js';
-import filterPrivateTags from './elva/filters/filterprivatetags.js';
-import languageFilter from './elva/filters/language.js';
-import fixLocaleLinks from './elva/filters/fixlocalelinks.js';
-import defaultLocaleURL from './elva/filters/defaultlocaleurl.js';
-import mimetype from './elva/filters/mimetype.js';
-import random from './elva/filters/random.js';
-import readingTime from './elva/filters/readingtime.js';
-import sortBy from './elva/filters/sortby.js';
-import tagged from './elva/filters/tagged.js';
-import translate from './elva/filters/translate.js';
-import where from './elva/filters/where.js';
-import indexer from './elva/filters/indexer.js';
-import section from './elva/filters/section.js';
+// Auto-import utilities
+import { autoImportFilters, autoImportPlugins } from './elva/utils/autoimport.js';
 
 // Languages
 import locales from './content/_data/locales.json' with { type: 'json' }
@@ -64,6 +36,9 @@ const defaultLanguage = Object.keys(locales).find(key => locales[key].default);
 
 // Settings
 import settings from './content/_data/settings.json' with { type: 'json' }
+
+// Collections
+const collections = await import('./content/_data/types.json', { with: { type: 'json' } });
 
 // 11ty -----------------------------------------------
 
@@ -102,30 +77,33 @@ export default async function(eleventyConfig) {
     eleventyConfig.addTemplate('robots.njk', robotsTemplate);
     eleventyConfig.addTemplate('sitemap.njk', sitemapTemplate);
 
-    const feedTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.xml.njk'), 'utf-8');
-    const feedXSLTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.xsl.njk'), 'utf-8');
-    const feedJSONTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.json.njk'), 'utf-8');
     const manifestTemplate = fs.readFileSync(path.resolve('elva/templates/', 'manifest.njk'), 'utf-8');
     const blogrollXMLTemplate = fs.readFileSync(path.resolve('elva/templates/', 'blogroll.xml.njk'), 'utf-8');
     const searchApiTemplate = fs.readFileSync(path.resolve('elva/templates/', 'search.json.njk'), 'utf-8');
+    const feedXslTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.xsl.njk'), 'utf-8');
 
     for (let [key, locale] of Object.entries(locales)) {
-        eleventyConfig.addTemplate(key + '-feed.xml.njk', feedTemplate, { lang: key });
-        eleventyConfig.addTemplate(key + '-feed.xsl.njk', feedXSLTemplate, { lang: key });
-        eleventyConfig.addTemplate(key + '-feed.json.njk', feedJSONTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-manifest.njk', manifestTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-blogroll.xml.njk', blogrollXMLTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-search-api.json.njk', searchApiTemplate, { lang: key, collection: '_search' });
+        eleventyConfig.addTemplate(key + '-feed.xsl.njk', feedXslTemplate, { lang: key });
+
+        for (let [collectionName, config] of Object.entries(collections.default)) {
+            if (!config.feed) continue;
+
+            const feedXmlTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.xml.njk'), 'utf-8');
+            const feedJsonTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.json.njk'), 'utf-8');
+            
+            const feedSlug = collectionName === 'posts' ? 'feed' : collectionName;
+            eleventyConfig.addTemplate(key + '-' + collectionName + '-feed.xml.njk', feedXmlTemplate, { lang: key, collectionName, collectionTag: `_${collectionName}`, label: config.label, feedSlug });
+            eleventyConfig.addTemplate(key + '-' + collectionName + '-feed.json.njk', feedJsonTemplate, { lang: key, collectionName, collectionTag: `_${collectionName}`, label: config.label, feedSlug });
+        }
     }
     
     // Plugins ----------------------------------------
 
-    eleventyConfig.addPlugin(pluginCSS);
-    eleventyConfig.addPlugin(pluginJS);
-    eleventyConfig.addPlugin(pluginSVG);
+    await autoImportPlugins(eleventyConfig);
     await eleventyConfig.addPlugin(pluginRSS);
-    eleventyConfig.addPlugin(pluginDrafts);
-    eleventyConfig.addPlugin(pluginDescriptions);
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
     eleventyConfig.addPlugin(EleventyRenderPlugin);
     eleventyConfig.addPlugin(EleventyI18nPlugin, { defaultLanguage: defaultLanguage, errorMode: 'never'});
@@ -137,31 +115,18 @@ export default async function(eleventyConfig) {
 
     // Transforms -------------------------------------
 
-    eleventyConfig.addPlugin(transformHTML);
+    // await autoImportTransforms(eleventyConfig);
 
     // Shortcodes -------------------------------------
 
+    // await autoImportShortcodes(eleventyConfig);
     eleventyConfig.addShortcode('version', () => `${+ new Date()}`);
     eleventyConfig.addShortcode('year', () => `${eleventyConfig.globalData.settings.year}`);
     eleventyConfig.addShortcode('build', () => `${new Date().toISOString().split('T')[0]}`);
+
     // Filters ----------------------------------------
 
-    eleventyConfig.addFilter('base64', base64);
-    eleventyConfig.addFilter('cdnify', cdnify);
-    eleventyConfig.addFilter('filterPrivateTags', filterPrivateTags);
-    eleventyConfig.addFilter('formatDate', formatDate);
-    eleventyConfig.addFilter('languageFilter', languageFilter);
-    eleventyConfig.addFilter('fix_locale_links', fixLocaleLinks);
-    eleventyConfig.addFilter('default_locale_url', defaultLocaleURL);
-    eleventyConfig.addFilter('mimetype', mimetype);
-    eleventyConfig.addFilter('random', random);
-    eleventyConfig.addFilter('readingTime', readingTime);
-    eleventyConfig.addFilter('tagged', tagged);
-    eleventyConfig.addFilter('translate', translate);
-    eleventyConfig.addFilter('sortBy', sortBy);
-    eleventyConfig.addFilter('where', where);
-    eleventyConfig.addFilter('index', indexer);
-    eleventyConfig.addFilter('section', section);
+    await autoImportFilters(eleventyConfig);
 
     // Passthrough -------------------------------------
 

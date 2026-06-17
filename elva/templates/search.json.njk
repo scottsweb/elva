@@ -1,6 +1,6 @@
 ---
 eleventyComputed:
-  permalink: "{{ ('/' + lang + '/api/search.json') | default_locale_url }}"
+  permalink: "{{ ('/' + lang + '/api/search.json') | defaultlocaleurl }}"
 eleventyExcludeFromCollections: true
 seo:
   excludeFromSitemap: true
@@ -12,7 +12,7 @@ seo:
     "icon": "{{ "/assets/img/icon-512.png" | htmlBaseUrl(settings.url) | cdnify }}",
     "data": [
         {% set counter = loop %}
-        {%- for post in collections[collection] | languageFilter(page.lang)| reverse %}
+        {%- for post in collections[collection] | languagefilter(page.lang)| reverse %}
         {%- set absolutePostUrl = post.url | htmlBaseUrl(settings.url) %}
         {
             "id": {{ loop.index }},
@@ -22,7 +22,7 @@ seo:
             "language": "{{ post.page.lang }}",
             "date_updated": "{{ post.date | dateToRfc3339 }}",
             "excerpt": "{{ post.data.seo.description | striptags | truncate(150, false, '…') | safe }}",
-            "keywords": "{{ post.content | index }}",
+            "keywords": "{{ post.content | indexer }}",
             "tags": [{% set comma = joiner(",") %}{% for tag in post.data.tags %}{{ comma() }}"{{ tag }}"{% endfor %}]
         }
         {%- if not loop.last %},{% endif %}

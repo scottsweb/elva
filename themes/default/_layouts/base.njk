@@ -20,7 +20,7 @@
         <!-- canonical / alternates -->
         <link rel="canonical" href="{{ u }}">
         <link rel="alternate" hreflang="{{ page.lang }}" href="{{ u }}">
-        {% for link in page.url | locale_links | fix_locale_links %}<link rel="alternate" hreflang="{{ link.lang }}" href="{{ settings.url }}{{ link.url }}">{% endfor %}
+        {% for link in page.url | locale_links | fixlocalelinks %}<link rel="alternate" hreflang="{{ link.lang }}" href="{{ settings.url }}{{ link.url }}">{% endfor %}
 
         <!-- open graph -->
         <meta property="og:site_name" content="{{ 'meta.title' | translate }}">
@@ -48,8 +48,13 @@
 	    <link rel="stylesheet" href="{% getBundleFileUrl 'css', 'defer' %}?v={% version %}" fetchpriority="low">
 
         <!-- feeds -->
-        <link rel="alternate" href="{{ "/feed/feed.xml" | locale_url | htmlBaseUrl(settings.url) }}" type="application/atom+xml" title="{{ 'meta.rssTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}">
-		<link rel="alternate" href="{{ "/feed/feed.json" | locale_url | htmlBaseUrl(settings.url) }}" type="application/json" title="{{ 'meta.jsonTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}">
+        {%- for collectionName, config in types %}
+        {%- if config.feed %}
+        {%- set feedSlug = 'feed' if collectionName == 'posts' else collectionName %}
+        <link rel="alternate" href="{{ ('/feed/' + feedSlug + '.xml') | locale_url | htmlBaseUrl(settings.url) }}" type="application/atom+xml" title="{{ config.label }} {{ settings.meta.separator }} {{ 'meta.rssTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}">
+        <link rel="alternate" href="{{ ('/feed/' + feedSlug + '.json') | locale_url | htmlBaseUrl(settings.url) }}" type="application/json" title="{{ config.label }} {{ settings.meta.separator }} {{ 'meta.jsonTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}">
+        {%- endif %}
+        {%- endfor %}
         {% if blogroll | length %}<link rel="blogroll"  href="{{ "/feed/blogroll.xml" | locale_url | htmlBaseUrl(settings.url) }}" type="text/xml" title="{{ 'meta.blogrollTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}">{% endif %}
 
         <!-- preload / prefetch -->

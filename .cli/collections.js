@@ -1,5 +1,6 @@
 import { input, rawlist, confirm } from '@inquirer/prompts';
-import { success, error, getLocaleData, COLLECTIONS_PATH, COLLECTIONS_TEMPLATE_PATH, SETTINGS_PATH } from './utils.js';
+import { success, error, getLocaleData, getTemplatePartChoices, COLLECTIONS_PATH, COLLECTIONS_TEMPLATE_PATH } from './utils.js';
+import { getProperty, setProperty } from 'dot-prop';
 import * as path from 'path';
 import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync, readdirSync } from 'fs';
 import colors from 'yoctocolors';
@@ -11,17 +12,6 @@ const getCollections = () => {
 
 const saveCollection = (data) => {
     writeFileSync(COLLECTIONS_PATH, JSON.stringify(data, null, 4));
-};
-
-const getLayoutChoices = () => {
-    const settings = JSON.parse(readFileSync(SETTINGS_PATH, 'utf-8'));
-    const theme = settings.theme || 'default';
-    const layoutsDir = path.join(process.cwd(), 'themes', theme, '_layouts');
-    const layoutFiles = readdirSync(layoutsDir);
-    return layoutFiles
-        .filter(f => !f.startsWith('_'))
-        .map(f => f.replace(/\.[^.]+$/, ''))
-        .sort();
 };
 
 const createCollectionFolder = (collectionName, localeKey) => {
@@ -36,7 +26,7 @@ const createCollectionFolder = (collectionName, localeKey) => {
 
 const listCollections = () => {
     const collections = getCollections();
-    const header = 'Label'.padEnd(24) + 'Layout'.padEnd(12) + 'Protected'.padEnd(12) + 'Searchable';
+    const header = 'Label'.padEnd(24) + 'Layout'.padEnd(12) + 'Protected'.padEnd(12) + 'Search'.padEnd(12) + 'Feed';
     console.log(colors.bold(colors.cyan(header)));
     console.log('-'.repeat(header.length));
 
@@ -44,7 +34,8 @@ const listCollections = () => {
         const label = `${i + 1}. ${config.label} (${name})`;
         const row = label.padEnd(24) + (config.layout || '').padEnd(12) +
             (config.protected ? colors.green('Yes'.padEnd(12)) : 'No '.padEnd(12)) +
-            (config.searchable ? colors.green('Yes'.padEnd(12)) : 'No '.padEnd(12));
+            (config.searchable ? colors.green('Yes'.padEnd(12)) : 'No '.padEnd(12)) +
+            (config.feed ? colors.green('Yes'.padEnd(12)) : 'No '.padEnd(12));
         console.log(row);
     });
     console.log('-'.repeat(header.length));
@@ -73,7 +64,7 @@ const addCollection = async () => {
     });
     const finalPrefix = slugify(overridePrefix) || prefix;
 
-    const layoutChoices = getLayoutChoices();
+    const layoutChoices = getTemplatePartChoices({ type: 'layouts' });
 
     const layout = await rawlist({
         message: 'Choose an available layout:',
@@ -83,6 +74,15 @@ const addCollection = async () => {
 
     const searchableChoice = await rawlist({
         message: 'Include entire collection in search index?',
+        default: true,
+        choices: [
+            { name: 'Yes', value: true },
+            { name: 'No', value: false }
+        ]
+    });
+
+    const feedChoice = await rawlist({
+        message: 'Generate RSS/JSON feed for this collection?',
         default: true,
         choices: [
             { name: 'Yes', value: true },
@@ -110,11 +110,12 @@ const addCollection = async () => {
         locales[locale.value] = slugify(slug);
     }
 
-   collections[name] = {
+    collections[name] = {
         label,
         prefix: finalPrefix,
         protected: protectedChoice,
         searchable: searchableChoice,
+        feed: feedChoice,
         layout,
         locales
     };
@@ -162,7 +163,7 @@ const removeCollection = async () => {
         }
     }
 
-    // remove from content-types.json
+    // remove from types.json
     delete collections[choice];
     saveCollection(collections);
 
@@ -209,7 +210,7 @@ const editCollection = async () => {
     }
 
     // edit layout
-    const layoutChoices = getLayoutChoices();
+    const layoutChoices = getTemplatePartChoices({ type: 'layouts' });
     const newLayout = await rawlist({
         message: `Choose a layout (current: '${config.layout}'):`,
         choices: layoutChoices,
@@ -228,6 +229,17 @@ const editCollection = async () => {
     });
     config.searchable = searchableChoice;
 
+    // edit feed
+    const feedChoice = await rawlist({
+        message: `Generate RSS/JSON feed for this collection? (current: ${config.feed ? 'Yes' : 'No'})`,
+        default: config.feed,
+        choices: [
+            { name: 'Yes', value: true },
+            { name: 'No', value: false }
+        ]
+    });
+    config.feed = feedChoice;
+
     // edit protected (skip for posts and pages)
     if (!['posts', 'pages'].includes(choice)) {
         const protectedChoice = await rawlist({
@@ -243,14 +255,13 @@ const editCollection = async () => {
 
     // edit locale slugs
     for (const locale of localesData.locales) {
-        const currentSlug = config.locales?.[locale.value] || config.prefix || choice;
+        const currentSlug = getProperty(config, `locales.${locale.value}`) || config.prefix || choice;
         const slug = await input({
             message: `Enter ${locale.name} slug (current: '${currentSlug}'):`,
             default: currentSlug,
             required: true
         });
-        config.locales = config.locales || {};
-        config.locales[locale.value] = slugify(slug);
+        setProperty(config, `locales.${locale.value}`, slugify(slug));
     }
 
     collections[choice] = config;

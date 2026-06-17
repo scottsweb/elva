@@ -1,7 +1,7 @@
 // <!--section:intro-->
 // {{ content | section('intro') | safe }}
 // Split a single markdown file into multiple, named sections
-export default function section(content, sectionName) {
+export function section(content, sectionName) {
     if (!content || typeof content !== "string") {
         return content;
     }

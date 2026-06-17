@@ -1,25 +1,25 @@
 ---
 eleventyComputed:
-  permalink: "{{ ('/' + lang + '/feed/feed.xml') | default_locale_url }}"
+  permalink: "{{ ('/' + lang + '/feed/' + feedSlug + '.xml') | defaultlocaleurl }}"
 eleventyExcludeFromCollections: true
 seo:
   excludeFromSitemap: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet href="{{ ('/' + lang + '/feed/feed.xsl') | default_locale_url }}" type="text/xsl"?>
+<?xml-stylesheet href="{{ ('/' + lang + '/feed/feed.xsl') | defaultlocaleurl }}" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:base="{{ "/" | htmlBaseUrl(settings.url) }}">
-    <title>{{ 'meta.rssTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}</title>
+    <title>{{ label }} {{ settings.meta.separator }} {{ 'meta.rssTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}</title>
     <subtitle>{{ 'meta.description' | translate }}</subtitle>
 	<icon>{{ "/assets/img/icon-512.png" | htmlBaseUrl(settings.url) | cdnify }}</icon>
     <link href="{{ permalink | htmlBaseUrl(settings.url) }}" rel="self"/>
     <link href="{{ "/" | htmlBaseUrl(settings.url) }}" />	
-	<updated>{{ collections._posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+	<updated>{{ collections[collectionTag] | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
 	<id>{{ "/" | htmlBaseUrl(settings.url) }}</id>
 	<author>
 		<name>{{ settings.author.name }}</name>
 		<email>{{ settings.author.email }}</email>
 	</author>
-  	{%- for post in collections._posts | languageFilter(page.lang)| reverse %}
+  	{%- for post in collections[collectionTag] | reverse %}
   	{%- set absolutePostUrl = post.url | absoluteUrl(settings.url) %}
 	{%- set image = (post.data.thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) | cdnify %}
 	<entry>
@@ -27,9 +27,9 @@ seo:
 		<link href="{{ absolutePostUrl }}" />
 		<updated>{{ post.date | dateToRfc3339 }}</updated>
 		<id>{{ absolutePostUrl }}</id>
-		<content xml:lang="{{ post.page.lang }}" type="html">{{ post.templateContent | renderTransforms | transformWithHtmlBase(settings.url) }}</content>
+		<content xml:lang="{{ post.lang }}" type="html">{{ post.templateContent | renderTransforms | transformWithHtmlBase(settings.url) }}</content>
 		<enclosure url="{{ image | cdnify }}" length="0" type="{{ image | mimetype }}" />
-		{%- for tag in post.data.tags | filterPrivateTags %}
+		{%- for tag in post.data.tags | filterprivatetags %}
 		<category term="{{ tag }}" />
 		{%- endfor %}
 	</entry>

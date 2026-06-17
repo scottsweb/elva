@@ -1,5 +1,5 @@
 import mime from 'mime-types';
 
-export default function mimeType(file) {
+export function mimetype(file) {
     return mime.lookup(file);
 }

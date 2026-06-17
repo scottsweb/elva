@@ -1,6 +1,7 @@
 import { input, rawlist, confirm } from '@inquirer/prompts';
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, unlinkSync } from 'fs';
 import { success, error, warning, PACKAGE_PATH, SETTINGS_PATH, THEMES_PATH, getLocaleData } from './utils.js';
+import { getProperty } from 'dot-prop';
 import * as path from 'path';
 
 const getSettings = () => {
@@ -13,13 +14,24 @@ const getPackage = () => {
     return data;
 };
 
+const deepMerge = (target, source) => {
+    const result = { ...target };
+    for (const key of Object.keys(source)) {
+        if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+            result[key] = deepMerge(result[key] || {}, source[key]);
+        } else {
+            result[key] = source[key];
+        }
+    }
+    return result;
+};
+
 const updateSettings = (settings) => {
     const existingSettings = getSettings();
-    existingSettings.author = settings.author;
+    const merged = deepMerge(existingSettings, settings);
     
-    // write back only if changed
-    if (JSON.stringify(existingSettings) !== JSON.stringify(settings)) {
-        writeFileSync(SETTINGS_PATH, JSON.stringify(existingSettings, null, 4), 'utf-8');
+    if (JSON.stringify(existingSettings) !== JSON.stringify(merged)) {
+        writeFileSync(SETTINGS_PATH, JSON.stringify(merged, null, 4), 'utf-8');
         success('settings.json updated.');
     } else {
         warning('settings.json has not changed.');
@@ -28,15 +40,11 @@ const updateSettings = (settings) => {
 
 const updatePackageJson = (packageData) => {
     const existingPkg = getPackage();
-    existingPkg.name = packageData.name;
-    existingPkg.description = packageData.description;
-    existingPkg.version = packageData.version;
-    existingPkg.keywords = packageData.keywords;
-    existingPkg.author = packageData.author;
+    const merged = deepMerge(existingPkg, packageData);
     
     // Write back only if changed
-    if (JSON.stringify(existingPkg) !== JSON.stringify(packageData)) {
-        writeFileSync(PACKAGE_PATH, JSON.stringify(existingPkg, null, 4));
+    if (JSON.stringify(existingPkg) !== JSON.stringify(merged)) {
+        writeFileSync(PACKAGE_PATH, JSON.stringify(merged, null, 4));
         success('package.json updated.');
     } else {
         warning('package.json has not changed.');
@@ -83,25 +91,25 @@ const setupSite = async () => {
     newPackageJson.authorName = await input({
         message: 'Enter author name:',
         required: true,
-        default: packageJson.author?.name
+        default: getProperty(packageJson, 'author.name')
     });
     
     newPackageJson.authorUrl = await input({
         message: 'Enter author URL (e.g. https://example.com):',
         required: true,
-        default: packageJson.author?.url
+        default: getProperty(packageJson, 'author.url')
     });
     
     newPackageJson.authorEmail = await input({
         message: 'Enter author email:',
         required: true,
-        default: packageJson.author?.email
+        default: getProperty(packageJson, 'author.email')
     });
     
     newPackageJson.authorLocation = await input({
         message: 'Enter author location:',
         required: true,
-        default: packageJson.location
+        default: getProperty(packageJson, 'location')
     });
         
     updatePackageJson({

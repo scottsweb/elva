@@ -2,7 +2,7 @@
 // {% svg "mysvg.svg", { class: "logo", title: "My inlined SVG", width: 400, height: 400 } %}
 import * as cheerio from 'cheerio';
 
-export default function (eleventyConfig) {
+export function svg(eleventyConfig) {
     function processSvg(content, svgOptions) {
 		try {
 			const $ = cheerio.load(content, null, false);

@@ -1,6 +1,6 @@
 ---
 title: Managing content
-date: 2026-06-08
+date: 2026-06-07
 tags:
   - tag2
   - tag5
