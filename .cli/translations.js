@@ -2,6 +2,7 @@ import { input, rawlist, confirm } from '@inquirer/prompts';
 import { success, error, info, getLocaleData, getTemplatePartChoices, TRANSLATIONS_DIR } from './utils.js';
 import * as path from 'path';
 import { readFileSync, writeFileSync, readdirSync } from 'fs';
+import { getProperty, setProperty, deleteProperty } from 'dot-prop';
 
 const getTranslationFiles = () => {
     return readdirSync(TRANSLATIONS_DIR)
@@ -19,79 +20,40 @@ const saveTranslationFile = (locale, data) => {
     writeFileSync(filePath, JSON.stringify(data, null, 4));
 };
 
-// Traverse to the parent object of a dot-notation key path
-const getNestedParent = (obj, keyPath) => {
-    const parts = keyPath.split('.');
-    let current = obj;
-    for (let i = 0; i < parts.length - 1; i++) {
-        if (current[parts[i]] === undefined || typeof current[parts[i]] !== 'object' || current[parts[i]] === null) {
-            return null;
-        }
-        current = current[parts[i]];
-    }
-    return { parent: current, lastKey: parts[parts.length - 1] };
-};
-
-// Get the value at a dot-notation key path
-const getNestedValue = (obj, keyPath) => {
-    const parts = keyPath.split('.');
-    let current = obj;
-    for (let i = 0; i < parts.length - 1; i++) {
-        if (!current || typeof current !== 'object') return undefined;
-        current = current[parts[i]];
-    }
-    return current?.[parts[parts.length - 1]];
-};
-
-// Set a value at a dot-notation path, creating intermediate objects as needed
-const setNestedValue = (obj, keyPath, value) => {
-    const parts = keyPath.split('.');
-    let current = obj;
-    for (let i = 0; i < parts.length - 1; i++) {
-        if (!current[parts[i]] || typeof current[parts[i]] !== 'object') {
-            current[parts[i]] = {};
-        }
-        current = current[parts[i]];
-    }
-    current[parts[parts.length - 1]] = value;
-};
-
 // Check if setting a value at this path would conflict with an existing string
 const hasConflict = (obj, keyPath) => {
     const parts = keyPath.split('.');
-    let current = obj;
     for (let i = 0; i < parts.length - 1; i++) {
-        if (current[parts[i]] !== undefined && typeof current[parts[i]] !== 'object') {
+        const val = getProperty(obj, parts.slice(0, i + 1).join('.'));
+        if (val !== undefined && (typeof val !== 'object' || val === null)) {
             return true;
         }
-        if (current[parts[i]] === undefined) {
-            return false;
-        }
-        current = current[parts[i]];
+        if (val === undefined) break;
     }
     return false;
 };
 
 // Delete a value at a dot-notation path, cleaning up empty parent objects
 const deleteNestedKey = (obj, keyPath) => {
-    const parent = getNestedParent(obj, keyPath);
-    if (!parent) return false;
-    if (!(parent.lastKey in parent.parent)) return false;
-
-    delete parent.parent[parent.lastKey];
-
     const parts = keyPath.split('.');
 
+    if (getProperty(obj, keyPath) === undefined) return false;
+
+    deleteProperty(obj, keyPath);
+
     // Clean up empty parent objects
-    if (parts.length === 2 && Object.keys(parent.parent).length === 0) {
-        delete obj[parts[0]];
-    } else if (parts.length > 2 && Object.keys(parent.parent).length === 0) {
-        let grandParent = obj;
-        for (let i = 0; i < parts.length - 2; i++) {
-            grandParent = grandParent[parts[i]];
+    if (parts.length === 2) {
+        const parent = getProperty(obj, parts[0]);
+        if (parent && typeof parent === 'object' && Object.keys(parent).length === 0) {
+            delete obj[parts[0]];
         }
-        if (grandParent && typeof grandParent === 'object') {
-            delete grandParent[parts[parts.length - 2]];
+    } else if (parts.length > 2) {
+        const parent = getProperty(obj, parts.slice(0, -1).join('.'));
+        if (parent && typeof parent === 'object' && Object.keys(parent).length === 0) {
+            const grandParent = getProperty(obj, parts.slice(0, -2).join('.'));
+            if (grandParent && typeof grandParent === 'object') {
+                delete grandParent[parts[parts.length - 2]];
+            }
         }
     }
 
@@ -173,7 +135,7 @@ const addTranslation = async () => {
 
     for (const locale of translationFiles) {
         const data = loadTranslationFile(locale);
-        setNestedValue(data, fullKey, localeValues[locale]);
+        setProperty(data, fullKey, localeValues[locale]);
         saveTranslationFile(locale, data);
     }
 
@@ -215,8 +177,7 @@ const syncTranslations = async () => {
 
         for (const key of defaultKeys) {
             if (!localeKeys.includes(key)) {
-                const finalValue = getNestedValue(defaultData, key);
-                setNestedValue(localeData, key, finalValue);
+                setProperty(localeData, key, getProperty(defaultData, key));
                 localeSynced++;
             }
         }

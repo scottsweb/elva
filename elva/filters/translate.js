@@ -2,12 +2,13 @@
 // can support data substitution, for example: {{ 'translation.key' | translate(page.lang, { data: 500 }) }}
 // supports plurals: {{ 'readingTime.count' | translate(page.lang, { minutes: 5, count: 5 }) }}
 import nunjucks from '@11ty/nunjucks';
+import { getProperty } from 'dot-prop';
 nunjucks.configure({ autoescape: true });
 
 export function translate(lookup, lang, data = {}) {
     if (!lang) lang = this.page.lang || this.ctx.lang;
     // traverse the translations object using the dot-separated lookup path
-    const value = lookup.split('.').reduce((o, k) => o?.[k], this.ctx.translations[lang]);
+    const value = getProperty(this.ctx.translations[lang], lookup);
     if (!value) return lookup;
 
     // find count for pluralization: explicit count key, or first numeric value in data

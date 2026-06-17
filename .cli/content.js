@@ -2,6 +2,7 @@ import { input, rawlist, checkbox, confirm, select } from '@inquirer/prompts';
 import { success, error, warning, info, getLocaleData, LOCALES_PATH, COLLECTIONS_PATH } from './utils.js';
 import { Importer } from '@11ty/import';
 import * as entities from 'entities';
+import { getProperty } from 'dot-prop';
 import * as path from 'path';
 import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync, globSync, renameSync, rmSync, readdirSync } from 'fs';
 import { readdir } from 'node:fs/promises';
@@ -183,9 +184,10 @@ const regenerateOpengraph = async () => {
                 if (result) {
                     try {
                         const output = JSON.parse(result);
-                         if (output.frontmatter?.thumbnail) {
+                         const thumbnail = getProperty(output, 'frontmatter.thumbnail');
+                         if (thumbnail) {
                             // update thumbnail
-                            fm.thumbnail = output.frontmatter.thumbnail;
+                            fm.thumbnail = thumbnail;
                             
                             // stringify with gray-matter (dates preserved as-is with JSON_SCHEMA)
                             let newContent = matter.stringify(content, fm, { engines: { yaml: yamlEngine } });

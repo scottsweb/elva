@@ -1,6 +1,7 @@
 import { input, rawlist, confirm } from '@inquirer/prompts';
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, unlinkSync } from 'fs';
 import { success, error, warning, PACKAGE_PATH, SETTINGS_PATH, THEMES_PATH, getLocaleData } from './utils.js';
+import { getProperty } from 'dot-prop';
 import * as path from 'path';
 
 const getSettings = () => {
@@ -90,25 +91,25 @@ const setupSite = async () => {
     newPackageJson.authorName = await input({
         message: 'Enter author name:',
         required: true,
-        default: packageJson.author?.name
+        default: getProperty(packageJson, 'author.name')
     });
     
     newPackageJson.authorUrl = await input({
         message: 'Enter author URL (e.g. https://example.com):',
         required: true,
-        default: packageJson.author?.url
+        default: getProperty(packageJson, 'author.url')
     });
     
     newPackageJson.authorEmail = await input({
         message: 'Enter author email:',
         required: true,
-        default: packageJson.author?.email
+        default: getProperty(packageJson, 'author.email')
     });
     
     newPackageJson.authorLocation = await input({
         message: 'Enter author location:',
         required: true,
-        default: packageJson.location
+        default: getProperty(packageJson, 'location')
     });
         
     updatePackageJson({

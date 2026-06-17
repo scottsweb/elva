@@ -1,5 +1,6 @@
 import { input, rawlist, confirm } from '@inquirer/prompts';
 import { success, error, getLocaleData, getTemplatePartChoices, COLLECTIONS_PATH, COLLECTIONS_TEMPLATE_PATH } from './utils.js';
+import { getProperty, setProperty } from 'dot-prop';
 import * as path from 'path';
 import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync, readdirSync } from 'fs';
 import colors from 'yoctocolors';
@@ -254,14 +255,13 @@ const editCollection = async () => {
 
     // edit locale slugs
     for (const locale of localesData.locales) {
-        const currentSlug = config.locales?.[locale.value] || config.prefix || choice;
+        const currentSlug = getProperty(config, `locales.${locale.value}`) || config.prefix || choice;
         const slug = await input({
             message: `Enter ${locale.name} slug (current: '${currentSlug}'):`,
             default: currentSlug,
             required: true
         });
-        config.locales = config.locales || {};
-        config.locales[locale.value] = slugify(slug);
+        setProperty(config, `locales.${locale.value}`, slugify(slug));
     }
 
     collections[choice] = config;
