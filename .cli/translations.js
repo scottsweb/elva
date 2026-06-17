@@ -1,5 +1,5 @@
 import { input, rawlist, confirm } from '@inquirer/prompts';
-import { success, error, getLocaleData, getTemplatePartChoices, TRANSLATIONS_DIR } from './utils.js';
+import { success, error, info, getLocaleData, getTemplatePartChoices, TRANSLATIONS_DIR } from './utils.js';
 import * as path from 'path';
 import { readFileSync, writeFileSync, readdirSync } from 'fs';
 
@@ -19,13 +19,36 @@ const saveTranslationFile = (locale, data) => {
     writeFileSync(filePath, JSON.stringify(data, null, 4));
 };
 
+// Traverse to the parent object of a dot-notation key path
+const getNestedParent = (obj, keyPath) => {
+    const parts = keyPath.split('.');
+    let current = obj;
+    for (let i = 0; i < parts.length - 1; i++) {
+        if (current[parts[i]] === undefined || typeof current[parts[i]] !== 'object' || current[parts[i]] === null) {
+            return null;
+        }
+        current = current[parts[i]];
+    }
+    return { parent: current, lastKey: parts[parts.length - 1] };
+};
+
+// Get the value at a dot-notation key path
+const getNestedValue = (obj, keyPath) => {
+    const parts = keyPath.split('.');
+    let current = obj;
+    for (let i = 0; i < parts.length - 1; i++) {
+        if (!current || typeof current !== 'object') return undefined;
+        current = current[parts[i]];
+    }
+    return current?.[parts[parts.length - 1]];
+};
+
+// Set a value at a dot-notation path, creating intermediate objects as needed
 const setNestedValue = (obj, keyPath, value) => {
     const parts = keyPath.split('.');
     let current = obj;
     for (let i = 0; i < parts.length - 1; i++) {
-        if (!current[parts[i]]) {
-            current[parts[i]] = {};
-        } else if (typeof current[parts[i]] !== 'object') {
+        if (!current[parts[i]] || typeof current[parts[i]] !== 'object') {
             current[parts[i]] = {};
         }
         current = current[parts[i]];
@@ -33,19 +56,46 @@ const setNestedValue = (obj, keyPath, value) => {
     current[parts[parts.length - 1]] = value;
 };
 
-const checkNestedConflict = (obj, keyPath) => {
+// Check if setting a value at this path would conflict with an existing string
+const hasConflict = (obj, keyPath) => {
     const parts = keyPath.split('.');
     let current = obj;
     for (let i = 0; i < parts.length - 1; i++) {
+        if (current[parts[i]] !== undefined && typeof current[parts[i]] !== 'object') {
+            return true;
+        }
         if (current[parts[i]] === undefined) {
             return false;
-        }
-        if (typeof current[parts[i]] !== 'object' || current[parts[i]] === null) {
-            return true;
         }
         current = current[parts[i]];
     }
     return false;
+};
+
+// Delete a value at a dot-notation path, cleaning up empty parent objects
+const deleteNestedKey = (obj, keyPath) => {
+    const parent = getNestedParent(obj, keyPath);
+    if (!parent) return false;
+    if (!(parent.lastKey in parent.parent)) return false;
+
+    delete parent.parent[parent.lastKey];
+
+    const parts = keyPath.split('.');
+
+    // Clean up empty parent objects
+    if (parts.length === 2 && Object.keys(parent.parent).length === 0) {
+        delete obj[parts[0]];
+    } else if (parts.length > 2 && Object.keys(parent.parent).length === 0) {
+        let grandParent = obj;
+        for (let i = 0; i < parts.length - 2; i++) {
+            grandParent = grandParent[parts[i]];
+        }
+        if (grandParent && typeof grandParent === 'object') {
+            delete grandParent[parts[parts.length - 2]];
+        }
+    }
+
+    return true;
 };
 
 const flattenTranslations = (obj, prefix = '') => {
@@ -116,7 +166,7 @@ const addTranslation = async () => {
 
     const translationFiles = getTranslationFiles();
     const defaultLocaleData = loadTranslationFile(translationFiles.find(f => f === localesData.defaultLocale) || translationFiles[0]);
-    if (checkNestedConflict(defaultLocaleData, fullKey)) {
+    if (hasConflict(defaultLocaleData, fullKey)) {
         error(`Cannot add '${fullKey}': '${templatePart}' already exists as a simple string translation.`);
         return;
     }
@@ -142,12 +192,12 @@ const syncTranslations = async () => {
         return;
     }
 
-    const flattenKeys = (obj, prefix = '') => {
+    const getAllKeys = (obj, prefix = '') => {
         const keys = [];
         for (const [key, value] of Object.entries(obj)) {
             const fullKey = prefix ? `${prefix}.${key}` : key;
             if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-                keys.push(...flattenKeys(value, fullKey));
+                keys.push(...getAllKeys(value, fullKey));
             } else {
                 keys.push(fullKey);
             }
@@ -155,23 +205,17 @@ const syncTranslations = async () => {
         return keys;
     };
 
-    const defaultKeys = flattenKeys(defaultData);
+    const defaultKeys = getAllKeys(defaultData);
     let syncedCount = 0;
 
     for (const locale of otherLocales) {
         const localeData = loadTranslationFile(locale);
-        const localeKeys = flattenKeys(localeData);
+        const localeKeys = getAllKeys(localeData);
         let localeSynced = 0;
 
         for (const key of defaultKeys) {
             if (!localeKeys.includes(key)) {
-                let current = defaultData;
-                const parts = key.split('.');
-                for (let i = 0; i < parts.length - 1; i++) {
-                    current = current[parts[i]];
-                }
-                const finalValue = current[parts[parts.length - 1]];
-
+                const finalValue = getNestedValue(defaultData, key);
                 setNestedValue(localeData, key, finalValue);
                 localeSynced++;
             }
@@ -213,8 +257,6 @@ const removeTranslation = async () => {
         choices: matches
     });
 
-    const selectedMatch = matches.find(m => m.value === selectedKey);
-
     if (!await confirm({ message: `Are you sure you want to remove '${selectedKey}' from all locales?` })) {
         return;
     }
@@ -224,71 +266,7 @@ const removeTranslation = async () => {
 
     for (const locale of translationFiles) {
         const data = loadTranslationFile(locale);
-        const parts = selectedKey.split('.');
-        const topLevelKey = parts[0];
-        let removed = false;
-
-        if (selectedMatch.isPlural) {
-            if (typeof data[topLevelKey] === 'object' && data[topLevelKey] !== null) {
-                // plural nested: traverse to parent, delete the target key, clean up empty parents
-                let current = data[topLevelKey];
-                let exists = true;
-                for (let i = 1; i < parts.length - 1; i++) {
-                    if (!current || typeof current[parts[i]] === 'undefined') {
-                        exists = false;
-                        break;
-                    }
-                    current = current[parts[i]];
-                }
-                if (exists && current && current[parts[parts.length - 1]] !== undefined) {
-                    delete current[parts[parts.length - 1]];
-                    removed = true;
-                    if (Object.keys(current).length === 0 && parts.length > 2) {
-                        let parent = data[topLevelKey];
-                        let parentExists = true;
-                        for (let i = 1; i < parts.length - 2; i++) {
-                            if (!parent || typeof parent[parts[i]] === 'undefined') {
-                                parentExists = false;
-                                break;
-                            }
-                            parent = parent[parts[i]];
-                        }
-                        if (parentExists) {
-                            delete parent[parts[parts.length - 2]];
-                        }
-                    }
-                }
-            }
-        } else if (typeof data[topLevelKey] === 'object' && data[topLevelKey] !== null) {
-            // non-plural nested: traverse to parent, delete the target key, clean up if parent becomes empty
-            const nestedParts = parts.slice(1);
-            let current = data[topLevelKey];
-            let found = true;
-            for (let i = 0; i < nestedParts.length - 1; i++) {
-                if (!current || typeof current[nestedParts[i]] === 'undefined') {
-                    found = false;
-                    break;
-                }
-                current = current[nestedParts[i]];
-            }
-            if (found && current && current[nestedParts[nestedParts.length - 1]] !== undefined) {
-                const lastPart = nestedParts[nestedParts.length - 1];
-                if (Object.keys(current).length === 1) {
-                    delete data[topLevelKey];
-                } else {
-                    delete current[lastPart];
-                }
-                removed = true;
-            }
-        } else {
-            // non-plural top-level: simple delete
-            if (data[topLevelKey] !== undefined) {
-                delete data[topLevelKey];
-                removed = true;
-            }
-        }
-
-        if (removed) {
+        if (deleteNestedKey(data, selectedKey)) {
             totalRemoved++;
             saveTranslationFile(locale, data);
         }
