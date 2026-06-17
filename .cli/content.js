@@ -105,7 +105,7 @@ const addContent = async () => {
 };
 
 const removeContent = async () => {
-    // ask for a page slug
+    // ask for a slug
     let slug = await input({
         message: 'Enter content slug (e.g example or example.md):',
         required: true
@@ -133,7 +133,7 @@ const removeContent = async () => {
     // delete the files
     for (const file of files) {
         try {
-            await unlinkSync(file);
+            unlinkSync(file);
         } catch (error) {
             error(`Failed to delete ${file}: ${error.message}`);
         }
@@ -270,7 +270,7 @@ const importContent = async () => {
             { name: 'Last 7 days', value: '7d' },
             { name: 'Last 30 days', value: '30d' },
             { name: 'Last 90 days', value: '90d' },
-            { name: 'Last 1 year', value: '1y' },
+            { name: 'Last 12 months', value: '1y' },
             { name: 'All time', value: '*' }
         ]
     });

@@ -5,8 +5,8 @@ import { readFileSync, rmSync, existsSync, readdirSync } from 'fs';
 export const LOCALES_PATH = path.join(process.cwd(), 'content', '_data', 'locales.json');
 export const SETTINGS_PATH = path.join(process.cwd(), 'content', '_data', 'settings.json');
 export const BLOGROLL_PATH = path.join(process.cwd(), 'content', '_data', 'blogroll.json');
-export const PACKAGE_PATH = path.join(process.cwd(), 'package.json')
-export const THEMES_PATH = path.join(process.cwd(), '/themes')
+export const PACKAGE_PATH = path.join(process.cwd(), 'package.json');
+export const THEMES_PATH = path.join(process.cwd(), 'themes');
 export const COLLECTIONS_PATH = path.join(process.cwd(), 'content', '_data', 'types.json');
 export const COLLECTIONS_TEMPLATE_PATH = path.join(process.cwd(), '.cli', 'templates', 'collection.11tydata.js');
 export const TRANSLATIONS_DIR = path.join(process.cwd(), 'content', '_data', 'translations');

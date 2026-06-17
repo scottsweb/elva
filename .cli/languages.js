@@ -52,7 +52,6 @@ const addLanguage = async () => {
     });
     
     newLanguage.default = false;
-    newLanguage.locale = newLanguage.locale.toLowerCase();
 
     const data = JSON.parse(readFileSync(LOCALES_PATH, 'utf-8'));
 
