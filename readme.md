@@ -168,6 +168,7 @@ You can use the CLI to manage languages and content directly from the command li
 
 - `npm run cli translations add` - Add a new translation
 - `npm run cli translations remove` - Remove a translation
+- `npm run cli translations sync` - Sync missing keys from the default language to other locales
 
 ## Updates
 

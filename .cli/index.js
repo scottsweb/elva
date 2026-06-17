@@ -6,7 +6,7 @@ import { addContent, removeContent, regenerateOpengraph, importContent } from '.
 import { addBlogroll, listBlogroll, removeBlogroll } from './blogroll.js';
 import { listCollections, addCollection, removeCollection, editCollection, syncTemplates } from './collections.js';
 import { setupSite, setupTheme, deleteDefaultContent } from './setup.js';
-import { addTranslation, removeTranslation } from './translations.js';
+import { addTranslation, removeTranslation, syncTranslations } from './translations.js';
 import { error, info, handleExitError, clean } from './utils.js';
 
 // parse command-line arguments
@@ -66,11 +66,13 @@ const commands = {
     },
     translation: {
         add: addTranslation,
-        remove: removeTranslation
+        remove: removeTranslation,
+        sync: syncTranslations
     },
     translations: {
         add: addTranslation,
-        remove: removeTranslation
+        remove: removeTranslation,
+        sync: syncTranslations
     }
 };
 
@@ -273,12 +275,14 @@ async function manageTranslations() {
     const actions = [
         { name: 'Add translation', value: 'add' },
         { name: 'Remove translation', value: 'remove' },
+        { name: 'Sync translations', value: 'sync' },
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
     ];
     const handlers = {
         add: addTranslation,
-        remove: removeTranslation
+        remove: removeTranslation,
+        sync: syncTranslations
     };
     await manageMenu('Translations:', actions, handlers);
 }

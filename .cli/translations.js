@@ -130,6 +130,58 @@ const addTranslation = async () => {
     success(`Translation '${fullKey}' has been added.`);
 };
 
+const syncTranslations = async () => {
+    const translationFiles = getTranslationFiles();
+    const localesData = getLocaleData();
+    const defaultLocale = localesData.defaultLocale;
+    const defaultData = loadTranslationFile(defaultLocale);
+
+    const otherLocales = translationFiles.filter(f => f !== defaultLocale);
+    if (otherLocales.length === 0) {
+        info('No other locales to sync to.');
+        return;
+    }
+
+    const flattenKeys = (obj, prefix = '') => {
+        const keys = [];
+        for (const [key, value] of Object.entries(obj)) {
+            const fullKey = prefix ? `${prefix}.${key}` : key;
+            if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                keys.push(...flattenKeys(value, fullKey));
+            } else {
+                keys.push(fullKey);
+            }
+        }
+        return keys;
+    };
+
+    const defaultKeys = flattenKeys(defaultData);
+    let syncedCount = 0;
+
+    for (const locale of otherLocales) {
+        const localeData = loadTranslationFile(locale);
+        const localeKeys = flattenKeys(localeData);
+
+        for (const key of defaultKeys) {
+            if (!localeKeys.includes(key)) {
+                let current = defaultData;
+                const parts = key.split('.');
+                for (let i = 0; i < parts.length - 1; i++) {
+                    current = current[parts[i]];
+                }
+                const finalValue = current[parts[parts.length - 1]];
+
+                setNestedValue(localeData, key, finalValue);
+                syncedCount++;
+            }
+        }
+
+        saveTranslationFile(locale, localeData);
+    }
+
+    success(`Synced ${syncedCount} missing translation(s) from ${defaultLocale} to other locales.`);
+};
+
 const removeTranslation = async () => {
     const searchStr = await input({
         message: 'Search:',
@@ -222,4 +274,4 @@ const removeTranslation = async () => {
     success(`Translation '${selectedKey}' has been removed.`);
 };
 
-export { addTranslation, removeTranslation };
+export { addTranslation, removeTranslation, syncTranslations };
