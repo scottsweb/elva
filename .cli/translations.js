@@ -161,6 +161,7 @@ const syncTranslations = async () => {
     for (const locale of otherLocales) {
         const localeData = loadTranslationFile(locale);
         const localeKeys = flattenKeys(localeData);
+        let localeSynced = 0;
 
         for (const key of defaultKeys) {
             if (!localeKeys.includes(key)) {
@@ -172,11 +173,14 @@ const syncTranslations = async () => {
                 const finalValue = current[parts[parts.length - 1]];
 
                 setNestedValue(localeData, key, finalValue);
-                syncedCount++;
+                localeSynced++;
             }
         }
 
-        saveTranslationFile(locale, localeData);
+        if (localeSynced > 0) {
+            saveTranslationFile(locale, localeData);
+            syncedCount += localeSynced;
+        }
     }
 
     success(`Synced ${syncedCount} missing translation(s) from ${defaultLocale} to other locales.`);
