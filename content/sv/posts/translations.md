@@ -39,7 +39,7 @@ npm run cli translation remove
 När du lägger till nya översättningsnycklar i din standardlokalfil kan det hända att dessa poster saknas i andra lokalfiler. Synkroniseringskommandot kopierar eventuella saknade nycklar från standardlokalen till alla andra lokalfiler och fyller i dem i förväg med värdet från standardspråket. Detta säkerställer att alla språkversioner förblir synkroniserade med din huvudkälla.
 
 ``` bash
-npm run cli translation sync
+npm run cli translations sync
 ```
 
 ## Redigera översättningsfiler

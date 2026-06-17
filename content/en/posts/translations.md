@@ -37,7 +37,7 @@ npm run cli translation remove
 When you add new translation keys to your default locale file, other locales may be missing those entries. The sync command copies any missing keys from the default locale into all other locale files, pre-filling them with the default language's value. This ensures all locales stay in sync with your source of truth.
 
 ``` bash
-npm run cli translation sync
+npm run cli translations sync
 ```
 
 ## Editing translation files
