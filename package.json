@@ -1,6 +1,6 @@
 {
   "name": "elva",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "A multilingual, clean, green, 11ty starter theme",
   "main": "index.js",
   "type": "module",
@@ -65,7 +65,7 @@
     "markdown-it-sup": "^2.0.0",
     "markdown-it-table-of-contents": "^1.2.0",
     "mime-types": "^3.0.2",
-    "playwright": "^1.60.0",
+    "playwright": "^1.61.0",
     "terser": "^5.46.1",
     "yoctocolors": "^2.1.2"
   },
