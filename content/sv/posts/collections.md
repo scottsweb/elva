@@ -78,4 +78,4 @@ Varje samlingspost innehåller följande fält:
 
 Efter att ha redigerat `types.json` manuellt måste du skapa motsvarande mappar under varje språkkatalog och lägga till en `{collectionname}.11tydata.js`-fil för varje samling. Mallen för denna fil finns i `.cli/templates/collection.11tydata.js` och kan kopieras till varje ny samlingsmapp. Du kan också köra `npm run cli sync-collections` för att återskapa alla samlingsmallfiler på en gång.
 
-[Nu ska vi lägga till lite innehåll](/sv/dokumentation/innehall/).
+[Nu ska vi lägga till några översättningar](/sv/dokumentation/oversattningar/).

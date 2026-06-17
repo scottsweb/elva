@@ -1,6 +1,6 @@
 ---
 title: Hantera innehåll
-date: 2026-06-08
+date: 2026-06-07
 tags:
   - tag2
   - tag5
@@ -62,4 +62,4 @@ elva skiljer sig lite från andra startpaket här, eftersom miniatyrbilderna gen
 npm run cli content regenerate
 ```
 
-[Blogroll, någon?](/sv/dokumentation/blogroll/)?
+[Blogroll, någon](/sv/dokumentation/blogroll/)?

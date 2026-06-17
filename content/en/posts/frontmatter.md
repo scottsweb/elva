@@ -1,6 +1,6 @@
 ---
 title: Front matter
-date: 2026-06-05
+date: 2026-06-04
 tags:
   - tag4
   - tag5

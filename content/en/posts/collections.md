@@ -76,4 +76,4 @@ Each collection entry contains the following fields:
 
 After editing `types.json` by hand, you will need to create the corresponding folders under each language directory and add a `{collectionname}.11tydata.js` file for each collection. The template for this file is stored in `.cli/templates/collection.11tydata.js` and can be copied into each new collection folder. You can also run `npm run cli sync-collections` to regenerate all collection template files at once.
 
-[Now lets add some content](/documentation/content/).
+[Now lets add some translations](/documentation/translations/).
