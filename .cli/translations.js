@@ -37,11 +37,11 @@ const checkNestedConflict = (obj, keyPath) => {
     const parts = keyPath.split('.');
     let current = obj;
     for (let i = 0; i < parts.length - 1; i++) {
-        if (current[parts[i]] !== undefined && typeof current[parts[i]] !== 'object') {
-            return true;
-        }
-        if (!current[parts[i]]) {
+        if (current[parts[i]] === undefined) {
             return false;
+        }
+        if (typeof current[parts[i]] !== 'object' || current[parts[i]] === null) {
+            return true;
         }
         current = current[parts[i]];
     }
@@ -183,18 +183,18 @@ const syncTranslations = async () => {
         }
     }
 
-    success(`Synced ${syncedCount} missing translation(s) from ${defaultLocale} to other locales.`);
+    success(`Synced ${syncedCount} missing translation(s) from '${defaultLocale}' to other locales.`);
 };
 
 const removeTranslation = async () => {
-    const searchStr = await input({
-        message: 'Search:',
-        required: true
-    });
-
     const defaultLocale = getLocaleData().defaultLocale;
     const data = loadTranslationFile(defaultLocale);
     const flattened = flattenTranslations(data);
+
+    const searchStr = await input({
+        message: `Search (${defaultLocale}):`,
+        required: true
+    });
 
     const matches = flattened
         .filter(item => item.value.toString().toLowerCase().includes(searchStr.toLowerCase()))
@@ -220,62 +220,85 @@ const removeTranslation = async () => {
     }
 
     const translationFiles = getTranslationFiles();
+    let totalRemoved = 0;
+
     for (const locale of translationFiles) {
         const data = loadTranslationFile(locale);
         const parts = selectedKey.split('.');
         const topLevelKey = parts[0];
+        let removed = false;
 
         if (selectedMatch.isPlural) {
             if (typeof data[topLevelKey] === 'object' && data[topLevelKey] !== null) {
-                if (parts.length === 1) {
-                    delete data[topLevelKey]['count'];
-                    if (Object.keys(data[topLevelKey]).length === 0) {
-                        delete data[topLevelKey];
+                // plural nested: traverse to parent, delete the target key, clean up empty parents
+                let current = data[topLevelKey];
+                let exists = true;
+                for (let i = 1; i < parts.length - 1; i++) {
+                    if (!current || typeof current[parts[i]] === 'undefined') {
+                        exists = false;
+                        break;
                     }
-                } else {
-                    let current = data[topLevelKey];
-                    for (let i = 1; i < parts.length - 1; i++) {
-                        current = current[parts[i]];
-                    }
+                    current = current[parts[i]];
+                }
+                if (exists && current && current[parts[parts.length - 1]] !== undefined) {
                     delete current[parts[parts.length - 1]];
+                    removed = true;
                     if (Object.keys(current).length === 0 && parts.length > 2) {
                         let parent = data[topLevelKey];
+                        let parentExists = true;
                         for (let i = 1; i < parts.length - 2; i++) {
+                            if (!parent || typeof parent[parts[i]] === 'undefined') {
+                                parentExists = false;
+                                break;
+                            }
                             parent = parent[parts[i]];
                         }
-                        delete parent[parts[parts.length - 2]];
+                        if (parentExists) {
+                            delete parent[parts[parts.length - 2]];
+                        }
                     }
                 }
             }
         } else if (typeof data[topLevelKey] === 'object' && data[topLevelKey] !== null) {
+            // non-plural nested: traverse to parent, delete the target key, clean up if parent becomes empty
             const nestedParts = parts.slice(1);
             let current = data[topLevelKey];
             let found = true;
             for (let i = 0; i < nestedParts.length - 1; i++) {
-                if (current[nestedParts[i]]) {
-                    current = current[nestedParts[i]];
-                } else {
+                if (!current || typeof current[nestedParts[i]] === 'undefined') {
                     found = false;
                     break;
                 }
+                current = current[nestedParts[i]];
             }
-            if (found) {
+            if (found && current && current[nestedParts[nestedParts.length - 1]] !== undefined) {
                 const lastPart = nestedParts[nestedParts.length - 1];
-                if (current[lastPart] !== undefined) {
-                    if (Object.keys(current).length === 1) {
-                        delete data[topLevelKey];
-                    } else {
-                        delete current[lastPart];
-                    }
+                if (Object.keys(current).length === 1) {
+                    delete data[topLevelKey];
+                } else {
+                    delete current[lastPart];
                 }
+                removed = true;
             }
         } else {
-            delete data[topLevelKey];
+            // non-plural top-level: simple delete
+            if (data[topLevelKey] !== undefined) {
+                delete data[topLevelKey];
+                removed = true;
+            }
         }
-        saveTranslationFile(locale, data);
+
+        if (removed) {
+            totalRemoved++;
+            saveTranslationFile(locale, data);
+        }
     }
 
-    success(`Translation '${selectedKey}' has been removed.`);
+    if (totalRemoved === 0) {
+        error(`Translation '${selectedKey}' was not found in any locale.`);
+    } else {
+        success(`Translation '${selectedKey}' has been removed from ${totalRemoved} locale(s).`);
+    }
 };
 
 export { addTranslation, removeTranslation, syncTranslations };

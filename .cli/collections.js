@@ -109,7 +109,7 @@ const addCollection = async () => {
         locales[locale.value] = slugify(slug);
     }
 
-   collections[name] = {
+    collections[name] = {
         label,
         prefix: finalPrefix,
         protected: protectedChoice,
