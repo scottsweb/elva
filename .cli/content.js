@@ -108,17 +108,20 @@ const addContent = async () => {
 const removeContent = async () => {
     // ask for a slug
     let slug = await input({
-        message: 'Enter content slug (e.g example or example.md):',
+        message: 'Search for filename (e.g exa, example, example.md):',
         required: true
     });
 
-   // glob through all markdown files in the content folder looking for a match
+    // glob through all markdown files in the content folder looking for a match
     slug = path.parse(slug).name;
-    const pattern = `content/**/${slug}.md`;
-    const files = globSync(pattern, { cwd: process.cwd() });
+    const pattern = `content/**/*${slug}*.md`;
+    const files = globSync(pattern, { cwd: process.cwd() }).filter(f => {
+        const name = path.parse(f).base;
+        return name !== '404.md';
+    });
 
     if (files.length === 0) {
-        error(`No files found matching slug '${slug}'.`);
+        error(`No files found matching search '${slug}'.`);
         return;
     }
 
@@ -140,7 +143,7 @@ const removeContent = async () => {
         }
     }
     
-    success(`Deleted ${files.length} file(s) with slug '${slug}'.`);
+    success(`Deleted ${files.length} file(s) matching '${slug}'.`);
 };
 
 const regenerateOpengraph = async () => {
