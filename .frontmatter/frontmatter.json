@@ -21,7 +21,8 @@
   ],
   "frontMatter.panel.actions.disabled": [
     "optimizeSlug",
-    "createContent"
+    "createContent",
+    "preview"
   ],
   "frontMatter.global.activeMode": "",
   "frontMatter.global.modes": [
@@ -35,8 +36,14 @@
       ]
     }
   ],
-  "frontMatter.custom.scripts": [{
-    "title": "Generate open graph image",
-    "script": ".frontmatter/scripts/opengraph.js"
-  }]
+  "frontMatter.custom.scripts": [
+    {
+      "title": "Preview in browser",
+      "script": ".frontmatter/scripts/preview.js"
+    },
+    {
+      "title": "Generate open graph image",
+      "script": ".frontmatter/scripts/opengraph.js"
+    }
+  ]
 }
