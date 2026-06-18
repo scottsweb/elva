@@ -107,3 +107,18 @@
     /* syntax highlighting */
     --code-background: var(--nord1);
 }
+
+/* support translated quotes */
+:root { quotes: '"' '"' "'" "'"; }
+[lang="sv-se"] { quotes: "»" "«" "›" "‹"; }
+[lang="fr-fr"] { quotes: "« " " »" "« " " »"; }
+[lang="de-de"] { quotes: "„" "`" "`" "‚" "`" "`"; }
+[lang="es-es"] { quotes: "«" "»" "‹" "›"; }
+[lang="it-it"] { quotes: "«" "»" "‹" "›"; }
+[lang="nl-nl"] { quotes: "„" "`" "`" "‚" "`" "`"; }
+[lang="pl-pl"] { quotes: "„" "`" "`" "‹" "›"; }
+[lang="ru-ru"] { quotes: "«" "»" "›" "‹"; }
+[lang="pt-pt"] { quotes: "«" "»" "‹" "›"; }
+[lang="da-dk"] { quotes: "»" "«" "›" "‹"; }
+[lang="no-no"] { quotes: "«" "»" "‹" "›"; }
+[lang="fi-fi"] { quotes: "»" "«" "›" "‹"; }
