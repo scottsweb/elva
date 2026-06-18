@@ -56,7 +56,7 @@ Features include:
 - [ ] A fancy default theme
 - [x] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
-- [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
+- [x] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
 - [ ] Profile verification / .well-known support for the Fediverse and Nostr ([1](https://implicit.computer/blog/activitypub-1/))
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js) ([1](https://github.com/madrilene/eleventy-i18n/blob/main/netlify.toml))
