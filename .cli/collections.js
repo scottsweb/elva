@@ -26,7 +26,7 @@ const createCollectionFolder = (collectionName, localeKey) => {
 
 const listCollections = () => {
     const collections = getCollections();
-    const header = 'Label'.padEnd(24) + 'Layout'.padEnd(12) + 'Protected'.padEnd(12) + 'Search'.padEnd(12) + 'Feed';
+    const header = 'Label'.padEnd(24) + 'Layout'.padEnd(12) + 'Protected'.padEnd(12) + 'Search'.padEnd(12) + 'Feed'.padEnd(6);
     console.log(colors.bold(colors.cyan(header)));
     console.log('-'.repeat(header.length));
 
