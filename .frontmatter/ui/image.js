@@ -1,4 +1,4 @@
-import { registerCardImage, enableDevelopmentMode } from "@frontmatter/extensibility";
+import { registerCardImage, enableDevelopmentMode } from "https://cdn.jsdelivr.net/npm/@frontmatter/extensibility/+esm";
 //enableDevelopmentMode();
 
 /**
