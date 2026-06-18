@@ -138,14 +138,10 @@ export default async function(eleventyConfig) {
 
     // Markdown ----------------------------------------
 
-    const isMultilingual = Object.keys(locales).length > 1;
-
-    eleventyConfig.setLibrary('md', markdownIt({
+   eleventyConfig.setLibrary('md', markdownIt({
         html: true,
         linkify: true,
-        // turn off typographer for multilingual sites, authors/translators responsible for local quote styles
-        // certain features like (c), -- (copyright, em-dashes) conversion will also be turned off
-        typographer: !isMultilingual
+        typographer: true
     }));
 
     eleventyConfig.amendLibrary('md', (mdLib) => {
