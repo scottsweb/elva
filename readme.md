@@ -113,7 +113,7 @@ For next steps, [see the documentation](https://elva.scott.ee/documentation/).
 - [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
 - [ ] [Add your content](https://elva.scott.ee/documentation/content/) — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/documentation/frontmatter/) in the UI
 - [ ] [Add additional translations using the CLI](https://elva.scott.ee/documentation/translations/)
-- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme and set the theme in `/content/_data/settings.json` to the name of your new themes folder. We also have support for this in the cli `npm run cli setup theme` although it doesn't setup a new theme for you just yet.
+- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme using `npm run cli setup new-theme`. You can also manually set the theme in `/content/_data/settings.json` to the name of your theme folder. We also have support changing this in the cli `npm run cli setup theme`.
 - [ ] Setup a custom template for your open graph images (`/themes/{theme}/_layouts/opengraph-preview.njk`)
 
 ### Optional

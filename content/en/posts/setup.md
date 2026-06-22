@@ -18,10 +18,11 @@ npm run cli setup site
 
 ## Pick theme
 
-elva themes can be switched at any time. The theme picker reads the `themes/` directory and lists all available theme folders. Once you select a theme, it is saved to `content/_data/settings.json` and takes effect immediately on the next build. Changing themes does not affect your content or configuration -- only the presentation layer changes. If you want to build a new theme, you can copy the `default` theme as a starting point.
+elva themes can be switched at any time. The theme picker reads the `themes/` directory and lists all available theme folders. Once you select a theme, it is saved to `content/_data/settings.json` and takes effect immediately on the next build. Changing themes does not affect your content or configuration -- only the presentation layer changes. If you want to build a new theme, you can copy the `default` theme as a starting point using `npm run cli setup new-theme`.
 
 ``` bash
 npm run cli setup theme
+npm run cli setup new-theme
 ```
 
 ## Delete default content
