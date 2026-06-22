@@ -134,6 +134,7 @@ You can use the CLI to manage languages and content directly from the command li
 
 - `npm run cli setup site` - Setup the basic site settings for a new project
 - `npm run cli setup theme` - Choose the theme you wish to use
+- `npm run cli setup new-theme` - Create a new theme by duplicating the default theme
 - `npm run cli setup delete-default-content` - Delete all the default content that ships with elva
 
 #### Language Commands

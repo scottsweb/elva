@@ -1,5 +1,5 @@
 import { input, rawlist, confirm } from '@inquirer/prompts';
-import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, unlinkSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, unlinkSync, cpSync } from 'fs';
 import { success, error, warning, PACKAGE_PATH, SETTINGS_PATH, THEMES_PATH, getLocaleData } from './utils.js';
 import { getProperty } from 'dot-prop';
 import * as path from 'path';
@@ -49,6 +49,13 @@ const updatePackageJson = (packageData) => {
     } else {
         warning('package.json has not changed.');
     }
+};
+
+const setActiveTheme = (theme) => {
+    const existingSettings = JSON.parse(readFileSync(SETTINGS_PATH, 'utf-8'));
+    existingSettings.theme = theme;
+    writeFileSync(SETTINGS_PATH, JSON.stringify(existingSettings, null, 4));
+    success(`Theme '${theme}' selected.`);
 };
 
 const setupSite = async () => {
@@ -138,7 +145,7 @@ const setupSite = async () => {
 
 const setupTheme = async () => {
     const themes = readdirSync(THEMES_PATH, { withFileTypes: true });
-    const themeDirectories = themes.filter(folder => folder.isDirectory()).map((folder) => ({ name: folder.name, value: folder.name }));
+    const themeDirectories = themes.filter(folder => folder.isDirectory()).map(folder => ({ name: folder.name, value: folder.name }));
     
     if (themeDirectories.length === 0) {
         error('No themes found in the themes/ directory.');
@@ -150,11 +157,53 @@ const setupTheme = async () => {
         choices: themeDirectories
     });
     
-    const existingSettings = JSON.parse(readFileSync(SETTINGS_PATH, 'utf-8'));
-    existingSettings.theme = theme;
-    
-    writeFileSync(SETTINGS_PATH, JSON.stringify(existingSettings, null, 4));
-    success(`Theme '${theme}' selected.`);
+    setActiveTheme(theme);
+}
+
+const setupNewTheme = async () => {
+    const name = await input({
+        message: 'Enter theme name (lowercase, no spaces or special characters):',
+        required: true,
+        validate: (value) => {
+            if (!value.trim()) return 'Theme name is required.';
+            return true;
+        }
+    });
+
+    const sanitizedName = name.trim().toLowerCase().replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '');
+
+    if (!sanitizedName) {
+        error('Invalid theme name after sanitisation.');
+        return;
+    }
+
+    const themes = readdirSync(THEMES_PATH, { withFileTypes: true });
+    const existingThemes = themes.filter(folder => folder.isDirectory()).map(folder => folder.name);
+
+    if (existingThemes.includes(sanitizedName)) {
+        error(`Theme '${sanitizedName}' already exists.`);
+        return;
+    }
+
+    const themesPath = path.join(process.cwd(), 'themes');
+    const sourcePath = path.join(themesPath, 'default');
+    const destPath = path.join(themesPath, sanitizedName);
+
+    if (!existsSync(sourcePath)) {
+        error('Default theme not found. Cannot create new theme.');
+        return;
+    }
+
+    const switchToNew = await confirm({
+        message: 'Switch to the new theme?',
+    });
+
+    cpSync(sourcePath, destPath, { recursive: true });
+    success(`Theme '${sanitizedName}' created.`);
+
+    if (switchToNew) {
+        setActiveTheme(sanitizedName);
+    }
 }
 
 const deleteDefaultContent = async () => {
@@ -193,4 +242,4 @@ const deleteDefaultContent = async () => {
     success(`Deleted ${deletedCount} file(s).`);
 };
 
-export { setupSite, setupTheme, deleteDefaultContent };
+export { setupSite, setupTheme, setupNewTheme, deleteDefaultContent };
