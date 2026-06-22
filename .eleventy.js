@@ -73,9 +73,13 @@ export default async function(eleventyConfig) {
 
     const robotsTemplate = fs.readFileSync(path.resolve('elva/templates/', 'robots.njk'), 'utf-8');
     const sitemapTemplate = fs.readFileSync(path.resolve('elva/templates/', 'sitemap.njk'), 'utf-8');
+    const sitemapIndexTemplate = fs.readFileSync(path.resolve('elva/templates/', 'sitemap-index.njk'), 'utf-8');
 
     eleventyConfig.addTemplate('robots.njk', robotsTemplate);
-    eleventyConfig.addTemplate('sitemap.njk', sitemapTemplate);
+    // with more than one language, generate a sitemap-index.xml
+    if (Object.keys(locales).length > 1) {
+        eleventyConfig.addTemplate('sitemap-index.njk', sitemapIndexTemplate);
+    }
 
     const manifestTemplate = fs.readFileSync(path.resolve('elva/templates/', 'manifest.njk'), 'utf-8');
     const blogrollXMLTemplate = fs.readFileSync(path.resolve('elva/templates/', 'blogroll.xml.njk'), 'utf-8');
@@ -83,6 +87,7 @@ export default async function(eleventyConfig) {
     const feedXslTemplate = fs.readFileSync(path.resolve('elva/templates/', 'feed.xsl.njk'), 'utf-8');
 
     for (let [key, locale] of Object.entries(locales)) {
+        eleventyConfig.addTemplate(key + '-sitemap.njk', sitemapTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-manifest.njk', manifestTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-blogroll.xml.njk', blogrollXMLTemplate, { lang: key });
         eleventyConfig.addTemplate(key + '-search-api.json.njk', searchApiTemplate, { lang: key, collection: '_search' });

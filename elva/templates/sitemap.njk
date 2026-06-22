@@ -1,16 +1,18 @@
 ---
-permalink: /sitemap.xml
+eleventyComputed:
+  permalink: "{{ ('/' + lang + '/sitemap.xml') | defaultlocaleurl }}"
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{%- for page in collections.all %}
+{%- set filteredPages = collections.all | languagefilter(page.lang) %}
+{%- for page in filteredPages %}
 	{%- if not page.data.seo.excludeFromSitemap %}
 	{%- set absoluteUrl %}{{ page.url | htmlBaseUrl(settings.url) }}{% endset %}
 	<url>
 		<loc>{{ absoluteUrl }}</loc>
 		{%- if page.url === '/' %}
-		<lastmod>{{ collections.all | getNewestCollectionItemDate | dateToRfc3339 }}</lastmod>
+		<lastmod>{{ filteredPages | getNewestCollectionItemDate | dateToRfc3339 }}</lastmod>
 		{%- else %}
 		<lastmod>{{ page.date | dateToRfc3339 }}</lastmod>
 		{%- endif %}

@@ -1,0 +1,13 @@
+---
+permalink: /sitemap-index.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for key, locale in locales %}
+	{%- set sitemapUrl %}{{ settings.url }}{{ ('/' + key + '/sitemap.xml') | defaultlocaleurl }}{% endset %}
+	<sitemap>
+		<loc>{{ sitemapUrl }}</loc>
+	</sitemap>
+{%- endfor %}
+</sitemapindex>
