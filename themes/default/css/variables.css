@@ -122,3 +122,15 @@
 [lang="da-dk"] { quotes: "»" "«" "›" "‹"; }
 [lang="no-no"] { quotes: "«" "»" "‹" "›"; }
 [lang="fi-fi"] { quotes: "»" "«" "›" "‹"; }
+
+/* property to track scroll position */
+@property --scroll-position {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@keyframes scrollPosition {
+    0% { --scroll-position: 0; }
+    100% { --scroll-position: 100; }
+}

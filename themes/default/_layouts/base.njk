@@ -90,8 +90,7 @@
 
         <!-- scripts -->
         {% js 'defer' %}{% include '../../../node_modules/alpinejs/dist/cdn.js' %}{% endjs -%}
-        {% js 'defer' %}{% include '../../../node_modules/@alpinejs/intersect/dist/cdn.js' %}{% endjs -%}
-        {% js 'defer' %}{% include '../js/scripts.js' %}{% endjs -%}
+         {% js 'defer' %}{% include '../js/scripts.js' %}{% endjs -%}
         <script src="{% getBundleFileUrl 'js', 'defer' %}?v={% version %}" defer></script>
     </body>
 </html>
