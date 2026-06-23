@@ -1,0 +1,117 @@
+.search-component {
+    position: relative;
+    width: 100%;
+}
+
+.search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-form input[type="search"] {
+    flex: 1;
+    padding: var(--space-2xs) var(--space-xs);
+    width: 100%;
+    border-radius: var(--border-radius-full);
+    border: 1px solid var(--divider);
+    font-family: var(--font-headings);
+}
+
+.search-form button {
+    position: absolute;
+    right: var(--space-3xs);
+    top: 50%;
+    transform: translateY(-50%);
+    padding: var(--space-2xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-full);
+    border: none;
+    background-color: var(--link);
+    color: var(--background);
+    cursor: pointer;
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: var(--space-2xs);
+    max-height: 40vh;
+    overflow-y: auto;
+    z-index: 100;
+    background-color: var(--background-soft);
+    border-radius: var(--border-radius);
+}
+
+.search-result-item {
+    display: block;
+    color: var(--foreground);
+    padding: var(--gutter);
+    text-decoration: none;
+    border-bottom: 1px solid var(--background);
+
+    &[aria-selected="true"],
+    &:focus,
+    &:hover {
+        background-color: color-mix(in srgb, var(--background-soft), var(--black) 6%);
+        outline: var(--focus-outline);
+        outline-offset: -0.3ch;
+        border-radius: 0;
+
+        .search-result-title {
+            color: var(--link);
+        }
+
+    }
+
+    &:first-of-type {
+        &[aria-selected="true"],
+        &:focus,
+        &:hover {
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        } 
+    }
+
+    &:last-of-type {
+        border-bottom: none;
+
+        &[aria-selected="true"],
+        &:focus,
+        &:hover {
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+    }
+
+    &:only-of-type {
+        &[aria-selected="true"],
+        &:focus,
+        &:hover {
+            border-radius: var(--border-radius);
+        }
+    }
+
+    .search-result-title {
+        font-size: var(--step-0);
+        font-family: var(--font-headings);
+        font-weight: 600;
+        max-width: initial;
+        display: block;
+    }
+
+    .search-result-excerpt {
+        display: block;
+        max-width: initial;
+    }
+
+    .search-result-date {
+        display: block;
+    }
+}
+
+
+
+

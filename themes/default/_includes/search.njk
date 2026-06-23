@@ -1,0 +1,49 @@
+{% css 'defer' %}{% include '../css/components/search.css' %}{% endcss -%}
+{% js 'defer' %}{% include '../js/search.js' %}{% endjs -%}
+
+<div x-data="search()" class="search-component">
+    <form class="search-form" role="search" x-cloak x-show="loaded">
+        <input
+            type="search"
+            x-model="query"
+            @input.debounce.200ms="filter()"
+            @keydown.escape="closeResults"
+            @keydown.up.prevent="navigate(-1)"
+            @keydown.down.prevent="navigate(1)"
+            @keydown.enter.prevent="selectResult"
+            placeholder="{{ 'search.placeholder' | translate }}"
+            aria-label="{{ 'search.placeholder' | translate }}"
+            aria-autocomplete="list"
+            x-bind:aria-expanded="results.length > 0"
+        >
+        <button type="button" class="button" @click="filter()" aria-label="{{ 'search.submit' | translate }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-search icon"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </button>
+        <div x-show="results.length > 0" class="search-results" role="listbox" x-transition>
+            <template x-for="(result, index) in results" :key="result.id">
+                <a
+                    :href="result.url"
+                    class="search-result-item"
+                    role="option"
+                    :aria-selected="index === activeIndex"
+                    @mouseenter="activeIndex = index"
+                    @click="closeResults"
+                >
+                    <span class="search-result-title" x-text="result.title"></span>
+                    <p class="search-result-excerpt" x-text="result.excerpt"></p>
+                    <time class="search-result-date subtle" x-text="formatDate(result.date_updated)" x-show="result.date_updated"></time>
+                </a>
+            </template>
+        </div>
+    </form>
+    <noscript>
+        <form class="search-form" action="https://duckduckgo.com/" method="get" role="search">
+            <input type="hidden" name="kl" value="{{ locales[page.lang].locale }}">
+            <input type="search" name="q" value="" placeholder="{{ 'search.placeholder' | translate }}" aria-label="{{ 'search.placeholder' | translate }}">
+            <input type="hidden" name="sites" value="{{ settings.url | replace('https://', '') | replace('http://', '') }}">
+            <button type="submit" class="button" aria-label="{{ 'search.submit' | translate }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-search icon"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+            </button>
+        </form>
+    </noscript>
+</div>

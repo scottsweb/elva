@@ -6,6 +6,7 @@
     *::before,
     *::after {
         box-sizing: border-box;
+        outline-color: var(--background);
     }
 
     /* Remove default margin */
