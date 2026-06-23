@@ -5,7 +5,11 @@ seo:
   excludeFromSitemap: true
 ---
 {%- if settings.isProduction -%}
+{%- if locales | length == 1 -%}
 Sitemap: {{ "/sitemap.xml" | htmlBaseUrl(settings.url) }}
+{%- else -%}
+Sitemap: {{ "/sitemap-index.xml" | htmlBaseUrl(settings.url) }}
+{%- endif %}
 
 {{ badbots }}
 User-agent: *

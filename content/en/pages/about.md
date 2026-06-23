@@ -9,7 +9,7 @@ eleventyNavigation:
   order: 1
 ---
 
-A multilingual, clean, green, [11ty starter theme](https://www.11ty.dev/docs/starter/). [elva](https://github.com/scottsweb/elva) provides solid foundations for your next web project and a built in CMS ([Front Matter CMS](https://frontmatter.codes/)) for managing content. You are currently viewing the demo site which also contains a [little documentation]({{ "/" | locale_url }}) to help get you started. Head over to [GitHub to make feature requests, pull requests and report issues](https://github.com/scottsweb/elva/issues).
+A multilingual, clean, green, [11ty starter theme](https://www.11ty.dev/docs/starter/). [elva](https://github.com/scottsweb/elva) provides solid foundations for your next web project and a built in CMS ([Front Matter CMS](https://frontmatter.codes/)) for managing content. You are currently viewing the demo site which also contains a [little documentation]({{ "/documentation/" | locale_url }}) to help get you started. Head over to [GitHub to make feature requests, pull requests and report issues](https://github.com/scottsweb/elva/issues).
 
 ![Screenshot of elva in VSCodium and the browser.](/assets/img/screenshots.png "elva uses Front Matter CMS for easy content management")
 

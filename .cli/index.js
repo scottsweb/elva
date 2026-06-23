@@ -5,7 +5,7 @@ import { addLanguage, removeLanguage, listLanguages, changeDefaultLanguage } fro
 import { addContent, removeContent, regenerateOpengraph, importContent } from './content.js';
 import { addBlogroll, listBlogroll, removeBlogroll } from './blogroll.js';
 import { listCollections, addCollection, removeCollection, editCollection, syncTemplates } from './collections.js';
-import { setupSite, setupTheme, deleteDefaultContent } from './setup.js';
+import { setupSite, setupTheme, setupNewTheme, deleteDefaultContent } from './setup.js';
 import { addTranslation, removeTranslation, syncTranslations } from './translations.js';
 import { error, info, handleExitError, clean } from './utils.js';
 
@@ -27,6 +27,7 @@ const commands = {
     setup: {
         site: setupSite,
         theme: setupTheme,
+        'new-theme': setupNewTheme,
         'delete-default-content': deleteDefaultContent
     },
     language: {
@@ -189,6 +190,7 @@ async function manageSetup() {
     const actions = [
         { name: 'Site setup', value: 'setup' },
         { name: 'Pick theme', value: 'theme' },
+        { name: 'New theme', value: 'newTheme' },
         { name: 'Delete default content', value: 'deleteDefaultContent' },
         { name: '⏴ Back', value: 'back' },
         { name: '⏹ Exit', value: 'exit' }
@@ -196,6 +198,7 @@ async function manageSetup() {
     const handlers = {
         setup: setupSite,
         theme: setupTheme,
+        newTheme: setupNewTheme,
         deleteDefaultContent: deleteDefaultContent
     };
     await manageMenu('Setup:', actions, handlers);

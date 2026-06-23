@@ -29,5 +29,9 @@
     "dark": "Dark",
     "light": "Light",
     "lightDarkToggle": "Toggle dark/light theme",
-    "footer": "The year is {{ year }}."
+    "footer": "The year is {{ year }}.",
+    "search": {
+        "placeholder": "Search",
+        "submit": "Go"
+    }
 }

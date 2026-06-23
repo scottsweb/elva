@@ -56,14 +56,13 @@ Features include:
 - [ ] A fancy default theme
 - [x] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
-- [ ] Markdown-It — [Support multilingual quote styles](https://github.com/markdown-it/markdown-it#init-with-presets-and-options)
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
 - [ ] Profile verification / .well-known support for the Fediverse and Nostr ([1](https://implicit.computer/blog/activitypub-1/))
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js) ([1](https://github.com/madrilene/eleventy-i18n/blob/main/netlify.toml))
 - [ ] Cleaner language selector
 - [ ] Pagination examples
 - [x] Allow for variable substitution in translations e.g. `Hello, {{name}}` and plurals e.g. `{{ count }} item(s)`
-- [ ] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
+- [x] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
 - [ ] Front Matter CMS — [More helpful scripts](https://frontmatter.codes/docs/custom-actions#creating-a-media-script)
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
 
@@ -114,7 +113,7 @@ For next steps, [see the documentation](https://elva.scott.ee/documentation/).
 - [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
 - [ ] [Add your content](https://elva.scott.ee/documentation/content/) — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/documentation/frontmatter/) in the UI
 - [ ] [Add additional translations using the CLI](https://elva.scott.ee/documentation/translations/)
-- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme and set the theme in `/content/_data/settings.json` to the name of your new themes folder. We also have support for this in the cli `npm run cli setup theme` although it doesn't setup a new theme for you just yet.
+- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme using `npm run cli setup new-theme`. You can also manually set the theme in `/content/_data/settings.json` to the name of your theme folder. We also have support changing this in the cli `npm run cli setup theme`.
 - [ ] Setup a custom template for your open graph images (`/themes/{theme}/_layouts/opengraph-preview.njk`)
 
 ### Optional
@@ -135,6 +134,7 @@ You can use the CLI to manage languages and content directly from the command li
 
 - `npm run cli setup site` - Setup the basic site settings for a new project
 - `npm run cli setup theme` - Choose the theme you wish to use
+- `npm run cli setup new-theme` - Create a new theme by duplicating the default theme
 - `npm run cli setup delete-default-content` - Delete all the default content that ships with elva
 
 #### Language Commands
@@ -175,7 +175,7 @@ You can use the CLI to manage languages and content directly from the command li
 
 ### 4.0.0
 
-With 4, you'll find a a new command line interface (documented above). This should make getting started and managing languages much easier. There is also a new search index you can use to build a custom search component, an example of that will be released soon.
+With 4, you'll find a a new command line interface (documented above). This should make getting started and managing languages much easier. There is also a new search index you can use to build a custom search component, an example can be seen on the 404 page.
 
 ### 3.0.0
 

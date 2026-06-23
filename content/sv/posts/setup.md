@@ -21,10 +21,11 @@ npm run cli setup site
 
 ## Välj tema
 
-elva-teman kan bytas när som helst. Temaväljaren läser katalogen `themes/` och listar alla tillgängliga temamappar. När du väljer ett tema sparas det i `content/_data/settings.json` och träder i kraft omedelbart vid nästa kompilering. Att byta tema påverkar inte ditt innehåll eller din konfiguration – endast presentationslagret ändras. Om du vill bygga ett nytt tema kan du kopiera `default`-temat som utgångspunkt.
+elva-teman kan bytas när som helst. Temaväljaren läser katalogen `themes/` och listar alla tillgängliga temamappar. När du väljer ett tema sparas det i `content/_data/settings.json` och träder i kraft omedelbart vid nästa kompilering. Att byta tema påverkar inte ditt innehåll eller din konfiguration – endast presentationslagret ändras. Om du vill bygga ett nytt tema kan du kopiera `default`-temat som utgångspunkt med `npm run cli setup new-theme`.
 
 ``` bash
 npm run cli setup theme
+npm run cli setup new-theme
 ```
 
 ## Ta bort standardinnehåll

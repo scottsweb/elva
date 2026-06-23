@@ -58,6 +58,8 @@
     --tracking-s: -0.055ch;
     --gutter: var(--space-s-m);
     --border-radius: var(--step-0);
+    --border-radius-full: calc(infinity * 1px);
+
     /* @link https://utopia.fyi/space/calculator?c=320,18,1.2,1500,22,1.333,6,1,800&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l|m-3xl|s-2xl&g=s,l,xl,12 */
     --space-3xs: clamp(0.31rem, calc(0.30rem + 0.08vw), 0.38rem);
     --space-2xs: clamp(0.56rem, calc(0.53rem + 0.17vw), 0.69rem);
@@ -106,4 +108,31 @@
 
     /* syntax highlighting */
     --code-background: var(--nord1);
+}
+
+/* support translated quotes */
+:root { quotes: '"' '"' "'" "'"; }
+[lang="sv-se"] { quotes: "»" "«" "›" "‹"; }
+[lang="fr-fr"] { quotes: "« " " »" "« " " »"; }
+[lang="de-de"] { quotes: "„" "`" "`" "‚" "`" "`"; }
+[lang="es-es"] { quotes: "«" "»" "‹" "›"; }
+[lang="it-it"] { quotes: "«" "»" "‹" "›"; }
+[lang="nl-nl"] { quotes: "„" "`" "`" "‚" "`" "`"; }
+[lang="pl-pl"] { quotes: "„" "`" "`" "‹" "›"; }
+[lang="ru-ru"] { quotes: "«" "»" "›" "‹"; }
+[lang="pt-pt"] { quotes: "«" "»" "‹" "›"; }
+[lang="da-dk"] { quotes: "»" "«" "›" "‹"; }
+[lang="no-no"] { quotes: "«" "»" "‹" "›"; }
+[lang="fi-fi"] { quotes: "»" "«" "›" "‹"; }
+
+/* property to track scroll position */
+@property --scroll-position {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@keyframes scrollPosition {
+    0% { --scroll-position: 0; }
+    100% { --scroll-position: 100; }
 }

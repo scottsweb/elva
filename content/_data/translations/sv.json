@@ -29,5 +29,9 @@
     "dark": "Mörk",
     "light": "Ljus",
     "lightDarkToggle": "Växla mellan mörkt/ljus tema",
-    "footer": "Året är {{ year }}."
+    "footer": "Året är {{ year }}.",
+    "search": {
+        "placeholder": "Sök",
+        "submit": "Sök"
+    }
 }

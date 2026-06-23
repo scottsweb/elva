@@ -3,7 +3,7 @@
     "title": "Pages",
     "path": "[[workspace]]/content/en/pages",
     "defaultLocale": "en",
-    "previewPath": "{{locale}}",
+    "previewPath": null,
     "locales": [
       {
         "title": "English",
