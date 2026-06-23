@@ -102,6 +102,7 @@
         font-weight: 600;
         max-width: initial;
         display: block;
+        margin-bottom: var(--space-2xs);
     }
 
     .search-result-excerpt {
@@ -111,6 +112,7 @@
 
     .search-result-date {
         display: block;
+        margin-top: var(--space-3xs);
     }
 }
 
