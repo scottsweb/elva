@@ -175,7 +175,7 @@ You can use the CLI to manage languages and content directly from the command li
 
 ### 4.0.0
 
-With 4, you'll find a a new command line interface (documented above). This should make getting started and managing languages much easier. There is also a new search index you can use to build a custom search component, an example of that will be released soon.
+With 4, you'll find a a new command line interface (documented above). This should make getting started and managing languages much easier. There is also a new search index you can use to build a custom search component, an example can be seen on the 404 page.
 
 ### 3.0.0
 
