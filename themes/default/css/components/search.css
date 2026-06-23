@@ -20,10 +20,12 @@
 
 .search-form button {
     position: absolute;
-    right: var(--space-3xs);
-    top: 50%;
-    transform: translateY(-50%);
+    right: 0;
+    top: 0;
+    height: calc(100% - 8px);
     padding: var(--space-2xs);
+    margin: 4px;
+    aspect-ratio: 1/1;
     display: flex;
     align-items: center;
     justify-content: center;
