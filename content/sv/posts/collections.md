@@ -44,7 +44,7 @@ npm run cli collection add
 
 Med redigeringskommandot kan du ändra alla befintliga samlingar. Redigeringsmenyn visar det aktuella värdet för varje fält som standard, så du kan lämna ett fält oförändrat genom att trycka på Enter.
 
-Efter att du har [lagt till ett nytt språk](/sv/dokumentation/sprakhantering/), kanske du vill redigera dina samlingar för att lägga till anpassade slug för varje samlingstyp.
+Efter att du har [lagt till ett nytt språk](/sv/dokumentation/sprakhantering/), kanske du vill redigera dina samlingar för att lägga till anpassade slug för varje samlingstyp, i det nyligen tillagda språket.
 
 ``` bash
 npm run cli collection edit

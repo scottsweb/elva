@@ -42,7 +42,7 @@ npm run cli collection add
 
 The edit command lets you modify any existing collection. The edit menu shows the current value for each field as a default, so you can leave any field unchanged by pressing Enter.
 
-After [adding a new language](/documentation/adding-additional-languages/), you may want to edit your collections to add custom slug for each collection type.
+After [adding a new language](/documentation/adding-additional-languages/), you may want to edit your collections to add custom slug for each collection type, in the newly added language.
 
 ``` bash
 npm run cli collection edit
