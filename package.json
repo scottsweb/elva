@@ -40,7 +40,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@11ty/eleventy": "4.0.0-alpha.8",
+    "@11ty/eleventy": "4.0.0-alpha.7",
     "@11ty/eleventy-fetch": "^5.1.2",
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-navigation": "^1.0.5",
