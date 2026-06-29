@@ -65,7 +65,7 @@
     "markdown-it-sup": "^2.0.0",
     "markdown-it-table-of-contents": "^1.2.0",
     "mime-types": "^3.0.2",
-    "playwright": "^1.61.0",
+    "playwright": "^1.61.1",
     "terser": "^5.46.1",
     "yoctocolors": "^2.1.2"
   },
