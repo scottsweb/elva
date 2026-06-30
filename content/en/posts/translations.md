@@ -101,7 +101,7 @@ Translations can include placeholders that are replaced with values passed as th
 
 This renders as: `Hello, Alice!`
 
-### Pluralization
+### Pluralisation
 
 For strings that change based on a count, use the `count` object with `one` and `other` keys in your translation file. The filter uses the `Intl.PluralRules` API to select the correct form based on the language's pluralization rules.
 

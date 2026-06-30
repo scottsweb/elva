@@ -11,13 +11,13 @@ export function translate(lookup, lang, data = {}) {
     const value = getProperty(this.ctx.translations[lang], lookup);
     if (!value) return lookup;
 
-    // find count for pluralization: explicit count key, or first numeric value in data
+    // find count for pluralisation: explicit count key, or first numeric value in data
     let count = data.count;
     if (count === undefined) {
         count = Object.values(data).find(v => typeof v === 'number');
     }
 
-    // handle pluralization: if value is an object with one/other keys and count is found
+    // handle pluralisation: if value is an object with one/other keys and count is found
     if (typeof value === 'object' && !Array.isArray(value) && count !== undefined) {
         const pluralRules = new Intl.PluralRules(lang);
         const pluralForm = pluralRules.select(count);
