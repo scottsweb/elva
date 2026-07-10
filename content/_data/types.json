@@ -1,7 +1,7 @@
 {
     "posts": {
         "label": "Posts",
-        "prefix": "writing",
+        "prefix": "blog",
         "protected": true,
         "searchable": true,
         "feed": true,
