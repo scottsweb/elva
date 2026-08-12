@@ -7,11 +7,19 @@ document.addEventListener('alpine:init', () => {
         loaded: false,
         apiURL: '{{ "/api/search.json" | locale_url }}',
         async init() {
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('q');
+            if (q) {
+                this.query = q;
+            }
             try {
                 const response = await fetch(this.apiURL);
                 if (response.ok) {
                     const data = await response.json();
                     this.allResults = data.data || [];
+                    if (q) {
+                        this.filter();
+                    }
                 }
             } catch (e) {
                 console.warn('Search API not found:', e);

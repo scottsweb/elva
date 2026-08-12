@@ -2,7 +2,7 @@
 // based on https://www.bobmonsour.com/posts/calculating-reading-time/
 import { translate } from './translate.js';
 
-export function readingtime(text) {
+export async function readingtime(text) {
     let content = new String(text);
     const speed = 240; // reading speed in words per minute
   
@@ -22,6 +22,6 @@ export function readingtime(text) {
     if (readingTime === 0) {
     	return this.ctx.translations[this.page.lang || this.ctx.lang].readingTime.underMinute;
     } else {
-    	return translate.call(this, 'readingTime.count', this.page.lang || this.ctx.lang, { minutes: readingTime });
+    	return await translate.call(this, 'readingTime.count', this.page.lang || this.ctx.lang, { minutes: readingTime });
     }
-};
+}

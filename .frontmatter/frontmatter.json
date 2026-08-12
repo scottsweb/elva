@@ -1,5 +1,9 @@
 {
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.contentHealth.enabled": true,
+  "frontMatter.contentHealth.checkExternalLinks": true,
+  "frontMatter.contentHealth.freshnessThreshold": 180,
+  "frontMatter.contentHealth.minReadability": 40,
   "frontMatter.framework.id": "11ty",
   "frontMatter.preview.host": "http://localhost:8080",
   "frontMatter.dashboard.openOnStart": true,
