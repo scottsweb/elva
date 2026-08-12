@@ -5,7 +5,7 @@ import nunjucks from '@11ty/nunjucks';
 import { getProperty } from 'dot-prop';
 nunjucks.configure({ autoescape: true });
 
-export function translate(lookup, lang, data = {}) {
+export async function translate(lookup, lang, data = {}) {
     if (!lang) lang = this.page.lang || this.ctx.lang;
     // traverse the translations object using the dot-separated lookup path
     const value = getProperty(this.ctx.translations[lang], lookup);
@@ -23,13 +23,13 @@ export function translate(lookup, lang, data = {}) {
         const pluralForm = pluralRules.select(count);
         const pluralValue = value[pluralForm];
         if (typeof pluralValue === 'string') {
-            return nunjucks.renderString(pluralValue, data);
+            return await nunjucks.renderString(pluralValue, data);
         }
     }
 
     // handle variable substitution
     if (typeof value === 'string') {
-        return nunjucks.renderString(value, data);
+        return await nunjucks.renderString(value, data);
     }
 
     return value;
