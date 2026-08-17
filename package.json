@@ -67,7 +67,7 @@
     "mime-types": "^3.0.2",
     "playwright": "^1.61.1",
     "terser": "^5.49.0",
-    "yoctocolors": "^2.1.2"
+    "yoctocolors": "^2.2.0"
   },
   "allowScripts": {
     "sharp@0.33.5": true
