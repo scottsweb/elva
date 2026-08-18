@@ -57,7 +57,7 @@
     "eleventy-plugin-embed-everything": "^1.21.2",
     "lightningcss": "^1.32.0",
     "markdown-it-anchor": "^9.2.0",
-    "markdown-it-attrs": "^5.0.0",
+    "markdown-it-attrs": "^5.0.1",
     "markdown-it-image-figures": "^2.1.1",
     "markdown-it-ins": "^4.0.0",
     "markdown-it-mark": "^4.0.0",
