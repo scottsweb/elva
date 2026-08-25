@@ -48,7 +48,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "@11ty/import": "^1.0.24",
     "@frontmatter/extensibility": "^0.0.18",
-    "@inquirer/prompts": "^8.4.2",
+    "@inquirer/prompts": "^8.6.0",
     "@minify-html/node": "^0.18.1",
     "alpinejs": "^3.16.1",
     "browserslist": "^4.28.8",
