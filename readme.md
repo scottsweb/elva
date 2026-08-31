@@ -39,7 +39,7 @@ Features include:
 
 ### Other things
 
-* [A CLI](https://elva.scott.ee/documentation/setup/) for managing languages, setup and common tasks (`npm run cli`)
+* [A CLI](https://elva.scott.ee/documentation/setup/) for managing languages, setup and common tasks (`npx elva`)
 * Search API (see `dist/api/search.json`). Any content tagged `_search` will appear in the search index
 * [Front Matter CMS](https://frontmatter.codes/)
 * Open graph image generation (dev server must be running)
@@ -109,11 +109,11 @@ For next steps, [see the documentation](https://elva.scott.ee/documentation/).
 
 - [ ] In `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging` (under `Global Settings`). Make sure these environment variables are set in staging and production and tweak as necessary
 - [ ] [Configure your site settings](https://elva.scott.ee/documentation/setup/)
-- [ ] [Configure site languages via the CLI](https://elva.scott.ee/documentation/adding-additional-languages/) `npm run cli`, under the `languages` sub-menu
+- [ ] [Configure site languages via the CLI](https://elva.scott.ee/documentation/adding-additional-languages/) `npx elva`, under the `Languages` sub-menu
 - [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
 - [ ] [Add your content](https://elva.scott.ee/documentation/content/) — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/documentation/frontmatter/) in the UI
 - [ ] [Add additional translations using the CLI](https://elva.scott.ee/documentation/translations/)
-- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme using `npm run cli setup new-theme`. You can also manually set the theme in `/content/_data/settings.json` to the name of your theme folder. We also have support changing this in the cli `npm run cli setup theme`.
+- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme using `npx elva setup new-theme`. You can also manually set the theme in `/content/_data/settings.json` to the name of your theme folder. We also have support changing this in the cli `npx elva setup theme`.
 - [ ] Setup a custom template for your open graph images (`/themes/{theme}/_layouts/opengraph-preview.njk`)
 
 ### Optional
@@ -126,50 +126,50 @@ For next steps, [see the documentation](https://elva.scott.ee/documentation/).
  
 ## CLI
 
-You can use the CLI to manage languages and content directly from the command line. Start with `npm run cli`. The CLI defaults to an interactive menu, but you can also use shortcuts for common tasks.
+You can use the CLI to manage languages and content directly from the command line. Start with `npx elva`. The CLI defaults to an interactive menu, but you can also use shortcuts for common tasks.
 
 ### Command Shortcuts
 
 #### Setup Commands 
 
-- `npm run cli setup site` - Setup the basic site settings for a new project
-- `npm run cli setup theme` - Choose the theme you wish to use
-- `npm run cli setup new-theme` - Create a new theme by duplicating the default theme
-- `npm run cli setup delete-default-content` - Delete all the default content that ships with elva
+- `npx elva setup site` - Setup the basic site settings for a new project
+- `npx elva setup theme` - Choose the theme you wish to use
+- `npx elva setup new-theme` - Create a new theme by duplicating the default theme
+- `npx elva setup delete-default-content` - Delete all the default content that ships with elva
 
 #### Language Commands
 
-- `npm run cli language add` - Add a new language
-- `npm run cli language remove` - Remove an existing language
-- `npm run cli language list` - List all languages
-- `npm run cli language default` - Change the default language
+- `npx elva language add` - Add a new language
+- `npx elva language remove` - Remove an existing language
+- `npx elva language list` - List all languages
+- `npx elva language default` - Change the default language
 
 #### Content Commands
 
-- `npm run cli content add` - Add new content
-- `npm run cli content remove` - Remove existing content
-- `npm run cli content import` - Import content from WordPress etc
-- `npm run cli content regenerate` - Regenerate all open graph images
+- `npx elva content add` - Add new content
+- `npx elva content remove` - Remove existing content
+- `npx elva content import` - Import content from WordPress etc
+- `npx elva content regenerate` - Regenerate all open graph images
 
 #### Blogroll Commands
 
-- `npm run cli blogroll list` - List all blogroll entries
-- `npm run cli blogroll add` - Add a new blogroll entry
-- `npm run cli blogroll remove` - Remove blogroll entries
+- `npx elva blogroll list` - List all blogroll entries
+- `npx elva blogroll add` - Add a new blogroll entry
+- `npx elva blogroll remove` - Remove blogroll entries
 
 #### Collections Commands
 
-- `npm run cli collections list` - List all collections
-- `npm run cli collections add` - Add a new collection
-- `npm run cli collections remove` - Remove a collection
-- `npm run cli collections edit` - Edit a collection
-- `npm run cli sync-collections` - Sync the `collection.11tydata.js` template to all collections
+- `npx elva collections list` - List all collections
+- `npx elva collections add` - Add a new collection
+- `npx elva collections remove` - Remove a collection
+- `npx elva collections edit` - Edit a collection
+- `npx elva sync-collections` - Sync the `collection.11tydata.js` template to all collections
 
 #### Translation Commands
 
-- `npm run cli translations add` - Add a new translation
-- `npm run cli translations remove` - Remove a translation
-- `npm run cli translations sync` - Sync missing keys from the default language to other locales
+- `npx elva translations add` - Add a new translation
+- `npx elva translations remove` - Remove a translation
+- `npx elva translations sync` - Sync missing keys from the default language to other locales
 
 ## Updates
 
