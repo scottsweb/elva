@@ -54,15 +54,12 @@ Features include:
 ### Still to come:
 
 - [ ] A fancy default theme
-- [x] Fix: Make the random filter choose the same article for both languages
 - [ ] Accessible tooltip component
 - [ ] Images — Size presets (full width, half etc that set the sizes attribute automatically)
 - [ ] Profile verification / .well-known support for the Fediverse and Nostr ([1](https://implicit.computer/blog/activitypub-1/))
 - [ ] [Language redirect based on browser setting](https://gitlab.com/florent_tassy/polyglot-tech-blog/-/blob/main/src/js/redirect.js) ([1](https://github.com/madrilene/eleventy-i18n/blob/main/netlify.toml))
 - [ ] Cleaner language selector
 - [ ] Pagination examples
-- [x] Allow for variable substitution in translations e.g. `Hello, {{name}}` and plurals e.g. `{{ count }} item(s)`
-- [x] Front Matter CMS — Fix previews when customising the post/page slug ([1](https://frontmatter.codes/docs/content-creation/placeholders#example-1), [2](https://frontmatter.codes/docs/custom-actions#content-script))
 - [ ] Front Matter CMS — [More helpful scripts](https://frontmatter.codes/docs/custom-actions#creating-a-media-script)
 - [ ] [twtxt feeds](https://indieweb.org/twtxt) ([1](https://twtxt.readthedocs.io))
 
