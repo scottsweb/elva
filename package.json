@@ -39,6 +39,9 @@
     "email": "git@scott.ee"
   },
   "license": "MIT",
+  "bin": {
+    "elva": ".cli/index.js"
+  },
   "dependencies": {
     "@11ty/eleventy": "4.0.0-alpha.10",
     "@11ty/eleventy-fetch": "^5.1.3",
