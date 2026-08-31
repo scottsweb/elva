@@ -50,7 +50,7 @@
     "@frontmatter/extensibility": "^0.0.18",
     "@inquirer/prompts": "^8.7.0",
     "@minify-html/node": "^0.18.1",
-    "alpinejs": "^3.16.2",
+    "alpinejs": "^3.16.3",
     "browserslist": "^4.28.8",
     "cheerio": "^1.2.0",
     "dot-prop": "^10.2.0",
