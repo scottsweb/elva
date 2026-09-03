@@ -27,7 +27,7 @@ When creating content for a multilingual site, you can select multiple target la
 For the language switcher to work on a given page (when you are providing the same content in different languages), the markdown files must have the same filename across all locales. Actual URLs can be configured via the [front matter](/documentation/frontmatter/) `seo.slug` field.
 
 ``` bash
-npm run cli content add
+npx elva content add
 ```
 
 ## Remove content
@@ -35,7 +35,7 @@ npm run cli content add
 The remove command searches for files matching a given slug across all languages and collections. It displays the files found and asks for confirmation before deleting them. You can enter a slug without the `.md` extension and the CLI will handle the lookup automatically.
 
 ``` bash
-npm run cli content remove
+npx elva content remove
 ```
 
 ## Import content
@@ -45,7 +45,7 @@ The import command is a wrapper for [11ty import](https://github.com/11ty/import
 Assets (images) are imported alongside the content and are organized into a shared `content/assets/img/` folder. The import tool handles this automatically. The importer also attempts to convert all imported content into markdown and make sure image references are correct, but it's not always going to give perfect results.
 
 ``` bash
-npm run cli content import
+npx elva content import
 ```
 
 ## Regenerate open graph images
@@ -57,7 +57,7 @@ The tool requires the dev server to be running as it generates images by taking 
 elva is a little different to other starters here as thumbnails are generated during development, not at build time. This helps to keep builds quicker and saves wasting resources with every new site deployment.
 
 ``` bash
-npm run cli content regenerate
+npx elva content regenerate
 ```
 
 [Blogroll anyone](/documentation/blogroll/)?

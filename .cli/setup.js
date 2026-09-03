@@ -207,7 +207,7 @@ const setupNewTheme = async () => {
 }
 
 const deleteDefaultContent = async () => {
-    if (!await confirm({ message: 'Are you sure?' })) {
+    if (!await confirm({ message: 'Are you sure you want to delete all default content?' })) {
         return;
     }
 

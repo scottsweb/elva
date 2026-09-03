@@ -21,7 +21,7 @@ Samlingskonfigurationen lagras i `content/_data/types.json`. Du kan visa och red
 Kommandot list visar alla konfigurerade samlingar med en sammanfattning av användbara inställningar.
 
 ``` bash
-npm run cli collections list
+npx elva collections list
 
 Label                  Layout    Protected    Search      Feed
 --------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ När du lägger till en samling via CLI skapas en samlingspost i `types.json` oc
 För flerspråkiga webbplatser ombeds du också att ange en slug för varje språk. Detta gör att du kan ha olika URL-prefix per språk om det behövs (t.ex. "projects" på engelska och "projekt" på svenska). CLI skapar en `collectionname.11tydata.js` fil i varje samlingsmapp, som konfigurerar permalänkarna och metadatan för alla objekt i den samlingen.
 
 ``` bash
-npm run cli collection add
+npx elva collection add
 ```
 
 ## Redigera en samling
@@ -47,7 +47,7 @@ Med redigeringskommandot kan du ändra alla befintliga samlingar. Redigeringsmen
 Efter att du har [lagt till ett nytt språk](/sv/dokumentation/sprakhantering/), kanske du vill redigera dina samlingar för att lägga till anpassade slug för varje samlingstyp, i det nyligen tillagda språket.
 
 ``` bash
-npm run cli collection edit
+npx elva collection edit
 ```
 
 ## Ta bort en samling
@@ -55,7 +55,7 @@ npm run cli collection edit
 När du tar bort en samling raderas den från `types.json` och alla innehållsfiler på alla språk tas bort. CLI visar endast icke-skyddade samlingar i urvalslistan, eftersom skyddade samlingar inte kan tas bort. Du kommer att bli ombedd att bekräfta innan några filer raderas.
 
 ``` bash
-npm run cli collection remove
+npx elva collection remove
 ```
 
 ## Redigera types.json
@@ -76,6 +76,6 @@ Varje samlingspost innehåller följande fält:
 - `layout` — Temamallen som används för att rendera objekt i denna samling (t.ex. `post`, `page`, `project`).
 - `locales` — URL-slugs per språk. Om ett språk inte finns med här används värdet för `prefix` som fallback.
 
-Efter att ha redigerat `types.json` manuellt måste du skapa motsvarande mappar under varje språkkatalog och lägga till en `{collectionname}.11tydata.js`-fil för varje samling. Mallen för denna fil finns i `.cli/templates/collection.11tydata.js` och kan kopieras till varje ny samlingsmapp. Du kan också köra `npm run cli sync-collections` för att återskapa alla samlingsmallfiler på en gång.
+Efter att ha redigerat `types.json` manuellt måste du skapa motsvarande mappar under varje språkkatalog och lägga till en `{collectionname}.11tydata.js`-fil för varje samling. Mallen för denna fil finns i `.cli/templates/collection.11tydata.js` och kan kopieras till varje ny samlingsmapp. Du kan också köra `npx elva sync-collections` för att återskapa alla samlingsmallfiler på en gång.
 
 [Nu ska vi lägga till några översättningar](/sv/dokumentation/oversattningar/).

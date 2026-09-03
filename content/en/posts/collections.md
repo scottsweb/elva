@@ -19,7 +19,7 @@ Collection configuration is stored in `content/_data/types.json`. You can view a
 The list command shows all configured collections with a summary of useful settings.
 
 ``` bash
-npm run cli collections list
+npx elva collections list
 
 Label                  Layout    Protected    Search      Feed
 --------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ Adding a collection through the CLI creates the collection entry in `types.json`
 For multilingual sites, you will also be asked to provide a slug for each language. This allows you to have different URL prefixes per language if needed (e.g. "projects" in English and "projekt" in Swedish). The CLI creates a `collectionname.11tydata.js` file in each collection folder, which configures the permalinks and metadata for all items within that collection.
 
 ``` bash
-npm run cli collection add
+npx elva collection add
 ```
 
 ## Edit a collection
@@ -45,7 +45,7 @@ The edit command lets you modify any existing collection. The edit menu shows th
 After [adding a new language](/documentation/adding-additional-languages/), you may want to edit your collections to add custom slug for each collection type, in the newly added language.
 
 ``` bash
-npm run cli collection edit
+npx elva collection edit
 ```
 
 ## Remove a collection
@@ -53,7 +53,7 @@ npm run cli collection edit
 Removing a collection deletes it from `types.json` and removes all content files across all languages. The CLI only shows non-protected collections in the selection list, since protected collections cannot be removed. You will be asked to confirm before any files are deleted.
 
 ``` bash
-npm run cli collection remove
+npx elva collection remove
 ```
 
 ## Editing types.json
@@ -74,6 +74,6 @@ Each collection entry contains the following fields:
 - `layout` — The theme template used to render items in this collection (e.g. `post`, `page`, `project`).
 - `locales` — Per-language URL slugs. If a language is not listed here, the `prefix` value is used as a fallback.
 
-After editing `types.json` by hand, you will need to create the corresponding folders under each language directory and add a `{collectionname}.11tydata.js` file for each collection. The template for this file is stored in `.cli/templates/collection.11tydata.js` and can be copied into each new collection folder. You can also run `npm run cli sync-collections` to regenerate all collection template files at once.
+After editing `types.json` by hand, you will need to create the corresponding folders under each language directory and add a `{collectionname}.11tydata.js` file for each collection. The template for this file is stored in `.cli/templates/collection.11tydata.js` and can be copied into each new collection folder. You can also run `npx elva sync-collections` to regenerate all collection template files at once.
 
 [Now lets add some translations](/documentation/translations/).

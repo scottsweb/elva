@@ -29,7 +29,7 @@ När du skapar innehåll för en flerspråkig webbplats kan du välja flera mål
 För att språkväljaren ska fungera på en viss sida (när du tillhandahåller samma innehåll på olika språk) måste markdown-filerna ha samma filnamn i alla språkversioner. De faktiska URL:erna kan konfigureras via fältet `seo.slug` i [front matter](/sv/dokumentation/frontmatter/).
 
 ``` bash
-npm run cli content add
+npx elva content add
 ```
 
 ## Ta bort innehåll
@@ -37,7 +37,7 @@ npm run cli content add
 Kommandot remove söker efter filer som matchar en given slug i alla språk och samlingar. Det visar de filer som hittats och ber om bekräftelse innan de raderas. Du kan ange en slug utan `.md`-ändelsen så hanterar CLI sökningen automatiskt.
 
 ``` bash
-npm run cli content remove
+npx elva content remove
 ```
 
 ## Importera innehåll
@@ -47,7 +47,7 @@ Importkommandot är ett skal för [11ty import](https://github.com/11ty/import).
 Tillgångar (bilder) importeras tillsammans med innehållet och organiseras i en delad `content/assets/img/`-mapp. Importverktyget hanterar detta automatiskt. Importören försöker också konvertera allt importerat innehåll till markdown och se till att bildreferenser är korrekta, men det ger inte alltid perfekta resultat.
 
 ``` bash
-npm run cli content import
+npx elva content import
 ```
 
 ## Skapa om Open Graph-bilder
@@ -59,7 +59,7 @@ Verktyget kräver att utvecklingsservern är igång eftersom det genererar bilde
 elva skiljer sig lite från andra startpaket här, eftersom miniatyrbilderna genereras under utvecklingen, inte vid byggtiden. Detta bidrar till att hålla byggtiden kortare och sparar resurser vid varje ny webbplatsdistribution.
 
 ``` bash
-npm run cli content regenerate
+npx elva content regenerate
 ```
 
 [Blogroll, någon](/sv/dokumentation/blogroll/)?
