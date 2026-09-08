@@ -6,7 +6,7 @@ tags:
   - tag4
 ---
 
-Language management can be handled through the CLI, with all language configuration stored in `content/_data/locales.json`. You can manage languages through the interactive menu by running `npm run cli` and selecting `"Languages"`, or use the direct command shortcuts documented below.
+Language management can be handled through the CLI, with all language configuration stored in `content/_data/locales.json`. You can manage languages through the interactive menu by running `npx elva` and selecting `"Languages"`, or use the direct command shortcuts documented below.
 
 <div class="notice notice-notice">If you only need a single language site, that is perfectly fine. You can simply keep the default language and not add another.</div>
 
@@ -15,7 +15,7 @@ Language management can be handled through the CLI, with all language configurat
 The list command displays all configured languages along with their locale key, language code, text direction, and whether it is set as the default.
 
 ``` bash
-npm run cli languages list
+npx elva languages list
 
 Name               Key     Locale      Dir   Default
 --------------------------------------------------------------
@@ -31,7 +31,7 @@ Adding a language through the CLI creates the necessary folder structure and con
 After the language is registered, the CLI will ask whether you want to copy existing content from your default language into the new language folder. This is useful as a starting point for translation, but you can always delete or modify the copied content afterward. The CLI also creates translations and stopword files for the new locale under `content/_data/translations/` and `content/_data/stopwords/`. [Stopwords](https://www.kaggle.com/datasets/heeraldedhia/stop-words-in-28-languages/data?select=english.txt) are common words that appear in a language that will be filtered out of the search index template.
 
 ``` bash
-npm run cli languages add
+npx elva languages add
 ```
 
 ## Change the default language
@@ -39,7 +39,7 @@ npm run cli languages add
 Only one language can be marked as the default. This serves as the base for your site and is served at the root URL. If you need to change which language is the default, use this command to select a different one from your configured languages.
 
 ``` bash
-npm run cli language default
+npx elva language default
 ```
 
 ## Remove a language
@@ -47,7 +47,7 @@ npm run cli language default
 Removing a language deletes the language folder and all its content, along with the associated translation and stopwords files. The CLI will not let you remove the default language, and it will ask for confirmation before deleting anything.
 
 ``` bash
-npm run cli language remove
+npx elva language remove
 ```
 
 ## Editing locales.json

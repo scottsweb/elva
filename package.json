@@ -9,7 +9,7 @@
     "build:prod": "export NODE_ENV=production && npm run clean && npx @11ty/eleventy",
     "build:stage": "export NODE_ENV=staging && npm run clean && npx @11ty/eleventy",
     "dev": "npx @11ty/eleventy --watch --serve --incremental",
-    "clean": "node .cli/index.js clean",
+    "clean": "npx elva clean",
     "cli": "node .cli/index.js",
     "debug": "DEBUG=Eleventy* npm run dev",
     "benchmark": "DEBUG=Eleventy:Benchmark* npm run build:prod",
@@ -39,6 +39,9 @@
     "email": "git@scott.ee"
   },
   "license": "MIT",
+  "bin": {
+    "elva": ".cli/index.js"
+  },
   "dependencies": {
     "@11ty/eleventy": "4.0.0-alpha.10",
     "@11ty/eleventy-fetch": "^5.1.3",

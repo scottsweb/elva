@@ -1,4 +1,4 @@
-import { input, rawlist, confirm } from '@inquirer/prompts';
+import { input, rawlist, confirm, search } from '@inquirer/prompts';
 import { success, error, info, getLocaleData, getTemplatePartChoices, TRANSLATIONS_DIR } from './utils.js';
 import * as path from 'path';
 import { readFileSync, writeFileSync, readdirSync } from 'fs';
@@ -196,26 +196,17 @@ const removeTranslation = async () => {
     const data = loadTranslationFile(defaultLocale);
     const flattened = flattenTranslations(data);
 
-    const searchStr = await input({
-        message: `Search (${defaultLocale}):`,
-        required: true
-    });
-
-    const matches = flattened
-        .filter(item => item.value.toString().toLowerCase().includes(searchStr.toLowerCase()))
-        .map(item => ({
-            name: `${item.key} → ${item.value}`,
-            value: item.key
-        }));
-
-    if (matches.length === 0) {
-        error(`No translations containing '${searchStr}' were found.`);
-        return;
-    }
-
-    const selectedKey = await rawlist({
-        message: 'Select a translation to remove:',
-        choices: matches
+    const selectedKey = await search({
+        message: `Search translation to remove (${defaultLocale}):`,
+        source: async (input) => {
+            const items = input
+                ? flattened.filter(item =>
+                    item.key.toLowerCase().includes(input.toLowerCase())
+                    || item.value.toString().toLowerCase().includes(input.toLowerCase())
+                )
+                : flattened;
+            return items.map(item => ({ name: `${item.key} → ${item.value}`, value: item.key }));
+        }
     });
 
     if (!await confirm({ message: `Are you sure you want to remove '${selectedKey}' from all locales?` })) {
