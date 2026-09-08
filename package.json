@@ -6,13 +6,13 @@
   "type": "module",
   "scripts": {
     "build": "npm run clean && npx @11ty/eleventy",
-    "build:prod": "export NODE_ENV=production && npm run clean && npx @11ty/eleventy",
-    "build:stage": "export NODE_ENV=staging && npm run clean && npx @11ty/eleventy",
+    "build:prod": "npm run clean && cross-env NODE_ENV=production npx @11ty/eleventy",
+    "build:stage": "npm run clean && cross-env NODE_ENV=staging npx @11ty/eleventy",
     "dev": "npx @11ty/eleventy --watch --serve --incremental",
     "clean": "node .cli/index.js clean",
     "cli": "node .cli/index.js",
-    "debug": "DEBUG=Eleventy* npm run dev",
-    "benchmark": "DEBUG=Eleventy:Benchmark* npm run build:prod",
+    "debug": "cross-env DEBUG=Eleventy* npm run dev",
+    "benchmark": "cross-env DEBUG=Eleventy:Benchmark* npm run build:prod",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release-patch": "npm version patch --force && npm publish",
     "release-minor": "npm version minor --force && npm publish",
@@ -71,5 +71,8 @@
   },
   "allowScripts": {
     "sharp@0.33.5": true
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }
