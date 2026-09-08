@@ -1,0 +1,22 @@
+{
+	"singleQuote": true,
+	"tabWidth": 2,
+	"trailingComma": "none",
+	"proseWrap": "preserve",
+	"embeddedLanguageFormatting": "auto",
+	"plugins": ["prettier-plugin-jinja-template"],
+	"overrides": [
+		{
+			"files": "*.njk",
+			"options": {
+				"parser": "jinja-template"
+			}
+		},
+		{
+			"files": "*.html",
+			"options": {
+				"parser": "jinja-template"
+			}
+		}
+	]
+}
