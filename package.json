@@ -8,7 +8,7 @@
     "build": "npm run clean && npx @11ty/eleventy",
     "build:prod": "npm run clean && cross-env NODE_ENV=production npx @11ty/eleventy",
     "build:stage": "npm run clean && cross-env NODE_ENV=staging npx @11ty/eleventy",
-    "dev": "npx @11ty/eleventy --watch --serve --incremental",
+    "dev": "npm run clean && npx @11ty/eleventy --watch --serve --incremental",
     "clean": "node .cli/index.js clean",
     "cli": "node .cli/index.js",
     "debug": "cross-env DEBUG=Eleventy* npm run dev",
