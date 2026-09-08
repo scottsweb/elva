@@ -3,10 +3,7 @@ layout: base
 ---
 
 <div class="site-intro">
+	{% svg "logo.svg", { class: "logo", title: 'meta.title' | translate, ariaLabel: 'meta.title' | translate, width: 541, height: 242 } %}
 
-    {% svg "logo.svg", { class: "logo", title: 'meta.title' | translate, ariaLabel: 'meta.title' | translate, width: 541, height: 242 } %}
-
-    {{ content | safe }}
-
+	{{ content | safe }}
 </div>
-
