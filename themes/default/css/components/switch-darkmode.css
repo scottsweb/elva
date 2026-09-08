@@ -11,11 +11,11 @@
 	user-select: none;
 }
 
-.switch-wrapper .switch + .switch-btn::before, 
+.switch-wrapper .switch + .switch-btn::before,
 .switch-wrapper .switch + .switch-btn::after {
 	position: relative;
 	display: block;
-	content: "";
+	content: '';
 	height: 100%;
 }
 
