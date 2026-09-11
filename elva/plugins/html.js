@@ -6,6 +6,7 @@ export function html(eleventyConfig) {
 		if (path && path.endsWith('.html') && eleventyConfig.globalData.settings.isProduction) {
 			try {
 				const minified = minifyHtml.minify(Buffer.from(content), {
+					keep_html_and_head_opening_tags: true,
 					keep_closing_tags: true,
 					keep_comments: false,
 					allow_removing_spaces_between_attributes: false,
