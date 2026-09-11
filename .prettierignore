@@ -1,0 +1,15 @@
+# Ignore artifacts:
+build
+coverage
+**/*.md
+package.json
+package-lock.json
+_baseline/**/*.html
+.frontmatter
+.github
+.vscode
+dist
+temp
+
+*.njk
+!themes/**/*.njk

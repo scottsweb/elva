@@ -5,23 +5,23 @@ const locale = import.meta.url.split('/').at(-3);
 const config = collections[collectionName];
 
 export default {
-    lang: locale,
-    layout: config.layout,
-    tags: [`_${collectionName}`, ...(config.searchable ? ['_search'] : [])],
-    permalink: function(data) {
-        let prefix = `/${data.lang}`;
-        if (data.locales[data.lang].default) prefix = '';
+	lang: locale,
+	layout: config.layout,
+	tags: [`_${collectionName}`, ...(config.searchable ? ['_search'] : [])],
+	permalink: function (data) {
+		let prefix = `/${data.lang}`;
+		if (data.locales[data.lang].default) prefix = '';
 
-        if (collectionName === 'pages') {
-            return `${prefix}/${this.slugify(data.seo?.slug || data.page.fileSlug)}/`.replace(/\/{2,}/g, '/');
-        }
+		if (collectionName === 'pages') {
+			return `${prefix}/${this.slugify(data.seo?.slug || data.page.fileSlug)}/`.replace(/\/{2,}/g, '/');
+		}
 
-        let collectionSlug = config.locales?.[data.lang] || config.prefix || collectionName;
-        return `${prefix}/${collectionSlug}/${this.slugify(data.seo?.slug || data.page.fileSlug)}/`;
-    },
-    eleventyComputed: {
-        page: {
-            lang: () => locale
-        }
-    },
-}
+		let collectionSlug = config.locales?.[data.lang] || config.prefix || collectionName;
+		return `${prefix}/${collectionSlug}/${this.slugify(data.seo?.slug || data.page.fileSlug)}/`;
+	},
+	eleventyComputed: {
+		page: {
+			lang: () => locale
+		}
+	}
+};

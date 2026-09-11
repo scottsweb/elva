@@ -1,16 +1,16 @@
 {
-    "en": {
-        "dir": "ltr",
-        "label": "English",
-        "shorthand": "EN",
-        "locale": "en-gb",
-        "default": true
-    },
-    "sv": {
-        "dir": "ltr",
-        "label": "Svenska",
-        "shorthand": "SE",
-        "locale": "sv-se",
-        "default": false
-    }
+	"en": {
+		"dir": "ltr",
+		"label": "English",
+		"shorthand": "EN",
+		"locale": "en-gb",
+		"default": true
+	},
+	"sv": {
+		"dir": "ltr",
+		"label": "Svenska",
+		"shorthand": "SE",
+		"locale": "sv-se",
+		"default": false
+	}
 }
