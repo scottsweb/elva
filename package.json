@@ -6,17 +6,21 @@
   "type": "module",
   "scripts": {
     "build": "npm run clean && npx @11ty/eleventy",
-    "build:prod": "export NODE_ENV=production && npm run clean && npx @11ty/eleventy",
-    "build:stage": "export NODE_ENV=staging && npm run clean && npx @11ty/eleventy",
-    "dev": "npx @11ty/eleventy --watch --serve --incremental",
+    "build:prod": "npm run clean && cross-env NODE_ENV=production npx @11ty/eleventy",
+    "build:stage": "npm run clean && cross-env NODE_ENV=staging npx @11ty/eleventy",
+    "dev": "npm run clean && npx @11ty/eleventy --watch --serve --incremental",
     "clean": "node .cli/index.js clean",
     "cli": "node .cli/index.js",
-    "debug": "DEBUG=Eleventy* npm run dev",
-    "benchmark": "DEBUG=Eleventy:Benchmark* npm run build:prod",
+    "debug": "cross-env DEBUG=Eleventy* npm run dev",
+    "benchmark": "cross-env DEBUG=Eleventy:Benchmark* npm run build:prod",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release-patch": "npm version patch --force && npm publish",
     "release-minor": "npm version minor --force && npm publish",
-    "release-major": "npm version major --force && npm publish"
+    "release-major": "npm version major --force && npm publish",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --check",
+    "format:fix": "prettier . --write"
   },
   "bugs": {
     "url": "https://github.com/scottsweb/elva/issues"
@@ -71,5 +75,13 @@
   },
   "allowScripts": {
     "sharp@0.33.5": true
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "cross-env": "^10.1.0",
+    "eslint": "^10.10.0",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.6",
+    "prettier-plugin-jinja-template": "^2.2.0"
   }
 }

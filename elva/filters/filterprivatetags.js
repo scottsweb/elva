@@ -1,5 +1,5 @@
 export function filterprivatetags(tags) {
-    return (tags || []).filter(tag => !tag.startsWith('_'));
+	return (tags || []).filter((tag) => !tag.startsWith('_'));
 }
 
 // backward compatibility alias
