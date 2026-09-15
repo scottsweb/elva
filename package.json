@@ -51,7 +51,7 @@
     "@inquirer/prompts": "^8.7.2",
     "@minify-html/node": "^0.18.1",
     "alpinejs": "^3.17.1",
-    "browserslist": "^4.28.8",
+    "browserslist": "^4.28.9",
     "cheerio": "^1.2.0",
     "dot-prop": "^10.2.0",
     "eleventy-plugin-embed-everything": "^1.21.2",
