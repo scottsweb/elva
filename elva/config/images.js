@@ -10,12 +10,12 @@ export default (eleventyConfig) => {
     if (process.env.ELEVENTY_RUN_MODE === 'build' && !cdnify) {
         outputdir.outputDir = '.cache/@11ty/img/';
 
-        const copyCache = async () => {
+        const copyCache = () => {
             const src = '.cache/@11ty/img/';
             const dest = path.join(eleventyConfig.directories.output, '/assets/img/');
+            if (!fs.existsSync(src)) return;
             try {
-                if (!fs.existsSync(src)) return;
-                await fs.promises.cp(src, dest, { recursive: true });
+                fs.cpSync(src, dest, { recursive: true });
             }
             catch (err) {
                 eleventyConfig.logger.error(`Image cache copy failed: ${err.message}`);
