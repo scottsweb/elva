@@ -35,13 +35,13 @@ Kör Eleventy för webbplatsutveckling. Se webbplatsen på `http://localhost:808
 npm run dev
 ```
 
-Generera en produktionsklar build till mappen `dist`:
+Generera en produktionsklar build till mappen `dist` (du behöver även ange miljövariabeln `URL`, t.ex. `URL=https://example.com`):
 
-``` bash
-npm run build:prod
+```bash
+export URL=https://example.com && npm run build:prod
 ```
 
-Du kan ocksá ställa in miljövariabeln `NODE_ENV=production` i din kontrollpanel och använda `npm run build` som med tidigare versioner av elva.
+Du kan också ställa in miljövariablerna `NODE_ENV=production` och `URL=https://example.com` i kontrollpanelen för din hosting och använda `npm run build`, som med tidigare versioner av elva.
 
 For att använda [Front Matter CMS](https://frontmatter.codes/), installera [VSCodium](https://vscodium.com/) eller [Visual Studio Code](https://code.visualstudio.com/) och aktivera tillägget (om det inte aktiveras automatiskt). Det öppnas varje gång du startar projektet.
 
