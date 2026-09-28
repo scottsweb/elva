@@ -34,13 +34,13 @@ Run Eleventy for site development. View the site at `http://localhost:8080`:
 npm run dev
 ```
 
-Generate a production-ready build to the `dist` folder:
+Generate a production-ready build to the `dist` folder (you will need to set the `URL` environment variable too e.g `URL=https://example.com`):
 
-``` bash
-npm run build:prod
+```bash
+export URL=https://example.com && npm run build:prod
 ```
 
-You can also set the environment variable `NODE_ENV=production` in your hosting control panel and use `npm run build` as with previous versions of elva.
+You can also set the environment variables `NODE_ENV=production` and `URL=https://example.com` in your hosting control panel and use `npm run build` as with previous versions of elva.
 
 To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https://vscodium.com/) or [Visual Studio Code](https://code.visualstudio.com/) and enable the extension (if it doesn't enable automatically). It will open each time you launch your project.
 
