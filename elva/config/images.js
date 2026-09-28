@@ -10,9 +10,19 @@ export default (eleventyConfig) => {
     if (process.env.ELEVENTY_RUN_MODE === 'build' && !cdnify) {
         outputdir.outputDir = '.cache/@11ty/img/';
 
-        eleventyConfig.on('eleventy.after', () => {
-            fs.cpSync('.cache/@11ty/img/', path.join(eleventyConfig.directories.output, '/assets/img/'), { recursive: true });
-        });
+        const copyCache = () => {
+            const src = '.cache/@11ty/img/';
+            const dest = path.join(eleventyConfig.directories.output, '/assets/img/');
+            if (!fs.existsSync(src)) return;
+            try {
+                fs.cpSync(src, dest, { recursive: true });
+            }
+            catch (err) {
+                eleventyConfig.logger.error(`Image cache copy failed: ${err.message}`);
+            }
+        };
+
+        eleventyConfig.on('eleventy.after', copyCache);
     }
 
     return {

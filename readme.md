@@ -90,21 +90,21 @@ Run Eleventy for site development. View the site at `http://localhost:8080`:
 npm run dev
 ```
 
-Generate a production-ready build to the `dist` folder:
+Generate a production-ready build to the `dist` folder (you will need to set the `URL` environment variable too e.g `URL=https://example.com`):
 
 ```
-npm run build:prod
+export URL=https://example.com && npm run build:prod
 ```
 
-You can set the environment variable `NODE_ENV=production` in your hosting control panel too and use `npm run build` as before.
+You can also set the environment variables `NODE_ENV=production` and `URL=https://example.com` in your hosting control panel and use `npm run build` as with previous versions of elva.
 
-To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https://vscodium.com/) or [Visual Studio Code](https://code.visualstudio.com/) and enable the extension (if it doesn't enable automatically). It will open each time you launch your project. 
+To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https://vscodium.com/) or [Visual Studio Code](https://code.visualstudio.com/) and enable the extension (if it doesn't enable automatically). It will open each time you launch your project.
 
 For next steps, [see the documentation](https://elva.scott.ee/documentation/).
 
 ## Personalisation Checklist
 
-- [ ] In `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging` (under `Global Settings`). Make sure these environment variables are set in staging and production and tweak as necessary
+- [ ] In `.eleventy.js` you'll see some dynamic settings for `url`, `isProduction` and `isStaging` (under `Global Settings`). Make sure these environment variables are set in staging and production and tweak as necessary. You must set at `URL` environment variable for production builds to work properly as certain meta tags and the CDN require a full domain.
 - [ ] [Configure your site settings](https://elva.scott.ee/documentation/setup/)
 - [ ] [Configure site languages via the CLI](https://elva.scott.ee/documentation/adding-additional-languages/) `npx elva`, under the `Languages` sub-menu
 - [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
