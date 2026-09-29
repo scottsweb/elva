@@ -43,7 +43,7 @@ Funktioner inkluderar:
 ### Andra saker
 
 * [Ett CLI](/sv/dokumentation/installningar/) för att hantera språk, installation och vanliga uppgifter (`npx elva`)
-* Sök-API (se `dist/api/search.json`). Allt innehåll taggat med `_search` kommer att visas i sökindexet
+* [Sök-API](https://elva.scott.ee/api/search.json) (se `dist/api/search.json`) med [exempel på implementering](https://elva.scott.ee/404). Allt innehåll som är taggat med `_search` kommer att inkluderas i sökindexet
 * [Front Matter CMS](https://frontmatter.codes/)
 * Generering av öppna grafbilder (utvecklingsservern måste vara igång)
 * Utkaststöd
