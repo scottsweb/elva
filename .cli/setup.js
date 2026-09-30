@@ -1,5 +1,5 @@
 import { input, rawlist, confirm } from '@inquirer/prompts';
-import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, unlinkSync, cpSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, existsSync, unlinkSync, cpSync } from 'fs';
 import { success, error, warning, PACKAGE_PATH, SETTINGS_PATH, THEMES_PATH, getLocaleData } from './utils.js';
 import { getProperty } from 'dot-prop';
 import * as path from 'path';
@@ -217,7 +217,7 @@ const setupNewTheme = async () => {
 };
 
 const deleteDefaultContent = async () => {
-	if (!(await confirm({ message: 'Are you sure?' }))) {
+	if (!(await confirm({ message: 'Are you sure you want to delete all default content?' }))) {
 		return;
 	}
 
