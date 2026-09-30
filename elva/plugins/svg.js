@@ -3,7 +3,7 @@
 import * as cheerio from 'cheerio';
 
 export function svg(eleventyConfig) {
-    function processSvg(content, svgOptions) {
+	function processSvg(content, svgOptions) {
 		try {
 			const $ = cheerio.load(content, null, false);
 			const svg = $('svg');
@@ -25,9 +25,13 @@ export function svg(eleventyConfig) {
 				svg.attr('aria-label', svgOptions.ariaLabel);
 			}
 
-            // ensure SVGs are hidden from the a11y tree if no title or label is provided
-			if (!svgOptions.hasOwnProperty('title') && !svgOptions.hasOwnProperty('ariaLabel') && svg.find('title').length === 0) {
-				svgOptions.ariaHidden = true; 
+			// ensure SVGs are hidden from the a11y tree if no title or label is provided
+			if (
+				!svgOptions.hasOwnProperty('title') &&
+				!svgOptions.hasOwnProperty('ariaLabel') &&
+				svg.find('title').length === 0
+			) {
+				svgOptions.ariaHidden = true;
 			}
 
 			if (svgOptions.ariaHidden) {
@@ -53,18 +57,18 @@ export function svg(eleventyConfig) {
 				svg.attr('preserveAspectRatio', svgOptions.preserveAspectRatio);
 			}
 
-            return $.root().html();
+			return $.root().html();
 		} catch {
 			return content;
 		}
 	}
 
-    eleventyConfig.addAsyncShortcode('svg', async function (filename, svgOptions = {}) {
-        const filePath = `./content/assets/svg/${filename}`;
-        const engine = svgOptions.hasOwnProperty('engine') ? svgOptions.engine : 'html';
-        const content = eleventyConfig.nunjucks.asyncShortcodes.renderFile(filePath, svgOptions, engine).then((content) => {
-            return processSvg(content, svgOptions);
-        });
-        return content;
-    });
+	eleventyConfig.addAsyncShortcode('svg', async function (filename, svgOptions = {}) {
+		const filePath = `./content/assets/svg/${filename}`;
+		const engine = svgOptions.hasOwnProperty('engine') ? svgOptions.engine : 'html';
+		const content = eleventyConfig.nunjucks.asyncShortcodes.renderFile(filePath, svgOptions, engine).then((content) => {
+			return processSvg(content, svgOptions);
+		});
+		return content;
+	});
 }
