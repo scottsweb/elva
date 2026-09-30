@@ -46,4 +46,4 @@ To use [Front Matter CMS](https://frontmatter.codes/), install [VSCodium](https:
 
 ## Command Line Interface
 
-elva includes a built-in CLI tool accessible via `npm run cli`. It provides an interactive menu for managing your site's content, languages, collections, blogroll, and setup configuration. It's a great place to start with the [setup of your site](/documentation/setup/).
+elva includes a built-in CLI tool accessible via `npx elva`. It provides an interactive menu for managing your site's content, languages, collections, blogroll, and setup configuration. It's a great place to start with the [setup of your site](/documentation/setup/).

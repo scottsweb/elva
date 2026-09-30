@@ -40,7 +40,7 @@ Features include:
 
 ### Other things
 
-* [A CLI](/documentation/setup/) for managing languages, setup and common tasks (`npm run cli`)
+* [A CLI](/documentation/setup/) for managing languages, setup and common tasks (`npx elva`)
 * [Search API](https://elva.scott.ee/api/search.json) (see `dist/api/search.json`) with [example implementation](https://elva.scott.ee/404). Any content tagged `_search` will appear in the search index
 * [Front Matter CMS](https://frontmatter.codes/)
 * Open graph image generation (dev server must be running)

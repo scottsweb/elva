@@ -21,7 +21,7 @@ For each configured language, you will be asked to enter the translation value. 
 The CLI checks for conflicts before adding. You cannot create a nested key that conflicts with an existing simple string, or vice versa.
 
 ``` bash
-npm run cli translation add
+npx elva translation add
 ```
 
 ## Remove a translation
@@ -29,7 +29,7 @@ npm run cli translation add
 The remove command searches for translations by their displayed value in the default locale. You enter a search string, select the translation to remove from the matching results, and confirm the deletion. The translation is removed from all translation files at once.
 
 ``` bash
-npm run cli translation remove
+npx elva translation remove
 ```
 
 ## Sync translations
@@ -37,7 +37,7 @@ npm run cli translation remove
 When you add new translation keys to your default locale file, other locales may be missing those entries. The sync command copies any missing keys from the default locale into all other locale files, pre-filling them with the default language's value. This ensures all locales stay in sync with your source of truth.
 
 ``` bash
-npm run cli translations sync
+npx elva translations sync
 ```
 
 ## Editing translation files

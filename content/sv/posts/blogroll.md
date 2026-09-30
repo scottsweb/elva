@@ -15,7 +15,7 @@ Blogroll-poster lagras i `content/_data/blogroll.json`. Du kan hantera poster vi
 Kommandot list visar alla poster i blogrollen med deras namn, webbplats-URL och feed-URL.
 
 ``` bash
-npm run cli blogroll list
+npx elva blogroll list
 
 Name                      URL                                   Feed
 ----------------------------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ Name                      URL                                   Feed
 När du lägger till en post via CLI ombeds du ange webbplatsens namn, webbadress och feed-URL (vanligtvis en RSS- eller Atom-feed). CLI lägger automatiskt till `https://` i början om du glömmer att ange ett protokoll. Duplicerade URL:er och duplicerade feed-URL:er kontrolleras och förhindrar att posten läggs till om en matchning hittas.
 
 ``` bash
-npm run cli blogroll add
+npx elva blogroll add
 ```
 
 ## Ta bort från blogroll
@@ -36,7 +36,7 @@ npm run cli blogroll add
 Kommandot för borttagning visar alla aktuella blogroll-poster och låter dig välja en eller flera poster att ta bort med hjälp av ett gränssnitt för flerval. Efter valet tas de valda posterna bort från listan.
 
 ``` bash
-npm run cli blogroll remove
+npx elva blogroll remove
 ```
 
 ## Redigera blogroll.json

@@ -15,7 +15,7 @@ Blogroll entries are stored in `content/_data/blogroll.json`. You can manage ent
 The list command displays all entries in the blogroll with their name, website URL, and feed URL.
 
 ``` bash
-npm run cli blogroll list
+npx elva blogroll list
 
 Name                      URL                                   Feed
 ----------------------------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ Name                      URL                                   Feed
 Adding an entry through the CLI prompts you for the site name, the website URL, and the feed URL (typically an RSS or Atom feed). The CLI will automatically prepend `https://` if you forget to include a protocol. Duplicate URLs and duplicate feed URLs are checked and will prevent the entry from being added if a match is found.
 
 ``` bash
-npm run cli blogroll add
+npx elva blogroll add
 ```
 
 ## Remove from blogroll
@@ -36,7 +36,7 @@ npm run cli blogroll add
 The remove command shows all current blogroll entries and lets you select one or more entries to remove using a multi-select interface. After selection, the chosen entries are removed from the list.
 
 ``` bash
-npm run cli blogroll remove
+npx elva blogroll remove
 ```
 
 ## Editing blogroll.json
