@@ -19,7 +19,7 @@ seo:
 		<name>{{ settings.author.name }}</name>
 		<email>{{ settings.author.email }}</email>
 	</author>
-  	{%- for post in collections[collectionTag] | reverse %}
+  	{%- for post in collections[collectionTag] | languageFilter(lang) | reverse %}
   	{%- set absolutePostUrl = post.url | absoluteUrl(settings.url) %}
 	{%- set image = (post.data.thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) | cdnify %}
 	<entry>
