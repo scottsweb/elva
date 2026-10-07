@@ -7,7 +7,7 @@ export function indexer(text) {
 
 	// Remove HTML elements, punctuation, large spaces and trim
 	let plain = unescape(text.replace(/<.*?>/gis, ' '))
-		.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()""""\n\u25A0\u00A0]/g, ' ')
+		.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()""""\n\t\u25A0\u00A0]/g, ' ')
 		.replace(/[ ]{2,}/g, ' ')
 		.trim();
 
