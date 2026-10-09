@@ -3,6 +3,3 @@
 .env
 dist
 node_modules
-notes.md
-themes/*
-!themes/default
