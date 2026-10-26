@@ -56,7 +56,7 @@
     "@11ty/import": "^2.0.1",
     "@inquirer/prompts": "^8.7.4",
     "@minify-html/node": "^0.18.1",
-    "alpinejs": "^3.17.4",
+    "alpinejs": "^3.17.5",
     "browserslist": "^4.29.1",
     "cheerio": "^1.2.0",
     "dot-prop": "^10.2.0",
