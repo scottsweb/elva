@@ -7,7 +7,7 @@ seo:
 ---
 {
     "version": "https://jsonfeed.org/version/1.1",
-    "title": "{{ label }} {{ settings.meta.separator }} {{ 'meta.jsonTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}",
+    "title": "{% if label %}{{ label }} {{ settings.meta.separator }} {% endif %}{{ 'meta.jsonTitle' | translate }} {{ settings.meta.separator }} {{ 'meta.title' | translate }}",
     "description": "{{ 'meta.description' | translate }}",
     "language": "{{ lang }}",
     "home_page_url": "{{ "/" | htmlBaseUrl(settings.url) }}",
