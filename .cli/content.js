@@ -15,10 +15,22 @@ import {
 	rmSync,
 	readdirSync
 } from 'fs';
-import { readdir } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import matter from '@11ty/gray-matter';
 import yaml from 'js-yaml';
+
+// Prompt for an environment variable if not already set
+const requireEnvVar = async (envName, description, helpUrl) => {
+	warning(`${envName} environment variable is not set.`);
+	warning(`Get one from ${helpUrl} (${description}).`);
+
+	const value = await input({
+		message: `Enter ${envName}:`,
+		required: true
+	});
+
+	process.env[envName] = value;
+};
 
 const yamlEngine = {
 	parse: (str, options) => yaml.load(str, { schema: yaml.JSON_SCHEMA }),
@@ -236,24 +248,79 @@ const importContent = async () => {
 			{ name: 'WordPress', value: 'wordpress' },
 			{ name: 'Atom', value: 'atom' },
 			{ name: 'RSS', value: 'rss' },
-			{ name: 'Fediverse', value: 'fediverse' },
-			{ name: 'Bluesky', value: 'bluesky' }
+			{ name: 'Mastodon', value: 'fediverse' },
+			{ name: 'Bluesky', value: 'bluesky' },
+			{ name: 'Blogger', value: 'blogger' },
+			{ name: 'Squarespace', value: 'squarespace' },
+			{ name: 'Substack', value: 'substack' },
+			{ name: 'Tumblr', value: 'tumblr' },
+			{ name: 'Typepad', value: 'typepad' },
+			{ name: 'Wayback Machine', value: 'wayback' },
+			{ name: 'Instagram', value: 'instagram' },
+			{ name: 'CodePen', value: 'codepen' },
+			{ name: 'Medium (export)', value: 'medium' }
 		]
 	});
 
 	// get additional info for source
-	let sourceValue;
-	if (['wordpress', 'atom', 'rss'].includes(sourceType)) {
-		sourceValue = await input({
-			message: 'Enter feed or website URL:',
+	let sourceConfig = {};
+	const urlBased = ['wordpress', 'atom', 'rss', 'fediverse', 'blogger', 'squarespace', 'substack', 'typepad', 'wayback'];
+	const usernameBased = ['bluesky', 'instagram', 'codepen'];
+
+	if (urlBased.includes(sourceType)) {
+		sourceConfig.url = await input({
+			message: 'Enter URL:',
 			required: true
 		});
-	} else {
-		const example = sourceType === 'bluesky' ? '@handle.bsky.social' : '@user@mastodon.social';
-		sourceValue = await input({
+	} else if (usernameBased.includes(sourceType)) {
+		const example = sourceType === 'bluesky' ? '@handle.bsky.social' : 'username';
+		sourceConfig.url = await input({
 			message: `Enter username (e.g. ${example}):`,
 			required: true
 		});
+	} else if (sourceType === 'tumblr') {
+		sourceConfig.url = await input({
+			message: 'Enter blog name or domain (e.g. myblog):',
+			required: true
+		});
+	} else if (sourceType === 'medium') {
+		sourceConfig.url = await input({
+			message: 'Enter path to extracted Medium export folder:',
+			required: true
+		});
+	}
+
+	// check required environment variables
+	if (sourceType === 'tumblr' && !process.env.TUMBLR_API_KEY) {
+		await requireEnvVar('TUMBLR_API_KEY', 'Tumblr OAuth consumer key', 'https://www.tumblr.com/oauth/apps');
+	}
+	if (sourceType === 'instagram' && !process.env.INSTAGRAM_ACCESS_TOKEN) {
+		await requireEnvVar('INSTAGRAM_ACCESS_TOKEN', 'Instagram access token', 'https://developers.facebook.com/docs/instagram-platform/');
+	}
+	if (sourceType === 'codepen' && !process.env.CODEPEN_API_KEY) {
+		await requireEnvVar('CODEPEN_API_KEY', 'CodePen API key', 'https://codepen.io/settings/api');
+	}
+
+	// WordPress post type selection
+	if (sourceType === 'wordpress') {
+		const postType = await rawlist({
+			message: 'Select post type to import:',
+			default: 'Posts',
+			choices: [
+				{ name: 'Posts', value: 'posts' },
+				{ name: 'Pages', value: 'pages' },
+				{ name: 'Other...', value: 'other' }
+			]
+		});
+
+		if (postType === 'other') {
+			sourceConfig.postTypes = await input({
+				message: 'Enter custom post type name:',
+				required: true
+			});
+		} else {
+			sourceConfig.postTypes = postType;
+		}
 	}
 
 	// select target locale
@@ -277,17 +344,48 @@ const importContent = async () => {
 	});
 
 	// select timeframe
-	const within = await rawlist({
-		message: 'Select timeframe:',
-		default: '*',
-		choices: [
-			{ name: 'Last 7 days', value: '7d' },
-			{ name: 'Last 30 days', value: '30d' },
-			{ name: 'Last 90 days', value: '90d' },
-			{ name: 'Last 12 months', value: '1y' },
-			{ name: 'All time', value: '*' }
-		]
-	});
+	let within = undefined;
+	if (!['wayback', 'typepad'].includes(sourceType)) {
+		within = await rawlist({
+			message: 'Select timeframe:',
+			default: '*',
+			choices: [
+				{ name: 'Last 7 days', value: '7d' },
+				{ name: 'Last 30 days', value: '30d' },
+				{ name: 'Last 90 days', value: '90d' },
+				{ name: 'Last 12 months', value: '1y' },
+				{ name: 'All time', value: '*' }
+			]
+		});
+	}
+
+	// --until for wayback/typepad
+	let until = undefined;
+	let untilChoice = undefined;
+	if (['wayback', 'typepad'].includes(sourceType)) {
+		untilChoice = await rawlist({
+			message: 'Import entries archived on or before:',
+			default: 'No limit',
+			choices: [
+				{ name: 'No limit (all)', value: 'none' },
+				{ name: 'Year only (e.g. 2024)', value: 'year' },
+				{ name: 'Specific date (e.g. 2024-08-19)', value: 'date' }
+			]
+		});
+
+		if (untilChoice === 'year') {
+			until = await input({
+				message: 'Enter year:',
+				default: new Date().getFullYear().toString(),
+				validate: (value) => /^\d{4}$/.test(value) || 'Please enter a 4-digit year'
+			});
+		} else if (untilChoice === 'date') {
+			until = await input({
+				message: 'Enter date (YYYY-MM-DD):',
+				validate: (value) => /^\d{4}-\d{2}-\d{2}$/.test(value) || 'Please enter a date in YYYY-MM-DD format'
+			});
+		}
+	}
 
 	// dry run or real import?
 	const isDryRun = await confirm({
@@ -307,10 +405,15 @@ const importContent = async () => {
 
 	// summary
 	info('Import configuration:');
-	console.log(`  Source: ${sourceType} - ${sourceValue}`);
+	console.log(`  Source: ${sourceType} - ${sourceConfig.url}`);
 	console.log(`  Target: content/${targetLocale}/${targetCollection}/`);
 	console.log(`  Assets folder: content/assets/img/`);
-	console.log(`  Timeframe: ${within}`);
+	if (within !== undefined) {
+		console.log(`  Timeframe: ${within}`);
+	}
+	if (untilChoice !== undefined) {
+		console.log(`  Until: ${until || 'No limit'}`);
+	}
 	console.log(`  Mode: ${isDryRun ? 'Dry run' : 'Live'}`);
 	if (isDryRun) {
 		console.log(`  Limit: ${limit === 0 ? 'No limit' : limit}`);
@@ -328,26 +431,33 @@ const importContent = async () => {
 	const importer = new Importer();
 	importer.setOutputFolder(`content/${targetLocale}/${targetCollection}/`);
 	importer.setCacheDuration('48h');
+	importer.setFetchTimeout('30s');
+	importer.setAssetFetchTimeout('5m');
+	importer.setFetchRetries(2);
 	importer.setAssetReferenceType('colocate');
 	importer.setAssetsFolder('/assets/img');
 	importer.setDryRun(isDryRun);
 	importer.setVerbose(false);
 
-	importer.addSource(sourceType, {
-		url: sourceValue,
-		filepathFormat: (url, fallbackPath) => {
-			// strip leading/trailing slashes, get last segment, add .md extension
-			const segments = fallbackPath
-				.replace(/^\/+|\/+$/g, '')
-				.split('/')
-				.filter(Boolean);
-			return segments.pop() + '.md';
-		}
-	});
+	// filepath format callback
+	const filepathFormat = (url, fallbackPath) => {
+		const segments = fallbackPath
+			.replace(/^\/+|\/+$/g, '')
+			.split('/')
+			.filter(Boolean);
+		return segments.pop() + '.md';
+	};
+
+	sourceConfig.filepathFormat = filepathFormat;
+	if (until) {
+		sourceConfig.until = until;
+	}
+
+	importer.addSource(sourceType, sourceConfig);
 
 	// hack: RSS based imports are lumpy, this attempts to convert them into clean markdown
 	// if there is a bug, it's probably here
-	const isRssBased = ['atom', 'rss', 'fediverse'].includes(sourceType);
+	const isRssBased = ['atom', 'rss'].includes(sourceType);
 	const originalGetEntries = importer.getEntries.bind(importer);
 	importer.getEntries = async (options) => {
 		let entries = await originalGetEntries(options);
@@ -380,11 +490,14 @@ const importContent = async () => {
 	info(`Starting import${isDryRun ? ' (dry run)' : ''}...`);
 
 	try {
-		const entries = await importer.getEntries({
-			within,
+		const getEntriesOptions = {
 			limit,
 			outputContentType: 'markdown'
-		});
+		};
+		if (within !== undefined && within !== '*') {
+			getEntriesOptions.within = within;
+		}
+		const entries = await importer.getEntries(getEntriesOptions);
 
 		if (entries.length === 0) {
 			warning('No content was found using your chosen import criteria.');
