@@ -1,5 +1,5 @@
-import { input, rawlist, checkbox, confirm, select } from '@inquirer/prompts';
-import { success, error, warning, info, getLocaleData, LOCALES_PATH, COLLECTIONS_PATH } from './utils.js';
+import { input, rawlist, checkbox, confirm } from '@inquirer/prompts';
+import { success, error, warning, info, getLocaleData, COLLECTIONS_PATH } from './utils.js';
 import { Importer } from '@11ty/import';
 import * as entities from 'entities';
 import { getProperty } from 'dot-prop';
@@ -223,7 +223,7 @@ const regenerateOpengraph = async () => {
 						totalFailed++;
 					}
 				}
-			} catch (e) {
+			} catch {
 				totalFailed++;
 			}
 		}
