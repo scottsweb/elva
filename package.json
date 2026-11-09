@@ -81,7 +81,7 @@
     "@frontmatter/extensibility": "^0.0.18",
     "@eslint/js": "^10.0.1",
     "cross-env": "^10.1.0",
-    "eslint": "^10.13.0",
+    "eslint": "^10.14.0",
     "globals": "^17.14.0",
     "playwright": "^1.65.0",
     "prettier": "^3.9.10",
