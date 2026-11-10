@@ -13,7 +13,8 @@ import {
 	globSync,
 	renameSync,
 	rmSync,
-	readdirSync
+	readdirSync,
+	lstatSync
 } from 'fs';
 import { spawnSync } from 'node:child_process';
 import matter from '@11ty/gray-matter';
@@ -289,10 +290,17 @@ const importContent = async () => {
 			required: true
 		});
 	} else if (sourceType === 'medium') {
-		sourceConfig.url = await input({
-			message: 'Enter path to extracted Medium export folder:',
-			required: true
-		});
+		let mediumPath;
+		do {
+			mediumPath = await input({
+				message: 'Enter path to extracted Medium export folder:',
+				required: true
+			});
+			if (!existsSync(mediumPath) || !lstatSync(mediumPath).isDirectory()) {
+				error(`'${mediumPath}' is not a valid folder. Check the path and try again (Ctrl+C to cancel).`);
+			}
+		} while (!existsSync(mediumPath) || !lstatSync(mediumPath).isDirectory());
+		sourceConfig.url = mediumPath;
 	}
 
 	// check required environment variables
@@ -411,6 +419,9 @@ const importContent = async () => {
 	// summary
 	info('Import configuration:');
 	console.log(`  Source: ${sourceType} - ${sourceConfig.url}`);
+	if (sourceConfig.postTypes) {
+		console.log(`  Post type: ${sourceConfig.postTypes}`);
+	}
 	console.log(`  Target: content/${targetLocale}/${targetCollection}/`);
 	console.log(`  Assets folder: content/assets/img/`);
 	if (within !== undefined) {
