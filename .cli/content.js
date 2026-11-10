@@ -1,4 +1,4 @@
-import { input, rawlist, checkbox, confirm } from '@inquirer/prompts';
+import { input, rawlist, checkbox, confirm, password } from '@inquirer/prompts';
 import { success, error, warning, info, getLocaleData, COLLECTIONS_PATH } from './utils.js';
 import { Importer } from '@11ty/import';
 import * as entities from 'entities';
@@ -24,9 +24,9 @@ const requireEnvVar = async (envName, description, helpUrl) => {
 	warning(`${envName} environment variable is not set.`);
 	warning(`Get one from ${helpUrl} (${description}).`);
 
-	const value = await input({
+	const value = await password({
 		message: `Enter ${envName}:`,
-		required: true
+		validate: (value) => value.length > 0 || 'A value is required'
 	});
 
 	process.env[envName] = value;
@@ -264,8 +264,8 @@ const importContent = async () => {
 
 	// get additional info for source
 	let sourceConfig = {};
-	const urlBased = ['wordpress', 'atom', 'rss', 'fediverse', 'blogger', 'squarespace', 'substack', 'typepad', 'wayback'];
-	const usernameBased = ['bluesky', 'instagram', 'codepen'];
+	const urlBased = ['wordpress', 'atom', 'rss', 'blogger', 'squarespace', 'substack', 'typepad', 'wayback'];
+	const usernameBased = ['bluesky', 'fediverse', 'instagram', 'codepen'];
 
 	if (urlBased.includes(sourceType)) {
 		sourceConfig.url = await input({
@@ -273,9 +273,14 @@ const importContent = async () => {
 			required: true
 		});
 	} else if (usernameBased.includes(sourceType)) {
-		const example = sourceType === 'bluesky' ? '@handle.bsky.social' : 'username';
+		const examples = {
+			bluesky: '@handle.bsky.social',
+			fediverse: '@user@mastodon.social',
+			instagram: 'username',
+			codepen: 'username'
+		};
 		sourceConfig.url = await input({
-			message: `Enter username (e.g. ${example}):`,
+			message: `Enter username (e.g. ${examples[sourceType]}):`,
 			required: true
 		});
 	} else if (sourceType === 'tumblr') {
@@ -537,7 +542,12 @@ const importContent = async () => {
 		importer.logResults();
 		success('Import completed.');
 	} catch (importError) {
-		error(`Import failed: ${importError.message}`);
+		// the library already logs the error itself before rethrowing, so don't repeat it verbatim
+		if(/401|403/.test(importError.message)) {
+			error('Import failed. Check the API key or credentials you entered.');
+		} else {
+			error('Import failed.');
+		}
 	}
 };
 
