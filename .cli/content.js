@@ -317,7 +317,7 @@ const importContent = async () => {
 	if (sourceType === 'wordpress') {
 		const postType = await rawlist({
 			message: 'Select post type to import:',
-			default: 'Posts',
+			default: 'posts',
 			choices: [
 				{ name: 'Posts', value: 'posts' },
 				{ name: 'Pages', value: 'pages' },
@@ -377,7 +377,7 @@ const importContent = async () => {
 	if (['wayback', 'typepad'].includes(sourceType)) {
 		untilChoice = await rawlist({
 			message: 'Import entries archived on or before:',
-			default: 'No limit',
+			default: 'none',
 			choices: [
 				{ name: 'No limit (all)', value: 'none' },
 				{ name: 'Year only (e.g. 2024)', value: 'year' },
