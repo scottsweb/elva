@@ -42,7 +42,7 @@ npx elva content remove
 
 ## Importera innehåll
 
-Importkommandot är ett skal för [11ty import](https://github.com/11ty/import). Använd det för att hämta innehåll från externa källor till din webbplats. Det stöder import från WordPress (via REST API), RSS-flöden, Atom-flöden, Fediverse (Mastodon) och Bluesky. Importverktyget körs som en torrkörning som standard, vilket innebär att det visar vad som skulle importeras utan att faktiskt skriva några filer. Detta låter dig förhandsgranska resultaten innan du bekräftar.
+Importkommandot är ett skal för [11ty import](https://github.com/11ty/import). Använd det för att hämta innehåll från externa källor till din webbplats. Det stöder import från WordPress (via REST API), RSS/Atom/JSON-flöden, Mastodon, Bluesky, Tumblr, Blogger, Squarespace, Substack, Typepad, Medium (från en exportfil), Instagram, CodePen och Wayback Machine. Importverktyget körs som en torrkörning som standard, vilket innebär att det visar vad som skulle importeras utan att faktiskt skriva några filer. Detta låter dig förhandsgranska resultaten innan du bekräftar.
 
 Tillgångar (bilder) importeras tillsammans med innehållet och organiseras i en delad `content/assets/img/`-mapp. Importverktyget hanterar detta automatiskt. Importören försöker också konvertera allt importerat innehåll till markdown och se till att bildreferenser är korrekta, men det ger inte alltid perfekta resultat.
 

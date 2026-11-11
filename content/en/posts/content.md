@@ -40,7 +40,7 @@ npx elva content remove
 
 ## Import content
 
-The import command is a wrapper for [11ty import](https://github.com/11ty/import). Use it to bring content from external sources into your site. It supports importing from WordPress (via the REST API), RSS feeds, Atom feeds, the Fediverse (Mastodon), and Bluesky. The import tool runs as a dry run by default, meaning it will show you what would be imported without actually writing any files. This lets you preview the results before committing.
+The import command is a wrapper for [11ty import](https://github.com/11ty/import). Use it to bring content from external sources into your site. It supports importing from WordPress (via the REST API), RSS/Atom/JSON feeds, Mastodon, Bluesky, Tumblr, Blogger, Squarespace, Substack, Typepad, Medium (from an export file), Instagram, CodePen, and the Wayback Machine. The import tool runs as a dry run by default, meaning it will show you what would be imported without actually writing any files. This lets you preview the results before committing.
 
 Assets (images) are imported alongside the content and are organized into a shared `content/assets/img/` folder. The import tool handles this automatically. The importer also attempts to convert all imported content into markdown and make sure image references are correct, but it's not always going to give perfect results.
 
