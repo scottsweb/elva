@@ -247,8 +247,7 @@ const importContent = async () => {
 		default: 'wordpress',
 		choices: [
 			{ name: 'WordPress', value: 'wordpress' },
-			{ name: 'Atom', value: 'atom' },
-			{ name: 'RSS', value: 'rss' },
+			{ name: 'Feed (RSS/Atom/JSON)', value: 'feed' },
 			{ name: 'Mastodon', value: 'fediverse' },
 			{ name: 'Bluesky', value: 'bluesky' },
 			{ name: 'Blogger', value: 'blogger' },
@@ -265,7 +264,7 @@ const importContent = async () => {
 
 	// get additional info for source
 	let sourceConfig = {};
-	const urlBased = ['wordpress', 'atom', 'rss', 'blogger', 'squarespace', 'substack', 'typepad', 'wayback'];
+	const urlBased = ['wordpress', 'feed', 'blogger', 'squarespace', 'substack', 'typepad', 'wayback'];
 	const usernameBased = ['bluesky', 'fediverse', 'instagram', 'codepen'];
 
 	if (urlBased.includes(sourceType)) {
@@ -449,6 +448,7 @@ const importContent = async () => {
 	importer.setCacheDuration('48h');
 	importer.setFetchTimeout('30s');
 	importer.setAssetFetchTimeout('5m');
+	importer.setAssetMaxSize('10MB');
 	importer.setFetchRetries(2);
 	importer.setAssetReferenceType('colocate');
 	importer.setAssetsFolder('/assets/img');
@@ -471,9 +471,9 @@ const importContent = async () => {
 
 	importer.addSource(sourceType, sourceConfig);
 
-	// hack: RSS based imports are lumpy, this attempts to convert them into clean markdown
+	// hack: feed-based imports are lumpy, this attempts to convert them into clean markdown
 	// if there is a bug, it's probably here
-	const isRssBased = ['atom', 'rss'].includes(sourceType);
+	const isRssBased = ['feed', 'atom', 'rss'].includes(sourceType);
 	const originalGetEntries = importer.getEntries.bind(importer);
 	importer.getEntries = async (options) => {
 		let entries = await originalGetEntries(options);
@@ -550,8 +550,16 @@ const importContent = async () => {
 			}
 		}
 
-		importer.logResults();
-		success('Import completed.');
+		if (isDryRun) {
+			for (const entry of entries) {
+				const title = entry.title || (entry.data && entry.data.title);
+				info(title ? `${title} (${entry.url})` : entry.url);
+			}
+			success(`Dry run complete: ${entries.length} item(s) would be imported. Nothing was written.`);
+		} else {
+			importer.logResults();
+			success('Import completed.');
+		}
 	} catch (importError) {
 		// the library already logs the error itself before rethrowing, so don't repeat it verbatim
 		if(/401|403/.test(importError.message)) {
