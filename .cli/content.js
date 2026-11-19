@@ -18,11 +18,11 @@ import {
 import { readdir } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import matter from '@11ty/gray-matter';
-import yaml from 'js-yaml';
+import { load, dump, JSON_SCHEMA } from 'js-yaml';
 
 const yamlEngine = {
-	parse: (str, options) => yaml.load(str, { schema: yaml.JSON_SCHEMA }),
-	stringify: (obj) => yaml.dump(obj, { schema: yaml.JSON_SCHEMA })
+	parse: (str, options) => load(str, { schema: JSON_SCHEMA }),
+	stringify: (obj) => dump(obj, { schema: JSON_SCHEMA })
 };
 
 const addContent = async () => {
