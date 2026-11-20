@@ -47,7 +47,7 @@
     "elva": ".cli/index.js"
   },
   "dependencies": {
-    "@11ty/eleventy": "4.0.0-alpha.11",
+    "@11ty/eleventy": "4.0.0-alpha.12",
     "@11ty/eleventy-fetch": "^6.0.1",
     "@11ty/eleventy-img": "^7.1.1",
     "@11ty/eleventy-navigation": "^1.0.5",
