@@ -9,7 +9,7 @@ export function seodescriptions(eleventyConfig) {
 		});
 
 		// if seo description frontmatter is explicitly set, use that
-		if (data.seo.description) {
+		if (data?.seo?.description) {
 			return data.seo.description;
 		}
 

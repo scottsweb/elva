@@ -17,7 +17,7 @@
 		{% else %}
 			{% set found = false %}
 
-			{% for link in page.url | locale_links | fixlocalelinks %}
+			{% for link in page.url | locale_links %}
 				{% if lang === link.lang %}{% set found = link %}{% endif %}
 			{% endfor %}
 
