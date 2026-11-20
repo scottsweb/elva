@@ -21,7 +21,7 @@ seo:
             "thumbnail": "{{ (thumbnail or settings.meta.opengraphDefaultImage) | htmlBaseUrl(settings.url) }}",
             "language": "{{ post.page.lang }}",
             "date_updated": "{{ post.date | dateToRfc3339 }}",
-            "excerpt": "{{ post.data.seo.description | seodescription | striptags | truncate(150, false, '…') | safe }}",
+            "excerpt": "{{ post.data.seo.description | striptags | truncate(150, false, '…') | safe }}",
             "keywords": "{{ post.content | indexer }}",
             "tags": [{% set comma = joiner(",") %}{% for tag in post.data.tags %}{{ comma() }}"{{ tag }}"{% endfor %}]
         }
