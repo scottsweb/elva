@@ -83,7 +83,7 @@
     "cross-env": "^10.1.0",
     "eslint": "^10.14.0",
     "globals": "^17.14.0",
-    "playwright": "^1.65.0",
+    "playwright": "^1.65.1",
     "prettier": "^3.10.1",
     "prettier-plugin-jinja-template": "^2.2.0"
   }
