@@ -76,6 +76,6 @@ Varje samlingspost innehåller följande fält:
 - `layout` — Temamallen som används för att rendera objekt i denna samling (t.ex. `post`, `page`, `project`).
 - `locales` — URL-slugs per språk. Om ett språk inte finns med här används värdet för `prefix` som fallback.
 
-Efter att ha redigerat `types.json` manuellt måste du skapa motsvarande mappar under varje språkkatalog och lägga till en `{collectionname}.11tydata.js`-fil för varje samling. Mallen för denna fil finns i `.cli/templates/collection.11tydata.js` och kan kopieras till varje ny samlingsmapp. Du kan också köra `npx elva sync-collections` för att återskapa alla samlingsmallfiler på en gång.
+Efter att ha redigerat `types.json` manuellt måste du skapa motsvarande mappar under varje språkkatalog och lägga till en `{collectionname}.11tydata.js`-fil för varje samling. Du kan köra `npx elva sync-collections` för att generera alla samlingsmallfiler på en gång.
 
 [Nu ska vi lägga till några översättningar](/sv/dokumentation/oversattningar/).

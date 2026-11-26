@@ -49,7 +49,7 @@ Funktioner inkluderar:
 * Utkaststöd
 * [Syntaxmarkering](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
 * [Förenklade inbäddningar för YouTube, Vimeo etc.](https://github.com/gfscott/eleventy-plugin-embed-everything)
-* Många användbara filter och funktioner (se `/elva/filters/*`)
+* Många användbara filter och funktioner ([se plugin](https://github.com/scottsweb/elva-plugin/tree/main/elva/filters))
 * [Alpine.js](https://alpinejs.dev/)
 * [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/)
 * [Eleventy Navigation](https://www.11ty.dev/docs/plugins/navigation/)
