@@ -17,7 +17,7 @@
 	},
 	"seo": {
 		"defaultChangeFrequency": "monthly",
-		"defaultPriority": "0.7"
+		"defaultPriority": 0.7
 	},
 	"manifest": {
 		"themeColor": "#eceff4",

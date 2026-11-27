@@ -133,6 +133,71 @@
               }
             }
           }
+        },
+        "toc": {
+          "type": "array",
+          "title": "Table of Contents Levels",
+          "default": [2, 3],
+          "items": {
+            "type": "number",
+            "enum": [1, 2, 3, 4, 5, 6]
+          }
+        },
+        "templates": {
+          "type": "array",
+          "title": "Virtual Templates",
+          "default": ["robots", "sitemap", "manifest", "blogroll", "search", "feed"],
+          "items": {
+            "type": "string",
+            "enum": ["robots", "sitemap", "manifest", "blogroll", "search", "feed"]
+          }
+        },
+        "plugins": {
+          "type": "array",
+          "title": "Optional Plugins",
+          "default": ["rss", "render", "anchors", "syntaxhighlight", "embeds"],
+          "items": {
+            "type": "string",
+            "enum": ["rss", "render", "anchors", "syntaxhighlight", "embeds"]
+          }
+        },
+        "norobots": {
+          "type": "boolean",
+          "title": "Discourage AI crawlers",
+          "description": "Include the ai-robots-txt blocklist in production robots.txt",
+          "default": true
+        },
+        "images": {
+          "type": "object",
+          "title": "Image Settings",
+          "properties": {
+            "formats": {
+              "type": "array",
+              "title": "Image Formats",
+              "description": "Output image formats (use 'auto' for browser detection)",
+              "default": ["avif", "webp", "svg", "auto"],
+              "items": {
+                "type": "string",
+                "enum": ["avif", "webp", "svg", "jpeg", "png", "auto"]
+              }
+            }
+          }
+        },
+        "embeds": {
+          "type": "object",
+          "title": "Embed Settings",
+          "properties": {
+            "use": {
+              "type": "array",
+              "title": "Embeds",
+              "description": "Third-party embeds to enable",
+              "default": ["twitter", "youtube", "vimeo", "instagram", "tiktok", "openstreetmap", "ted", "soundcloud", "spotify"],
+              "items": {
+                "type": "string",
+                "enum": ["twitter", "youtube", "vimeo", "instagram", "tiktok", "openstreetmap", "ted", "soundcloud", "spotify"]
+              }
+            }
+          }
         }
       }
     }
