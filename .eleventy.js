@@ -19,8 +19,7 @@ export default async function (eleventyConfig) {
 			(process.env.URL && process.env.URL.includes('github.io')) ||
 			(process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_BRANCH !== 'main') ||
 			process.env.NODE_ENV === 'staging' ||
-			false,
-		theme: settings.theme
+			false
 	});
 
 	// Plugins ----------------------------------------
@@ -37,7 +36,7 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({'./content/assets/img/favicon.ico': './favicon.ico'});
 	eleventyConfig.addPassthroughCopy({'./content/assets/img': './assets/img'});
 	eleventyConfig.addPassthroughCopy({'./content/assets/svg': './assets/svg'});
-	eleventyConfig.addPassthroughCopy({[`./themes/${eleventyConfig.globalData.settings.theme}/fonts`]: './assets/fonts'});
+	eleventyConfig.addPassthroughCopy({[`./themes/${settings.theme}/fonts`]: './assets/fonts'});
 	eleventyConfig.addPassthroughCopy({'./content/assets/files': './assets/files'});
 
 	return {
@@ -52,8 +51,8 @@ export default async function (eleventyConfig) {
 			input: 'content',
 			output: 'dist',
 			data: '_data',
-			includes: `../themes/${eleventyConfig.globalData.settings.theme}/_includes`,
-			layouts: `../themes/${eleventyConfig.globalData.settings.theme}/_layouts`
+			includes: `../themes/${settings.theme}/_includes`,
+			layouts: `../themes/${settings.theme}/_layouts`
 		}
 	};
 }
