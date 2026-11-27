@@ -178,7 +178,7 @@
               "default": ["avif", "webp", "svg", "auto"],
               "items": {
                 "type": "string",
-                "enum": ["avif", "webp", "svg", "jpeg", "png", "auto"]
+                "enum": ["avif", "jpeg", "png", "webp", "svg", "gif", "auto"]
               }
             }
           }
