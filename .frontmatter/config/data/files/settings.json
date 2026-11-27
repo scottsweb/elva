@@ -103,6 +103,12 @@
             }
           }
         },
+        "norobots": {
+          "type": "boolean",
+          "title": "Discourage AI crawlers",
+          "description": "Include the ai-robots-txt blocklist in production robots.txt",
+          "default": true
+        },
         "manifest": {
           "type": "object",
           "title": "Web Manifest (https://web.dev/add-manifest/#create)",
@@ -160,12 +166,6 @@
             "type": "string",
             "enum": ["rss", "render", "anchors", "syntaxhighlight", "embeds"]
           }
-        },
-        "norobots": {
-          "type": "boolean",
-          "title": "Discourage AI crawlers",
-          "description": "Include the ai-robots-txt blocklist in production robots.txt",
-          "default": true
         },
         "images": {
           "type": "object",
