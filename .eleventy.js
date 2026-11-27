@@ -9,7 +9,7 @@ import settings from './content/_data/settings.json' with { type: 'json' };
 
 export default async function (eleventyConfig) {
 
-	// Global Settings --------------------------------
+	// Computed Settings ------------------------------
 
 	eleventyConfig.addGlobalData('settings', {
 		// these get merged with content/_data/settings.js
@@ -20,7 +20,7 @@ export default async function (eleventyConfig) {
 			(process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_BRANCH !== 'main') ||
 			process.env.NODE_ENV === 'staging' ||
 			false,
-		theme: process.env.ELVA_THEME || settings.theme
+		theme: settings.theme
 	});
 
 	// Plugins ----------------------------------------
