@@ -17,7 +17,7 @@
 	},
 	"seo": {
 		"defaultChangeFrequency": "monthly",
-		"defaultPriority": "0.7"
+		"defaultPriority": 0.7
 	},
 	"manifest": {
 		"themeColor": "#eceff4",
@@ -26,5 +26,26 @@
 		"orientation": "portrait-primary",
 		"categories": ["business", "photo"]
 	},
-	"theme": "default"
+	"theme": "default",
+	"toc": [2, 3],
+	"templates": ["robots", "sitemap", "manifest", "blogroll", "search", "feed"],
+	"plugins": ["rss", "render", "anchors", "syntaxhighlight", "embeds"],
+	"norobots": true,
+	"images": {
+		"widths": [300, 600, 1200, 2400, "auto"],
+		"formats": ["avif", "webp", "svg", "auto"]
+	},
+	"embeds": {
+		"use": [
+			"twitter",
+			"youtube",
+			"vimeo",
+			"instagram",
+			"tiktok",
+			"openstreetmap",
+			"ted",
+			"soundcloud",
+			"spotify"
+		]
+	}
 }

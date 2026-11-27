@@ -47,7 +47,7 @@ Features include:
 * Draft support
 * [Syntax highlighting](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
 * [Simplified embeds for YouTube, Vimeo etc](https://github.com/gfscott/eleventy-plugin-embed-everything)
-* Plenty of helpful filters and functions (see `/elva/filters/*`)
+* Plenty of helpful filters and functions ([see plugin](https://github.com/scottsweb/elva-plugin/tree/main/elva/filters))
 * [Alpine.js](https://alpinejs.dev/)
 * [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/)
 * [Eleventy Navigation](https://www.11ty.dev/docs/plugins/navigation/)

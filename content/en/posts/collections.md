@@ -74,6 +74,6 @@ Each collection entry contains the following fields:
 - `layout` — The theme template used to render items in this collection (e.g. `post`, `page`, `project`).
 - `locales` — Per-language URL slugs. If a language is not listed here, the `prefix` value is used as a fallback.
 
-After editing `types.json` by hand, you will need to create the corresponding folders under each language directory and add a `{collectionname}.11tydata.js` file for each collection. The template for this file is stored in `.cli/templates/collection.11tydata.js` and can be copied into each new collection folder. You can also run `npx elva sync-collections` to regenerate all collection template files at once.
+After editing `types.json` by hand, you will need to create the corresponding folders under each language directory and add a `{collectionname}.11tydata.js` file for each collection. You can run `npx elva sync-collections` to generate all collection template files at once.
 
 [Now lets add some translations](/documentation/translations/).

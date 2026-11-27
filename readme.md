@@ -46,7 +46,7 @@ Features include:
 * Draft support
 * [Syntax highlighting](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
 * [Simplified embeds for YouTube, Vimeo etc](https://github.com/gfscott/eleventy-plugin-embed-everything)
-* Plenty of helpful filters and functions (see `/elva/filters/*`)
+* Plenty of helpful filters and functions ([see plugin](https://github.com/scottsweb/elva-plugin/tree/main/elva/filters))
 * [Alpine.js](https://alpinejs.dev/)
 * [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/)
 * [Eleventy Navigation](https://www.11ty.dev/docs/plugins/navigation/)
@@ -110,12 +110,12 @@ For next steps, [see the documentation](https://elva.scott.ee/documentation/).
 - [ ] Set your own default images, icons and favicon by replacing the images in `/content/assets/img/` 
 - [ ] [Add your content](https://elva.scott.ee/documentation/content/) — it's easiest to do this with Front Matter CMS which exposes [all front matter](https://elva.scott.ee/documentation/frontmatter/) in the UI
 - [ ] [Add additional translations using the CLI](https://elva.scott.ee/documentation/translations/)
-- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/theme/default/_includes/`)... or duplicate the default theme using `npx elva setup new-theme`. You can also manually set the theme in `/content/_data/settings.json` to the name of your theme folder. We also have support changing this in the cli `npx elva setup theme`.
+- [ ] Design your site by customising the CSS (`/themes/default/css/`), layouts (`/themes/default/_layouts/`) and includes (`/themes/default/_includes/`)... or duplicate the default theme using `npx elva setup new-theme`. You can also manually set the theme in `/content/_data/settings.json` to the name of your theme folder. We also have support changing this in the cli `npx elva setup theme`.
 - [ ] Setup a custom template for your open graph images (`/themes/{theme}/_layouts/opengraph-preview.njk`)
 
 ### Optional
 
-- [ ] Set your preferred image sizes and formats in `/elva/config/image.js`
+- [ ] Set your preferred image sizes and formats in `content/_data/settings.json` under `images.widths` and `images.formats`
 - [ ] If you add more front matter, you may wish to edit `.frontmatter/frontmatter.json / .frontmatter/config/content/pagefodlers/*.json` to add [Front Matter CMS](https://frontmatter.codes/) support
 - [ ] Use [Eleventy Fetch](https://www.11ty.dev/docs/plugins/fetch/) to grab some API data
 - [ ] If you enable Photon CDN support [familiarise yourself with these limitations](https://jetpack.com/support/site-accelerator/#limitations)
