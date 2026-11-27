@@ -43,9 +43,9 @@
   "license": "MIT",
   "devDependencies": {
     "@11ty/eleventy": "4.0.0-alpha.12",
-    "@elva/plugin": "github:scottsweb/elva-plugin#v1.0.0-alpha.5",
-    "@frontmatter/extensibility": "^0.0.18",
+    "@elva/plugin": "github:scottsweb/elva-plugin#v1.0.0-alpha.6",
     "@eslint/js": "^10.0.1",
+    "@frontmatter/extensibility": "^0.0.18",
     "cross-env": "^10.1.0",
     "eslint": "^10.14.0",
     "globals": "^17.14.0",
