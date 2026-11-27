@@ -25,7 +25,7 @@ export default async function (eleventyConfig) {
 
 	// Plugins ----------------------------------------
 
-	await eleventyConfig.addPlugin(elva());
+	await eleventyConfig.addPlugin(elva);
 
 	// Watch Targets ----------------------------------
 
